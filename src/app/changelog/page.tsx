@@ -16,6 +16,36 @@ interface ChangelogEntry {
 
 const changelog: ChangelogEntry[] = [
   {
+    id: '8',
+    version: '0.5',
+    date: 'May 31, 2026',
+    type: 'feature',
+    title: 'Analytics Dashboard',
+    description: 'Performance analytics page for tracking Reddit engagement. Karma stats, daily activity chart, Rosie impact metrics, subreddit engagement table, and post performance list.',
+    details: [
+      'Account overview: total karma with 7-day change, total score, replies, avg upvote ratio',
+      'Daily karma earned bar chart (7-day view)',
+      'Rosie impact panel comparing Rosie-drafted vs manual post performance',
+      'Engagement by subreddit table with posts, score, comments, karma earned',
+      'Recent activity feed filterable by posts, comments, or all',
+      'Time range selector (7d / 30d / 90d) for future use',
+    ],
+  },
+  {
+    id: '7',
+    version: '0.5',
+    date: 'May 31, 2026',
+    type: 'improvement',
+    title: 'Sidebar Navigation Overhaul',
+    description: 'Restructured sidebar with primary navigation (Queue, Analytics, Activity Log, Account Settings), Integration Status section, and connected Reddit accounts display.',
+    details: [
+      'Settings elevated to primary nav as "Account Settings"',
+      'Integration Status section with Reddit API, Claude API, and last scan time',
+      'Reddit Accounts subsection showing connected accounts with active/inactive status',
+      'Three mock accounts: u/merchynt, u/jamessowers, u/justinsilverman',
+    ],
+  },
+  {
     id: '6',
     version: '0.4',
     date: 'May 31, 2026',

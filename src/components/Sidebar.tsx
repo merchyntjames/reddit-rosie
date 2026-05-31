@@ -4,17 +4,27 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import {
   Inbox,
+  BarChart3,
   Activity,
   Settings,
   LogOut,
   Radio,
   CircleDot,
   ScrollText,
+  Circle,
 } from 'lucide-react';
 
 const navItems = [
   { href: '/', label: 'Queue', icon: Inbox },
+  { href: '/analytics', label: 'Analytics', icon: BarChart3 },
   { href: '/activity', label: 'Activity Log', icon: Activity },
+  { href: '/settings', label: 'Account Settings', icon: Settings },
+];
+
+const connectedAccounts = [
+  { username: 'u/merchynt', label: 'Merchynt', status: 'active' as const },
+  { username: 'u/jamessowers', label: 'James Sowers', status: 'active' as const },
+  { username: 'u/justinsilverman', label: 'Justin Silverman', status: 'inactive' as const },
 ];
 
 export function Sidebar() {
@@ -60,16 +70,11 @@ export function Sidebar() {
         })}
       </nav>
 
-      {/* Connection Status */}
+      {/* Integration Status */}
       <div className="px-5 py-4 border-t border-border">
-        <div className="flex items-center gap-2.5 mb-3">
-          <Settings size={16} className="text-muted" />
-          <Link href="/settings" className="text-[13px] font-medium text-dark hover:text-navy transition-colors">
-            Settings
-          </Link>
-        </div>
+        <p className="text-[11px] font-semibold text-muted uppercase tracking-wider mb-3">Integration Status</p>
 
-        <div className="space-y-2">
+        <div className="space-y-2 mb-3">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
               <CircleDot size={12} className="text-green" />
@@ -90,6 +95,29 @@ export function Sidebar() {
               <span className="text-[12px] text-dark">Last scan</span>
             </div>
             <span className="text-[11px] text-muted">12 min ago</span>
+          </div>
+        </div>
+
+        {/* Reddit Accounts */}
+        <div className="pt-3 border-t border-border">
+          <p className="text-[11px] font-semibold text-muted uppercase tracking-wider mb-2">Reddit Accounts</p>
+          <div className="space-y-1.5">
+            {connectedAccounts.map((account) => (
+              <div key={account.username} className="flex items-center justify-between">
+                <div className="flex items-center gap-2">
+                  <Circle
+                    size={8}
+                    className={account.status === 'active' ? 'text-green fill-green' : 'text-muted fill-muted'}
+                  />
+                  <span className="text-[12px] text-dark">{account.username}</span>
+                </div>
+                <span className={`text-[10px] font-medium ${
+                  account.status === 'active' ? 'text-green' : 'text-muted'
+                }`}>
+                  {account.status === 'active' ? 'Active' : 'Inactive'}
+                </span>
+              </div>
+            ))}
           </div>
         </div>
 
