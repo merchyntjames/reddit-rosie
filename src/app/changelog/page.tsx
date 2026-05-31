@@ -186,6 +186,11 @@ const planned: { title: string; description: string; icon: React.ElementType }[]
     description: 'Supabase integration for persistent data storage. Vercel password protection or magic link auth.',
     icon: Plug,
   },
+  {
+    title: 'Slack Integration',
+    description: 'Real-time Slack alerts for new conversations, daily digests, and performance milestones. Configurable channels and quiet hours.',
+    icon: MessageSquare,
+  },
 ];
 
 function TypeBadge({ type }: { type: ChangeType }) {

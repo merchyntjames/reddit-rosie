@@ -988,56 +988,129 @@ export default function SettingsPage() {
         )}
       </section>
 
-      {/* Notifications */}
+      {/* Slack Integration */}
+      <section className="bg-white rounded-xl border border-border p-6">
+        <div className="flex items-center gap-2 mb-1">
+          <MessageSquare size={18} className="text-navy" />
+          <h2 className="text-[16px] font-semibold text-dark">Slack Integration</h2>
+        </div>
+        <p className="text-[13px] text-muted mb-5">
+          Connect Slack to receive real-time alerts and post conversation summaries to your team channels.
+        </p>
+
+        {/* Connection status */}
+        <div className="flex items-center justify-between py-3 px-4 rounded-lg border border-border mb-4">
+          <div className="flex items-center gap-3">
+            <div className="w-2 h-2 rounded-full bg-muted" />
+            <div>
+              <p className="text-[13px] font-medium text-dark">Slack Workspace</p>
+              <p className="text-[12px] text-muted">Not connected</p>
+            </div>
+          </div>
+          <button className="px-3 py-1.5 rounded-lg bg-navy text-white text-[12px] font-medium hover:bg-navy/90 transition-colors">
+            Connect Slack
+          </button>
+        </div>
+
+        {/* Channel configuration */}
+        <div className="p-4 rounded-lg bg-surface border border-border mb-4">
+          <p className="text-[12px] font-semibold text-dark mb-3">Notification Channels</p>
+          <div className="space-y-3">
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="text-[13px] text-dark">New conversations</p>
+                <p className="text-[11px] text-muted">Alert when Rosie finds high-relevance conversations</p>
+              </div>
+              <input
+                type="text"
+                placeholder="#rosie-alerts"
+                disabled
+                className="w-[160px] px-3 py-1.5 rounded-lg border border-border bg-white text-[12px] text-muted placeholder:text-muted/60 disabled:opacity-50"
+              />
+            </div>
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="text-[13px] text-dark">Daily digest</p>
+                <p className="text-[11px] text-muted">Summary of conversations found and actions taken</p>
+              </div>
+              <input
+                type="text"
+                placeholder="#rosie-digest"
+                disabled
+                className="w-[160px] px-3 py-1.5 rounded-lg border border-border bg-white text-[12px] text-muted placeholder:text-muted/60 disabled:opacity-50"
+              />
+            </div>
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="text-[13px] text-dark">Performance alerts</p>
+                <p className="text-[11px] text-muted">Notify when a post crosses a score threshold</p>
+              </div>
+              <input
+                type="text"
+                placeholder="#rosie-wins"
+                disabled
+                className="w-[160px] px-3 py-1.5 rounded-lg border border-border bg-white text-[12px] text-muted placeholder:text-muted/60 disabled:opacity-50"
+              />
+            </div>
+          </div>
+        </div>
+
+        {/* Alert preferences */}
+        <div className="p-4 rounded-lg bg-surface border border-border">
+          <p className="text-[12px] font-semibold text-dark mb-3">Alert Preferences</p>
+          <div className="space-y-2.5">
+            <div className="flex items-center justify-between">
+              <span className="text-[13px] text-dark">Minimum relevance score for alerts</span>
+              <span className="text-[13px] font-medium text-navy">80+</span>
+            </div>
+            <div className="flex items-center justify-between">
+              <span className="text-[13px] text-dark">Include draft preview in alert</span>
+              <button
+                disabled
+                className="relative inline-flex h-6 w-11 items-center rounded-full bg-border opacity-50"
+              >
+                <span className="inline-block h-4 w-4 transform rounded-full bg-white translate-x-1" />
+              </button>
+            </div>
+            <div className="flex items-center justify-between">
+              <span className="text-[13px] text-dark">Quiet hours (no alerts)</span>
+              <span className="text-[13px] text-muted">10pm - 7am</span>
+            </div>
+          </div>
+        </div>
+
+        <p className="text-[11px] text-muted mt-3">
+          Connect your Slack workspace to configure channels and alert preferences.
+        </p>
+      </section>
+
+      {/* Email Notifications */}
       <section className="bg-white rounded-xl border border-border p-6">
         <div className="flex items-center gap-2 mb-1">
           <Bell size={18} className="text-navy" />
-          <h2 className="text-[16px] font-semibold text-dark">Notifications</h2>
+          <h2 className="text-[16px] font-semibold text-dark">Email Notifications</h2>
         </div>
         <p className="text-[13px] text-muted mb-5">
-          Choose how you want to be notified about new conversations.
+          Receive email digests and alerts about Reddit activity.
         </p>
 
-        <div className="space-y-3">
-          {/* Slack */}
-          <div className="flex items-center justify-between py-3 px-4 rounded-lg border border-border">
-            <div>
-              <p className="text-[13px] font-medium text-dark">Slack Notifications</p>
-              <p className="text-[12px] text-muted">Get notified in Slack when high-relevance conversations are found.</p>
-            </div>
-            <button
-              onClick={() => setIntegrations(prev => ({ ...prev, slackNotifications: !prev.slackNotifications }))}
-              className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
-                integrations.slackNotifications ? 'bg-navy' : 'bg-border'
-              }`}
-            >
-              <span
-                className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${
-                  integrations.slackNotifications ? 'translate-x-6' : 'translate-x-1'
-                }`}
-              />
-            </button>
+        <div className="flex items-center justify-between py-3 px-4 rounded-lg border border-border">
+          <div>
+            <p className="text-[13px] font-medium text-dark">Daily Digest</p>
+            <p className="text-[12px] text-muted">Summary of new conversations, responses posted, and performance highlights.</p>
           </div>
-
-          {/* Email */}
-          <div className="flex items-center justify-between py-3 px-4 rounded-lg border border-border">
-            <div>
-              <p className="text-[13px] font-medium text-dark">Email Notifications</p>
-              <p className="text-[12px] text-muted">Receive a daily digest of new conversations via email.</p>
-            </div>
-            <button
-              onClick={() => setIntegrations(prev => ({ ...prev, emailNotifications: !prev.emailNotifications }))}
-              className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
-                integrations.emailNotifications ? 'bg-navy' : 'bg-border'
+          <button
+            onClick={() => setIntegrations(prev => ({ ...prev, emailNotifications: !prev.emailNotifications }))}
+            className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
+              integrations.emailNotifications ? 'bg-navy' : 'bg-border'
+            }`}
+          >
+            <span
+              className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${
+                integrations.emailNotifications ? 'translate-x-6' : 'translate-x-1'
               }`}
-            >
-              <span
-                className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${
-                  integrations.emailNotifications ? 'translate-x-6' : 'translate-x-1'
-                }`}
-              />
-            </button>
-          </div>
+            />
+          </button>
         </div>
       </section>
 
