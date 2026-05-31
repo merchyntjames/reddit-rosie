@@ -28,7 +28,7 @@ export function Sidebar() {
             <span className="text-white font-bold text-lg">R</span>
           </div>
           <div>
-            <h1 className="text-[15px] font-semibold text-dark leading-tight">Reddit Reggie</h1>
+            <h1 className="text-[15px] font-semibold text-dark leading-tight">Reddit Rosie</h1>
             <p className="text-xs text-muted">by Merchynt</p>
           </div>
         </div>

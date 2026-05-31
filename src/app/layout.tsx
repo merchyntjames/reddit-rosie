@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Reddit Reggie | Merchynt",
+  title: "Reddit Rosie | Merchynt",
   description: "Reddit social listening and engagement tool by Merchynt",
 };
 

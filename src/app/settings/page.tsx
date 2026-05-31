@@ -52,7 +52,7 @@ export default function SettingsPage() {
       <div className="mb-8">
         <h1 className="text-2xl font-bold text-dark">Settings</h1>
         <p className="text-[13px] text-muted mt-1">
-          Configure what Reggie monitors and how drafts are generated.
+          Configure what Rosie monitors and how drafts are generated.
         </p>
       </div>
 
@@ -64,7 +64,7 @@ export default function SettingsPage() {
             <h2 className="text-[16px] font-semibold text-dark">Monitored Subreddits</h2>
           </div>
           <p className="text-[13px] text-muted mb-5">
-            Reggie scans these subreddits for new posts matching your keywords.
+            Rosie scans these subreddits for new posts matching your keywords.
           </p>
 
           {/* Add new */}
@@ -183,7 +183,7 @@ export default function SettingsPage() {
             <h2 className="text-[16px] font-semibold text-dark">Style Guides</h2>
           </div>
           <p className="text-[13px] text-muted mb-5">
-            These guides shape how Reggie drafts responses for each voice.
+            These guides shape how Rosie drafts responses for each voice.
           </p>
 
           <div className="space-y-4">
