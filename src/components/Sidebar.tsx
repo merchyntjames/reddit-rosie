@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import {
@@ -34,16 +35,15 @@ export function Sidebar() {
   return (
     <aside className="fixed left-0 top-0 bottom-0 w-[260px] bg-white border-r border-border flex flex-col z-10">
       {/* Logo / Branding */}
-      <div className="p-5 pb-4">
-        <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-xl bg-navy flex items-center justify-center">
-            <span className="text-white font-bold text-lg">R</span>
-          </div>
-          <div>
-            <h1 className="text-[15px] font-semibold text-dark leading-tight">Reddit Rosie</h1>
-            <p className="text-xs text-muted">by Merchynt</p>
-          </div>
-        </div>
+      <div className="px-3 pt-4 pb-2">
+        <Image
+          src="/rosie-logo.png"
+          alt="Rosie The Redditor by Merchynt"
+          width={520}
+          height={300}
+          className="w-full h-auto"
+          priority
+        />
       </div>
 
       {/* Navigation */}
