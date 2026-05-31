@@ -1,4 +1,4 @@
-import { Conversation, MonitoredSubreddit, MonitoredKeyword, StyleGuide } from './types';
+import { Conversation, MonitoredSubreddit, MonitoredKeyword, StyleGuide, ProductKnowledge, BrandVoice, CreatorProfile, MonitoringConfig, IntegrationStatus } from './types';
 
 export const mockConversations: Conversation[] = [
   {
@@ -174,3 +174,61 @@ Key rules:
 - Match the energy of the subreddit (r/SEO is more technical, r/smallbusiness is more conversational)`,
   },
 ];
+
+export const mockProductKnowledge: ProductKnowledge = {
+  companyOverview: 'Merchynt is a local SEO technology company that builds AI-powered tools to help businesses and marketing agencies manage their online presence. Our flagship product, Paige, is an AI worker that automates Google Business Profile management, review responses, and local search optimization.',
+  products: [
+    {
+      id: '1',
+      name: 'Paige',
+      description: 'An AI local SEO worker that manages Google Business Profiles automatically. Paige handles posting, review responses, Q&A, and profile optimization across multiple locations.',
+      keyFeatures: '- Automated GBP posting (weekly posts optimized for local search)\n- AI-powered review responses (personalized, not templated)\n- Q&A management and monitoring\n- Profile optimization and completeness scoring\n- Multi-location support (agencies manage 100+ locations)\n- AI search visibility tracking (ChatGPT, Gemini, Perplexity)\n- White-label available for agencies',
+      pricing: '- $1 trial for 3 days\n- Starter: $49/mo per location\n- Agency: custom pricing based on location count\n- White-label: $33/location/mo at scale\n- Average agency charges clients $500-1000/mo, cost is $33-49',
+    },
+    {
+      id: '2',
+      name: 'GBP Audit Tool',
+      description: 'A free Google Business Profile audit that scores a business profile out of 100 and identifies optimization opportunities. Used as a lead generation tool for Merchynt and agency partners.',
+      keyFeatures: '- Instant GBP health score (0-100)\n- Category-specific recommendations\n- Competitor comparison\n- Review velocity analysis\n- Photo and post frequency analysis\n- AI search readiness check\n- Shareable PDF report',
+      pricing: '- Free to use (lead generation tool)\n- White-label version available for agency partners\n- Drives upgrades to Paige for ongoing management',
+    },
+  ],
+  competitorContext: 'Key competitors:\n- BrightLocal: reporting/tracking tool, strong dashboards but requires manual work\n- Whitespark: citation building and rank tracking, no automation\n- Yext: enterprise directory sync, expensive, limited GBP features\n- SOCi: enterprise social + local, complex and pricey\n\nOur differentiator: Paige actually DOES the work (posts, reviews, optimization) vs competitors that only REPORT on what needs to be done. This saves agencies 4-6 hours per client per month.',
+  keyStats: '- Agencies save 4-6 hours per client per month\n- Average agency profit: $901/client/month with Paige\n- 93% of Paige-managed profiles rank in top 3 map pack within 90 days\n- AI-generated review responses rated 4.8/5 by end customers\n- Average client sees 47% increase in GBP actions (calls, directions, website clicks) within 60 days\n- 85% client retention rate at 12 months\n- Used by 2,000+ agencies and SMBs',
+};
+
+export const mockBrandVoice: BrandVoice = {
+  brandName: 'Merchynt',
+  voiceDescription: 'Confident but not arrogant. Knowledgeable but approachable. We speak like experienced practitioners, not marketers. We use plain language, avoid jargon, and get to the point quickly. We are genuinely helpful even when it does not lead to a sale. We respect the Reddit community and add value to every conversation we join.',
+  redditGuidelines: '- Always disclose affiliation when mentioning Merchynt or Paige ("Full transparency -- I\'m from the Merchynt team")\n- Lead with value, not pitch. Answer the question first, mention product second\n- Never hard sell. Frame as an option, not THE answer\n- Engage authentically with follow-up questions and comments\n- Upvote other helpful answers in the same thread\n- Do not engage in threads where we are being criticized unless the criticism contains factual errors\n- Wait at least 2 hours before responding to avoid appearing to pounce on mentions',
+  topicsToAvoid: '- Never bash competitors by name (acknowledge their strengths, differentiate on approach)\n- Do not discuss specific revenue numbers or financials\n- Avoid promising specific results or rankings ("guaranteed #1")\n- Do not discuss pricing publicly on Reddit (say "varies by location count, happy to share details")\n- Never engage in political discussions or controversial topics\n- Do not respond to obvious trolls or bad-faith questions',
+  approvedTerminology: '- "AI worker" not "bot" or "AI agent"\n- "Google Business Profile" on first mention, "GBP" acceptable after\n- "AI search visibility" not "AI SEO" or "GEO"\n- "Paige" (capital P, she/her pronouns are okay)\n- "Local search optimization" not "local SEO" when speaking to business owners (they don\'t know what SEO means)\n- "Review responses" not "review replies"\n- "Profile optimization" not "GBP optimization" when speaking to SMBs',
+  sampleResponses: [
+    'Great question -- managing multiple GBPs manually is one of the biggest time sinks in local SEO.\n\nWe built Paige specifically for this use case. She handles GBP posting, review responses, Q&A, and profile optimization across all your client locations. Most agencies using Paige save 4-6 hours per client per month.\n\nHappy to share more details if interested, but the free trial lets you test it on a few profiles first.',
+    'This is a really common challenge. The short answer: automating review responses works well if the AI references specific details from each review.\n\nThe key is personalization. "Thanks for the kind words, Sarah! Glad the team took good care of your AC repair" hits differently than "Thank you for your review!"\n\nI work at Merchynt and we built this into our tool Paige. Happy to answer questions about how we approach it, but there are other options out there too.',
+  ],
+};
+
+export const mockCreatorProfiles: CreatorProfile[] = [
+  {
+    id: '1',
+    name: 'James Sowers',
+    redditUsername: 'u/jamessowers',
+    role: 'VP Marketing',
+    voiceDescription: 'Casual and direct. Writes in short paragraphs. Uses dashes for emphasis. Asks follow-up questions. Shares personal experience and strong opinions. Not afraid to recommend competitors if they are genuinely better for the use case. Speaks like a peer, not a vendor.',
+    redditPersonaNotes: '- Frame Merchynt/Paige references as "a tool I use" or "what my team built"\n- Share tactical advice freely without expecting anything in return\n- Be opinionated about industry trends (AI search, local SEO evolution)\n- Occasionally reference personal experiences (managing clients, building the product)\n- Keep responses under 200 words when possible -- Reddit rewards conciseness\n- Okay to swear mildly (damn, hell) but never aggressively',
+    topicsOfExpertise: '- Local SEO strategy and tactics\n- Agency operations and profitability\n- AI search visibility and optimization\n- Google Business Profile best practices\n- Review management and reputation\n- Marketing technology evaluation\n- SaaS marketing and growth',
+  },
+];
+
+export const mockMonitoringConfig: MonitoringConfig = {
+  scanFrequency: '30min',
+  relevanceThreshold: 40,
+};
+
+export const mockIntegrationStatus: IntegrationStatus = {
+  redditApi: 'connected',
+  claudeApi: 'connected',
+  slackNotifications: false,
+  emailNotifications: false,
+};

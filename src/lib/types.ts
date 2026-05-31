@@ -33,3 +33,56 @@ export interface StyleGuide {
   description: string;
   content: string;
 }
+
+// Settings: Product Knowledge
+export interface Product {
+  id: string;
+  name: string;
+  description: string;
+  keyFeatures: string;
+  pricing: string;
+}
+
+export interface ProductKnowledge {
+  companyOverview: string;
+  products: Product[];
+  competitorContext: string;
+  keyStats: string;
+}
+
+// Settings: Brand Voice
+export interface BrandVoice {
+  brandName: string;
+  voiceDescription: string;
+  redditGuidelines: string;
+  topicsToAvoid: string;
+  approvedTerminology: string;
+  sampleResponses: string[];
+}
+
+// Settings: Creator Profiles
+export interface CreatorProfile {
+  id: string;
+  name: string;
+  redditUsername: string;
+  role: string;
+  voiceDescription: string;
+  redditPersonaNotes: string;
+  topicsOfExpertise: string;
+}
+
+// Settings: Monitoring Config
+export type ScanFrequency = '15min' | '30min' | '1hour' | '2hours';
+
+export interface MonitoringConfig {
+  scanFrequency: ScanFrequency;
+  relevanceThreshold: number;
+}
+
+// Settings: Integrations
+export interface IntegrationStatus {
+  redditApi: 'connected' | 'disconnected';
+  claudeApi: 'connected' | 'disconnected';
+  slackNotifications: boolean;
+  emailNotifications: boolean;
+}
