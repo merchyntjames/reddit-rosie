@@ -128,6 +128,41 @@ ANTHROPIC_API_KEY
 ## Mascot
 "Rosie The Redditor" — chibi-style 3D character with reddish-orange hair in a bun, red polka-dot bandana, Merchynt navy hoodie, green eyes, confident smile, holding a tablet with an upvote arrow. Generated via Nano Banana Pro (Google Gemini). Multiple iterations were refined for pose, expression, and font treatment.
 
+## Development Workflows
+
+### Changelog (REQUIRED after every feature or improvement)
+The changelog lives at `src/app/changelog/page.tsx` in the `changelog` array. After completing any feature, improvement, or infrastructure change, you MUST:
+
+1. Add a new entry to the TOP of the `changelog` array with:
+   - `id`: next sequential number (string)
+   - `version`: bump appropriately (see Versioning below)
+   - `date`: today's date (e.g., "June 1, 2026")
+   - `type`: `'feature'` | `'improvement'` | `'infrastructure'`
+   - `title`: short name of what was built (e.g., "Analytics Dashboard")
+   - `description`: 1-2 sentence summary of the change
+   - `details`: optional array of bullet points for specifics
+2. If the work completes a roadmap item, REMOVE that item from the `planned` array in the same file. The roadmap should only show work that hasn't been built yet.
+
+**Versioning convention:**
+- `0.x` — new feature or major page addition (bump the minor version)
+- `0.x.y` — improvement, bugfix, or iteration on existing feature (bump the patch)
+- Group related changes under the same version if they ship in the same commit
+
+### Roadmap
+The roadmap lives in the `planned` array in `src/app/changelog/page.tsx`. It shows upcoming features as cards with icons and descriptions.
+- When a roadmap item is fully built, remove it from `planned` — it now lives in the changelog
+- When James describes a new feature he wants to build in the future, add it to `planned`
+- Keep roadmap items ordered by likely build sequence (nearest first)
+
+### Integration Status (sidebar)
+The sidebar (`src/components/Sidebar.tsx`) shows real-time integration status. These MUST reflect actual state:
+- **Reddit API / Claude API:** Show "Connected" (green) ONLY when env vars are set and the integration is verified working. Otherwise show "Not connected" (muted).
+- **Last scan:** Show "Never" until the Reddit polling cron is actually running. Then show real timestamps.
+- **Reddit Accounts:** Show "No accounts connected" with a link to Account Settings until OAuth tokens are stored and validated. When accounts are connected, show each with username and "Active" status. Never show mock/fake accounts as active.
+
+### CLAUDE.md Maintenance
+When the project architecture changes meaningfully (new pages, new directories, new integrations, changed conventions), update this file. Keep the "Current State" version in sync with the latest changelog entry. Update the file structure section if files are added or moved.
+
 ## Pushing Changes
 ```bash
 cd "09 - Internal Tools/reddit-rosie"
