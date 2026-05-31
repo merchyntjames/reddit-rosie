@@ -21,10 +21,11 @@ const navItems = [
   { href: '/settings', label: 'Account Settings', icon: Settings },
 ];
 
-const connectedAccounts = [
-  { username: 'u/merchynt', label: 'Merchynt', status: 'active' as const },
-  { username: 'u/jamessowers', label: 'James Sowers', status: 'active' as const },
-  { username: 'u/justinsilverman', label: 'Justin Silverman', status: 'inactive' as const },
+const connectedAccounts: { username: string; label: string; status: 'active' | 'not_connected' }[] = [
+  // No accounts are connected until Reddit API OAuth is wired up.
+  // Once connected, accounts will appear here with 'active' status.
+  // Example of what a connected account looks like:
+  // { username: 'u/merchynt', label: 'Merchynt', status: 'active' },
 ];
 
 export function Sidebar() {
@@ -77,24 +78,24 @@ export function Sidebar() {
         <div className="space-y-2 mb-3">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
-              <CircleDot size={12} className="text-green" />
+              <CircleDot size={12} className="text-muted" />
               <span className="text-[12px] text-dark">Reddit API</span>
             </div>
-            <span className="text-[11px] font-medium text-green">Connected</span>
+            <span className="text-[11px] font-medium text-muted">Not connected</span>
           </div>
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
-              <CircleDot size={12} className="text-green" />
+              <CircleDot size={12} className="text-muted" />
               <span className="text-[12px] text-dark">Claude API</span>
             </div>
-            <span className="text-[11px] font-medium text-green">Connected</span>
+            <span className="text-[11px] font-medium text-muted">Not connected</span>
           </div>
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
               <Radio size={12} className="text-muted" />
               <span className="text-[12px] text-dark">Last scan</span>
             </div>
-            <span className="text-[11px] text-muted">12 min ago</span>
+            <span className="text-[11px] text-muted">Never</span>
           </div>
         </div>
 
@@ -102,22 +103,29 @@ export function Sidebar() {
         <div className="pt-3 border-t border-border">
           <p className="text-[11px] font-semibold text-muted uppercase tracking-wider mb-2">Reddit Accounts</p>
           <div className="space-y-1.5">
-            {connectedAccounts.map((account) => (
-              <div key={account.username} className="flex items-center justify-between">
-                <div className="flex items-center gap-2">
-                  <Circle
-                    size={8}
-                    className={account.status === 'active' ? 'text-green fill-green' : 'text-muted fill-muted'}
-                  />
-                  <span className="text-[12px] text-dark">{account.username}</span>
+            {connectedAccounts.length === 0 ? (
+              <p className="text-[11px] text-muted leading-relaxed">
+                No accounts connected. Add Reddit accounts in{' '}
+                <Link href="/settings" className="text-navy hover:underline">Account Settings</Link>.
+              </p>
+            ) : (
+              connectedAccounts.map((account) => (
+                <div key={account.username} className="flex items-center justify-between">
+                  <div className="flex items-center gap-2">
+                    <Circle
+                      size={8}
+                      className={account.status === 'active' ? 'text-green fill-green' : 'text-muted fill-muted'}
+                    />
+                    <span className="text-[12px] text-dark">{account.username}</span>
+                  </div>
+                  <span className={`text-[10px] font-medium ${
+                    account.status === 'active' ? 'text-green' : 'text-muted'
+                  }`}>
+                    {account.status === 'active' ? 'Active' : 'Not connected'}
+                  </span>
                 </div>
-                <span className={`text-[10px] font-medium ${
-                  account.status === 'active' ? 'text-green' : 'text-muted'
-                }`}>
-                  {account.status === 'active' ? 'Active' : 'Inactive'}
-                </span>
-              </div>
-            ))}
+              ))
+            )}
           </div>
         </div>
 
