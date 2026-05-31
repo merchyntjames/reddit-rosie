@@ -9,6 +9,7 @@ import {
   mockCreatorProfiles,
   mockMonitoringConfig,
   mockIntegrationStatus,
+  mockRedditAccounts,
 } from '@/lib/mock-data';
 import {
   MonitoredSubreddit,
@@ -19,6 +20,7 @@ import {
   CreatorProfile,
   MonitoringConfig,
   IntegrationStatus,
+  RedditAccount,
   ScanFrequency,
 } from '@/lib/types';
 import {
@@ -41,6 +43,8 @@ import {
   CircleCheck,
   CircleX,
   Sliders,
+  UserPlus,
+  Trash2,
 } from 'lucide-react';
 
 type SettingsTab = 'monitoring' | 'product' | 'brand' | 'creators' | 'integrations';
@@ -75,6 +79,33 @@ export default function SettingsPage() {
 
   // Integrations state
   const [integrations, setIntegrations] = useState<IntegrationStatus>(mockIntegrationStatus);
+
+  // Reddit Accounts state
+  const [redditAccounts, setRedditAccounts] = useState<RedditAccount[]>(mockRedditAccounts);
+  const [newRedditUsername, setNewRedditUsername] = useState('');
+  const [newRedditLabel, setNewRedditLabel] = useState('');
+  const [newRedditType, setNewRedditType] = useState<'brand' | 'personal'>('personal');
+
+  const addRedditAccount = () => {
+    if (!newRedditUsername.trim() || !newRedditLabel.trim()) return;
+    const username = newRedditUsername.startsWith('u/') ? newRedditUsername : `u/${newRedditUsername}`;
+    if (redditAccounts.find(a => a.username === username)) return;
+    setRedditAccounts(prev => [...prev, {
+      id: String(Date.now()),
+      username,
+      label: newRedditLabel,
+      type: newRedditType,
+      status: 'not_connected',
+      permissions: { posting: false, analytics: false },
+    }]);
+    setNewRedditUsername('');
+    setNewRedditLabel('');
+    setNewRedditType('personal');
+  };
+
+  const removeRedditAccount = (id: string) => {
+    setRedditAccounts(prev => prev.filter(a => a.id !== id));
+  };
 
   // --- Monitoring handlers ---
   const toggleSubreddit = (name: string) => {
@@ -834,6 +865,127 @@ export default function SettingsPage() {
             </div>
           </div>
         </div>
+      </section>
+
+      {/* Reddit Accounts */}
+      <section className="bg-white rounded-xl border border-border p-6">
+        <div className="flex items-center gap-2 mb-1">
+          <Users size={18} className="text-navy" />
+          <h2 className="text-[16px] font-semibold text-dark">Reddit Accounts</h2>
+        </div>
+        <p className="text-[13px] text-muted mb-5">
+          Connect Reddit accounts for posting and analytics. Each account authenticates independently via OAuth.
+        </p>
+
+        {/* Add account form */}
+        <div className="p-4 rounded-lg bg-surface border border-border mb-4">
+          <p className="text-[12px] font-semibold text-dark mb-3">Add Reddit Account</p>
+          <div className="grid grid-cols-3 gap-3 mb-3">
+            <input
+              type="text"
+              value={newRedditUsername}
+              onChange={e => setNewRedditUsername(e.target.value)}
+              placeholder="e.g. merchynt"
+              className="px-3 py-2 rounded-lg border border-border bg-white text-[13px] text-dark placeholder:text-muted/60 focus:outline-none focus:ring-2 focus:ring-navy/20 focus:border-navy/30"
+            />
+            <input
+              type="text"
+              value={newRedditLabel}
+              onChange={e => setNewRedditLabel(e.target.value)}
+              placeholder="Display name"
+              className="px-3 py-2 rounded-lg border border-border bg-white text-[13px] text-dark placeholder:text-muted/60 focus:outline-none focus:ring-2 focus:ring-navy/20 focus:border-navy/30"
+            />
+            <div className="flex items-center gap-2">
+              <select
+                value={newRedditType}
+                onChange={e => setNewRedditType(e.target.value as 'brand' | 'personal')}
+                className="flex-1 px-3 py-2 rounded-lg border border-border bg-white text-[13px] text-dark focus:outline-none focus:ring-2 focus:ring-navy/20 focus:border-navy/30"
+              >
+                <option value="brand">Brand</option>
+                <option value="personal">Personal</option>
+              </select>
+              <button
+                onClick={addRedditAccount}
+                className="flex items-center gap-1.5 px-3 py-2 rounded-lg bg-navy text-white text-[13px] font-medium hover:bg-navy/90 transition-colors shrink-0"
+              >
+                <UserPlus size={14} />
+                Add
+              </button>
+            </div>
+          </div>
+          <p className="text-[11px] text-muted">
+            Adding an account registers it in Rosie. You will need to authenticate via OAuth to enable posting and analytics.
+          </p>
+        </div>
+
+        {/* Account list */}
+        {redditAccounts.length === 0 ? (
+          <div className="py-8 text-center rounded-lg border border-dashed border-border">
+            <Users size={24} className="text-muted mx-auto mb-2" />
+            <p className="text-[13px] text-muted">No Reddit accounts added yet.</p>
+            <p className="text-[12px] text-muted mt-1">Add an account above to get started.</p>
+          </div>
+        ) : (
+          <div className="space-y-3">
+            {redditAccounts.map(account => (
+              <div key={account.id} className="flex items-center justify-between py-3 px-4 rounded-lg border border-border">
+                <div className="flex items-center gap-3">
+                  <div className={`w-2 h-2 rounded-full ${account.status === 'connected' ? 'bg-green' : 'bg-muted'}`} />
+                  <div>
+                    <div className="flex items-center gap-2">
+                      <p className="text-[13px] font-medium text-dark">{account.username}</p>
+                      <span className={`text-[10px] px-1.5 py-0.5 rounded font-medium ${
+                        account.type === 'brand' ? 'bg-navy/10 text-navy' : 'bg-blue/10 text-blue'
+                      }`}>
+                        {account.type === 'brand' ? 'Brand' : 'Personal'}
+                      </span>
+                    </div>
+                    <p className="text-[12px] text-muted">{account.label}</p>
+                  </div>
+                </div>
+                <div className="flex items-center gap-4">
+                  {/* Permission indicators */}
+                  <div className="flex items-center gap-3">
+                    <div className="text-center">
+                      <p className="text-[10px] text-muted uppercase tracking-wider">Posting</p>
+                      {account.permissions.posting ? (
+                        <CircleCheck size={14} className="text-green mx-auto mt-0.5" />
+                      ) : (
+                        <CircleX size={14} className="text-muted mx-auto mt-0.5" />
+                      )}
+                    </div>
+                    <div className="text-center">
+                      <p className="text-[10px] text-muted uppercase tracking-wider">Analytics</p>
+                      {account.permissions.analytics ? (
+                        <CircleCheck size={14} className="text-green mx-auto mt-0.5" />
+                      ) : (
+                        <CircleX size={14} className="text-muted mx-auto mt-0.5" />
+                      )}
+                    </div>
+                  </div>
+
+                  {/* Status + actions */}
+                  <div className="flex items-center gap-2">
+                    {account.status === 'connected' ? (
+                      <span className="text-[11px] font-medium text-green">Connected</span>
+                    ) : (
+                      <button className="px-3 py-1.5 rounded-lg bg-navy text-white text-[12px] font-medium hover:bg-navy/90 transition-colors">
+                        Connect
+                      </button>
+                    )}
+                    <button
+                      onClick={() => removeRedditAccount(account.id)}
+                      className="p-1.5 rounded-md text-muted hover:text-dark hover:bg-surface transition-colors"
+                      title="Remove account"
+                    >
+                      <Trash2 size={14} />
+                    </button>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
       </section>
 
       {/* Notifications */}

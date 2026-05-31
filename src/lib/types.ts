@@ -79,6 +79,19 @@ export interface MonitoringConfig {
   relevanceThreshold: number;
 }
 
+// Settings: Reddit Accounts
+export interface RedditAccount {
+  id: string;
+  username: string;
+  label: string;
+  type: 'brand' | 'personal';
+  status: 'connected' | 'not_connected';
+  permissions: {
+    posting: boolean;
+    analytics: boolean;
+  };
+}
+
 // Settings: Integrations
 export interface IntegrationStatus {
   redditApi: 'connected' | 'disconnected';

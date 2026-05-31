@@ -1,4 +1,4 @@
-import { Conversation, MonitoredSubreddit, MonitoredKeyword, StyleGuide, ProductKnowledge, BrandVoice, CreatorProfile, MonitoringConfig, IntegrationStatus } from './types';
+import { Conversation, MonitoredSubreddit, MonitoredKeyword, StyleGuide, ProductKnowledge, BrandVoice, CreatorProfile, MonitoringConfig, IntegrationStatus, RedditAccount } from './types';
 
 export const mockConversations: Conversation[] = [
   {
@@ -227,8 +227,21 @@ export const mockMonitoringConfig: MonitoringConfig = {
 };
 
 export const mockIntegrationStatus: IntegrationStatus = {
-  redditApi: 'connected',
-  claudeApi: 'connected',
+  redditApi: 'disconnected',
+  claudeApi: 'disconnected',
   slackNotifications: false,
   emailNotifications: false,
 };
+
+export const mockRedditAccounts: RedditAccount[] = [
+  // No accounts connected until Reddit API OAuth is wired up.
+  // When accounts are added, they will look like:
+  // {
+  //   id: '1',
+  //   username: 'u/merchynt',
+  //   label: 'Merchynt',
+  //   type: 'brand',
+  //   status: 'connected',
+  //   permissions: { posting: true, analytics: true },
+  // },
+];
