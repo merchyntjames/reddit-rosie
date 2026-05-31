@@ -9,6 +9,7 @@ import {
   LogOut,
   Radio,
   CircleDot,
+  ScrollText,
 } from 'lucide-react';
 
 const navItems = [
@@ -91,6 +92,14 @@ export function Sidebar() {
             <span className="text-[11px] text-muted">12 min ago</span>
           </div>
         </div>
+
+        <Link
+          href="/changelog"
+          className="flex items-center gap-1.5 mt-3 text-[11px] text-muted hover:text-navy transition-colors"
+        >
+          <ScrollText size={11} />
+          Changelog
+        </Link>
       </div>
 
       {/* User */}
