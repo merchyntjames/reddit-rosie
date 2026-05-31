@@ -16,6 +16,35 @@ interface ChangelogEntry {
 
 const changelog: ChangelogEntry[] = [
   {
+    id: '10',
+    version: '0.5.2',
+    date: 'May 31, 2026',
+    type: 'feature',
+    title: 'Reddit Accounts Management',
+    description: 'New section in Account Settings for adding and managing Reddit account connections. Each account shows connection status and permission indicators for posting and analytics.',
+    details: [
+      'Add accounts with username, display name, and type (Brand or Personal)',
+      'Connection status per account with Connect button for future OAuth',
+      'Per-account permission indicators: Posting and Analytics',
+      'Remove account functionality',
+      'Empty state when no accounts are added',
+    ],
+  },
+  {
+    id: '9',
+    version: '0.5.1',
+    date: 'May 31, 2026',
+    type: 'improvement',
+    title: 'Rosie Logo, Nav Cleanup, and Project Docs',
+    description: 'Added Rosie The Redditor mascot logo to sidebar header (hyperlinked to homepage). Removed Reddit Accounts from sidebar — managed in Account Settings only. Added development workflow rules to CLAUDE.md.',
+    details: [
+      'Rosie logo in sidebar header, clickable to return to Queue',
+      'Integration Status shows real state (Not connected / Never)',
+      'Reddit Accounts section removed from sidebar, consolidated in settings',
+      'CLAUDE.md updated with changelog, roadmap, and integration status workflow rules',
+    ],
+  },
+  {
     id: '8',
     version: '0.5',
     date: 'May 31, 2026',
