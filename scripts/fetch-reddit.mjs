@@ -20,7 +20,26 @@ const OUTPUT_PATH = join(__dirname, '..', 'public', 'data', 'conversations.json'
 
 // --- Configuration ---
 
-// Subreddits to monitor with per-sub search queries
+// BROAD SEARCHES: keyword queries across ALL of Reddit
+// These catch conversations in subreddits we'd never think to monitor
+// (dentist forums, plumber communities, local city subs, etc.)
+const GLOBAL_QUERIES = [
+  // Brand monitoring — find every mention anywhere on Reddit
+  { query: 'Merchynt', time: 'month', label: 'brand-mention' },
+  { query: '"Paige" AND ("local SEO" OR "GBP" OR "Google Business")', time: 'month', label: 'brand-mention' },
+
+  // Competitor monitoring
+  { query: 'BrightLocal OR Whitespark OR "Moz Local" OR Yext', time: 'week', label: 'competitor' },
+
+  // High-intent keywords across all of Reddit
+  { query: '"Google Business Profile" AND (help OR advice OR recommend OR best)', time: 'week', label: 'high-intent' },
+  { query: '"local SEO" AND (tool OR software OR recommend OR alternative)', time: 'week', label: 'high-intent' },
+  { query: '"Google Maps ranking" AND (how OR improve OR help)', time: 'week', label: 'high-intent' },
+  { query: '"Google reviews" AND (management OR automate OR respond)', time: 'week', label: 'high-intent' },
+  { query: '"AI search" AND ("local business" OR "small business" OR "Google Business")', time: 'week', label: 'ai-search' },
+];
+
+// NARROW SEARCHES: within specific SEO/marketing subreddits
 const SUBREDDIT_QUERIES = [
   {
     subreddit: 'localseo',
@@ -277,6 +296,34 @@ async function main() {
   let totalFetched = 0;
   let totalQueries = 0;
 
+  // --- PHASE 1: Broad keyword search across ALL of Reddit ---
+  console.log('\n=== BROAD SEARCH (all of Reddit) ===');
+
+  for (const { query, time, label } of GLOBAL_QUERIES) {
+    const encodedQuery = encodeURIComponent(query);
+    const url = `https://www.reddit.com/search.rss?q=${encodedQuery}&sort=new&t=${time}&limit=25`;
+
+    totalQueries++;
+    const xml = await fetchRSS(url);
+    const entries = parseAtomFeed(xml);
+    console.log(`  [${label}] "${query}" -> ${entries.length} posts`);
+
+    for (const entry of entries) {
+      if (!allPosts.has(entry.id)) {
+        entry.searchType = 'broad';
+        entry.searchLabel = label;
+        allPosts.set(entry.id, entry);
+        totalFetched++;
+      }
+    }
+
+    // Be respectful — small delay between requests
+    await new Promise(r => setTimeout(r, 1000));
+  }
+
+  // --- PHASE 2: Narrow search within specific subreddits ---
+  console.log('\n=== NARROW SEARCH (target subreddits) ===');
+
   for (const { subreddit, queries } of SUBREDDIT_QUERIES) {
     console.log(`\nr/${subreddit}:`);
 
@@ -291,6 +338,8 @@ async function main() {
 
       for (const entry of entries) {
         if (!allPosts.has(entry.id)) {
+          entry.searchType = 'narrow';
+          entry.searchLabel = 'subreddit-search';
           allPosts.set(entry.id, entry);
           totalFetched++;
         }
@@ -319,16 +368,29 @@ async function main() {
   // Sort by relevance score descending
   scoredPosts.sort((a, b) => b.relevanceScore - a.relevanceScore);
 
-  // Filter: only include posts with relevance score >= 20
-  const qualityPosts = scoredPosts.filter(p => p.relevanceScore >= 20);
+  // Filter: only include posts with relevance score >= 30
+  // (20 was too loose — captured too many tangentially related posts)
+  const qualityPosts = scoredPosts.filter(p => p.relevanceScore >= 30);
 
-  console.log(`Posts with relevance >= 20: ${qualityPosts.length}`);
+  console.log(`Posts with relevance >= 30: ${qualityPosts.length}`);
   console.log(`Posts filtered out (< 20): ${scoredPosts.length - qualityPosts.length}`);
 
-  // Show top 5 for logging
-  console.log('\nTop 5 by relevance:');
-  for (const post of qualityPosts.slice(0, 5)) {
-    console.log(`  [${post.relevanceScore}] r/${post.subredditName}: ${post.title.slice(0, 80)}`);
+  // Show top posts for logging
+  const broadPosts = qualityPosts.filter(p => p.searchType === 'broad');
+  const narrowPosts = qualityPosts.filter(p => p.searchType === 'narrow');
+  console.log(`  Broad search (all Reddit): ${broadPosts.length} quality posts`);
+  console.log(`  Narrow search (target subs): ${narrowPosts.length} quality posts`);
+
+  // Unique subreddits found via broad search (the interesting ones)
+  const broadSubs = [...new Set(broadPosts.map(p => p.subredditName))];
+  if (broadSubs.length > 0) {
+    console.log(`\nSubreddits discovered via broad search: ${broadSubs.join(', ')}`);
+  }
+
+  console.log('\nTop 10 by relevance:');
+  for (const post of qualityPosts.slice(0, 10)) {
+    const tag = post.searchType === 'broad' ? `BROAD/${post.searchLabel}` : `r/${post.subredditName}`;
+    console.log(`  [${post.relevanceScore}] ${tag}: ${post.title.slice(0, 75)}`);
   }
 
   // Save output
@@ -341,7 +403,7 @@ async function main() {
       totalQueries,
       qualityPosts: qualityPosts.length,
       filteredOut: scoredPosts.length - qualityPosts.length,
-      minRelevanceScore: 20,
+      minRelevanceScore: 30,
     },
   };
 
