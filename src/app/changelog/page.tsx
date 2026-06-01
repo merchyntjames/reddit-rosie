@@ -152,39 +152,24 @@ const changelog: ChangelogEntry[] = [
 
 const planned: { title: string; description: string; icon: React.ElementType }[] = [
   {
-    title: 'Reddit API Integration',
-    description: 'Connect to Reddit API for live subreddit monitoring and keyword matching. Replace mock data with real conversations.',
+    title: 'Reddit Data API Integration',
+    description: 'Connect to Reddit Data API (read-only) for live subreddit monitoring and keyword matching. Replace mock data with real conversations.',
     icon: Search,
   },
   {
     title: 'Claude Draft Generation',
-    description: 'AI-powered draft responses using product knowledge, brand voice, and creator profiles as context.',
+    description: 'AI-powered draft responses using product knowledge, brand voice, and creator profiles as context. Human reviews and copy/pastes into Reddit.',
     icon: MessageSquare,
-  },
-  {
-    title: 'Direct Posting from Rosie',
-    description: 'Post comments and replies directly to Reddit from the app. Choose which account to post from.',
-    icon: FileText,
-  },
-  {
-    title: 'Post Scheduling',
-    description: 'Schedule posts and comments for future publishing via Vercel Cron jobs.',
-    icon: Clock,
-  },
-  {
-    title: 'Performance Analytics',
-    description: 'Track upvote scores, comment counts, karma changes, and engagement trends over time.',
-    icon: BarChart3,
-  },
-  {
-    title: 'Multi-Account Management',
-    description: 'Connect multiple Reddit accounts (corporate + personal) with independent OAuth tokens.',
-    icon: Users,
   },
   {
     title: 'Database and Auth',
     description: 'Supabase integration for persistent data storage. Vercel password protection or magic link auth.',
     icon: Plug,
+  },
+  {
+    title: 'Performance Analytics',
+    description: 'Track upvote scores, comment counts, karma changes, and engagement trends over time via periodic Data API polling.',
+    icon: BarChart3,
   },
   {
     title: 'Slack Integration',
