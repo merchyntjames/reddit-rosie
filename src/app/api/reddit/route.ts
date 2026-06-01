@@ -1,38 +1,32 @@
 import { NextResponse } from 'next/server';
-import {
-  searchRedditPosts,
-  scoreRelevance,
-  DEFAULT_KEYWORDS,
-  DEFAULT_SUBREDDITS,
-} from '@/lib/xpoz';
+import { promises as fs } from 'fs';
+import path from 'path';
+import { scoreRelevance, DEFAULT_KEYWORDS, type RedditPostResult } from '@/lib/xpoz';
 
 export const dynamic = 'force-dynamic';
 
-export async function GET(request: Request) {
+export async function GET() {
   try {
-    const { searchParams } = new URL(request.url);
-    const time = (searchParams.get('time') ?? 'week') as 'hour' | 'day' | 'week' | 'month' | 'year' | 'all';
-    const limitParam = searchParams.get('limit');
-    const limit = limitParam ? parseInt(limitParam, 10) : 10;
-
-    const posts = await searchRedditPosts({
-      keywords: DEFAULT_KEYWORDS,
-      subreddits: DEFAULT_SUBREDDITS,
-      limit,
-      time,
-    });
+    // Read from static JSON file (refreshed by Claude Code via Xpoz MCP)
+    const filePath = path.join(process.cwd(), 'public', 'data', 'conversations.json');
+    const fileContent = await fs.readFile(filePath, 'utf-8');
+    const data = JSON.parse(fileContent) as {
+      posts: RedditPostResult[];
+      fetchedAt: string;
+      source: string;
+    };
 
     // Score and enrich each post
-    const enrichedPosts = posts.map(post => {
+    const enrichedPosts = data.posts.map(post => {
       const relevanceScore = scoreRelevance(post, DEFAULT_KEYWORDS);
 
       // Extract matched keywords
-      const text = `${post.title} ${post.selftext}`.toLowerCase();
+      const text = `${post.title} ${post.selftext ?? ''}`.toLowerCase();
       const matchedKeywords: string[] = [];
       const keywordLabels = [
         'Google Business Profile', 'local SEO', 'Merchynt', 'Paige',
         'GBP optimization', 'AI local SEO', 'review management',
-        'BrightLocal', 'Whitespark',
+        'BrightLocal', 'Whitespark', 'GBP', 'Google Maps',
       ];
       for (const kw of keywordLabels) {
         if (text.includes(kw.toLowerCase())) {
@@ -40,7 +34,7 @@ export async function GET(request: Request) {
         }
       }
 
-      // Create a snippet from selftext (first ~200 chars)
+      // Create a snippet from selftext (first ~300 chars)
       const snippet = post.selftext
         ? post.selftext.slice(0, 300).replace(/\n+/g, ' ').trim() + (post.selftext.length > 300 ? '...' : '')
         : '';
@@ -60,7 +54,7 @@ export async function GET(request: Request) {
         matchedKeywords,
         discoveredAt: post.createdAtDate,
         status: 'new' as const,
-        selftext: post.selftext,
+        selftext: post.selftext ?? '',
       };
     });
 
@@ -71,10 +65,8 @@ export async function GET(request: Request) {
       posts: enrichedPosts,
       meta: {
         count: enrichedPosts.length,
-        fetchedAt: new Date().toISOString(),
-        subreddits: DEFAULT_SUBREDDITS,
-        keywords: DEFAULT_KEYWORDS,
-        timeRange: time,
+        fetchedAt: data.fetchedAt,
+        source: data.source,
       },
     });
   } catch (error) {
