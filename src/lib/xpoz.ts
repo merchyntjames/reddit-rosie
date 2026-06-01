@@ -1,19 +1,6 @@
-import { XpozClient } from '@xpoz/xpoz';
+// Direct HTTP calls to Xpoz MCP endpoint (no SDK — works in serverless)
 
-let clientInstance: XpozClient | null = null;
-
-export async function getXpozClient(): Promise<XpozClient> {
-  if (clientInstance) return clientInstance;
-
-  const apiKey = process.env.XPOZ_API_KEY;
-  if (!apiKey) {
-    throw new Error('XPOZ_API_KEY environment variable is not set');
-  }
-
-  clientInstance = new XpozClient({ apiKey });
-  await clientInstance.connect();
-  return clientInstance;
-}
+const XPOZ_MCP_URL = 'https://mcp.xpoz.ai/mcp';
 
 export interface RedditPostResult {
   id: string;
@@ -28,27 +15,99 @@ export interface RedditPostResult {
   url: string;
 }
 
-// Search keywords across target subreddits
 export const DEFAULT_KEYWORDS = [
   '"Google Business Profile"',
-  '"local SEO" AND tool',
+  '"local SEO"',
   'Merchynt',
-  'Paige AND "local SEO"',
   '"GBP optimization"',
-  '"AI local SEO"',
-  '"review management" AND business',
+  '"review management"',
   'BrightLocal OR Whitespark',
 ];
 
 export const DEFAULT_SUBREDDITS = [
-  'LocalSEO',
-  'SEO',
+  'localseo',
+  'seo',
   'smallbusiness',
   'digital_marketing',
   'marketing',
   'agency',
-  'Entrepreneur',
+  'entrepreneur',
 ];
+
+// MCP JSON-RPC call via HTTP
+async function mcpCall(method: string, params: Record<string, unknown>): Promise<unknown> {
+  const apiKey = process.env.XPOZ_API_KEY;
+  if (!apiKey) {
+    throw new Error('XPOZ_API_KEY environment variable is not set');
+  }
+
+  // MCP over HTTP: initialize session, then call tool
+  const initRes = await fetch(XPOZ_MCP_URL, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${apiKey}`,
+    },
+    body: JSON.stringify({
+      jsonrpc: '2.0',
+      id: 1,
+      method: 'initialize',
+      params: {
+        protocolVersion: '2024-11-05',
+        capabilities: {},
+        clientInfo: { name: 'reddit-rosie', version: '0.6.0' },
+      },
+    }),
+  });
+
+  if (!initRes.ok) {
+    throw new Error(`MCP init failed: ${initRes.status} ${initRes.statusText}`);
+  }
+
+  // Get session header for subsequent calls
+  const sessionId = initRes.headers.get('mcp-session-id') || '';
+
+  // Call the tool
+  const toolRes = await fetch(XPOZ_MCP_URL, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${apiKey}`,
+      ...(sessionId ? { 'mcp-session-id': sessionId } : {}),
+    },
+    body: JSON.stringify({
+      jsonrpc: '2.0',
+      id: 2,
+      method: 'tools/call',
+      params: {
+        name: method,
+        arguments: params,
+      },
+    }),
+  });
+
+  if (!toolRes.ok) {
+    const errorText = await toolRes.text();
+    throw new Error(`MCP tool call failed: ${toolRes.status} ${errorText}`);
+  }
+
+  const result = await toolRes.json();
+
+  if (result.error) {
+    throw new Error(`MCP error: ${JSON.stringify(result.error)}`);
+  }
+
+  // Extract content from MCP response
+  const content = result?.result?.content;
+  if (content && Array.isArray(content) && content.length > 0) {
+    const textContent = content.find((c: { type: string }) => c.type === 'text');
+    if (textContent?.text) {
+      return JSON.parse(textContent.text);
+    }
+  }
+
+  return result?.result;
+}
 
 export async function searchRedditPosts(options?: {
   keywords?: string[];
@@ -56,19 +115,16 @@ export async function searchRedditPosts(options?: {
   limit?: number;
   time?: 'hour' | 'day' | 'week' | 'month' | 'year' | 'all';
 }): Promise<RedditPostResult[]> {
-  const client = await getXpozClient();
   const keywords = options?.keywords ?? DEFAULT_KEYWORDS;
   const subreddits = options?.subreddits ?? DEFAULT_SUBREDDITS;
   const limit = options?.limit ?? 50;
   const time = options?.time ?? 'week';
 
   const query = keywords.join(' OR ');
-  const seenIds = new Set<string>();
+  const subredditSet = new Set(subreddits.map(s => s.toLowerCase()));
 
-  // Single query across all Reddit — no subreddit filter so we get results
-  // from all target subreddits in ONE API call (1 query = 2 credits)
-  // Then filter client-side to our target subreddits
-  const results = await client.reddit.searchPosts(query, {
+  const response = await mcpCall('getRedditPostsByKeywords', {
+    query,
     sort: 'new',
     time,
     limit: Math.min(limit, 100),
@@ -76,40 +132,32 @@ export async function searchRedditPosts(options?: {
       'id', 'title', 'selftext', 'authorUsername', 'subredditName',
       'score', 'commentsCount', 'createdAtDate', 'permalink', 'url',
     ],
-  });
+    userPrompt: `Find Reddit posts about local SEO, Google Business Profile, review management, or mentions of Merchynt/Paige/BrightLocal/Whitespark`,
+  }) as { results?: Record<string, unknown>[] };
 
   const allPosts: RedditPostResult[] = [];
-  const subredditSet = new Set(subreddits.map(s => s.toLowerCase()));
+  const seenIds = new Set<string>();
 
-  if (results?.data) {
-    const posts = Array.isArray(results.data) ? results.data : [];
-    for (const post of posts) {
-      const postId = String(post.id ?? '');
-      const subredditName = String(post.subredditName ?? '').toLowerCase();
+  const posts = response?.results ?? [];
+  for (const post of posts) {
+    const postId = String(post.id ?? '');
+    const subredditName = String(post.subredditName ?? '').toLowerCase();
 
-      // Filter to target subreddits only
-      if (postId && !seenIds.has(postId) && subredditSet.has(subredditName)) {
-        seenIds.add(postId);
-        allPosts.push({
-          id: post.id ?? '',
-          title: post.title ?? '',
-          selftext: post.selftext ?? '',
-          authorUsername: post.authorUsername ?? '',
-          subredditName: post.subredditName ?? '',
-          score: post.score ?? 0,
-          commentsCount: post.commentsCount ?? 0,
-          createdAtDate: post.createdAtDate ?? '',
-          permalink: post.permalink ?? '',
-          url: post.url ?? '',
-        });
-      }
+    if (postId && !seenIds.has(postId) && subredditSet.has(subredditName)) {
+      seenIds.add(postId);
+      allPosts.push({
+        id: String(post.id ?? ''),
+        title: String(post.title ?? ''),
+        selftext: String(post.selftext ?? ''),
+        authorUsername: String(post.authorUsername ?? ''),
+        subredditName: String(post.subredditName ?? ''),
+        score: Number(post.score ?? 0),
+        commentsCount: Number(post.commentsCount ?? 0),
+        createdAtDate: String(post.createdAtDate ?? ''),
+        permalink: String(post.permalink ?? ''),
+        url: String(post.url ?? ''),
+      });
     }
-  }
-
-  // If filtered results are sparse, also do a broad query without subreddit filter
-  // to catch posts from our target subs that might appear in general results
-  if (allPosts.length < 5) {
-    // Keep whatever we found — the broad query already covers all subreddits
   }
 
   // Sort by recency
