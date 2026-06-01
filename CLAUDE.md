@@ -94,36 +94,58 @@ Timeline of all actions: conversations discovered, drafts generated, responses p
 ### Changelog (`/changelog`)
 Product changelog with release history timeline + roadmap cards. Linked from sidebar.
 
-## Planned Backend (not yet built)
+## Backend: Reddit Data Pipeline (BUILT)
 
-### Reddit Data Access: Xpoz (not Reddit API directly)
-Reddit's Responsible Builder Policy restricts direct Data API access to moderation use cases. Instead, Rosie uses **Xpoz** (xpoz.ai) as a third-party Reddit data provider:
-- Search Reddit posts/comments by subreddit, keywords, or users
-- TypeScript SDK available on npm for the Next.js backend
-- Free tier: 5,000 credits (Reddit queries cost 2 credits each = 2,500 queries)
-- Pro tier: $20/mo for higher volume
-- No Reddit API approval needed — Xpoz handles Reddit compliance
-- RSS feeds are the fallback if Xpoz doesn't work out
+### How Reddit data flows into Rosie
+```
+GitHub Actions (cron: 6am + 6pm ET daily)
+  → scripts/fetch-reddit.mjs runs on GitHub's servers
+  → Fetches Reddit RSS feeds (17 queries across 9 subreddits)
+  → Parses Atom XML, scores relevance, filters quality >= 20
+  → Saves to public/data/conversations.json
+  → Commits and pushes to main
+  → Vercel auto-deploys in ~30 seconds
+  → Queue page fetches /data/conversations.json directly
+```
+
+### Why RSS feeds instead of Reddit API or Xpoz
+- Reddit's Data API requires moderation use case approval (not our use case)
+- Xpoz (MCP-only) fails in Vercel serverless functions
+- RSS feeds are public, free, need no API key, and return full post content
+- Limitation: no upvote scores or comment counts in RSS (titles, authors, content, timestamps, permalinks only)
+
+### Monitored subreddits (configured in scripts/fetch-reddit.mjs)
+r/localseo, r/SEO, r/smallbusiness, r/marketing, r/digital_marketing, r/agency, r/Entrepreneur, r/webmarketing, r/bigseo
+
+### Relevance scoring (configured in scripts/fetch-reddit.mjs)
+- Brand mentions (merchynt: +50, paige in SEO context: +40)
+- Competitor mentions (brightlocal, whitespark: +30, moz local: +25, yext: +20)
+- Topic terms (google business profile: +15, local seo: +12, review management: +10, etc.)
+- Subreddit authority boost (localseo/seo/smallbusiness: +10, marketing/agency: +5)
+- Question/help posts: +8, tool comparison posts: +8
+- Self-promotion penalty: -15
+- Quality filter: only posts scoring >= 20 enter the queue
 
 ### Posting: Human-in-the-loop only
-Per Reddit's Responsible Builder Policy, Rosie does NOT post to Reddit automatically. The workflow is:
+Per Reddit's Responsible Builder Policy, Rosie does NOT post to Reddit automatically:
 - Rosie monitors and drafts replies
 - Human reviews the draft
 - Human copies and pastes into Reddit manually
 - No bot registration, no App labels, no automated posting
 
+## Planned Backend (not yet built)
+
 ### Phase 1: Database + Auth
 - Supabase for persistent storage (conversations, drafts, settings, analytics snapshots)
 - Vercel password protection for access control
 
-### Phase 2: Xpoz + Claude Integration
-- Vercel Cron jobs query Xpoz for new Reddit posts matching keywords
+### Phase 2: Claude Integration
 - Claude API (Sonnet model, ~$15/mo) generates drafts using Product Knowledge + Brand Voice + Creator Profiles
 - Two drafts per conversation: corporate voice (we/us/our) + personal voice (I/me/my)
 
 ### Environment Variables
 ```
-XPOZ_API_KEY          # SET — Vercel production + .env.local
+XPOZ_API_KEY          # SET — Vercel production + .env.local (kept for potential future use)
 SUPABASE_URL          # not yet configured
 SUPABASE_ANON_KEY     # not yet configured
 SUPABASE_SERVICE_ROLE_KEY  # not yet configured
