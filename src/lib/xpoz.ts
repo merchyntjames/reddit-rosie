@@ -42,12 +42,15 @@ async function mcpCall(method: string, params: Record<string, unknown>): Promise
   }
 
   // MCP over HTTP: initialize session, then call tool
+  const headers: Record<string, string> = {
+    'Content-Type': 'application/json',
+    'Accept': 'application/json, text/event-stream',
+    'Authorization': `Bearer ${apiKey}`,
+  };
+
   const initRes = await fetch(XPOZ_MCP_URL, {
     method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'Authorization': `Bearer ${apiKey}`,
-    },
+    headers,
     body: JSON.stringify({
       jsonrpc: '2.0',
       id: 1,
@@ -61,18 +64,31 @@ async function mcpCall(method: string, params: Record<string, unknown>): Promise
   });
 
   if (!initRes.ok) {
-    throw new Error(`MCP init failed: ${initRes.status} ${initRes.statusText}`);
+    const errorBody = await initRes.text().catch(() => '');
+    throw new Error(`MCP init failed: ${initRes.status} ${initRes.statusText} ${errorBody}`);
   }
 
   // Get session header for subsequent calls
   const sessionId = initRes.headers.get('mcp-session-id') || '';
 
+  // Send initialized notification (required by MCP spec)
+  await fetch(XPOZ_MCP_URL, {
+    method: 'POST',
+    headers: {
+      ...headers,
+      ...(sessionId ? { 'mcp-session-id': sessionId } : {}),
+    },
+    body: JSON.stringify({
+      jsonrpc: '2.0',
+      method: 'notifications/initialized',
+    }),
+  });
+
   // Call the tool
   const toolRes = await fetch(XPOZ_MCP_URL, {
     method: 'POST',
     headers: {
-      'Content-Type': 'application/json',
-      'Authorization': `Bearer ${apiKey}`,
+      ...headers,
       ...(sessionId ? { 'mcp-session-id': sessionId } : {}),
     },
     body: JSON.stringify({
