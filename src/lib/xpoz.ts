@@ -59,53 +59,57 @@ export async function searchRedditPosts(options?: {
   const client = await getXpozClient();
   const keywords = options?.keywords ?? DEFAULT_KEYWORDS;
   const subreddits = options?.subreddits ?? DEFAULT_SUBREDDITS;
-  const limit = options?.limit ?? 10;
+  const limit = options?.limit ?? 50;
   const time = options?.time ?? 'week';
 
   const query = keywords.join(' OR ');
-  const allPosts: RedditPostResult[] = [];
   const seenIds = new Set<string>();
 
-  // Query across all subreddits in batches to conserve credits
-  // Group subreddits into a single query using the subreddit filter
-  for (const subreddit of subreddits) {
-    try {
-      const results = await client.reddit.searchPosts(query, {
-        subreddit,
-        sort: 'new',
-        time,
-        limit: Math.min(limit, 25),
-        fields: [
-          'id', 'title', 'selftext', 'authorUsername', 'subredditName',
-          'score', 'commentsCount', 'createdAtDate', 'permalink', 'url',
-        ],
-      });
+  // Single query across all Reddit — no subreddit filter so we get results
+  // from all target subreddits in ONE API call (1 query = 2 credits)
+  // Then filter client-side to our target subreddits
+  const results = await client.reddit.searchPosts(query, {
+    sort: 'new',
+    time,
+    limit: Math.min(limit, 100),
+    fields: [
+      'id', 'title', 'selftext', 'authorUsername', 'subredditName',
+      'score', 'commentsCount', 'createdAtDate', 'permalink', 'url',
+    ],
+  });
 
-      if (results?.data) {
-        const posts = Array.isArray(results.data) ? results.data : [];
-        for (const post of posts) {
-          const postId = String(post.id ?? '');
-          if (postId && !seenIds.has(postId)) {
-            seenIds.add(postId);
-            allPosts.push({
-              id: post.id ?? '',
-              title: post.title ?? '',
-              selftext: post.selftext ?? '',
-              authorUsername: post.authorUsername ?? '',
-              subredditName: post.subredditName ?? '',
-              score: post.score ?? 0,
-              commentsCount: post.commentsCount ?? 0,
-              createdAtDate: post.createdAtDate ?? '',
-              permalink: post.permalink ?? '',
-              url: post.url ?? '',
-            });
-          }
-        }
+  const allPosts: RedditPostResult[] = [];
+  const subredditSet = new Set(subreddits.map(s => s.toLowerCase()));
+
+  if (results?.data) {
+    const posts = Array.isArray(results.data) ? results.data : [];
+    for (const post of posts) {
+      const postId = String(post.id ?? '');
+      const subredditName = String(post.subredditName ?? '').toLowerCase();
+
+      // Filter to target subreddits only
+      if (postId && !seenIds.has(postId) && subredditSet.has(subredditName)) {
+        seenIds.add(postId);
+        allPosts.push({
+          id: post.id ?? '',
+          title: post.title ?? '',
+          selftext: post.selftext ?? '',
+          authorUsername: post.authorUsername ?? '',
+          subredditName: post.subredditName ?? '',
+          score: post.score ?? 0,
+          commentsCount: post.commentsCount ?? 0,
+          createdAtDate: post.createdAtDate ?? '',
+          permalink: post.permalink ?? '',
+          url: post.url ?? '',
+        });
       }
-    } catch (error) {
-      console.error(`Error fetching from r/${subreddit}:`, error);
-      // Continue with other subreddits even if one fails
     }
+  }
+
+  // If filtered results are sparse, also do a broad query without subreddit filter
+  // to catch posts from our target subs that might appear in general results
+  if (allPosts.length < 5) {
+    // Keep whatever we found — the broad query already covers all subreddits
   }
 
   // Sort by recency
@@ -113,7 +117,7 @@ export async function searchRedditPosts(options?: {
     new Date(b.createdAtDate).getTime() - new Date(a.createdAtDate).getTime()
   );
 
-  return allPosts.slice(0, limit * subreddits.length);
+  return allPosts;
 }
 
 // Simple relevance scoring based on keyword matches and engagement
