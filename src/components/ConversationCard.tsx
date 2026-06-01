@@ -152,10 +152,17 @@ export function ConversationCard({ conversation, onStatusChange }: ConversationC
 
           {/* Draft Panel */}
           {conversation.status !== 'dismissed' && (
-            <DraftPanel
-              corporateDraft={conversation.corporateDraft}
-              personalDraft={conversation.personalDraft}
-            />
+            conversation.corporateDraft || conversation.personalDraft ? (
+              <DraftPanel
+                corporateDraft={conversation.corporateDraft}
+                personalDraft={conversation.personalDraft}
+              />
+            ) : (
+              <div className="p-5 text-center">
+                <p className="text-[13px] text-muted">AI drafts will appear here once Claude API is connected.</p>
+                <p className="text-[11px] text-muted mt-1">For now, view the conversation on Reddit and compose your reply manually.</p>
+              </div>
+            )
           )}
 
           {/* Actions */}

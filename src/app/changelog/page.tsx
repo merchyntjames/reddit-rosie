@@ -16,6 +16,24 @@ interface ChangelogEntry {
 
 const changelog: ChangelogEntry[] = [
   {
+    id: '11',
+    version: '0.6',
+    date: 'May 31, 2026',
+    type: 'feature',
+    title: 'Live Reddit Data via Xpoz',
+    description: 'Queue now shows real Reddit conversations from Xpoz API instead of mock data. Searches across 7 subreddits for keyword matches with relevance scoring.',
+    details: [
+      'Xpoz TypeScript SDK integrated for Reddit data access (no Reddit API approval needed)',
+      'API route /api/reddit queries Xpoz and returns scored, enriched conversations',
+      'Queue page fetches live data on load with loading and error states',
+      'Scan Now button triggers manual refresh',
+      'Live/Offline status indicator in Queue header',
+      'Conversation statuses (dismiss, complete) persisted in localStorage',
+      'Graceful fallback when API key is not configured',
+      'Relevance scoring based on keyword matches and engagement metrics',
+    ],
+  },
+  {
     id: '10',
     version: '0.5.2',
     date: 'May 31, 2026',
@@ -151,11 +169,6 @@ const changelog: ChangelogEntry[] = [
 ];
 
 const planned: { title: string; description: string; icon: React.ElementType }[] = [
-  {
-    title: 'Reddit Data API Integration',
-    description: 'Connect to Reddit Data API (read-only) for live subreddit monitoring and keyword matching. Replace mock data with real conversations.',
-    icon: Search,
-  },
   {
     title: 'Claude Draft Generation',
     description: 'AI-powered draft responses using product knowledge, brand voice, and creator profiles as context. Human reviews and copy/pastes into Reddit.',

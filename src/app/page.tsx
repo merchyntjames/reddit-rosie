@@ -1,21 +1,119 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { StatsBar } from '@/components/StatsBar';
 import { FilterBar } from '@/components/FilterBar';
 import { ConversationCard } from '@/components/ConversationCard';
-import { mockConversations } from '@/lib/mock-data';
 import { Conversation, ConversationStatus } from '@/lib/types';
-import { RefreshCw } from 'lucide-react';
+import { RefreshCw, Loader2, Wifi, WifiOff } from 'lucide-react';
+
+// Status persistence via localStorage
+function loadStatuses(): Record<string, ConversationStatus> {
+  if (typeof window === 'undefined') return {};
+  try {
+    const stored = localStorage.getItem('rosie-conversation-statuses');
+    return stored ? JSON.parse(stored) : {};
+  } catch {
+    return {};
+  }
+}
+
+function saveStatuses(statuses: Record<string, ConversationStatus>) {
+  if (typeof window === 'undefined') return;
+  localStorage.setItem('rosie-conversation-statuses', JSON.stringify(statuses));
+}
 
 export default function QueuePage() {
-  const [conversations, setConversations] = useState<Conversation[]>(mockConversations);
+  const [conversations, setConversations] = useState<Conversation[]>([]);
   const [activeFilter, setActiveFilter] = useState<ConversationStatus | 'all'>('all');
+  const [isLoading, setIsLoading] = useState(true);
+  const [isRefreshing, setIsRefreshing] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [isLive, setIsLive] = useState(false);
+  const [lastFetchedAt, setLastFetchedAt] = useState<string | null>(null);
+
+  const fetchConversations = useCallback(async (isManualRefresh = false) => {
+    if (isManualRefresh) {
+      setIsRefreshing(true);
+    } else {
+      setIsLoading(true);
+    }
+    setError(null);
+
+    try {
+      const res = await fetch('/api/reddit?time=week&limit=15');
+
+      if (!res.ok) {
+        throw new Error(`API returned ${res.status}`);
+      }
+
+      const data = await res.json();
+
+      if (data.error) {
+        throw new Error(data.error);
+      }
+
+      // Load persisted statuses and apply to fetched posts
+      const savedStatuses = loadStatuses();
+
+      const posts: Conversation[] = data.posts.map((post: {
+        id: string;
+        subreddit: string;
+        postTitle: string;
+        postSnippet: string;
+        postAuthor: string;
+        postUrl: string;
+        commentCount: number;
+        upvotes: number;
+        relevanceScore: number;
+        matchedKeywords: string[];
+        discoveredAt: string;
+        selftext: string;
+      }) => ({
+        id: post.id,
+        subreddit: post.subreddit,
+        postTitle: post.postTitle,
+        postSnippet: post.postSnippet,
+        postAuthor: post.postAuthor,
+        postUrl: post.postUrl,
+        commentCount: post.commentCount,
+        upvotes: post.upvotes,
+        relevanceScore: post.relevanceScore,
+        matchedKeywords: post.matchedKeywords,
+        discoveredAt: post.discoveredAt,
+        status: savedStatuses[post.id] || 'new',
+        // No AI drafts yet — these will come when Claude API is wired up
+        corporateDraft: '',
+        personalDraft: '',
+      }));
+
+      setConversations(posts);
+      setIsLive(true);
+      setLastFetchedAt(data.meta?.fetchedAt || new Date().toISOString());
+    } catch (err) {
+      console.error('Failed to fetch conversations:', err);
+      setError(String(err));
+      setIsLive(false);
+    } finally {
+      setIsLoading(false);
+      setIsRefreshing(false);
+    }
+  }, []);
+
+  // Initial fetch
+  useEffect(() => {
+    fetchConversations();
+  }, [fetchConversations]);
 
   const handleStatusChange = (id: string, newStatus: ConversationStatus) => {
     setConversations(prev =>
       prev.map(c => c.id === id ? { ...c, status: newStatus } : c)
     );
+
+    // Persist status to localStorage
+    const savedStatuses = loadStatuses();
+    savedStatuses[id] = newStatus;
+    saveStatuses(savedStatuses);
   };
 
   const filteredConversations = activeFilter === 'all'
@@ -36,18 +134,41 @@ export default function QueuePage() {
       <div className="flex items-center justify-between mb-6">
         <div>
           <h1 className="text-2xl font-bold text-dark">Queue</h1>
-          <p className="text-[13px] text-muted mt-1">
-            Reddit conversations matching your keywords and subreddits.
-          </p>
+          <div className="flex items-center gap-3 mt-1">
+            <p className="text-[13px] text-muted">
+              Reddit conversations matching your keywords and subreddits.
+            </p>
+            <div className="flex items-center gap-1.5">
+              {isLive ? (
+                <>
+                  <Wifi size={12} className="text-green" />
+                  <span className="text-[11px] text-green font-medium">Live from Xpoz</span>
+                </>
+              ) : (
+                <>
+                  <WifiOff size={12} className="text-muted" />
+                  <span className="text-[11px] text-muted">Offline</span>
+                </>
+              )}
+            </div>
+          </div>
         </div>
-        <button className="flex items-center gap-2 px-4 py-2.5 rounded-lg border border-border bg-white text-[13px] font-medium text-dark hover:bg-surface transition-colors">
-          <RefreshCw size={14} />
-          Scan now
+        <button
+          onClick={() => fetchConversations(true)}
+          disabled={isRefreshing}
+          className="flex items-center gap-2 px-4 py-2.5 rounded-lg border border-border bg-white text-[13px] font-medium text-dark hover:bg-surface transition-colors disabled:opacity-50"
+        >
+          {isRefreshing ? (
+            <Loader2 size={14} className="animate-spin" />
+          ) : (
+            <RefreshCw size={14} />
+          )}
+          {isRefreshing ? 'Scanning...' : 'Scan now'}
         </button>
       </div>
 
       {/* Stats */}
-      <StatsBar />
+      <StatsBar conversations={conversations} />
 
       {/* Filters */}
       <FilterBar
@@ -56,22 +177,57 @@ export default function QueuePage() {
         counts={counts}
       />
 
+      {/* Loading State */}
+      {isLoading && (
+        <div className="bg-white rounded-xl border border-border p-12 text-center">
+          <Loader2 size={24} className="animate-spin text-navy mx-auto mb-3" />
+          <p className="text-[15px] text-dark font-medium">Scanning Reddit...</p>
+          <p className="text-[13px] text-muted mt-1">Searching across 7 subreddits for matching conversations.</p>
+        </div>
+      )}
+
+      {/* Error State */}
+      {error && !isLoading && (
+        <div className="bg-white rounded-xl border border-border p-12 text-center">
+          <WifiOff size={24} className="text-muted mx-auto mb-3" />
+          <p className="text-[15px] text-dark font-medium">Could not connect to Reddit data</p>
+          <p className="text-[13px] text-muted mt-1 max-w-md mx-auto">
+            Check that XPOZ_API_KEY is set in your environment variables. The Queue will show live Reddit data once the connection is active.
+          </p>
+          <button
+            onClick={() => fetchConversations()}
+            className="mt-4 px-4 py-2 rounded-lg bg-navy text-white text-[13px] font-medium hover:bg-navy/90 transition-colors"
+          >
+            Try again
+          </button>
+        </div>
+      )}
+
       {/* Conversation List */}
-      <div className="space-y-3">
-        {filteredConversations.length === 0 ? (
-          <div className="bg-white rounded-xl border border-border p-12 text-center">
-            <p className="text-[15px] text-muted">No conversations match this filter.</p>
-          </div>
-        ) : (
-          filteredConversations.map(conversation => (
-            <ConversationCard
-              key={conversation.id}
-              conversation={conversation}
-              onStatusChange={handleStatusChange}
-            />
-          ))
-        )}
-      </div>
+      {!isLoading && !error && (
+        <div className="space-y-3">
+          {filteredConversations.length === 0 ? (
+            <div className="bg-white rounded-xl border border-border p-12 text-center">
+              <p className="text-[15px] text-muted">No conversations match this filter.</p>
+            </div>
+          ) : (
+            <>
+              {filteredConversations.map(conversation => (
+                <ConversationCard
+                  key={conversation.id}
+                  conversation={conversation}
+                  onStatusChange={handleStatusChange}
+                />
+              ))}
+              {lastFetchedAt && (
+                <p className="text-[11px] text-muted text-center pt-2">
+                  Last updated: {new Date(lastFetchedAt).toLocaleString()}
+                </p>
+              )}
+            </>
+          )}
+        </div>
+      )}
     </div>
   );
 }

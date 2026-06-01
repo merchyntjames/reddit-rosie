@@ -1,6 +1,6 @@
 'use client';
 
-import { mockConversations } from '@/lib/mock-data';
+import { Conversation } from '@/lib/types';
 
 interface StatCardProps {
   label: string;
@@ -18,20 +18,25 @@ function StatCard({ label, value, sublabel }: StatCardProps) {
   );
 }
 
-export function StatsBar() {
-  const newCount = mockConversations.filter(c => c.status === 'new').length;
-  const total = mockConversations.length;
-  const completed = mockConversations.filter(c => c.status === 'completed').length;
-  const avgRelevance = Math.round(
-    mockConversations.filter(c => c.status !== 'dismissed').reduce((sum, c) => sum + c.relevanceScore, 0) /
-    mockConversations.filter(c => c.status !== 'dismissed').length
-  );
+interface StatsBarProps {
+  conversations: Conversation[];
+}
+
+export function StatsBar({ conversations }: StatsBarProps) {
+  const newCount = conversations.filter(c => c.status === 'new').length;
+  const total = conversations.length;
+  const completed = conversations.filter(c => c.status === 'completed').length;
+  const nonDismissed = conversations.filter(c => c.status !== 'dismissed');
+  const avgRelevance = nonDismissed.length > 0
+    ? Math.round(nonDismissed.reduce((sum, c) => sum + c.relevanceScore, 0) / nonDismissed.length)
+    : 0;
+  const responseRate = total > 0 ? Math.round((completed / total) * 100) : 0;
 
   return (
     <div className="grid grid-cols-4 gap-4 mb-6">
-      <StatCard label="New Today" value={newCount} />
+      <StatCard label="New" value={newCount} />
       <StatCard label="Total Tracked" value={total} sublabel="Last 7 days" />
-      <StatCard label="Responded" value={completed} sublabel={`${Math.round((completed / total) * 100)}% response rate`} />
+      <StatCard label="Responded" value={completed} sublabel={`${responseRate}% response rate`} />
       <StatCard label="Avg Relevance" value={avgRelevance} sublabel="Higher = better match" />
     </div>
   );
