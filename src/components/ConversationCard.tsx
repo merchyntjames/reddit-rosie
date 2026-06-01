@@ -131,23 +131,20 @@ export function ConversationCard({ conversation, onStatusChange }: ConversationC
       {/* Expanded Content */}
       {isExpanded && (
         <div className="border-t border-border">
-          {/* Full Post Context */}
-          <div className="p-5 pb-4 border-b border-border">
-            <div className="flex items-center justify-between mb-3">
-              <p className="text-[12px] font-medium text-muted">
-                Posted by <span className="text-dark">{conversation.postAuthor}</span>
-              </p>
-              <a
-                href={conversation.postUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-1 text-[12px] text-blue hover:text-navy transition-colors"
-              >
-                View on Reddit
-                <ArrowUpRight size={12} />
-              </a>
-            </div>
-            <p className="text-[13px] text-dark leading-relaxed">{conversation.postSnippet}</p>
+          {/* Post Meta + Link */}
+          <div className="px-5 py-3 border-b border-border flex items-center justify-between">
+            <p className="text-[12px] font-medium text-muted">
+              Posted by <span className="text-dark">{conversation.postAuthor}</span>
+            </p>
+            <a
+              href={conversation.postUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-1 text-[12px] text-blue hover:text-navy transition-colors"
+            >
+              View on Reddit
+              <ArrowUpRight size={12} />
+            </a>
           </div>
 
           {/* Draft Panel */}
