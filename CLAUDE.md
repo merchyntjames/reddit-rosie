@@ -96,34 +96,40 @@ Product changelog with release history timeline + roadmap cards. Linked from sid
 
 ## Planned Backend (not yet built)
 
+### Reddit Data Access: Xpoz (not Reddit API directly)
+Reddit's Responsible Builder Policy restricts direct Data API access to moderation use cases. Instead, Rosie uses **Xpoz** (xpoz.ai) as a third-party Reddit data provider:
+- Search Reddit posts/comments by subreddit, keywords, or users
+- TypeScript SDK available on npm for the Next.js backend
+- Free tier: 5,000 credits (Reddit queries cost 2 credits each = 2,500 queries)
+- Pro tier: $20/mo for higher volume
+- No Reddit API approval needed — Xpoz handles Reddit compliance
+- RSS feeds are the fallback if Xpoz doesn't work out
+
+### Posting: Human-in-the-loop only
+Per Reddit's Responsible Builder Policy, Rosie does NOT post to Reddit automatically. The workflow is:
+- Rosie monitors and drafts replies
+- Human reviews the draft
+- Human copies and pastes into Reddit manually
+- No bot registration, no App labels, no automated posting
+
 ### Phase 1: Database + Auth
 - Supabase for persistent storage (conversations, drafts, settings, analytics snapshots)
 - Vercel password protection for access control
 
-### Phase 2: Reddit API Integration
-- OAuth2 "web app" type for multi-account support
-- Cron job polling subreddits every 15-30 min via `GET /r/sub1+sub2+sub3/new`
-- Keyword matching + relevance scoring
-- Direct posting via `POST /api/submit` and `POST /api/comment`
-- Post scheduling via database + cron (Reddit API has no native scheduling)
-- Analytics polling: track score, upvote_ratio, num_comments, karma over time
-
-### Phase 3: Claude API Integration
-- Draft generation using Sonnet model (~$15/mo at medium volume)
-- System prompts built from Product Knowledge + Brand Voice + Creator Profiles
+### Phase 2: Xpoz + Claude Integration
+- Vercel Cron jobs query Xpoz for new Reddit posts matching keywords
+- Claude API (Sonnet model, ~$15/mo) generates drafts using Product Knowledge + Brand Voice + Creator Profiles
 - Two drafts per conversation: corporate voice (we/us/our) + personal voice (I/me/my)
 
-### Environment Variables (not yet set)
+### Environment Variables
 ```
-REDDIT_CLIENT_ID
-REDDIT_CLIENT_SECRET
-REDDIT_USERNAME
-REDDIT_PASSWORD
-SUPABASE_URL
-SUPABASE_ANON_KEY
-SUPABASE_SERVICE_ROLE_KEY
-ANTHROPIC_API_KEY
+XPOZ_API_KEY          # SET — Vercel production + .env.local
+SUPABASE_URL          # not yet configured
+SUPABASE_ANON_KEY     # not yet configured
+SUPABASE_SERVICE_ROLE_KEY  # not yet configured
+ANTHROPIC_API_KEY     # not yet configured
 ```
+**IMPORTANT:** API keys are stored in `.env.local` (gitignored) and as Vercel environment variables. NEVER commit keys to the repo — it is public.
 
 ## Mascot
 "Rosie The Redditor" — chibi-style 3D character with reddish-orange hair in a bun, red polka-dot bandana, Merchynt navy hoodie, green eyes, confident smile, holding a tablet with an upvote arrow. Generated via Nano Banana Pro (Google Gemini). Multiple iterations were refined for pose, expression, and font treatment.
