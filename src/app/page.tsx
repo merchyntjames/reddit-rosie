@@ -41,55 +41,92 @@ export default function QueuePage() {
     setError(null);
 
     try {
-      const res = await fetch('/api/reddit?time=week&limit=15');
+      // Fetch static JSON (refreshed by Claude Code / cloud worker via Xpoz)
+      const res = await fetch('/data/conversations.json');
 
       if (!res.ok) {
-        throw new Error(`API returned ${res.status}`);
+        throw new Error(`Data file returned ${res.status}`);
       }
 
-      const data = await res.json();
+      const data = await res.json() as {
+        posts: {
+          id: string;
+          title: string;
+          selftext?: string;
+          authorUsername: string;
+          subredditName: string;
+          score: number;
+          commentsCount: number;
+          createdAtDate: string;
+          permalink: string;
+        }[];
+        fetchedAt: string;
+      };
 
-      if (data.error) {
-        throw new Error(data.error);
-      }
+      // Score and enrich posts
+      const keywordLabels = [
+        'Google Business Profile', 'local SEO', 'Merchynt', 'Paige',
+        'GBP optimization', 'AI local SEO', 'review management',
+        'BrightLocal', 'Whitespark', 'GBP', 'Google Maps',
+      ];
 
-      // Load persisted statuses and apply to fetched posts
       const savedStatuses = loadStatuses();
 
-      const posts: Conversation[] = data.posts.map((post: {
-        id: string;
-        subreddit: string;
-        postTitle: string;
-        postSnippet: string;
-        postAuthor: string;
-        postUrl: string;
-        commentCount: number;
-        upvotes: number;
-        relevanceScore: number;
-        matchedKeywords: string[];
-        discoveredAt: string;
-        selftext: string;
-      }) => ({
-        id: post.id,
-        subreddit: post.subreddit,
-        postTitle: post.postTitle,
-        postSnippet: post.postSnippet,
-        postAuthor: post.postAuthor,
-        postUrl: post.postUrl,
-        commentCount: post.commentCount,
-        upvotes: post.upvotes,
-        relevanceScore: post.relevanceScore,
-        matchedKeywords: post.matchedKeywords,
-        discoveredAt: post.discoveredAt,
-        status: savedStatuses[post.id] || 'new',
-        // No AI drafts yet — these will come when Claude API is wired up
-        corporateDraft: '',
-        personalDraft: '',
-      }));
+      const posts: Conversation[] = data.posts.map(post => {
+        const text = `${post.title} ${post.selftext ?? ''}`.toLowerCase();
+
+        // Relevance scoring
+        let relevanceScore = 0;
+        if (text.includes('merchynt') || text.includes('paige')) relevanceScore += 40;
+        const terms = ['google business profile', 'local seo', 'gbp', 'review management', 'google maps', 'brightlocal', 'whitespark'];
+        for (const term of terms) {
+          if (text.includes(term)) relevanceScore += 8;
+        }
+        if (post.score > 50) relevanceScore += 10;
+        else if (post.score > 20) relevanceScore += 5;
+        else if (post.score > 5) relevanceScore += 2;
+        if (post.commentsCount > 20) relevanceScore += 10;
+        else if (post.commentsCount > 10) relevanceScore += 5;
+        else if (post.commentsCount > 3) relevanceScore += 2;
+        relevanceScore = Math.min(100, relevanceScore);
+
+        // Matched keywords
+        const matchedKeywords: string[] = [];
+        for (const kw of keywordLabels) {
+          if (text.includes(kw.toLowerCase())) matchedKeywords.push(kw);
+        }
+
+        // Snippet
+        const snippet = post.selftext
+          ? post.selftext.slice(0, 300).replace(/\n+/g, ' ').trim() + (post.selftext.length > 300 ? '...' : '')
+          : '';
+
+        return {
+          id: post.id,
+          subreddit: `r/${post.subredditName}`,
+          postTitle: post.title,
+          postSnippet: snippet,
+          postAuthor: `u/${post.authorUsername}`,
+          postUrl: post.permalink
+            ? `https://reddit.com${post.permalink}`
+            : `https://reddit.com/r/${post.subredditName}/comments/${post.id}`,
+          commentCount: post.commentsCount,
+          upvotes: post.score,
+          relevanceScore,
+          matchedKeywords,
+          discoveredAt: post.createdAtDate,
+          status: savedStatuses[post.id] || 'new',
+          corporateDraft: '',
+          personalDraft: '',
+        };
+      });
+
+      // Sort by relevance
+      posts.sort((a, b) => b.relevanceScore - a.relevanceScore);
 
       setConversations(posts);
       setIsLive(true);
-      setLastFetchedAt(data.meta?.fetchedAt || new Date().toISOString());
+      setLastFetchedAt(data.fetchedAt || new Date().toISOString());
     } catch (err) {
       console.error('Failed to fetch conversations:', err);
       setError(String(err));
