@@ -10,7 +10,7 @@
       "permalink": "/r/smallbusinessowner/comments/1tvx4v5/can_a_brands_entire_online_reputation_be_measured/",
       "url": "https://www.reddit.com/r/smallbusinessowner/comments/1tvx4v5/can_a_brands_entire_online_reputation_be_measured/",
       "searchType": "broad",
-      "searchLabel": "competitor",
+      "searchLabel": "high-intent",
       "relevanceScore": 90,
       "matchedKeywords": [
         "brightlocal",
@@ -125,6 +125,48 @@
       ]
     },
     {
+      "id": "1tw5jxb",
+      "title": "AI Search (ChatGPT, Claude, Gemini) gives completely different answers depending on your city. Here is why this matters for local Small Businesses.",
+      "selftext": "For the last year, everyone tracking AI visibility has been asking: \"Does ChatGPT mention my business?\" That is the wrong question. We ran thousands of identical prompts across ChatGPT, Gemini, Perplexity, and Claude from different geographic contexts. The results confirmed that AI answers are not the same in every city. Across the prompts we tested, the top-recommended product or service changed in 41% of major U.S. metros for the exact same query. For categories like home services, fitness, and local retail, the variance was even higher. If you are running a small business, this is a critical shift. When a user asks an AI assistant for a recommendation, the model does not pull from a single global ranking. It blends: Localized retrieval (Google and Bing SERPs return different local packs by region) Regional citation sources (local publications, local reviews, city-specific forums) Inferred location signals (user IP, prompt context like \"near me\") The Google Business Profile (GBP) Angle This means your Google Business Profile and local citations feed directly into the AI's localized logic. A business that dominates the AI response in one ZIP code can be completely invisible just a few miles away. We call this \"regional drift.\" If your small business relies on local foot traffic or service areas, you cannot rely on a generic, national AI visibility score. You are flying blind. The AI is heavily weighing where you are, using your GBP data and local directory mentions to filter you in or out of the response. We just launched a tool (Sanbi AI) to map this out geographically, allowing brands to see their AI visibility as a literal map instead of a single score. But regardless of the tools you use, the takeaway for small businesses is clear: localized content, geo-targeted reviews, and consistent GBP signals are what dictate if an AI recommends you to a local buyer. Has anyone else noticed their business showing up inconsistently in AI responses depending on where the prompt is run? to r/SmallBusinessUAE",
+      "authorUsername": "Sanbi_Ai",
+      "subredditName": "SmallBusinessUAE",
+      "createdAtDate": "2026-06-03T22:54:33+00:00",
+      "permalink": "/r/SmallBusinessUAE/comments/1tw5jxb/ai_search_chatgpt_claude_gemini_gives_completely/",
+      "url": "https://www.reddit.com/r/SmallBusinessUAE/comments/1tw5jxb/ai_search_chatgpt_claude_gemini_gives_completely/",
+      "searchType": "broad",
+      "searchLabel": "high-intent",
+      "relevanceScore": 61,
+      "matchedKeywords": [
+        "google business profile",
+        "gbp",
+        "ai search",
+        "ai visibility",
+        "local pack",
+        "citation"
+      ]
+    },
+    {
+      "id": "1tw5frd",
+      "title": "AI Search (ChatGPT, Gemini) gives completely different answers depending on your city. Here is why this matters for local Small Businesses.",
+      "selftext": "For the last year, everyone tracking AI visibility has been asking: \"Does ChatGPT mention my business?\" That is the wrong question. We ran thousands of identical prompts across ChatGPT, Gemini, Perplexity, and Claude from different geographic contexts. The results confirmed that AI answers are not the same in every city. Across the prompts we tested, the top-recommended product or service changed in 41% of major U.S. metros for the exact same query. For categories like home services, fitness, and local retail, the variance was even higher. If you are running a small business, this is a critical shift. When a user asks an AI assistant for a recommendation, the model does not pull from a single global ranking. It blends: Localized retrieval (Google and Bing SERPs return different local packs by region) Regional citation sources (local publications, local reviews, city-specific forums) Inferred location signals (user IP, prompt context like \"near me\") The Google Business Profile (GBP) Angle This means your Google Business Profile and local citations feed directly into the AI's localized logic. A business that dominates the AI response in one ZIP code can be completely invisible just a few miles away. We call this \"regional drift.\" If your small business relies on local foot traffic or service areas, you cannot rely on a generic, national AI visibility score. You are flying blind. The AI is heavily weighing where you are, using your GBP data and local directory mentions to filter you in or out of the response. We just launched a tool (Sanbi AI) to map this out geographically, allowing brands to see their AI visibility as a literal map instead of a single score. But regardless of the tools you use, the takeaway for small businesses is clear: localized content, geo-targeted reviews, and consistent GBP signals are what dictate if an AI recommends you to a local buyer. Has anyone else noticed their business showing up inconsistently in AI responses depending on where the prompt is run? to r/AiVisibilityforSMB",
+      "authorUsername": "Sanbi_Ai",
+      "subredditName": "AiVisibilityforSMB",
+      "createdAtDate": "2026-06-03T22:50:05+00:00",
+      "permalink": "/r/AiVisibilityforSMB/comments/1tw5frd/ai_search_chatgpt_gemini_gives_completely/",
+      "url": "https://www.reddit.com/r/AiVisibilityforSMB/comments/1tw5frd/ai_search_chatgpt_gemini_gives_completely/",
+      "searchType": "broad",
+      "searchLabel": "high-intent",
+      "relevanceScore": 61,
+      "matchedKeywords": [
+        "google business profile",
+        "gbp",
+        "ai search",
+        "ai visibility",
+        "local pack",
+        "citation"
+      ]
+    },
+    {
       "id": "1tvxxkm",
       "title": "Why is my Google Business Profile not helping with AI search results?",
       "selftext": "AI search has quietly become the default for a lot of consumers, and most franchise and multi-location brands are still optimizing for a world that doesn't quite exist anymore. The gap between \"ranking on Google Maps\" and \"showing up in an AI recommendation\" is bigger than most people realize. The thing that surprised me most: Google's own AI Mode and Gemini have no direct access to the Google Maps database. Your GBP categories, service lists, uploaded menus, photos, none of that feeds directly into LLM recommendations. If your business details only live inside your Google profile, they're effectively invisible to AI-driven search. What AI systems actually retrieve is your web presence such as local landing pages, indexed content, review snippets. A few things that actually move the needle: Semantic specificity on your site. Consumers aren't searching \"coffee Pittsburgh\" anymore. They're searching \"caramel macchiato in Mount Lebanon with outdoor seating.\" If your content doesn't reach that level of detail, an LLM has nothing to cite. Authentic reviews with natural distribution. LLMs are genuinely good at detecting incentivized review clusters. A sudden spike of detailed, positive reviews mentioning the same staff member is a recognizable pattern, and brands in healthcare or financial services face extra scrutiny. Persona-driven content, not keyword lists. A smoothie shop that wants post-workout traffic needs content that explicitly connects the brand to that use case — not just a protein menu. The metric shift is real too. Impressions are dropping for broad queries across the board, but direction requests and calls from high-intent searches are holding steady or improving. The search ecosystem is filtering toward intent, and AI accelerates that. For those managing franchisees at scale: how are you equipping location operators to create content at this level of specificity without turning every franchisee into a content strategist? to r/SOCi_Official",
@@ -164,13 +206,13 @@
       ]
     }
   ],
-  "fetchedAt": "2026-06-03T21:45:55.353Z",
+  "fetchedAt": "2026-06-03T23:29:19.057Z",
   "source": "reddit-rss",
   "stats": {
-    "totalFetched": 170,
+    "totalFetched": 173,
     "totalQueries": 25,
-    "qualityPosts": 8,
-    "filteredOut": 162,
+    "qualityPosts": 10,
+    "filteredOut": 163,
     "minRelevanceScore": 50
   }
 }
