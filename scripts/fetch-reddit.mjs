@@ -25,18 +25,18 @@ const OUTPUT_PATH = join(__dirname, '..', 'public', 'data', 'conversations.json'
 // (dentist forums, plumber communities, local city subs, etc.)
 const GLOBAL_QUERIES = [
   // Brand monitoring — find every mention anywhere on Reddit
-  { query: 'Merchynt', time: 'month', label: 'brand-mention' },
-  { query: '"Paige" AND ("local SEO" OR "GBP" OR "Google Business")', time: 'month', label: 'brand-mention' },
+  { query: 'Merchynt', time: 'day', label: 'brand-mention' },
+  { query: '"Paige" AND ("local SEO" OR "GBP" OR "Google Business")', time: 'day', label: 'brand-mention' },
 
   // Competitor monitoring
-  { query: 'BrightLocal OR Whitespark OR "Moz Local" OR Yext', time: 'week', label: 'competitor' },
+  { query: 'BrightLocal OR Whitespark OR "Moz Local" OR Yext', time: 'day', label: 'competitor' },
 
   // High-intent keywords across all of Reddit
-  { query: '"Google Business Profile" AND (help OR advice OR recommend OR best)', time: 'week', label: 'high-intent' },
-  { query: '"local SEO" AND (tool OR software OR recommend OR alternative)', time: 'week', label: 'high-intent' },
-  { query: '"Google Maps ranking" AND (how OR improve OR help)', time: 'week', label: 'high-intent' },
-  { query: '"Google reviews" AND (management OR automate OR respond)', time: 'week', label: 'high-intent' },
-  { query: '"AI search" AND ("local business" OR "small business" OR "Google Business")', time: 'week', label: 'ai-search' },
+  { query: '"Google Business Profile" AND (help OR advice OR recommend OR best)', time: 'day', label: 'high-intent' },
+  { query: '"local SEO" AND (tool OR software OR recommend OR alternative)', time: 'day', label: 'high-intent' },
+  { query: '"Google Maps ranking" AND (how OR improve OR help)', time: 'day', label: 'high-intent' },
+  { query: '"Google reviews" AND (management OR automate OR respond)', time: 'day', label: 'high-intent' },
+  { query: '"AI search" AND ("local business" OR "small business" OR "Google Business")', time: 'day', label: 'ai-search' },
 ];
 
 // NARROW SEARCHES: within specific SEO/marketing subreddits
@@ -274,9 +274,20 @@ function scorePost(post) {
     score += 8;
   }
 
-  // Penalize self-promotion posts (less useful to engage with)
-  if (titleLower.includes('[hiring]') || titleLower.includes('[help]') || titleLower.startsWith('we\'re doing free') || titleLower.includes('i built')) {
-    score -= 15;
+  // Penalize self-promotion and low-value post types
+  if (titleLower.includes('[hiring]') || titleLower.includes('[for hire]') ||
+      titleLower.includes('[help]') || titleLower.startsWith('we\'re doing free') ||
+      titleLower.includes('i built') || titleLower.includes('i created') ||
+      titleLower.includes('check out my') || titleLower.includes('launching') ||
+      titleLower.includes('i spent') || titleLower.includes('we just launched') ||
+      titleLower.includes('shameless plug') || titleLower.includes('self promo')) {
+    score -= 20;
+  }
+
+  // Penalize hiring/job posts
+  if (titleLower.includes('hiring') || titleLower.includes('job posting') ||
+      titleLower.includes('looking for') && (titleLower.includes('hire') || titleLower.includes('freelancer'))) {
+    score -= 25;
   }
 
   // Cap at 100
@@ -368,11 +379,11 @@ async function main() {
   // Sort by relevance score descending
   scoredPosts.sort((a, b) => b.relevanceScore - a.relevanceScore);
 
-  // Filter: only include posts with relevance score >= 30
-  // (20 was too loose — captured too many tangentially related posts)
-  const qualityPosts = scoredPosts.filter(p => p.relevanceScore >= 30);
+  // Filter: only include posts with relevance score >= 50
+  // 50+ means multiple relevance signals — not just topical, but actionable
+  const qualityPosts = scoredPosts.filter(p => p.relevanceScore >= 50);
 
-  console.log(`Posts with relevance >= 30: ${qualityPosts.length}`);
+  console.log(`Posts with relevance >= 50: ${qualityPosts.length}`);
   console.log(`Posts filtered out (< 20): ${scoredPosts.length - qualityPosts.length}`);
 
   // Show top posts for logging
@@ -403,7 +414,7 @@ async function main() {
       totalQueries,
       qualityPosts: qualityPosts.length,
       filteredOut: scoredPosts.length - qualityPosts.length,
-      minRelevanceScore: 30,
+      minRelevanceScore: 50,
     },
   };
 
