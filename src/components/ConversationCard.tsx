@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Link from 'next/link';
 import {
   ArrowUpRight,
   ChevronDown,
@@ -9,6 +10,7 @@ import {
   ArrowUp,
   Tag,
   Clock,
+  Info,
 } from 'lucide-react';
 import { Conversation } from '@/lib/types';
 import { DraftPanel } from './DraftPanel';
@@ -34,9 +36,22 @@ function RelevanceBadge({ score }: { score: number }) {
   else if (score < 80) colorClass = 'bg-blue/10 text-blue';
 
   return (
-    <span className={`inline-flex items-center px-2 py-0.5 rounded-md text-[11px] font-semibold ${colorClass}`}>
-      {score}/100 Quality Score
-    </span>
+    <div className="flex items-center gap-1">
+      <span className={`inline-flex items-center px-2 py-0.5 rounded-md text-[11px] font-semibold ${colorClass}`}>
+        {score}/100 Quality Score
+      </span>
+      <Link
+        href="/settings?tab=quality"
+        onClick={(e) => e.stopPropagation()}
+        className="group relative"
+        title="How are Quality Scores calculated?"
+      >
+        <Info size={13} className="text-muted hover:text-navy transition-colors" />
+        <span className="absolute right-0 top-full mt-1 w-48 px-2.5 py-1.5 rounded-md bg-dark text-white text-[10px] leading-relaxed opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-20">
+          Scored by keyword matches, topic relevance, and engagement signals. Click to see details.
+        </span>
+      </Link>
+    </div>
   );
 }
 

@@ -45,12 +45,14 @@ import {
   Sliders,
   UserPlus,
   Trash2,
+  Target,
 } from 'lucide-react';
 
-type SettingsTab = 'monitoring' | 'product' | 'brand' | 'creators' | 'integrations';
+type SettingsTab = 'monitoring' | 'quality' | 'product' | 'brand' | 'creators' | 'integrations';
 
 const tabs: { key: SettingsTab; label: string; icon: typeof Radio }[] = [
   { key: 'monitoring', label: 'Monitoring', icon: Radio },
+  { key: 'quality', label: 'Quality Score', icon: Target },
   { key: 'product', label: 'Product Knowledge', icon: Package },
   { key: 'brand', label: 'Brand Voice', icon: Megaphone },
   { key: 'creators', label: 'Creator Profiles', icon: Users },
@@ -58,7 +60,17 @@ const tabs: { key: SettingsTab; label: string; icon: typeof Radio }[] = [
 ];
 
 export default function SettingsPage() {
-  const [activeTab, setActiveTab] = useState<SettingsTab>('monitoring');
+  // Read ?tab= query param to support deep linking (e.g., from Quality Score tooltip)
+  const initialTab = (() => {
+    if (typeof window === 'undefined') return 'monitoring';
+    const params = new URLSearchParams(window.location.search);
+    const tab = params.get('tab');
+    if (tab && ['monitoring', 'quality', 'product', 'brand', 'creators', 'integrations'].includes(tab)) {
+      return tab as SettingsTab;
+    }
+    return 'monitoring';
+  })();
+  const [activeTab, setActiveTab] = useState<SettingsTab>(initialTab);
 
   // Monitoring state
   const [subreddits, setSubreddits] = useState<MonitoredSubreddit[]>(mockSubreddits);
@@ -392,6 +404,178 @@ export default function SettingsPage() {
         <button className="px-6 py-2.5 rounded-lg bg-navy text-white text-[13px] font-medium hover:bg-navy/90 transition-colors">
           Save Changes
         </button>
+      </div>
+    </div>
+  );
+
+  // --- Render Quality Score Tab ---
+  const renderQualityTab = () => (
+    <div className="space-y-8">
+      {/* How It Works */}
+      <section className="bg-white rounded-xl border border-border p-6">
+        <div className="flex items-center gap-2 mb-1">
+          <Target size={18} className="text-navy" />
+          <h2 className="text-[16px] font-semibold text-dark">How Quality Scores Work</h2>
+        </div>
+        <p className="text-[13px] text-muted mb-4">
+          Every Reddit post Rosie finds is scored from 0-100 based on how relevant it is to Merchynt. Posts scoring below the minimum threshold are filtered out of your queue. Higher scores mean more engagement opportunities.
+        </p>
+        <div className="grid grid-cols-3 gap-3">
+          <div className="p-3 rounded-lg bg-orange/5 border border-orange/20 text-center">
+            <p className="text-[20px] font-bold text-orange">0-59</p>
+            <p className="text-[11px] text-muted mt-1">Low relevance</p>
+          </div>
+          <div className="p-3 rounded-lg bg-blue/5 border border-blue/20 text-center">
+            <p className="text-[20px] font-bold text-blue">60-79</p>
+            <p className="text-[11px] text-muted mt-1">Good fit</p>
+          </div>
+          <div className="p-3 rounded-lg bg-green/5 border border-green/20 text-center">
+            <p className="text-[20px] font-bold text-green">80-100</p>
+            <p className="text-[11px] text-muted mt-1">Excellent fit</p>
+          </div>
+        </div>
+      </section>
+
+      {/* Minimum Threshold */}
+      <section className="bg-white rounded-xl border border-border p-6">
+        <div className="flex items-center gap-2 mb-1">
+          <Sliders size={18} className="text-navy" />
+          <h2 className="text-[16px] font-semibold text-dark">Minimum Quality Threshold</h2>
+        </div>
+        <p className="text-[13px] text-muted mb-4">
+          Posts scoring below this threshold are automatically filtered out of your queue. Lower values show more posts (including less relevant ones). Higher values show fewer, more targeted posts.
+        </p>
+        <div className="flex items-center gap-4">
+          <input
+            type="range"
+            min="20"
+            max="80"
+            step="5"
+            defaultValue="50"
+            className="flex-1 accent-navy"
+          />
+          <span className="text-[16px] font-bold text-navy w-12 text-center">50</span>
+        </div>
+        <div className="flex justify-between text-[11px] text-muted mt-1">
+          <span>More posts, less relevant</span>
+          <span>Fewer posts, more relevant</span>
+        </div>
+      </section>
+
+      {/* Brand Mentions */}
+      <section className="bg-white rounded-xl border border-border p-6">
+        <div className="flex items-center gap-2 mb-1">
+          <Building2 size={18} className="text-navy" />
+          <h2 className="text-[16px] font-semibold text-dark">Brand and Competitor Mentions</h2>
+        </div>
+        <p className="text-[13px] text-muted mb-4">
+          Posts mentioning these terms receive a significant score boost. Brand mentions are the highest signal — a post mentioning Merchynt is almost always worth engaging with.
+        </p>
+        <div className="space-y-2">
+          {[
+            { term: 'Merchynt', weight: 50, type: 'Brand' },
+            { term: 'Paige (in SEO context)', weight: 40, type: 'Brand' },
+            { term: 'BrightLocal', weight: 30, type: 'Competitor' },
+            { term: 'Whitespark', weight: 30, type: 'Competitor' },
+            { term: 'Moz Local', weight: 25, type: 'Competitor' },
+            { term: 'Yext', weight: 20, type: 'Competitor' },
+          ].map(item => (
+            <div key={item.term} className="flex items-center justify-between py-2 px-3 rounded-lg hover:bg-surface">
+              <div className="flex items-center gap-2">
+                <span className="text-[13px] text-dark">{item.term}</span>
+                <span className={`text-[10px] px-1.5 py-0.5 rounded font-medium ${
+                  item.type === 'Brand' ? 'bg-navy/10 text-navy' : 'bg-pink/10 text-pink'
+                }`}>{item.type}</span>
+              </div>
+              <span className="text-[13px] font-semibold text-navy">+{item.weight} pts</span>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Topic Relevance */}
+      <section className="bg-white rounded-xl border border-border p-6">
+        <div className="flex items-center gap-2 mb-1">
+          <Search size={18} className="text-navy" />
+          <h2 className="text-[16px] font-semibold text-dark">Topic Relevance</h2>
+        </div>
+        <p className="text-[13px] text-muted mb-4">
+          Posts containing these keywords in their title or body receive points based on how closely the topic aligns with Merchynt's expertise.
+        </p>
+        <div className="space-y-2">
+          {[
+            { term: 'Google Business Profile', weight: 15 },
+            { term: 'GBP', weight: 12 },
+            { term: 'local SEO', weight: 12 },
+            { term: 'Google Maps ranking', weight: 12 },
+            { term: 'review management', weight: 10 },
+            { term: 'Google reviews', weight: 10 },
+            { term: 'AI search / AI visibility', weight: 10 },
+            { term: 'local pack / map pack', weight: 8 },
+            { term: 'citation', weight: 6 },
+            { term: 'local marketing', weight: 6 },
+            { term: 'Google Maps', weight: 6 },
+            { term: 'local business', weight: 5 },
+            { term: 'SEO tool', weight: 5 },
+            { term: 'agency', weight: 3 },
+          ].map(item => (
+            <div key={item.term} className="flex items-center justify-between py-1.5 px-3 rounded-lg hover:bg-surface">
+              <span className="text-[13px] text-dark">{item.term}</span>
+              <span className="text-[13px] font-medium text-muted">+{item.weight} pts</span>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Engagement Signals */}
+      <section className="bg-white rounded-xl border border-border p-6">
+        <div className="flex items-center gap-2 mb-1">
+          <MessageSquare size={18} className="text-navy" />
+          <h2 className="text-[16px] font-semibold text-dark">Engagement Signals</h2>
+        </div>
+        <p className="text-[13px] text-muted mb-4">
+          Bonus points based on post characteristics that indicate good engagement opportunities.
+        </p>
+        <div className="space-y-3">
+          <div>
+            <p className="text-[12px] font-semibold text-dark mb-2">Positive signals (boost score)</p>
+            <div className="space-y-1.5">
+              {[
+                { signal: 'Question post (contains ?, how, what, best, recommend)', points: '+8' },
+                { signal: 'Help/advice request (help, advice, tips, suggestions)', points: '+5' },
+                { signal: 'Tool comparison (vs, compare, alternative, tool)', points: '+8' },
+                { signal: 'Posted in r/localseo, r/SEO, or r/smallbusiness', points: '+10' },
+                { signal: 'Posted in r/marketing, r/digital_marketing, or r/agency', points: '+5' },
+              ].map(item => (
+                <div key={item.signal} className="flex items-center justify-between py-1.5 px-3 rounded-lg bg-green/5">
+                  <span className="text-[12px] text-dark">{item.signal}</span>
+                  <span className="text-[12px] font-semibold text-green">{item.points}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+          <div>
+            <p className="text-[12px] font-semibold text-dark mb-2">Negative signals (reduce score)</p>
+            <div className="space-y-1.5">
+              {[
+                { signal: 'Self-promotion (I built, I spent, we just launched, check out my)', points: '-20' },
+                { signal: 'Hiring/job post ([HIRING], [FOR HIRE], looking for freelancer)', points: '-25' },
+              ].map(item => (
+                <div key={item.signal} className="flex items-center justify-between py-1.5 px-3 rounded-lg bg-pink/5">
+                  <span className="text-[12px] text-dark">{item.signal}</span>
+                  <span className="text-[12px] font-semibold text-pink">{item.points}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Note */}
+      <div className="p-4 rounded-lg bg-surface border border-border">
+        <p className="text-[12px] text-muted leading-relaxed">
+          Quality scoring is calculated by the RSS Scanner during each GitHub Actions run. Changes to scoring weights require updating the fetch script (scripts/fetch-reddit.mjs). The settings above are displayed for transparency — editing them in the UI is coming in a future update.
+        </p>
       </div>
     </div>
   );
@@ -1147,6 +1331,7 @@ export default function SettingsPage() {
   const renderActiveTab = () => {
     switch (activeTab) {
       case 'monitoring': return renderMonitoringTab();
+      case 'quality': return renderQualityTab();
       case 'product': return renderProductTab();
       case 'brand': return renderBrandTab();
       case 'creators': return renderCreatorsTab();
