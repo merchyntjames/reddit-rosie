@@ -35,7 +35,7 @@ function RelevanceBadge({ score }: { score: number }) {
 
   return (
     <span className={`inline-flex items-center px-2 py-0.5 rounded-md text-[11px] font-semibold ${colorClass}`}>
-      {score}/100
+      {score}/100 Quality Score
     </span>
   );
 }
