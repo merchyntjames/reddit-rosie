@@ -79,18 +79,26 @@ export function ConversationCard({ conversation, onStatusChange }: ConversationC
               <span className="text-border">|</span>
               <span className="text-[12px] text-muted flex items-center gap-1">
                 <Clock size={11} />
-                {timeAgo(conversation.discoveredAt)}
+                Posted {timeAgo(conversation.discoveredAt)}
               </span>
-              <span className="text-border">|</span>
-              <span className="text-[12px] text-muted flex items-center gap-1">
-                <ArrowUp size={11} />
-                {conversation.upvotes}
-              </span>
-              <span className="text-border">|</span>
-              <span className="text-[12px] text-muted flex items-center gap-1">
-                <MessageSquare size={11} />
-                {conversation.commentCount}
-              </span>
+              {conversation.upvotes > 0 && (
+                <>
+                  <span className="text-border">|</span>
+                  <span className="text-[12px] text-muted flex items-center gap-1">
+                    <ArrowUp size={11} />
+                    {conversation.upvotes}
+                  </span>
+                </>
+              )}
+              {conversation.commentCount > 0 && (
+                <>
+                  <span className="text-border">|</span>
+                  <span className="text-[12px] text-muted flex items-center gap-1">
+                    <MessageSquare size={11} />
+                    {conversation.commentCount}
+                  </span>
+                </>
+              )}
             </div>
 
             {/* Title */}
