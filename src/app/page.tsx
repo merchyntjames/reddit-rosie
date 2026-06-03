@@ -59,44 +59,16 @@ export default function QueuePage() {
           commentsCount: number;
           createdAtDate: string;
           permalink: string;
+          relevanceScore: number;
+          matchedKeywords: string[];
         }[];
         fetchedAt: string;
       };
 
-      // Score and enrich posts
-      const keywordLabels = [
-        'Google Business Profile', 'local SEO', 'Merchynt', 'Paige',
-        'GBP optimization', 'AI local SEO', 'review management',
-        'BrightLocal', 'Whitespark', 'GBP', 'Google Maps',
-      ];
-
+      // Use pre-computed scores from the fetch script (not re-scored client-side)
       const savedStatuses = loadStatuses();
 
       const posts: Conversation[] = data.posts.map(post => {
-        const text = `${post.title} ${post.selftext ?? ''}`.toLowerCase();
-
-        // Relevance scoring
-        let relevanceScore = 0;
-        if (text.includes('merchynt') || text.includes('paige')) relevanceScore += 40;
-        const terms = ['google business profile', 'local seo', 'gbp', 'review management', 'google maps', 'brightlocal', 'whitespark'];
-        for (const term of terms) {
-          if (text.includes(term)) relevanceScore += 8;
-        }
-        if (post.score > 50) relevanceScore += 10;
-        else if (post.score > 20) relevanceScore += 5;
-        else if (post.score > 5) relevanceScore += 2;
-        if (post.commentsCount > 20) relevanceScore += 10;
-        else if (post.commentsCount > 10) relevanceScore += 5;
-        else if (post.commentsCount > 3) relevanceScore += 2;
-        relevanceScore = Math.min(100, relevanceScore);
-
-        // Matched keywords
-        const matchedKeywords: string[] = [];
-        for (const kw of keywordLabels) {
-          if (text.includes(kw.toLowerCase())) matchedKeywords.push(kw);
-        }
-
-        // Snippet
         const snippet = post.selftext
           ? post.selftext.slice(0, 300).replace(/\n+/g, ' ').trim() + (post.selftext.length > 300 ? '...' : '')
           : '';
@@ -110,10 +82,10 @@ export default function QueuePage() {
           postUrl: post.permalink
             ? `https://reddit.com${post.permalink}`
             : `https://reddit.com/r/${post.subredditName}/comments/${post.id}`,
-          commentCount: post.commentsCount,
-          upvotes: post.score,
-          relevanceScore,
-          matchedKeywords,
+          commentCount: post.commentsCount ?? 0,
+          upvotes: post.score ?? 0,
+          relevanceScore: post.relevanceScore,
+          matchedKeywords: post.matchedKeywords ?? [],
           discoveredAt: post.createdAtDate,
           status: savedStatuses[post.id] || 'new',
           corporateDraft: '',
@@ -121,9 +93,7 @@ export default function QueuePage() {
         };
       });
 
-      // Sort by relevance
-      posts.sort((a, b) => b.relevanceScore - a.relevanceScore);
-
+      // Already sorted by relevance from the fetch script
       setConversations(posts);
       setIsLive(true);
       setLastFetchedAt(data.fetchedAt || new Date().toISOString());
@@ -179,7 +149,7 @@ export default function QueuePage() {
               {isLive ? (
                 <>
                   <Wifi size={12} className="text-green" />
-                  <span className="text-[11px] text-green font-medium">Live from Xpoz</span>
+                  <span className="text-[11px] text-green font-medium">Live</span>
                 </>
               ) : (
                 <>
