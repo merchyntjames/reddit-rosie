@@ -1,5 +1,6 @@
 'use client';
 
+import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
@@ -21,8 +22,45 @@ const navItems = [
   { href: '/settings', label: 'Account Settings', icon: Settings },
 ];
 
+function formatETTime(isoDate: string): string {
+  try {
+    const date = new Date(isoDate);
+    return date.toLocaleString('en-US', {
+      timeZone: 'America/New_York',
+      month: 'short',
+      day: 'numeric',
+      hour: 'numeric',
+      minute: '2-digit',
+      hour12: true,
+    }) + ' ET';
+  } catch {
+    return 'Unknown';
+  }
+}
+
 export function Sidebar() {
   const pathname = usePathname();
+  const [lastScanTime, setLastScanTime] = useState<string | null>(null);
+  const [scanStatus, setScanStatus] = useState<'success' | 'unknown'>('unknown');
+
+  // Read last scan time from the data file
+  useEffect(() => {
+    async function checkScanStatus() {
+      try {
+        const res = await fetch('/data/conversations.json');
+        if (res.ok) {
+          const data = await res.json();
+          if (data.fetchedAt) {
+            setLastScanTime(data.fetchedAt);
+            setScanStatus('success');
+          }
+        }
+      } catch {
+        // Silently fail — sidebar still renders with "Unknown" state
+      }
+    }
+    checkScanStatus();
+  }, []);
 
   return (
     <aside className="fixed left-0 top-0 bottom-0 w-[260px] bg-white border-r border-border flex flex-col z-10">
@@ -71,23 +109,27 @@ export function Sidebar() {
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
               <CircleDot size={12} className="text-muted" />
-              <span className="text-[12px] text-dark">Reddit API</span>
-            </div>
-            <span className="text-[11px] font-medium text-muted">Not connected</span>
-          </div>
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-2">
-              <CircleDot size={12} className="text-muted" />
               <span className="text-[12px] text-dark">Claude API</span>
             </div>
             <span className="text-[11px] font-medium text-muted">Not connected</span>
           </div>
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
+              <CircleDot size={12} className={scanStatus === 'success' ? 'text-green' : 'text-muted'} />
+              <span className="text-[12px] text-dark">RSS Scanner</span>
+            </div>
+            <span className={`text-[11px] font-medium ${scanStatus === 'success' ? 'text-green' : 'text-muted'}`}>
+              {scanStatus === 'success' ? 'Success' : 'Unknown'}
+            </span>
+          </div>
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-2">
               <Radio size={12} className="text-muted" />
               <span className="text-[12px] text-dark">Last scan</span>
             </div>
-            <span className="text-[11px] text-muted">Never</span>
+            <span className="text-[11px] text-muted">
+              {lastScanTime ? formatETTime(lastScanTime) : 'Never'}
+            </span>
           </div>
         </div>
 
