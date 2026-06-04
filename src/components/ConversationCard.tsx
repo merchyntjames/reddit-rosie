@@ -111,7 +111,7 @@ export function ConversationCard({ conversation, onStatusChange, onDraftsGenerat
       <div className="p-5">
         <div className="flex items-start justify-between gap-4">
           <div className="flex-1 min-w-0">
-            {/* Subreddit + Meta */}
+            {/* Subreddit + Meta + View on Reddit */}
             <div className="flex items-center gap-2 mb-2">
               <span className="text-[12px] font-semibold text-pink">{conversation.subreddit}</span>
               <span className="text-border">|</span>
@@ -137,6 +137,17 @@ export function ConversationCard({ conversation, onStatusChange, onDraftsGenerat
                   </span>
                 </>
               )}
+              <span className="text-border">|</span>
+              <a
+                href={conversation.postUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={(e) => e.stopPropagation()}
+                className="flex items-center gap-1 text-[12px] text-blue hover:text-navy transition-colors"
+              >
+                View on Reddit
+                <ArrowUpRight size={12} />
+              </a>
             </div>
 
             {/* Title — selectable */}
@@ -149,39 +160,29 @@ export function ConversationCard({ conversation, onStatusChange, onDraftsGenerat
               {conversation.postSnippet}
             </p>
 
-            {/* Keywords + View on Reddit */}
-            <div className="flex items-center justify-between mt-3">
-              <div className="flex items-center gap-1.5 flex-wrap">
-                <Tag size={11} className="text-muted" />
-                {conversation.matchedKeywords.map((kw) => (
-                  <span
-                    key={kw}
-                    className="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-medium bg-surface text-muted border border-border"
-                  >
-                    {kw}
-                  </span>
-                ))}
-              </div>
-              <a
-                href={conversation.postUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={(e) => e.stopPropagation()}
-                className="flex items-center gap-1 text-[12px] text-blue hover:text-navy transition-colors shrink-0 ml-4"
-              >
-                View on Reddit
-                <ArrowUpRight size={12} />
-              </a>
+            {/* Keywords */}
+            <div className="flex items-center gap-1.5 mt-3 flex-wrap">
+              <Tag size={11} className="text-muted" />
+              {conversation.matchedKeywords.map((kw) => (
+                <span
+                  key={kw}
+                  className="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-medium bg-surface text-muted border border-border"
+                >
+                  {kw}
+                </span>
+              ))}
             </div>
           </div>
 
-          {/* Right side: badges + expand */}
-          <div className="flex flex-col items-end gap-2 shrink-0">
-            <RelevanceBadge score={conversation.relevanceScore} />
-            <StatusBadge status={conversation.status} />
+          {/* Right side: badges */}
+          <div className="flex flex-col items-end justify-between shrink-0 self-stretch">
+            <div className="flex flex-col items-end gap-2">
+              <RelevanceBadge score={conversation.relevanceScore} />
+              <StatusBadge status={conversation.status} />
+            </div>
             <button
               onClick={() => setIsExpanded(!isExpanded)}
-              className="mt-1 w-7 h-7 rounded-full bg-surface flex items-center justify-center text-muted hover:bg-border hover:text-dark transition-colors"
+              className="w-7 h-7 rounded-full bg-surface flex items-center justify-center text-muted hover:bg-border hover:text-dark transition-colors"
             >
               {isExpanded ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
             </button>
