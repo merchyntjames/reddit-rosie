@@ -1,48 +1,6 @@
 {
   "posts": [
     {
-      "id": "1tvx4v5",
-      "title": "Can a Brand's Entire Online Reputation Be Measured in One Score? Looking for Feedback",
-      "selftext": "I spent 3 months building a tool that scores a brand's entire online reputation in one number. Here's what I learned and what I'm probably getting wrong. Background: I run a small marketing agency serving local businesses (roofing, HVAC, fitness studios, etc.). Every month I found myself juggling 5–6 different tools to answer a simple question: How is this brand actually perceived online? Semrush for SEO. Brand24 for mentions. BrightLocal for local SEO. Google Alerts for news coverage. Separate tools for reviews. And almost nothing that monitors what AI chatbots say about a brand even though that's increasingly where people form their first impressions. So I decided to build something for myself. The platform audits a brand across 10 dimensions and generates a single reputation score (0–1000) along with detailed breakdowns: SEO brand visibility (SERP presence, backlinks, branded keywords) AI Search / AEO (Does ChatGPT, Gemini, or Perplexity mention you? What do they say?) Review intelligence (ratings, response rates, sentiment analysis) Social reputation (mention volume, sentiment, potential reputation risks) Local SEO (GBP health, NAP consistency, local rankings) PR and news coverage Website health (Core Web Vitals, schema, E-E-A-T signals) Trust signals (Knowledge Graph presence, entity strength, Wikipedia, etc.) Competitor benchmarking AI-generated action recommendations The part I'm most excited about is the AI Search/AEO module. It queries multiple LLMs, checks whether they mention a brand, analyzes the sentiment of those mentions, and flags potential hallucinations (instances where AI provides incorrect information about the company). As AI search becomes more common, it feels like reputation management is expanding beyond Google reviews and social media into something entirely new. What I'd love feedback on: Is a unified reputation score actually useful, or would you rather see separate metrics for each channel? Is AI-search monitoring and hallucination detection a real problem worth solving, or does it feel like a gimmick? Pricing-wise, I was considering: Starter: $79/month Pro: $149/month Agency: $299/month (white-label reporting) Does that seem too high, too low, or about right? Who do you think is the actual buyer for a product like this: agencies, marketing managers, or business owners? What feature would make you immediately consider paying for a tool like this instead of sticking with your current stack? Feel free to be brutally honest. I'd rather discover what's broken now than spend the next six months building features nobody actually wants. to r/smallbusinessowner",
-      "authorUsername": "cysphone",
-      "subredditName": "smallbusinessowner",
-      "createdAtDate": "2026-06-03T17:55:02+00:00",
-      "permalink": "/r/smallbusinessowner/comments/1tvx4v5/can_a_brands_entire_online_reputation_be_measured/",
-      "url": "https://www.reddit.com/r/smallbusinessowner/comments/1tvx4v5/can_a_brands_entire_online_reputation_be_measured/",
-      "searchType": "broad",
-      "searchLabel": "high-intent",
-      "relevanceScore": 90,
-      "matchedKeywords": [
-        "brightlocal",
-        "gbp",
-        "local seo",
-        "google reviews",
-        "ai search",
-        "local business",
-        "agency"
-      ]
-    },
-    {
-      "id": "1trbizh",
-      "title": "Dataset of 60k US vet clinics: 1 in 4 has no website on their GBP. Does that affect local pack visibility in practice?",
-      "selftext": "Hi, Went through a dataset of 60,947 US veterinary clinic listings from Google Maps, May 2026. 24.9% have no website URL attached to the Google Business Profile. Just under 15,200 clinics with an active profile and no domain. Without a website, the GBP carries more of the load on its own. No on-site content, no structured data, no signals coming from an external domain. Whether that meaningfully affects local pack visibility probably depends on category competition, review volume, and how Google weighs those signals in this vertical. What makes this category worth discussing is the contrast. 45.8% of the clinics that do have a website have ad pixels detected on their site. So this is not a uniformly offline category. There is a real split between one portion with some digital infrastructure in place and another with no web presence at all. For those doing local SEO work in this kind of vertical: do no-website listings consistently underperform in the local pack, or does it vary enough by market that it is hard to generalize? Interested in whether strong GBP signals and review volume can realistically compensate. Have a good day.",
-      "authorUsername": "Due-Bet115",
-      "subredditName": "localseo",
-      "createdAtDate": "2026-05-29T18:44:50+00:00",
-      "permalink": "/r/localseo/comments/1trbizh/dataset_of_60k_us_vet_clinics_1_in_4_has_no/",
-      "url": "https://www.reddit.com/r/localseo/comments/1trbizh/dataset_of_60k_us_vet_clinics_1_in_4_has_no/",
-      "searchType": "narrow",
-      "searchLabel": "subreddit-search",
-      "relevanceScore": 71,
-      "matchedKeywords": [
-        "google business profile",
-        "gbp",
-        "local seo",
-        "local pack",
-        "google maps"
-      ]
-    },
-    {
       "id": "1tqwwtc",
       "title": "Website is freefalling in search rankings, and I'm going crazy!",
       "selftext": "Hey guys, Thanks for taking the time out to help me. Here's the situation: I run a corporate video production agency in Cardiff. For a long time, the site ran on an old, heavily bloated Envato template. Despite the poor code optimisation and slow speeds, the site performed relatively well — I was sitting comfortably at #3 for my main money keyword (\"video production cardiff\"). About a year ago, I decided to do things right. I completely gutted the bloated Envato theme and rebuilt the site from scratch using Kadence. The code is now pristine, speeds are fast, and health scores are great. However, I feel like around the time of the rollout (and bleeding through the recent March and May Core Updates), those high rankings stopped. I could be wrong. I slid down to the high 20s, then back to around 10, and have been gradually slipping down in rankings since. At one point, I realised that Google was pulling through every page snippets from the footer instead of rankmath, and altered the code so each page received its own snippet. We shot back up to 6. The Core Question: I have a hunch that I might have accidentally dropped something valuable during the rebuild that Google liked, but I can't prove it. On the flip side, it could just be a brutal coincidence, and Google's local algorithm may have simply pivoted away from technical on-page factor weight entirely. The Competitors (The frustrating part): I am losing to competitors who have next to no reviews and minimal text on their websites compared to us. Competitor 1: Thin site (150 words of text, Instagram widget), but they run a local video podcast generating heavy direct brand searches, and they have 25 reviews to my 14. Competitor 2: Ancient 10-year-old domain with legacy bias and only 6 reviews from a decade ago. Lots of blogs and services on the website Competitor 3: A recent ranking competitor with not much website content at all. For a lot of the competitors currently outranking us, most don’t have any significant digital presence (some none at all), and google reviews are low and over a year ago. Perhaps only one or two have good social media activity. The Migration &amp; GSC Data: During the transition to Kadence, I focused heavily on clean hosting, HTTPS stability, and URL structure normalization. The Redirects: I cleaned up trailing slashes across the site (e.g., ensuring /video 301 redirects to /video/), which resulted in 22 pages with active redirects. The Indexing Issue: In Google Search Console, I have 49 pages sitting in \"Crawled - currently not indexed.\" When I look closely at the list, these seem to be entirely old, deleted, or redirected legacy URLs from the old Envato theme (e.g., trailing slash variations or old portfolio structures). Is it safe to assume Google is just slowly cleaning out the \"ghosts\" of the old site and this isn't harming my current rank? What I've audited &amp; fixed recently (Everything looks clean): Because the drop happened around the theme switch, I've spent months hunting for a migration leak or a technical penalty. Here is everything I have done: Content &amp; Keywords: Updated all of my pages to have higher SEO scores (high 60s and 70s, with home page at 85) and relevant keywords. I also added extra pages with better search intent (blogs, specific service pages, etc.). Page structure: Made sure that all pages follow H1, H2 etc. Schema Upgrades: I noticed my video pages were marked as Article schema, so I completely rebuilt and improved the schema to correctly identify them as Video. Also my home page was an article schema, which I removed and set at none. Speed &amp; Accessibility: Moved all my video embeds from Vimeo to Bunny because the load speeds were unbearable. Focused heavily on Google Lighthouse to ensure the homepage is perfectly optimized for speed, SEO, and accessibility. URLs &amp; Redirects: Kept the core URL structures identical between the old Envato theme and the new Kadence theme. Sitemaps &amp; Spam: Rebuilt standard XML and video sitemaps cleanly. I also got hit by a wave of random automated spam links recently and successfully disavowed them (Google Search Console looks clear). Local SEO Efforts: Updated my Google Business Profile (GBP) to pull through images better, and actively requested Google reviews (though I've only managed to get one recently). Final thoughts: I feel like I’m taking crazy pills with all of this. I’m trying everything I can think of with the limited experience of SEO that I have to improve my local ranking, but I’m getting nowhere. I’m not deleting any content as I know google doesn’t like radical change, so I’m adapting or editing content where needed to improve relevance or user intent. I would absolutely love an extra pair of eyes on this, if possible, and help me figure out what the hell is happening. Any thoughts would be massively appreciated. P.S. AI was used for formatting since I just brain dump info. Apologies.",
@@ -60,148 +18,6 @@
         "local seo",
         "google reviews",
         "agency"
-      ]
-    },
-    {
-      "id": "1twfz9t",
-      "title": "AI Search (ChatGPT, Gemini) gives completely different answers depending on your city. Here is why this matters for local Small Businesses.",
-      "selftext": "For the last year, everyone tracking AI visibility has been asking: \"Does ChatGPT mention my business?\" That is the wrong question. We ran thousands of identical prompts across ChatGPT, Gemini, Perplexity, and Claude from different geographic contexts. The results confirmed that AI answers are not the same in every city. Across the prompts we tested, the top-recommended product or service changed in 41% of major U.S. metros for the exact same query. For categories like home services, fitness, and local retail, the variance was even higher. If you are running a small business, this is a critical shift. When a user asks an AI assistant for a recommendation, the model does not pull from a single global ranking. It blends: Localized retrieval (Google and Bing SERPs return different local packs by region) Regional citation sources (local publications, local reviews, city-specific forums) Inferred location signals (user IP, prompt context like \"near me\") The Google Business Profile (GBP) Angle This means your Google Business Profile and local citations feed directly into the AI's localized logic. A business that dominates the AI response in one ZIP code can be completely invisible just a few miles away. We call this \"regional drift.\" If your small business relies on local foot traffic or service areas, you cannot rely on a generic, national AI visibility score. You are flying blind. The AI is heavily weighing where you are, using your GBP data and local directory mentions to filter you in or out of the response. We just launched a tool (Sanbi AI) to map this out geographically, allowing brands to see their AI visibility as a literal map instead of a single score. But regardless of the tools you use, the takeaway for small businesses is clear: localized content, geo-targeted reviews, and consistent GBP signals are what dictate if an AI recommends you to a local buyer. Has anyone else noticed their business showing up inconsistently in AI responses depending on where the prompt is run? to r/GEO_optimization",
-      "authorUsername": "Sanbi_Ai",
-      "subredditName": "GEO_optimization",
-      "createdAtDate": "2026-06-04T07:01:09+00:00",
-      "permalink": "/r/GEO_optimization/comments/1twfz9t/ai_search_chatgpt_gemini_gives_completely/",
-      "url": "https://www.reddit.com/r/GEO_optimization/comments/1twfz9t/ai_search_chatgpt_gemini_gives_completely/",
-      "searchType": "broad",
-      "searchLabel": "high-intent",
-      "relevanceScore": 61,
-      "matchedKeywords": [
-        "google business profile",
-        "gbp",
-        "ai search",
-        "ai visibility",
-        "local pack",
-        "citation"
-      ]
-    },
-    {
-      "id": "1tw5jxb",
-      "title": "AI Search (ChatGPT, Claude, Gemini) gives completely different answers depending on your city. Here is why this matters for local Small Businesses.",
-      "selftext": "For the last year, everyone tracking AI visibility has been asking: \"Does ChatGPT mention my business?\" That is the wrong question. We ran thousands of identical prompts across ChatGPT, Gemini, Perplexity, and Claude from different geographic contexts. The results confirmed that AI answers are not the same in every city. Across the prompts we tested, the top-recommended product or service changed in 41% of major U.S. metros for the exact same query. For categories like home services, fitness, and local retail, the variance was even higher. If you are running a small business, this is a critical shift. When a user asks an AI assistant for a recommendation, the model does not pull from a single global ranking. It blends: Localized retrieval (Google and Bing SERPs return different local packs by region) Regional citation sources (local publications, local reviews, city-specific forums) Inferred location signals (user IP, prompt context like \"near me\") The Google Business Profile (GBP) Angle This means your Google Business Profile and local citations feed directly into the AI's localized logic. A business that dominates the AI response in one ZIP code can be completely invisible just a few miles away. We call this \"regional drift.\" If your small business relies on local foot traffic or service areas, you cannot rely on a generic, national AI visibility score. You are flying blind. The AI is heavily weighing where you are, using your GBP data and local directory mentions to filter you in or out of the response. We just launched a tool (Sanbi AI) to map this out geographically, allowing brands to see their AI visibility as a literal map instead of a single score. But regardless of the tools you use, the takeaway for small businesses is clear: localized content, geo-targeted reviews, and consistent GBP signals are what dictate if an AI recommends you to a local buyer. Has anyone else noticed their business showing up inconsistently in AI responses depending on where the prompt is run? to r/SmallBusinessUAE",
-      "authorUsername": "Sanbi_Ai",
-      "subredditName": "SmallBusinessUAE",
-      "createdAtDate": "2026-06-03T22:54:33+00:00",
-      "permalink": "/r/SmallBusinessUAE/comments/1tw5jxb/ai_search_chatgpt_claude_gemini_gives_completely/",
-      "url": "https://www.reddit.com/r/SmallBusinessUAE/comments/1tw5jxb/ai_search_chatgpt_claude_gemini_gives_completely/",
-      "searchType": "broad",
-      "searchLabel": "high-intent",
-      "relevanceScore": 61,
-      "matchedKeywords": [
-        "google business profile",
-        "gbp",
-        "ai search",
-        "ai visibility",
-        "local pack",
-        "citation"
-      ]
-    },
-    {
-      "id": "1tw5frd",
-      "title": "AI Search (ChatGPT, Gemini) gives completely different answers depending on your city. Here is why this matters for local Small Businesses.",
-      "selftext": "For the last year, everyone tracking AI visibility has been asking: \"Does ChatGPT mention my business?\" That is the wrong question. We ran thousands of identical prompts across ChatGPT, Gemini, Perplexity, and Claude from different geographic contexts. The results confirmed that AI answers are not the same in every city. Across the prompts we tested, the top-recommended product or service changed in 41% of major U.S. metros for the exact same query. For categories like home services, fitness, and local retail, the variance was even higher. If you are running a small business, this is a critical shift. When a user asks an AI assistant for a recommendation, the model does not pull from a single global ranking. It blends: Localized retrieval (Google and Bing SERPs return different local packs by region) Regional citation sources (local publications, local reviews, city-specific forums) Inferred location signals (user IP, prompt context like \"near me\") The Google Business Profile (GBP) Angle This means your Google Business Profile and local citations feed directly into the AI's localized logic. A business that dominates the AI response in one ZIP code can be completely invisible just a few miles away. We call this \"regional drift.\" If your small business relies on local foot traffic or service areas, you cannot rely on a generic, national AI visibility score. You are flying blind. The AI is heavily weighing where you are, using your GBP data and local directory mentions to filter you in or out of the response. We just launched a tool (Sanbi AI) to map this out geographically, allowing brands to see their AI visibility as a literal map instead of a single score. But regardless of the tools you use, the takeaway for small businesses is clear: localized content, geo-targeted reviews, and consistent GBP signals are what dictate if an AI recommends you to a local buyer. Has anyone else noticed their business showing up inconsistently in AI responses depending on where the prompt is run? to r/AiVisibilityforSMB",
-      "authorUsername": "Sanbi_Ai",
-      "subredditName": "AiVisibilityforSMB",
-      "createdAtDate": "2026-06-03T22:50:05+00:00",
-      "permalink": "/r/AiVisibilityforSMB/comments/1tw5frd/ai_search_chatgpt_gemini_gives_completely/",
-      "url": "https://www.reddit.com/r/AiVisibilityforSMB/comments/1tw5frd/ai_search_chatgpt_gemini_gives_completely/",
-      "searchType": "broad",
-      "searchLabel": "high-intent",
-      "relevanceScore": 61,
-      "matchedKeywords": [
-        "google business profile",
-        "gbp",
-        "ai search",
-        "ai visibility",
-        "local pack",
-        "citation"
-      ]
-    },
-    {
-      "id": "1twq54n",
-      "title": "Local SEO Case Study: We Stopped Chasing Ads and Focused on Google Maps Instead",
-      "selftext": "I own a local service business and wanted to share some results we've seen over the last few months because I'm curious if others have had similar experiences. Like a lot of small businesses, we spent years trying different marketing channels: Facebook Ads Google Ads Yelp Traditional SEO Referral programs Some worked okay, but none of them consistently improved our visibility in Google Maps. Around 4 months ago we decided to focus almost entirely on improving our Google Business Profile visibility and local map rankings. The results surprised me. Before: Inconsistent call volume Rarely appeared in the local 3-pack Most leads came from referrals or paid ads After 4 months: Noticeable increase in phone calls More website visits from Google Ranking in the top 3 for several important local searches More customers saying \"I found you on Google\" The biggest thing I noticed wasn't rankings themselves, it was lead quality. The people calling were already looking for our service and were much easier to convert than most paid traffic. What's interesting is that we didn't make any major website changes during this period. Most of the effort was focused on local search visibility. For those of you who manage local SEO campaigns: Have you found Google Maps rankings to be a bigger revenue driver than traditional organic rankings? If you had to choose between improving local pack visibility or improving organic rankings below the map pack, where would you invest your effort first? Curious to hear what others are seeing in 2026. to r/SEO_Marketing_Offers",
-      "authorUsername": "Successful_Gap_919",
-      "subredditName": "SEO_Marketing_Offers",
-      "createdAtDate": "2026-06-04T14:58:26+00:00",
-      "permalink": "/r/SEO_Marketing_Offers/comments/1twq54n/local_seo_case_study_we_stopped_chasing_ads_and/",
-      "url": "https://www.reddit.com/r/SEO_Marketing_Offers/comments/1twq54n/local_seo_case_study_we_stopped_chasing_ads_and/",
-      "searchType": "broad",
-      "searchLabel": "high-intent",
-      "relevanceScore": 61,
-      "matchedKeywords": [
-        "google business profile",
-        "local seo",
-        "google maps ranking",
-        "local pack",
-        "map pack",
-        "google maps"
-      ]
-    },
-    {
-      "id": "1twmb2q",
-      "title": "Meet ReplyQuicker: A 1-click AI Chrome Extension to reply to Google Reviews (Built for Local SEO)",
-      "selftext": "Hey Reddit! I’m the creator of ReplyQuicker. I built this lightweight extension because managing Google Reviews for local businesses takes far too much time, even though leaving fast, keyword-rich replies is critical for Google Maps rankings. How it helps local businesses &amp; agencies: ⚡ Native 1-Click AI Replies: Works directly inside Google Maps and Google Business Profile dashboards (no external dashboards or copy-pasting). 🎭 3 Strategic Tones: Choose between Friendly, Professional, or Short to match your exact brand voice. 📊 Smart Negative Protection: Automatically detects 1–2 star reviews and switches to a calm, de-escalating tone. 🌍 Global Support: Automatically detects the reviewer's native language and replies perfectly. 🔒 Privacy First: Secure Google Auth. We never log or store your customer reviews. Pricing: Free Plan: 5 AI replies per month (No credit card required). Pro Plan: Unlimited replies for $8/month. Check out the landing page: https://replyquicker.com Install directly on the Chrome Web Store I am actively monitoring this profile, so please drop a comment below or send a DM if you have any feature requests or feedback! to u/replyquicker",
-      "authorUsername": "replyquicker",
-      "subredditName": "u/replyquicker",
-      "createdAtDate": "2026-06-04T12:32:42+00:00",
-      "permalink": "/r/u_replyquicker/comments/1twmb2q/meet_replyquicker_a_1click_ai_chrome_extension_to/",
-      "url": "https://www.reddit.com/r/u_replyquicker/comments/1twmb2q/meet_replyquicker_a_1click_ai_chrome_extension_to/",
-      "searchType": "broad",
-      "searchLabel": "high-intent",
-      "relevanceScore": 60,
-      "matchedKeywords": [
-        "google business profile",
-        "local seo",
-        "google maps ranking",
-        "google reviews",
-        "google maps",
-        "local business"
-      ]
-    },
-    {
-      "id": "1tw8qj0",
-      "title": "Word of Mouth Is Dead. Here's What Replaced It.",
-      "selftext": "Simply Handled Marketing You built a reputation the old-fashioned way. You showed up, did great work, and let your customers do the talking. And for a long time, that was enough. But something shifted, and if you're reading this, you've probably felt it. Referrals still come in. People still recommend you. The difference is what happens next. That sentence right there is costing small business owners thousands of dollars every month. Not because their work isn't good enough. Because their online presence isn't. The Referral Isn't the Sale Anymore, It's the Starting Gun Here's what used to happen: someone recommended your business, the buyer called you, and you closed the deal. Done. It's the Starting Gun Here's what happens now: A friend recommends your business at dinner. The buyer pulls out their phone before they even get home. They search your name, find your Facebook page, and scroll through your last 10 posts. They check Google for reviews. They look at your website. They judge your logo. If what they find doesn't match the enthusiasm of the recommendation, they hesitate. If a competitor's page looks sharper, more active, more professional, they move on. The referral opened the door. Your online presence either closes it or slams it shut. According to BrightLocal, 98% of consumers used the internet to find information about a local business in the past year. That's not a tech trend. That's how people buy things now. What Buyers Are Actually Looking For When They Search You It's not just about being findable. It's about what they find. https://preview.redd.it/67zzik9u065h1.png?width=1200&amp;format=png&amp;auto=webp&amp;s=c0ddde2339d6b1be52cb759d227d9acf488c8f13 The Silent Checklist. When a potential customer lands on your social media page after getting a referral, they're running a silent checklist: Are you active? (When was the last post?) Do you look like a real, thriving business? Does your content match the quality of your service? Are other people talking about you, and what are they saying? Does this feel like a business I can trust? If your last post was three months ago, the answer to question one is already a red flag. And red flags compound. This is the cruel irony for small business owners who are legitimately slammed: being too busy to post actually makes you look less successful, not more. The Competitor Who Isn't Better Than You, But Looks Like It Let's be honest about something uncomfortable. There is almost certainly a competitor in your space who is not as skilled as you, doesn't deliver as consistently as you, and charges similar or higher rates, but is winning more clients. Not because they're better. Because they look better. Two businesses, same skills, different digital presence. They post three times a week. Their branding is consistent. Their reviews are visible. Their page tells a story of an active, trusted business, even if the reality is messier behind the scenes. And here's the thing: perception is the starting point of trust. If a buyer has never met you, your online presence is you. The businesses that understand this are investing in their digital presence every single week, not because they love social media, but because they understand what it's actually for. It's Not Just Social Media. It's Your Entire Digital Footprint. The validation process buyers go through happens across multiple touchpoints in a matter of minutes: Google Business Profile: Is it claimed? Are there reviews? Is it up to date? Facebook / Instagram: Active page? Consistent branding? Comments and engagement? Website: Does it load fast? Does it look current? Is it easy to contact you? Reviews: Are there enough of them? Are they recent? Has anyone replied? LinkedIn: For service businesses, does the founder have a credible profile? Most small business owners have a presence on some of these. Almost none have all of them working together, consistently, in a way that builds trust at every touchpoint. That gap between where you are and where a buyer needs to see you is exactly where clients are being lost. So What Do You Do About It? The honest answer: you need a consistent, strategic presence across the platforms where your buyers are checking you, and it needs to look like a real, active, professional business. That means: Posting regularly (3x per week is the benchmark that platforms reward) Maintaining consistent branding - same logo, same colours, same tone of voice Publishing content that builds trust: results, testimonials, behind-the-scenes, educational content Keeping your Google Business Profile updated with recent photos and prompt review responses Having a website that doesn't look like it was built in 2016 For most small business owners, this is 10-15 hours per week that they simply don't have. That's where Simply Handled Marketing comes in. We Handle It. Completely. Simply Handled Marketing manages your complete social media presence, content creation, scheduling, strategy, captions, paid campaigns... so your business looks like the thriving, professional operation it actually is. When your next referral searches your name tonight, here's what they'll find: a business that shows up consistently, looks polished, and makes the decision easy. No more losing clients you never knew you were losing. to u/simplyhandled",
-      "authorUsername": "simplyhandled",
-      "subredditName": "u/simplyhandled",
-      "createdAtDate": "2026-06-04T01:08:16+00:00",
-      "permalink": "/r/u_simplyhandled/comments/1tw8qj0/word_of_mouth_is_dead_heres_what_replaced_it/",
-      "url": "https://www.reddit.com/r/u_simplyhandled/comments/1tw8qj0/word_of_mouth_is_dead_heres_what_replaced_it/",
-      "searchType": "broad",
-      "searchLabel": "high-intent",
-      "relevanceScore": 58,
-      "matchedKeywords": [
-        "brightlocal",
-        "google business profile",
-        "local business"
-      ]
-    },
-    {
-      "id": "1tvxxkm",
-      "title": "Why is my Google Business Profile not helping with AI search results?",
-      "selftext": "AI search has quietly become the default for a lot of consumers, and most franchise and multi-location brands are still optimizing for a world that doesn't quite exist anymore. The gap between \"ranking on Google Maps\" and \"showing up in an AI recommendation\" is bigger than most people realize. The thing that surprised me most: Google's own AI Mode and Gemini have no direct access to the Google Maps database. Your GBP categories, service lists, uploaded menus, photos, none of that feeds directly into LLM recommendations. If your business details only live inside your Google profile, they're effectively invisible to AI-driven search. What AI systems actually retrieve is your web presence such as local landing pages, indexed content, review snippets. A few things that actually move the needle: Semantic specificity on your site. Consumers aren't searching \"coffee Pittsburgh\" anymore. They're searching \"caramel macchiato in Mount Lebanon with outdoor seating.\" If your content doesn't reach that level of detail, an LLM has nothing to cite. Authentic reviews with natural distribution. LLMs are genuinely good at detecting incentivized review clusters. A sudden spike of detailed, positive reviews mentioning the same staff member is a recognizable pattern, and brands in healthcare or financial services face extra scrutiny. Persona-driven content, not keyword lists. A smoothie shop that wants post-workout traffic needs content that explicitly connects the brand to that use case — not just a protein menu. The metric shift is real too. Impressions are dropping for broad queries across the board, but direction requests and calls from high-intent searches are holding steady or improving. The search ecosystem is filtering toward intent, and AI accelerates that. For those managing franchisees at scale: how are you equipping location operators to create content at this level of specificity without turning every franchisee into a content strategist? to r/SOCi_Official",
-      "authorUsername": "soci_sel",
-      "subredditName": "SOCi_Official",
-      "createdAtDate": "2026-06-03T18:19:52+00:00",
-      "permalink": "/r/SOCi_Official/comments/1tvxxkm/why_is_my_google_business_profile_not_helping/",
-      "url": "https://www.reddit.com/r/SOCi_Official/comments/1tvxxkm/why_is_my_google_business_profile_not_helping/",
-      "searchType": "broad",
-      "searchLabel": "ai-search",
-      "relevanceScore": 56,
-      "matchedKeywords": [
-        "google business profile",
-        "gbp",
-        "ai search",
-        "google maps"
       ]
     },
     {
@@ -223,35 +39,16 @@
         "local business",
         "agency"
       ]
-    },
-    {
-      "id": "1twk56w",
-      "title": "What is the simplest SEO tool for businesses in 2026?",
-      "selftext": "I've been trying to simplify our marketing stack this year, and one thing I've noticed is that SEO tools seem to be getting more complicated rather than easier. Between keyword tracking, technical audits, content optimization, local SEO, backlinks, AI visibility, and reporting, it feels like most platforms are trying to be everything at once. For a typical business owner, I’m not sure that's actually helpful anymore. I don't necessarily need 500 reports or dozens of dashboards- I just want to know what actions will help my business get found on Google, AI search engines, and other discovery platforms in 2026. Ideally, I'd love something that's easy enough to use without needing a dedicated SEO specialist. So curious, experts, what is the simplest SEO tool for businesses in 2026? to r/seogrowth",
-      "authorUsername": "Vivid-Aide158",
-      "subredditName": "seogrowth",
-      "createdAtDate": "2026-06-04T10:53:07+00:00",
-      "permalink": "/r/seogrowth/comments/1twk56w/what_is_the_simplest_seo_tool_for_businesses_in/",
-      "url": "https://www.reddit.com/r/seogrowth/comments/1twk56w/what_is_the_simplest_seo_tool_for_businesses_in/",
-      "searchType": "broad",
-      "searchLabel": "high-intent",
-      "relevanceScore": 53,
-      "matchedKeywords": [
-        "local seo",
-        "ai search",
-        "ai visibility",
-        "seo tool"
-      ]
     }
   ],
-  "fetchedAt": "2026-06-04T15:21:04.305Z",
+  "fetchedAt": "2026-06-04T23:04:50.788Z",
   "source": "reddit-rss",
   "stats": {
-    "totalFetched": 178,
-    "totalQueries": 25,
-    "qualityPosts": 12,
-    "filteredOut": 166,
-    "newPosts": 12,
-    "minRelevanceScore": 50
+    "totalFetched": 126,
+    "totalQueries": 17,
+    "qualityPosts": 2,
+    "filteredOut": 124,
+    "newPosts": 0,
+    "minRelevanceScore": 55
   }
 }
