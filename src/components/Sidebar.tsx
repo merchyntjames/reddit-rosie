@@ -15,7 +15,6 @@ import {
   Brain,
   AlertTriangle,
 } from 'lucide-react';
-import { getCurrentUser, signOut, type AppUser } from '@/lib/auth';
 
 const navItems = [
   { href: '/', label: 'Engagement Queue', icon: MessageSquareMore },
@@ -68,11 +67,6 @@ function StatusLabel({ status, detail }: { status: string; detail?: string }) {
 export function Sidebar() {
   const pathname = usePathname();
   const [statuses, setStatuses] = useState<IntegrationStatuses | null>(null);
-  const [user, setUser] = useState<AppUser | null>(null);
-
-  useEffect(() => {
-    getCurrentUser().then(setUser).catch(() => {});
-  }, []);
 
   useEffect(() => {
     async function fetchStatuses() {
@@ -178,20 +172,13 @@ export function Sidebar() {
       <div className="px-5 py-4 border-t border-border">
         <div className="flex items-center gap-3">
           <div className="w-8 h-8 rounded-full bg-navy flex items-center justify-center">
-            <span className="text-white text-xs font-semibold">{user?.initials ?? '--'}</span>
+            <span className="text-white text-xs font-semibold">JS</span>
           </div>
           <div className="flex-1 min-w-0">
-            <p className="text-[13px] font-medium text-dark truncate">{user?.displayName ?? 'Not signed in'}</p>
-            <p className="text-[11px] text-muted truncate">{user?.email ?? ''}</p>
+            <p className="text-[13px] font-medium text-dark truncate">James Sowers</p>
+            <p className="text-[11px] text-muted truncate">james@merchynt.com</p>
           </div>
         </div>
-        <button
-          onClick={() => signOut()}
-          className="flex items-center gap-2 mt-3 text-[12px] text-muted hover:text-dark transition-colors"
-        >
-          <LogOut size={14} />
-          Sign out
-        </button>
       </div>
     </aside>
   );
