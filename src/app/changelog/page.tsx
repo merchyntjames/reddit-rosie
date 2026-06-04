@@ -1,8 +1,8 @@
 'use client';
 
-import { Sparkles, Wrench, Layout, Package, Clock, Search, FileText, Users, Plug, MessageSquare, BarChart3 } from 'lucide-react';
+import { Sparkles, Wrench, Package, Clock } from 'lucide-react';
 
-type ChangeType = 'feature' | 'improvement' | 'infrastructure' | 'planned';
+type ChangeType = 'feature' | 'improvement' | 'infrastructure';
 
 interface ChangelogEntry {
   id: string;
@@ -16,67 +16,128 @@ interface ChangelogEntry {
 
 const changelog: ChangelogEntry[] = [
   {
+    id: '20',
+    version: '1.3',
+    date: 'June 4, 2026',
+    type: 'feature',
+    title: 'Settings + Knowledgebase Fully Functional',
+    description: 'All settings pages now save to and load from Supabase. Changes made in the UI affect how the app behaves.',
+    details: [
+      'Knowledgebase (Product Knowledge, Brand Voice, Creator Profiles) saves to Supabase with Save/Saved status feedback',
+      'Draft generation reads knowledgebase from Supabase — edit brand voice in UI, next draft reflects it',
+      'Monitoring settings (subreddits, keywords) save to Supabase',
+      'GitHub Action reads subreddits and keywords from Supabase — add a subreddit in UI, next scan includes it',
+    ],
+  },
+  {
+    id: '19',
+    version: '1.2',
+    date: 'June 4, 2026',
+    type: 'feature',
+    title: 'Major Navigation Restructure',
+    description: 'Reorganized the app into Engagement Queue, Activity Log, Knowledgebase, and Account Settings. Deleted mock Analytics page.',
+    details: [
+      'Queue renamed to "Engagement Queue"',
+      'New Knowledgebase page (Brain icon) — houses Product Knowledge, Brand Voice, Creator Profiles',
+      'Account Settings trimmed to Monitoring, Quality Score, and Integrations',
+      'Analytics page deleted (was all mock data)',
+      'Claude API status wired up — real connectivity check on page load',
+      'Integration Status reordered: Claude API, Last RSS Scan, RSS Scan Status',
+      'Product Roadmap link added below Changelog (later removed)',
+    ],
+  },
+  {
+    id: '18',
+    version: '1.1',
+    date: 'June 4, 2026',
+    type: 'feature',
+    title: 'Claude AI Draft Generation with Web Search',
+    description: 'Claude Opus 4.6 generates corporate and personal voice drafts, with built-in web search to research topics before writing.',
+    details: [
+      'Claude researches the topic via Brave Search (up to 3 searches per draft) before writing',
+      'Two drafts per conversation: corporate voice (we/us/our) and personal voice (I/me/my)',
+      'System prompts built from Product Knowledge, Brand Voice, Creator Profiles, competitor context',
+      'Drafts cached in Supabase — generate once, see forever, no re-spending tokens',
+      '"Generate AI Drafts" button with sparkle icon on each queue card',
+      'Draft generation logged in Activity Log',
+    ],
+  },
+  {
+    id: '17',
+    version: '1.0',
+    date: 'June 4, 2026',
+    type: 'infrastructure',
+    title: 'Supabase Database Integration',
+    description: 'Full migration from localStorage and static JSON to Supabase. All data is now persistent, cross-device, and real.',
+    details: [
+      'conversations table: every Reddit post with status tracking, scores, drafts',
+      'settings table: quality threshold, subreddits, keywords, knowledgebase',
+      'activity_log table: every action timestamped (discovered, dismissed, completed, drafted, cleared)',
+      'scan_history table: each GitHub Actions run tracked with post counts',
+      'GitHub Action writes to Supabase + JSON fallback',
+      'Queue reads from Supabase, status changes persist to DB',
+      'Activity Log shows real events from database',
+      'Quality threshold slider saves to DB, GitHub Action reads it',
+    ],
+  },
+  {
+    id: '16',
+    version: '0.9',
+    date: 'June 3, 2026',
+    type: 'improvement',
+    title: 'Queue UX Improvements',
+    description: 'Card improvements, quality score badge, and Clear Queue functionality.',
+    details: [
+      'Quality Score badge shows "X/100 Quality Score" with color coding (green 80+, blue 60-79, orange below 60)',
+      'Info icon tooltip links to Quality Score settings tab',
+      '"Clear queue" button dismisses all new/in_progress items, preserves completed',
+      '"Posted 7d ago" timestamp format',
+      'Upvote/comment counts hidden when zero (RSS limitation)',
+      'Removed duplicate post body in expanded card view',
+    ],
+  },
+  {
+    id: '15',
+    version: '0.8',
+    date: 'June 3, 2026',
+    type: 'feature',
+    title: 'Quality Score Settings + Scoring Improvements',
+    description: 'New Quality Score tab in settings showing how scores are calculated. Daily scans with tighter quality filter.',
+    details: [
+      'Quality Score settings tab: threshold slider, brand/competitor weights, topic terms, engagement signals',
+      'Switched from t=week to t=day for fresh daily content',
+      'Raised quality threshold from 30 to 50',
+      'Expanded self-promo penalties ([FOR HIRE], "I built", hiring posts)',
+      'Broad search across all of Reddit + narrow search in target subreddits',
+      'Fixed scoring bug — Queue now uses pre-computed scores from fetch script',
+    ],
+  },
+  {
+    id: '14',
+    version: '0.7.1',
+    date: 'June 1, 2026',
+    type: 'improvement',
+    title: 'Sidebar Overhaul + Logo + Rosie Branding',
+    description: 'Rosie The Redditor mascot logo in sidebar, integration status with real timestamps, Reddit accounts removed from sidebar.',
+    details: [
+      'Rosie logo hyperlinked to homepage',
+      'Integration Status: real RSS scan timestamps in Eastern Time',
+      'Reddit Accounts management moved to Account Settings page',
+      'Slack integration section mocked up in settings',
+    ],
+  },
+  {
     id: '12',
     version: '0.7',
     date: 'June 1, 2026',
     type: 'feature',
     title: 'Automated Reddit Monitoring via GitHub Actions',
-    description: 'Reddit conversations now refresh automatically twice daily via GitHub Actions + Reddit RSS feeds. No personal computer needed, no API keys, no Xpoz dependency.',
+    description: 'Reddit conversations refresh automatically twice daily via GitHub Actions + Reddit RSS feeds. No personal computer needed.',
     details: [
-      'GitHub Action runs at 6am and 6pm ET daily, fetches RSS from 9 subreddits',
-      'Searches 17 keyword queries across r/localseo, r/SEO, r/smallbusiness, r/marketing, r/digital_marketing, r/agency, r/Entrepreneur, r/webmarketing, r/bigseo',
-      'Improved relevance scoring: brand mentions (50pts), competitor mentions (30pts), topic terms (5-15pts), question/help posts (+8pts), subreddit authority boost (+5-10pts), self-promo penalty (-15pts)',
-      'Quality filter: only posts with relevance score >= 20 make the queue',
-      'First run found 75 posts, 60 passed quality filter, top score 100',
-      'Data saved as static JSON, auto-deployed by Vercel on git push',
-      'Manual trigger available via GitHub Actions "Run workflow" button',
-    ],
-  },
-  {
-    id: '11',
-    version: '0.6',
-    date: 'May 31, 2026',
-    type: 'feature',
-    title: 'Live Reddit Data via Xpoz',
-    description: 'Initial attempt at live Reddit data via Xpoz MCP. Replaced by GitHub Actions + RSS approach due to MCP incompatibility with Vercel serverless.',
-    details: [
-      'Xpoz MCP works in Claude Code but fails in Vercel serverless functions',
-      'Pivoted to static JSON approach with RSS feeds as the data source',
-      'Queue page fetches data on load with loading and error states',
-      'Scan Now button triggers page refresh',
-      'Live/Offline status indicator in Queue header',
-      'Conversation statuses (dismiss, complete) persisted in localStorage',
-      'Graceful fallback when API key is not configured',
-      'Relevance scoring based on keyword matches and engagement metrics',
-    ],
-  },
-  {
-    id: '10',
-    version: '0.5.2',
-    date: 'May 31, 2026',
-    type: 'feature',
-    title: 'Reddit Accounts Management',
-    description: 'New section in Account Settings for adding and managing Reddit account connections. Each account shows connection status and permission indicators for posting and analytics.',
-    details: [
-      'Add accounts with username, display name, and type (Brand or Personal)',
-      'Connection status per account with Connect button for future OAuth',
-      'Per-account permission indicators: Posting and Analytics',
-      'Remove account functionality',
-      'Empty state when no accounts are added',
-    ],
-  },
-  {
-    id: '9',
-    version: '0.5.1',
-    date: 'May 31, 2026',
-    type: 'improvement',
-    title: 'Rosie Logo, Nav Cleanup, and Project Docs',
-    description: 'Added Rosie The Redditor mascot logo to sidebar header (hyperlinked to homepage). Removed Reddit Accounts from sidebar — managed in Account Settings only. Added development workflow rules to CLAUDE.md.',
-    details: [
-      'Rosie logo in sidebar header, clickable to return to Queue',
-      'Integration Status shows real state (Not connected / Never)',
-      'Reddit Accounts section removed from sidebar, consolidated in settings',
-      'CLAUDE.md updated with changelog, roadmap, and integration status workflow rules',
+      'GitHub Action runs at 6am and 6pm ET daily',
+      'Broad search (8 queries across all of Reddit) + narrow search (17 queries in 9 target subreddits)',
+      'Relevance scoring: brand mentions (50pts), competitors (30pts), topics (5-15pts), question posts (+8pts)',
+      'Quality filter: only posts scoring above threshold enter the queue',
     ],
   },
   {
@@ -84,66 +145,13 @@ const changelog: ChangelogEntry[] = [
     version: '0.5',
     date: 'May 31, 2026',
     type: 'feature',
-    title: 'Analytics Dashboard',
-    description: 'Performance analytics page for tracking Reddit engagement. Karma stats, daily activity chart, Rosie impact metrics, subreddit engagement table, and post performance list.',
+    title: 'Analytics Dashboard + Expanded Settings',
+    description: 'Performance analytics page (later removed), 5-tab settings layout, and changelog with release history.',
     details: [
-      'Account overview: total karma with 7-day change, total score, replies, avg upvote ratio',
-      'Daily karma earned bar chart (7-day view)',
-      'Rosie impact panel comparing Rosie-drafted vs manual post performance',
-      'Engagement by subreddit table with posts, score, comments, karma earned',
-      'Recent activity feed filterable by posts, comments, or all',
-      'Time range selector (7d / 30d / 90d) for future use',
+      'Settings: Monitoring, Product Knowledge, Brand Voice, Creator Profiles, Integrations',
+      'Changelog page with release history timeline',
+      'Analytics page with mock data (removed June 4)',
     ],
-  },
-  {
-    id: '7',
-    version: '0.5',
-    date: 'May 31, 2026',
-    type: 'improvement',
-    title: 'Sidebar Navigation Overhaul',
-    description: 'Restructured sidebar with primary navigation (Queue, Analytics, Activity Log, Account Settings), Integration Status section, and connected Reddit accounts display.',
-    details: [
-      'Settings elevated to primary nav as "Account Settings"',
-      'Integration Status section with Reddit API, Claude API, and last scan time',
-      'Reddit Accounts subsection showing connected accounts with active/inactive status',
-      'Three mock accounts: u/merchynt, u/jamessowers, u/justinsilverman',
-    ],
-  },
-  {
-    id: '6',
-    version: '0.4',
-    date: 'May 31, 2026',
-    type: 'feature',
-    title: 'Expanded Settings with 5-Tab Layout',
-    description: 'Settings page rebuilt with organized tabs for monitoring, product knowledge, brand voice, creator profiles, and integrations.',
-    details: [
-      'Product Knowledge tab: document company overview, products (Paige, GBP Audit), competitors, and proof points',
-      'Brand Voice tab: brand name, voice description, Reddit-specific guidelines, approved terminology, sample responses',
-      'Creator Profiles tab: per-person cards with voice, persona notes, and topics of expertise',
-      'Accounts & Integrations tab: API connection status, notification preferences, data management',
-      'Monitoring tab: added scan frequency selector and relevance threshold slider',
-    ],
-  },
-  {
-    id: '5',
-    version: '0.3',
-    date: 'May 31, 2026',
-    type: 'infrastructure',
-    title: 'Vercel Deployment and Plugin Integration',
-    description: 'Connected project to Vercel for auto-deploy on push. Installed the Vercel coding agent plugin for direct CLI management of deployments, env vars, and cron jobs.',
-    details: [
-      'Vercel project linked and deploying at reddit-rosie.vercel.app',
-      'Vercel CLI authenticated for direct deployment management',
-      'Auto-deploy on every push to main branch',
-    ],
-  },
-  {
-    id: '4',
-    version: '0.2.1',
-    date: 'May 31, 2026',
-    type: 'improvement',
-    title: 'Renamed to Reddit Rosie',
-    description: 'Rebranded from "Reddit Reggie" to "Reddit Rosie" (Rosie The Redditor). Updated all code references, GitHub repo, package name, and local directory.',
   },
   {
     id: '3',
@@ -152,11 +160,6 @@ const changelog: ChangelogEntry[] = [
     type: 'feature',
     title: 'Rosie The Redditor Mascot',
     description: 'Generated brand mascot using Nano Banana Pro (Google Gemini). Chibi-style character with reddish-orange hair, polka-dot bandana, Merchynt hoodie, and tablet with upvote arrow.',
-    details: [
-      'Multiple iterations across character pose, font rendering, and expression',
-      'Final direction: determined confident smile, green eyes, self-contained bust cutoff',
-      'Matched Pixel Pete visual language for brand consistency',
-    ],
   },
   {
     id: '2',
@@ -168,10 +171,7 @@ const changelog: ChangelogEntry[] = [
     details: [
       'Queue page with stats bar, filter tabs, and expandable conversation cards',
       'Dual-voice draft panels (Corporate / Personal) with copy-to-clipboard',
-      'Settings page for subreddits, keywords, and style guides',
-      'Activity log with timestamped action history',
       'Sidebar with branding, nav, connection status, and user info',
-      '7 realistic mock conversations across 6 subreddits',
       'Merchynt brand palette (navy, pink, clean whites) with Lucide icons',
     ],
   },
@@ -181,30 +181,7 @@ const changelog: ChangelogEntry[] = [
     date: 'May 31, 2026',
     type: 'infrastructure',
     title: 'Project Created',
-    description: 'Next.js 16 app scaffolded with TypeScript and Tailwind CSS. GitHub repo created at merchyntjames/reddit-rosie.',
-  },
-];
-
-const planned: { title: string; description: string; icon: React.ElementType }[] = [
-  {
-    title: 'Claude Draft Generation',
-    description: 'AI-powered draft responses using product knowledge, brand voice, and creator profiles as context. Human reviews and copy/pastes into Reddit.',
-    icon: MessageSquare,
-  },
-  {
-    title: 'Database and Auth',
-    description: 'Supabase integration for persistent data storage. Vercel password protection or magic link auth.',
-    icon: Plug,
-  },
-  {
-    title: 'Performance Analytics',
-    description: 'Track upvote scores, comment counts, karma changes, and engagement trends over time via periodic Data API polling.',
-    icon: BarChart3,
-  },
-  {
-    title: 'Slack Integration',
-    description: 'Real-time Slack alerts for new conversations, daily digests, and performance milestones. Configurable channels and quiet hours.',
-    icon: MessageSquare,
+    description: 'Next.js 16 app scaffolded with TypeScript and Tailwind CSS. GitHub repo created at merchyntjames/reddit-rosie. Deployed to Vercel.',
   },
 ];
 
@@ -213,13 +190,11 @@ function TypeBadge({ type }: { type: ChangeType }) {
     feature: 'bg-blue/10 text-blue',
     improvement: 'bg-green/10 text-green',
     infrastructure: 'bg-navy/10 text-navy',
-    planned: 'bg-orange/10 text-orange',
   };
   const labels = {
     feature: 'Feature',
     improvement: 'Improvement',
     infrastructure: 'Infrastructure',
-    planned: 'Planned',
   };
 
   return (
@@ -249,12 +224,6 @@ function TypeIcon({ type }: { type: ChangeType }) {
           <Package size={14} className="text-navy" />
         </div>
       );
-    case 'planned':
-      return (
-        <div className="w-7 h-7 rounded-full bg-orange/10 flex items-center justify-center">
-          <Clock size={14} className="text-orange" />
-        </div>
-      );
   }
 }
 
@@ -267,32 +236,6 @@ export default function ChangelogPage() {
         <p className="text-[13px] text-muted mt-1">
           A record of every feature, improvement, and milestone in Reddit Rosie.
         </p>
-      </div>
-
-      {/* Roadmap */}
-      <div id="roadmap" className="mb-8">
-        <h2 className="text-[16px] font-semibold text-dark mb-4 flex items-center gap-2">
-          <Layout size={18} className="text-navy" />
-          Roadmap
-        </h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-          {planned.map((item) => {
-            const Icon = item.icon;
-            return (
-              <div key={item.title} className="bg-white rounded-xl border border-border p-4 hover:shadow-sm transition-shadow">
-                <div className="flex items-start gap-3">
-                  <div className="w-8 h-8 rounded-lg bg-surface flex items-center justify-center shrink-0 mt-0.5">
-                    <Icon size={16} className="text-muted" />
-                  </div>
-                  <div>
-                    <p className="text-[13px] font-semibold text-dark">{item.title}</p>
-                    <p className="text-[12px] text-muted mt-0.5 leading-relaxed">{item.description}</p>
-                  </div>
-                </div>
-              </div>
-            );
-          })}
-        </div>
       </div>
 
       {/* Changelog Timeline */}

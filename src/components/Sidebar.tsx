@@ -13,7 +13,6 @@ import {
   CircleDot,
   ScrollText,
   Brain,
-  Map,
   AlertTriangle,
 } from 'lucide-react';
 
@@ -160,22 +159,13 @@ export function Sidebar() {
           </div>
         </div>
 
-        <div className="flex flex-col gap-1.5 mt-3">
-          <Link
-            href="/changelog"
-            className="flex items-center gap-1.5 text-[11px] text-muted hover:text-navy transition-colors"
-          >
-            <ScrollText size={11} />
-            Changelog
-          </Link>
-          <Link
-            href="/changelog#roadmap"
-            className="flex items-center gap-1.5 text-[11px] text-muted hover:text-navy transition-colors"
-          >
-            <Map size={11} />
-            Product Roadmap
-          </Link>
-        </div>
+        <Link
+          href="/changelog"
+          className="flex items-center gap-1.5 mt-3 text-[11px] text-muted hover:text-navy transition-colors"
+        >
+          <ScrollText size={11} />
+          Changelog
+        </Link>
       </div>
 
       {/* User */}
