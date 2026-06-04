@@ -136,13 +136,13 @@ Write your reply now. Just the reply text — no preamble, no "Here's my reply:"
   // Generate both drafts in parallel
   const [corporateResult, personalResult] = await Promise.all([
     anthropic.messages.create({
-      model: 'claude-sonnet-4-20250514',
+      model: 'claude-sonnet-4-6-20250514',
       max_tokens: 1024,
       system: buildCorporateSystemPrompt(ctx),
       messages: [{ role: 'user', content: userMessage }],
     }),
     anthropic.messages.create({
-      model: 'claude-sonnet-4-20250514',
+      model: 'claude-sonnet-4-6-20250514',
       max_tokens: 1024,
       system: buildPersonalSystemPrompt(ctx),
       messages: [{ role: 'user', content: userMessage }],
