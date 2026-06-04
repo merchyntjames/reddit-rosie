@@ -14,9 +14,17 @@
 import { writeFileSync, mkdirSync } from 'fs';
 import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
+import { createClient } from '@supabase/supabase-js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const OUTPUT_PATH = join(__dirname, '..', 'public', 'data', 'conversations.json');
+
+// Supabase client (uses service_role key for full write access)
+const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL;
+const SUPABASE_SERVICE_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY;
+const supabase = (SUPABASE_URL && SUPABASE_SERVICE_KEY)
+  ? createClient(SUPABASE_URL, SUPABASE_SERVICE_KEY)
+  : null;
 
 // --- Configuration ---
 
@@ -404,7 +412,93 @@ async function main() {
     console.log(`  [${post.relevanceScore}] ${tag}: ${post.title.slice(0, 75)}`);
   }
 
-  // Save output
+  // --- SAVE TO SUPABASE ---
+  let newPostsCount = 0;
+
+  if (supabase) {
+    console.log('\n=== SAVING TO SUPABASE ===');
+
+    // Get existing post IDs to avoid duplicates
+    const { data: existingPosts } = await supabase
+      .from('conversations')
+      .select('id');
+    const existingIds = new Set((existingPosts || []).map(p => p.id));
+
+    // Insert only new posts (skip ones we've already seen)
+    const newPosts = qualityPosts.filter(p => !existingIds.has(p.id));
+    newPostsCount = newPosts.length;
+
+    if (newPosts.length > 0) {
+      const rows = newPosts.map(post => ({
+        id: post.id,
+        subreddit: post.subredditName,
+        title: post.title,
+        selftext: post.selftext || '',
+        author_username: post.authorUsername,
+        permalink: post.permalink,
+        url: post.url || '',
+        score: 0,  // RSS doesn't provide scores
+        comments_count: 0,  // RSS doesn't provide comment counts
+        relevance_score: post.relevanceScore,
+        matched_keywords: post.matchedKeywords,
+        search_type: post.searchType || 'narrow',
+        search_label: post.searchLabel || '',
+        status: 'new',
+        discovered_at: post.createdAtDate,
+      }));
+
+      const { error } = await supabase
+        .from('conversations')
+        .insert(rows);
+
+      if (error) {
+        console.error('  Supabase insert error:', error.message);
+      } else {
+        console.log(`  Inserted ${newPosts.length} new conversations`);
+      }
+    } else {
+      console.log('  No new conversations to insert');
+    }
+
+    // Log the scan
+    const { error: scanError } = await supabase
+      .from('scan_history')
+      .insert({
+        source: 'reddit-rss',
+        total_fetched: totalFetched,
+        total_queries: totalQueries,
+        quality_posts: qualityPosts.length,
+        filtered_out: scoredPosts.length - qualityPosts.length,
+        new_posts: newPostsCount,
+        status: 'success',
+        completed_at: new Date().toISOString(),
+      });
+
+    if (scanError) {
+      console.error('  Scan history insert error:', scanError.message);
+    } else {
+      console.log('  Scan history logged');
+    }
+
+    // Log activity for new posts
+    if (newPosts.length > 0) {
+      const activityRows = newPosts.map(post => ({
+        action: 'discovered',
+        conversation_id: post.id,
+        subreddit: post.subredditName,
+        post_title: post.title,
+        details: `Quality score: ${post.relevanceScore}/100, search: ${post.searchType}`,
+      }));
+
+      await supabase.from('activity_log').insert(activityRows);
+      console.log(`  Logged ${newPosts.length} discovery events`);
+    }
+  } else {
+    console.log('\n  Supabase not configured — skipping database write');
+  }
+
+  // --- SAVE JSON FALLBACK ---
+  // Still save the JSON file as a fallback for when Supabase isn't available
   const output = {
     posts: qualityPosts,
     fetchedAt: new Date().toISOString(),
@@ -414,13 +508,15 @@ async function main() {
       totalQueries,
       qualityPosts: qualityPosts.length,
       filteredOut: scoredPosts.length - qualityPosts.length,
+      newPosts: newPostsCount,
       minRelevanceScore: 50,
     },
   };
 
   mkdirSync(dirname(OUTPUT_PATH), { recursive: true });
   writeFileSync(OUTPUT_PATH, JSON.stringify(output, null, 2));
-  console.log(`\nSaved ${qualityPosts.length} posts to ${OUTPUT_PATH}`);
+  console.log(`\nSaved ${qualityPosts.length} posts to JSON fallback`);
+  console.log(`New posts this scan: ${newPostsCount}`);
 }
 
 main().catch(err => {
