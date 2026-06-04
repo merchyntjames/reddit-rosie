@@ -18,8 +18,8 @@ import {
 
 const navItems = [
   { href: '/', label: 'Engagement Queue', icon: MessageSquareMore },
-  { href: '/activity', label: 'Activity Log', icon: Activity },
   { href: '/knowledgebase', label: 'Knowledgebase', icon: Brain },
+  { href: '/activity', label: 'Activity Log', icon: Activity },
   { href: '/settings', label: 'Account Settings', icon: Settings },
 ];
 
