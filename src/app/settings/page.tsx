@@ -72,6 +72,37 @@ export default function SettingsPage() {
   })();
   const [activeTab, setActiveTab] = useState<SettingsTab>(initialTab);
 
+  // Quality Score state (loaded from Supabase)
+  const [qualityThreshold, setQualityThreshold] = useState(50);
+  const [thresholdSaved, setThresholdSaved] = useState(true);
+
+  // Load quality threshold from Supabase on mount
+  useState(() => {
+    fetch('/api/settings')
+      .then(res => res.json())
+      .then(data => {
+        if (data.settings?.quality_threshold) {
+          setQualityThreshold(Number(data.settings.quality_threshold));
+        }
+      })
+      .catch(() => {}); // Silently fail — use default
+  });
+
+  const saveQualityThreshold = async (value: number) => {
+    setQualityThreshold(value);
+    setThresholdSaved(false);
+    try {
+      await fetch('/api/settings', {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ quality_threshold: value }),
+      });
+      setThresholdSaved(true);
+    } catch {
+      console.error('Failed to save quality threshold');
+    }
+  };
+
   // Monitoring state
   const [subreddits, setSubreddits] = useState<MonitoredSubreddit[]>(mockSubreddits);
   const [keywords, setKeywords] = useState<MonitoredKeyword[]>(mockKeywords);
@@ -451,13 +482,23 @@ export default function SettingsPage() {
             min="20"
             max="80"
             step="5"
-            defaultValue="50"
+            value={qualityThreshold}
+            onChange={e => setQualityThreshold(Number(e.target.value))}
+            onMouseUp={e => saveQualityThreshold(Number((e.target as HTMLInputElement).value))}
+            onTouchEnd={e => saveQualityThreshold(Number((e.target as HTMLInputElement).value))}
             className="flex-1 accent-navy"
           />
-          <span className="text-[16px] font-bold text-navy w-12 text-center">50</span>
+          <span className="text-[16px] font-bold text-navy w-12 text-center">{qualityThreshold}</span>
         </div>
         <div className="flex justify-between text-[11px] text-muted mt-1">
           <span>More posts, less relevant</span>
+          <div className="flex items-center gap-1">
+            {thresholdSaved ? (
+              <span className="text-green">Saved</span>
+            ) : (
+              <span className="text-orange">Saving...</span>
+            )}
+          </div>
           <span>Fewer posts, more relevant</span>
         </div>
       </section>

@@ -387,11 +387,23 @@ async function main() {
   // Sort by relevance score descending
   scoredPosts.sort((a, b) => b.relevanceScore - a.relevanceScore);
 
-  // Filter: only include posts with relevance score >= 50
-  // 50+ means multiple relevance signals — not just topical, but actionable
-  const qualityPosts = scoredPosts.filter(p => p.relevanceScore >= 50);
+  // Read quality threshold from Supabase (or use default of 50)
+  let minScore = 50;
+  if (supabase) {
+    const { data: thresholdSetting } = await supabase
+      .from('settings')
+      .select('value')
+      .eq('key', 'quality_threshold')
+      .single();
+    if (thresholdSetting?.value) {
+      minScore = Number(thresholdSetting.value);
+      console.log(`Quality threshold from database: ${minScore}`);
+    }
+  }
 
-  console.log(`Posts with relevance >= 50: ${qualityPosts.length}`);
+  const qualityPosts = scoredPosts.filter(p => p.relevanceScore >= minScore);
+
+  console.log(`Posts with relevance >= ${minScore}: ${qualityPosts.length}`);
   console.log(`Posts filtered out (< 20): ${scoredPosts.length - qualityPosts.length}`);
 
   // Show top posts for logging
@@ -509,7 +521,7 @@ async function main() {
       qualityPosts: qualityPosts.length,
       filteredOut: scoredPosts.length - qualityPosts.length,
       newPosts: newPostsCount,
-      minRelevanceScore: 50,
+      minRelevanceScore: minScore,
     },
   };
 
