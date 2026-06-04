@@ -79,10 +79,53 @@ function StatusBadge({ status }: { status: Conversation['status'] }) {
   );
 }
 
+const DISMISS_REASONS = [
+  { value: 'wrong_topic', label: 'Wrong topic — not relevant to our expertise' },
+  { value: 'too_promotional', label: 'Too promotional — someone else selling' },
+  { value: 'too_basic', label: 'Too basic — not worth our time to engage' },
+  { value: 'wrong_audience', label: 'Wrong audience — not our ICP' },
+  { value: 'already_answered', label: 'Already well-answered by others' },
+  { value: 'low_engagement', label: 'Low engagement — not worth the effort' },
+  { value: 'other', label: 'Other' },
+];
+
 export function ConversationCard({ conversation, onStatusChange, onDraftsGenerated }: ConversationCardProps) {
   const [isExpanded, setIsExpanded] = useState(false);
   const [isGenerating, setIsGenerating] = useState(false);
   const [generateError, setGenerateError] = useState<string | null>(null);
+  const [showDismissModal, setShowDismissModal] = useState(false);
+  const [dismissReason, setDismissReason] = useState('');
+  const [dismissCustom, setDismissCustom] = useState('');
+  const [isDismissing, setIsDismissing] = useState(false);
+
+  const handleDismissWithFeedback = async () => {
+    if (!dismissReason) return;
+    setIsDismissing(true);
+    try {
+      await fetch('/api/dismiss', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          conversationId: conversation.id,
+          reason: dismissReason,
+          customFeedback: dismissCustom || undefined,
+        }),
+      });
+      onStatusChange(conversation.id, 'dismissed');
+      setShowDismissModal(false);
+      setDismissReason('');
+      setDismissCustom('');
+    } catch (err) {
+      console.error('Dismiss failed:', err);
+    } finally {
+      setIsDismissing(false);
+    }
+  };
+
+  const handleDismissWithoutFeedback = () => {
+    onStatusChange(conversation.id, 'dismissed');
+    setShowDismissModal(false);
+  };
 
   const handleGenerateDrafts = async () => {
     setIsGenerating(true);
@@ -224,7 +267,14 @@ export function ConversationCard({ conversation, onStatusChange, onDraftsGenerat
                 )}
                 {!isGenerating && !generateError && (
                   <p className="text-[11px] text-muted mt-2">
-                    Creates corporate and personal voice drafts using your brand context.
+                    Creates corporate and personal drafts based on the brand context in your{' '}
+                    <Link
+                      href="/knowledgebase"
+                      onClick={(e) => e.stopPropagation()}
+                      className="text-blue hover:text-navy underline"
+                    >
+                      Knowledgebase
+                    </Link>.
                   </p>
                 )}
               </div>
@@ -236,7 +286,7 @@ export function ConversationCard({ conversation, onStatusChange, onDraftsGenerat
             <div className="flex items-center gap-2">
               {conversation.status !== 'dismissed' && (
                 <button
-                  onClick={() => onStatusChange(conversation.id, 'dismissed')}
+                  onClick={() => setShowDismissModal(true)}
                   className="px-4 py-2 rounded-lg text-[13px] font-medium text-muted border border-border hover:bg-surface transition-colors"
                 >
                   Dismiss
@@ -260,6 +310,70 @@ export function ConversationCard({ conversation, onStatusChange, onDraftsGenerat
                   Mark Complete
                 </button>
               )}
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Dismiss Feedback Modal */}
+      {showDismissModal && (
+        <div className="fixed inset-0 bg-dark/50 flex items-center justify-center z-50" onClick={() => setShowDismissModal(false)}>
+          <div className="bg-white rounded-xl border border-border p-6 w-full max-w-[480px] mx-4 shadow-lg" onClick={(e) => e.stopPropagation()}>
+            <h3 className="text-[16px] font-semibold text-dark mb-1">Dismiss this conversation</h3>
+            <p className="text-[13px] text-muted mb-4">
+              Your feedback helps Rosie improve her filtering and quality scoring over time.
+            </p>
+
+            {/* Reason selection */}
+            <div className="space-y-2 mb-4">
+              {DISMISS_REASONS.map((r) => (
+                <label
+                  key={r.value}
+                  className={`flex items-center gap-3 p-3 rounded-lg border cursor-pointer transition-colors ${
+                    dismissReason === r.value
+                      ? 'border-navy bg-navy/5'
+                      : 'border-border hover:bg-surface'
+                  }`}
+                >
+                  <input
+                    type="radio"
+                    name="dismiss-reason"
+                    value={r.value}
+                    checked={dismissReason === r.value}
+                    onChange={() => setDismissReason(r.value)}
+                    className="accent-navy"
+                  />
+                  <span className="text-[13px] text-dark">{r.label}</span>
+                </label>
+              ))}
+            </div>
+
+            {/* Custom feedback */}
+            {dismissReason && (
+              <textarea
+                value={dismissCustom}
+                onChange={(e) => setDismissCustom(e.target.value)}
+                placeholder="Optional: any additional context for Rosie..."
+                rows={2}
+                className="w-full px-3 py-2 rounded-lg border border-border bg-surface text-[13px] text-dark placeholder:text-muted/50 focus:outline-none focus:ring-2 focus:ring-navy/20 mb-4 resize-none"
+              />
+            )}
+
+            {/* Actions */}
+            <div className="flex items-center justify-between">
+              <button
+                onClick={handleDismissWithoutFeedback}
+                className="text-[13px] text-muted hover:text-dark transition-colors"
+              >
+                Dismiss without feedback
+              </button>
+              <button
+                onClick={handleDismissWithFeedback}
+                disabled={!dismissReason || isDismissing}
+                className="px-5 py-2 rounded-lg bg-navy text-white text-[13px] font-medium hover:bg-navy/90 transition-colors disabled:opacity-50"
+              >
+                {isDismissing ? 'Submitting...' : 'Submit feedback'}
+              </button>
             </div>
           </div>
         </div>
