@@ -1,78 +1,173 @@
 import { NextResponse } from 'next/server';
-import { promises as fs } from 'fs';
-import path from 'path';
-import { scoreRelevance, DEFAULT_KEYWORDS, type RedditPostResult } from '@/lib/xpoz';
+import { createClient } from '@supabase/supabase-js';
 
 export const dynamic = 'force-dynamic';
 
-export async function GET() {
+function getSupabase() {
+  const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
+  const key = process.env.SUPABASE_SERVICE_ROLE_KEY;
+  if (!url || !key) return null;
+  return createClient(url, key);
+}
+
+// GET: Fetch conversations from Supabase
+export async function GET(request: Request) {
   try {
-    // Read from static JSON file (refreshed by Claude Code via Xpoz MCP)
-    const filePath = path.join(process.cwd(), 'public', 'data', 'conversations.json');
-    const fileContent = await fs.readFile(filePath, 'utf-8');
-    const data = JSON.parse(fileContent) as {
-      posts: RedditPostResult[];
-      fetchedAt: string;
-      source: string;
-    };
+    const supabase = getSupabase();
+    const { searchParams } = new URL(request.url);
+    const status = searchParams.get('status'); // optional filter
 
-    // Score and enrich each post
-    const enrichedPosts = data.posts.map(post => {
-      const relevanceScore = scoreRelevance(post, DEFAULT_KEYWORDS);
+    if (!supabase) {
+      // Fallback to static JSON if Supabase is not configured
+      return NextResponse.json(
+        { error: 'Supabase not configured', fallback: true },
+        { status: 503 }
+      );
+    }
 
-      // Extract matched keywords
-      const text = `${post.title} ${post.selftext ?? ''}`.toLowerCase();
-      const matchedKeywords: string[] = [];
-      const keywordLabels = [
-        'Google Business Profile', 'local SEO', 'Merchynt', 'Paige',
-        'GBP optimization', 'AI local SEO', 'review management',
-        'BrightLocal', 'Whitespark', 'GBP', 'Google Maps',
-      ];
-      for (const kw of keywordLabels) {
-        if (text.includes(kw.toLowerCase())) {
-          matchedKeywords.push(kw);
-        }
-      }
+    let query = supabase
+      .from('conversations')
+      .select('*')
+      .order('relevance_score', { ascending: false });
 
-      // Create a snippet from selftext (first ~300 chars)
-      const snippet = post.selftext
-        ? post.selftext.slice(0, 300).replace(/\n+/g, ' ').trim() + (post.selftext.length > 300 ? '...' : '')
-        : '';
+    // Filter by status if specified (otherwise return all non-dismissed)
+    if (status && status !== 'all') {
+      query = query.eq('status', status);
+    }
 
-      return {
-        id: post.id,
-        subreddit: `r/${post.subredditName}`,
-        postTitle: post.title,
-        postSnippet: snippet,
-        postAuthor: `u/${post.authorUsername}`,
-        postUrl: post.permalink
-          ? `https://reddit.com${post.permalink}`
-          : `https://reddit.com/r/${post.subredditName}/comments/${post.id}`,
-        commentCount: post.commentsCount,
-        upvotes: post.score,
-        relevanceScore,
-        matchedKeywords,
-        discoveredAt: post.createdAtDate,
-        status: 'new' as const,
-        selftext: post.selftext ?? '',
-      };
-    });
+    const { data, error } = await query;
 
-    // Sort by relevance score descending
-    enrichedPosts.sort((a, b) => b.relevanceScore - a.relevanceScore);
+    if (error) {
+      throw new Error(error.message);
+    }
+
+    // Get last scan info
+    const { data: lastScan } = await supabase
+      .from('scan_history')
+      .select('*')
+      .order('completed_at', { ascending: false })
+      .limit(1)
+      .single();
+
+    // Map database columns to frontend format
+    const posts = (data || []).map(row => ({
+      id: row.id,
+      subreddit: `r/${row.subreddit}`,
+      postTitle: row.title,
+      postSnippet: row.selftext
+        ? row.selftext.slice(0, 300).replace(/\n+/g, ' ').trim() + (row.selftext.length > 300 ? '...' : '')
+        : '',
+      postAuthor: `u/${row.author_username}`,
+      postUrl: row.permalink
+        ? `https://reddit.com${row.permalink}`
+        : `https://reddit.com/r/${row.subreddit}/comments/${row.id}`,
+      commentCount: row.comments_count ?? 0,
+      upvotes: row.score ?? 0,
+      relevanceScore: row.relevance_score,
+      matchedKeywords: row.matched_keywords ?? [],
+      discoveredAt: row.discovered_at,
+      status: row.status,
+      corporateDraft: row.corporate_draft ?? '',
+      personalDraft: row.personal_draft ?? '',
+    }));
 
     return NextResponse.json({
-      posts: enrichedPosts,
+      posts,
       meta: {
-        count: enrichedPosts.length,
-        fetchedAt: data.fetchedAt,
-        source: data.source,
+        count: posts.length,
+        fetchedAt: lastScan?.completed_at ?? new Date().toISOString(),
+        source: 'supabase',
+        lastScanStatus: lastScan?.status ?? 'unknown',
       },
     });
   } catch (error) {
-    console.error('Reddit API error:', error);
+    console.error('Supabase fetch error:', error);
     return NextResponse.json(
-      { error: 'Failed to fetch Reddit data', details: String(error) },
+      { error: 'Failed to fetch conversations', details: String(error) },
+      { status: 500 }
+    );
+  }
+}
+
+// PATCH: Update conversation status
+export async function PATCH(request: Request) {
+  try {
+    const supabase = getSupabase();
+    if (!supabase) {
+      return NextResponse.json({ error: 'Supabase not configured' }, { status: 503 });
+    }
+
+    const body = await request.json();
+    const { id, status, action } = body as {
+      id?: string;
+      status?: string;
+      action?: 'clear_queue';
+    };
+
+    // Bulk action: clear all new/in_progress items
+    if (action === 'clear_queue') {
+      const { data: cleared, error } = await supabase
+        .from('conversations')
+        .update({ status: 'dismissed', status_changed_at: new Date().toISOString() })
+        .in('status', ['new', 'in_progress'])
+        .select('id, title, subreddit');
+
+      if (error) throw new Error(error.message);
+
+      // Log the clear action
+      if (cleared && cleared.length > 0) {
+        await supabase.from('activity_log').insert(
+          cleared.map(c => ({
+            action: 'cleared',
+            conversation_id: c.id,
+            subreddit: c.subreddit,
+            post_title: c.title,
+            details: 'Cleared from queue',
+          }))
+        );
+      }
+
+      return NextResponse.json({
+        success: true,
+        cleared: cleared?.length ?? 0,
+      });
+    }
+
+    // Single status update
+    if (!id || !status) {
+      return NextResponse.json(
+        { error: 'Missing id or status' },
+        { status: 400 }
+      );
+    }
+
+    const { error } = await supabase
+      .from('conversations')
+      .update({
+        status,
+        status_changed_at: new Date().toISOString(),
+      })
+      .eq('id', id);
+
+    if (error) throw new Error(error.message);
+
+    // Log the action
+    const actionLabel = status === 'completed' ? 'completed'
+      : status === 'dismissed' ? 'dismissed'
+      : status === 'new' ? 'restored'
+      : 'updated';
+
+    await supabase.from('activity_log').insert({
+      action: actionLabel,
+      conversation_id: id,
+      details: `Status changed to ${status}`,
+    });
+
+    return NextResponse.json({ success: true });
+  } catch (error) {
+    console.error('Status update error:', error);
+    return NextResponse.json(
+      { error: 'Failed to update status', details: String(error) },
       { status: 500 }
     );
   }

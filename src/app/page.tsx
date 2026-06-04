@@ -7,22 +7,6 @@ import { ConversationCard } from '@/components/ConversationCard';
 import { Conversation, ConversationStatus } from '@/lib/types';
 import { RefreshCw, Loader2, Wifi, WifiOff, Trash2 } from 'lucide-react';
 
-// Status persistence via localStorage
-function loadStatuses(): Record<string, ConversationStatus> {
-  if (typeof window === 'undefined') return {};
-  try {
-    const stored = localStorage.getItem('rosie-conversation-statuses');
-    return stored ? JSON.parse(stored) : {};
-  } catch {
-    return {};
-  }
-}
-
-function saveStatuses(statuses: Record<string, ConversationStatus>) {
-  if (typeof window === 'undefined') return;
-  localStorage.setItem('rosie-conversation-statuses', JSON.stringify(statuses));
-}
-
 export default function QueuePage() {
   const [conversations, setConversations] = useState<Conversation[]>([]);
   const [activeFilter, setActiveFilter] = useState<ConversationStatus | 'all'>('all');
@@ -31,6 +15,7 @@ export default function QueuePage() {
   const [error, setError] = useState<string | null>(null);
   const [isLive, setIsLive] = useState(false);
   const [lastFetchedAt, setLastFetchedAt] = useState<string | null>(null);
+  const [dataSource, setDataSource] = useState<'supabase' | 'json' | null>(null);
 
   const fetchConversations = useCallback(async (isManualRefresh = false) => {
     if (isManualRefresh) {
@@ -41,61 +26,61 @@ export default function QueuePage() {
     setError(null);
 
     try {
-      // Fetch static JSON (refreshed by Claude Code / cloud worker via Xpoz)
-      const res = await fetch('/data/conversations.json');
+      // Try Supabase API route first
+      const res = await fetch('/api/reddit');
 
-      if (!res.ok) {
-        throw new Error(`Data file returned ${res.status}`);
+      if (res.ok) {
+        const data = await res.json();
+        if (!data.error) {
+          setConversations(data.posts);
+          setIsLive(true);
+          setDataSource('supabase');
+          setLastFetchedAt(data.meta?.fetchedAt || new Date().toISOString());
+          return; // Success — done
+        }
       }
 
-      const data = await res.json() as {
-        posts: {
-          id: string;
-          title: string;
-          selftext?: string;
-          authorUsername: string;
-          subredditName: string;
-          score: number;
-          commentsCount: number;
-          createdAtDate: string;
-          permalink: string;
-          relevanceScore: number;
-          matchedKeywords: string[];
-        }[];
-        fetchedAt: string;
-      };
+      // Fallback: read from static JSON
+      const jsonRes = await fetch('/data/conversations.json');
+      if (!jsonRes.ok) throw new Error('No data source available');
 
-      // Use pre-computed scores from the fetch script (not re-scored client-side)
-      const savedStatuses = loadStatuses();
-
-      const posts: Conversation[] = data.posts.map(post => {
-        const snippet = post.selftext
+      const data = await jsonRes.json();
+      const posts: Conversation[] = data.posts.map((post: {
+        id: string;
+        title: string;
+        selftext?: string;
+        authorUsername: string;
+        subredditName: string;
+        score: number;
+        commentsCount: number;
+        createdAtDate: string;
+        permalink: string;
+        relevanceScore: number;
+        matchedKeywords: string[];
+      }) => ({
+        id: post.id,
+        subreddit: `r/${post.subredditName}`,
+        postTitle: post.title,
+        postSnippet: post.selftext
           ? post.selftext.slice(0, 300).replace(/\n+/g, ' ').trim() + (post.selftext.length > 300 ? '...' : '')
-          : '';
+          : '',
+        postAuthor: `u/${post.authorUsername}`,
+        postUrl: post.permalink
+          ? `https://reddit.com${post.permalink}`
+          : `https://reddit.com/r/${post.subredditName}/comments/${post.id}`,
+        commentCount: post.commentsCount ?? 0,
+        upvotes: post.score ?? 0,
+        relevanceScore: post.relevanceScore,
+        matchedKeywords: post.matchedKeywords ?? [],
+        discoveredAt: post.createdAtDate,
+        status: 'new' as ConversationStatus,
+        corporateDraft: '',
+        personalDraft: '',
+      }));
 
-        return {
-          id: post.id,
-          subreddit: `r/${post.subredditName}`,
-          postTitle: post.title,
-          postSnippet: snippet,
-          postAuthor: `u/${post.authorUsername}`,
-          postUrl: post.permalink
-            ? `https://reddit.com${post.permalink}`
-            : `https://reddit.com/r/${post.subredditName}/comments/${post.id}`,
-          commentCount: post.commentsCount ?? 0,
-          upvotes: post.score ?? 0,
-          relevanceScore: post.relevanceScore,
-          matchedKeywords: post.matchedKeywords ?? [],
-          discoveredAt: post.createdAtDate,
-          status: savedStatuses[post.id] || 'new',
-          corporateDraft: '',
-          personalDraft: '',
-        };
-      });
-
-      // Already sorted by relevance from the fetch script
       setConversations(posts);
       setIsLive(true);
+      setDataSource('json');
       setLastFetchedAt(data.fetchedAt || new Date().toISOString());
     } catch (err) {
       console.error('Failed to fetch conversations:', err);
@@ -107,35 +92,53 @@ export default function QueuePage() {
     }
   }, []);
 
-  // Initial fetch
   useEffect(() => {
     fetchConversations();
   }, [fetchConversations]);
 
-  const handleStatusChange = (id: string, newStatus: ConversationStatus) => {
+  const handleStatusChange = async (id: string, newStatus: ConversationStatus) => {
+    // Optimistic update
     setConversations(prev =>
       prev.map(c => c.id === id ? { ...c, status: newStatus } : c)
     );
 
-    // Persist status to localStorage
-    const savedStatuses = loadStatuses();
-    savedStatuses[id] = newStatus;
-    saveStatuses(savedStatuses);
+    // Persist to Supabase
+    if (dataSource === 'supabase') {
+      try {
+        await fetch('/api/reddit', {
+          method: 'PATCH',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ id, status: newStatus }),
+        });
+      } catch (err) {
+        console.error('Failed to update status in Supabase:', err);
+      }
+    }
   };
 
-  const handleClearQueue = () => {
-    // Dismiss all new and in_progress items — preserve completed items
-    const savedStatuses = loadStatuses();
+  const handleClearQueue = async () => {
+    // Optimistic update
     setConversations(prev =>
       prev.map(c => {
         if (c.status === 'new' || c.status === 'in_progress') {
-          savedStatuses[c.id] = 'dismissed';
           return { ...c, status: 'dismissed' as ConversationStatus };
         }
         return c;
       })
     );
-    saveStatuses(savedStatuses);
+
+    // Persist to Supabase
+    if (dataSource === 'supabase') {
+      try {
+        await fetch('/api/reddit', {
+          method: 'PATCH',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ action: 'clear_queue' }),
+        });
+      } catch (err) {
+        console.error('Failed to clear queue in Supabase:', err);
+      }
+    }
   };
 
   const filteredConversations = activeFilter === 'all'
@@ -214,8 +217,8 @@ export default function QueuePage() {
       {isLoading && (
         <div className="bg-white rounded-xl border border-border p-12 text-center">
           <Loader2 size={24} className="animate-spin text-navy mx-auto mb-3" />
-          <p className="text-[15px] text-dark font-medium">Scanning Reddit...</p>
-          <p className="text-[13px] text-muted mt-1">Searching across 7 subreddits for matching conversations.</p>
+          <p className="text-[15px] text-dark font-medium">Loading queue...</p>
+          <p className="text-[13px] text-muted mt-1">Fetching conversations from the database.</p>
         </div>
       )}
 
@@ -223,9 +226,9 @@ export default function QueuePage() {
       {error && !isLoading && (
         <div className="bg-white rounded-xl border border-border p-12 text-center">
           <WifiOff size={24} className="text-muted mx-auto mb-3" />
-          <p className="text-[15px] text-dark font-medium">Could not connect to Reddit data</p>
+          <p className="text-[15px] text-dark font-medium">Could not load conversations</p>
           <p className="text-[13px] text-muted mt-1 max-w-md mx-auto">
-            Check that XPOZ_API_KEY is set in your environment variables. The Queue will show live Reddit data once the connection is active.
+            Check that Supabase is configured. The Queue will show conversations once the database connection is active.
           </p>
           <button
             onClick={() => fetchConversations()}
@@ -254,7 +257,8 @@ export default function QueuePage() {
               ))}
               {lastFetchedAt && (
                 <p className="text-[11px] text-muted text-center pt-2">
-                  Last updated: {new Date(lastFetchedAt).toLocaleString()}
+                  Last scan: {new Date(lastFetchedAt).toLocaleString()}
+                  {dataSource === 'supabase' && ' (from database)'}
                 </p>
               )}
             </>
