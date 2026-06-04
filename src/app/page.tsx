@@ -137,28 +137,36 @@ export default function QueuePage() {
     );
   };
 
-  const handleClearQueue = async () => {
-    // Optimistic update
-    setConversations(prev =>
-      prev.map(c => {
-        if (c.status === 'new' || c.status === 'in_progress') {
-          return { ...c, status: 'dismissed' as ConversationStatus };
-        }
-        return c;
-      })
-    );
-
-    // Persist to Supabase
-    if (dataSource === 'supabase') {
-      try {
-        await fetch('/api/reddit', {
-          method: 'PATCH',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ action: 'clear_queue' }),
-        });
-      } catch (err) {
-        console.error('Failed to clear queue in Supabase:', err);
+  const handleScanNow = async () => {
+    setIsRefreshing(true);
+    try {
+      const res = await fetch('/api/scan', { method: 'POST' });
+      const data = await res.json();
+      if (!res.ok || data.error) {
+        console.error('Scan failed:', data.error);
       }
+      // Refresh the queue to show new posts
+      await fetchConversations();
+    } catch (err) {
+      console.error('Scan error:', err);
+    } finally {
+      setIsRefreshing(false);
+    }
+  };
+
+  const handleClearQueue = async () => {
+    // Optimistic update — remove new/in_progress from view
+    setConversations(prev => prev.filter(c => c.status !== 'new' && c.status !== 'in_progress'));
+
+    // Delete from Supabase
+    try {
+      await fetch('/api/reddit', {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ action: 'clear_queue' }),
+      });
+    } catch (err) {
+      console.error('Failed to clear queue in Supabase:', err);
     }
   };
 
@@ -205,7 +213,7 @@ export default function QueuePage() {
             </button>
           )}
           <button
-            onClick={() => fetchConversations(true)}
+            onClick={handleScanNow}
             disabled={isRefreshing}
             className="flex items-center gap-2 px-4 py-2.5 rounded-lg border border-border bg-white text-[13px] font-medium text-dark hover:bg-surface transition-colors disabled:opacity-50"
           >
@@ -214,7 +222,7 @@ export default function QueuePage() {
             ) : (
               <RefreshCw size={14} />
             )}
-            {isRefreshing ? 'Scanning...' : 'Scan now'}
+            {isRefreshing ? 'Scanning Reddit...' : 'Scan now'}
           </button>
         </div>
       </div>

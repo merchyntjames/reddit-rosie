@@ -112,28 +112,36 @@ export async function PATCH(request: Request) {
       action?: 'clear_queue';
     };
 
-    // Bulk action: clear all new/in_progress items
+    // Bulk action: delete all new/in_progress items from the queue
     if (action === 'clear_queue') {
-      const { data: cleared, error } = await supabase
+      // First get the items we're about to delete (for logging)
+      const { data: toDelete } = await supabase
         .from('conversations')
-        .update({ status: 'dismissed', status_changed_at: new Date().toISOString() })
-        .in('status', ['new', 'in_progress'])
-        .select('id, title, subreddit');
+        .select('id, title, subreddit')
+        .in('status', ['new', 'in_progress']);
+
+      // Delete them
+      const { error } = await supabase
+        .from('conversations')
+        .delete()
+        .in('status', ['new', 'in_progress']);
 
       if (error) throw new Error(error.message);
 
       // Log the clear action
-      if (cleared && cleared.length > 0) {
+      if (toDelete && toDelete.length > 0) {
         await supabase.from('activity_log').insert(
-          cleared.map(c => ({
+          toDelete.map(c => ({
             action: 'cleared',
             conversation_id: c.id,
             subreddit: c.subreddit,
             post_title: c.title,
-            details: 'Cleared from queue',
+            details: 'Deleted from queue',
           }))
         );
       }
+
+      const cleared = toDelete;
 
       return NextResponse.json({
         success: true,
