@@ -116,6 +116,12 @@ export default function QueuePage() {
     }
   };
 
+  const handleDraftsGenerated = (id: string, corporate: string, personal: string) => {
+    setConversations(prev =>
+      prev.map(c => c.id === id ? { ...c, corporateDraft: corporate, personalDraft: personal } : c)
+    );
+  };
+
   const handleClearQueue = async () => {
     // Optimistic update
     setConversations(prev =>
@@ -253,6 +259,7 @@ export default function QueuePage() {
                   key={conversation.id}
                   conversation={conversation}
                   onStatusChange={handleStatusChange}
+                  onDraftsGenerated={handleDraftsGenerated}
                 />
               ))}
               {lastFetchedAt && (

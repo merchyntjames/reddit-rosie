@@ -11,6 +11,8 @@ import {
   Tag,
   Clock,
   Info,
+  Sparkles,
+  Loader2,
 } from 'lucide-react';
 import { Conversation } from '@/lib/types';
 import { DraftPanel } from './DraftPanel';
@@ -18,6 +20,7 @@ import { DraftPanel } from './DraftPanel';
 interface ConversationCardProps {
   conversation: Conversation;
   onStatusChange: (id: string, status: Conversation['status']) => void;
+  onDraftsGenerated?: (id: string, corporate: string, personal: string) => void;
 }
 
 function timeAgo(dateStr: string): string {
@@ -76,8 +79,31 @@ function StatusBadge({ status }: { status: Conversation['status'] }) {
   );
 }
 
-export function ConversationCard({ conversation, onStatusChange }: ConversationCardProps) {
+export function ConversationCard({ conversation, onStatusChange, onDraftsGenerated }: ConversationCardProps) {
   const [isExpanded, setIsExpanded] = useState(false);
+  const [isGenerating, setIsGenerating] = useState(false);
+  const [generateError, setGenerateError] = useState<string | null>(null);
+
+  const handleGenerateDrafts = async () => {
+    setIsGenerating(true);
+    setGenerateError(null);
+    try {
+      const res = await fetch('/api/drafts', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ conversationId: conversation.id }),
+      });
+      const data = await res.json();
+      if (!res.ok || data.error) {
+        throw new Error(data.error || 'Failed to generate drafts');
+      }
+      onDraftsGenerated?.(conversation.id, data.corporate, data.personal);
+    } catch (err) {
+      setGenerateError(String(err));
+    } finally {
+      setIsGenerating(false);
+    }
+  };
 
   return (
     <div className="bg-white rounded-xl border border-border transition-shadow hover:shadow-sm">
@@ -179,8 +205,31 @@ export function ConversationCard({ conversation, onStatusChange }: ConversationC
               />
             ) : (
               <div className="p-5 text-center">
-                <p className="text-[13px] text-muted">AI drafts will appear here once Claude API is connected.</p>
-                <p className="text-[11px] text-muted mt-1">For now, view the conversation on Reddit and compose your reply manually.</p>
+                <button
+                  onClick={handleGenerateDrafts}
+                  disabled={isGenerating}
+                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-navy text-white text-[13px] font-medium hover:bg-navy/90 transition-colors disabled:opacity-50"
+                >
+                  {isGenerating ? (
+                    <>
+                      <Loader2 size={14} className="animate-spin" />
+                      Generating drafts...
+                    </>
+                  ) : (
+                    <>
+                      <Sparkles size={14} />
+                      Generate AI Drafts
+                    </>
+                  )}
+                </button>
+                {generateError && (
+                  <p className="text-[12px] text-pink mt-2">{generateError}</p>
+                )}
+                {!isGenerating && !generateError && (
+                  <p className="text-[11px] text-muted mt-2">
+                    Creates corporate and personal voice drafts using your brand context.
+                  </p>
+                )}
               </div>
             )
           )}
