@@ -1,5 +1,6 @@
 'use client';
 
+import { useState, useEffect } from 'react';
 import { Conversation } from '@/lib/types';
 
 interface StatCardProps {
@@ -23,21 +24,42 @@ interface StatsBarProps {
 }
 
 export function StatsBar({ conversations }: StatsBarProps) {
-  const newCount = conversations.filter(c => c.status === 'new').length;
-  const total = conversations.length;
-  const completed = conversations.filter(c => c.status === 'completed').length;
+  const [totalTracked30d, setTotalTracked30d] = useState<number | null>(null);
+  const [totalResponded, setTotalResponded] = useState<number | null>(null);
+
+  // Fetch historical stats from Supabase
+  useEffect(() => {
+    fetch('/api/stats')
+      .then(res => res.json())
+      .then(data => {
+        if (data.totalTracked30d !== undefined) setTotalTracked30d(data.totalTracked30d);
+        if (data.totalResponded !== undefined) setTotalResponded(data.totalResponded);
+      })
+      .catch(() => {});
+  }, []);
+
+  const readyForReview = conversations.filter(c => c.status === 'new').length;
   const nonDismissed = conversations.filter(c => c.status !== 'dismissed');
-  const avgRelevance = nonDismissed.length > 0
+  const avgQuality = nonDismissed.length > 0
     ? Math.round(nonDismissed.reduce((sum, c) => sum + c.relevanceScore, 0) / nonDismissed.length)
     : 0;
-  const responseRate = total > 0 ? Math.round((completed / total) * 100) : 0;
 
   return (
     <div className="grid grid-cols-4 gap-4 mb-6">
-      <StatCard label="New" value={newCount} />
-      <StatCard label="Total Tracked" value={total} sublabel="Last 7 days" />
-      <StatCard label="Responded" value={completed} sublabel={`${responseRate}% response rate`} />
-      <StatCard label="Avg Relevance" value={avgRelevance} sublabel="Higher = better match" />
+      <StatCard label="Ready For Review" value={readyForReview} />
+      <StatCard
+        label="Total Tracked"
+        value={totalTracked30d ?? conversations.length}
+        sublabel="Last 30 days"
+      />
+      <StatCard
+        label="Total Responded"
+        value={totalResponded ?? conversations.filter(c => c.status === 'completed').length}
+      />
+      <StatCard
+        label="Avg Quality Score"
+        value={`${avgQuality} / 100`}
+      />
     </div>
   );
 }
