@@ -9,7 +9,7 @@ import { RefreshCw, Loader2, Wifi, WifiOff, Trash2 } from 'lucide-react';
 
 export default function QueuePage() {
   const [conversations, setConversations] = useState<Conversation[]>([]);
-  const [activeFilter, setActiveFilter] = useState<ConversationStatus | 'all'>('all');
+  const [activeFilter, setActiveFilter] = useState<ConversationStatus | 'all'>('new');
   const [isLoading, setIsLoading] = useState(true);
   const [isRefreshing, setIsRefreshing] = useState(false);
   const [error, setError] = useState<string | null>(null);

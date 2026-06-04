@@ -30,9 +30,17 @@ export async function GET(request: Request) {
       .select('*')
       .order('relevance_score', { ascending: false });
 
-    // Filter by status if specified (otherwise return all non-dismissed)
-    if (status && status !== 'all') {
+    // Filter by status
+    if (status === 'all') {
+      // "All" shows everything except dismissed
+      query = query.neq('status', 'dismissed');
+    } else if (status === 'dismissed') {
+      query = query.eq('status', 'dismissed');
+    } else if (status) {
       query = query.eq('status', status);
+    } else {
+      // Default: exclude dismissed
+      query = query.neq('status', 'dismissed');
     }
 
     const { data, error } = await query;
