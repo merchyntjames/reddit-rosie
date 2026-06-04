@@ -13,7 +13,7 @@ export async function POST(request: Request) {
     }
 
     const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
-    const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
+    const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY;
 
     if (!supabaseUrl || !supabaseKey) {
       return NextResponse.json({ error: 'Supabase not configured' }, { status: 503 });
@@ -21,35 +21,23 @@ export async function POST(request: Request) {
 
     const supabase = createClient(supabaseUrl, supabaseKey);
 
-    const { error } = await supabase.auth.admin.generateLink({
-      type: 'magiclink',
-      email,
-      options: {
-        redirectTo: `${new URL(request.url).origin}/api/auth/callback`,
-      },
-    });
-
-    if (error) {
-      // If the domain trigger blocks signup, catch it
-      if (error.message.includes('merchynt.com')) {
-        return NextResponse.json(
-          { error: 'Only @merchynt.com email addresses are allowed.' },
-          { status: 400 }
-        );
-      }
-      throw error;
-    }
-
-    // Use the standard signInWithOtp for magic link email delivery
-    const publicSupabase = createClient(supabaseUrl, process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY!);
-    const { error: otpError } = await publicSupabase.auth.signInWithOtp({
+    // Single call — sends the magic link email
+    const { error } = await supabase.auth.signInWithOtp({
       email,
       options: {
         emailRedirectTo: `${new URL(request.url).origin}/api/auth/callback`,
       },
     });
 
-    if (otpError) throw otpError;
+    if (error) {
+      if (error.message.includes('59 seconds')) {
+        return NextResponse.json(
+          { error: 'Please wait 60 seconds between login attempts.' },
+          { status: 429 }
+        );
+      }
+      throw error;
+    }
 
     return NextResponse.json({ success: true });
   } catch (error) {
