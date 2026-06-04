@@ -121,6 +121,73 @@ Rules:
 - Match the energy of r/${ctx.subreddit}`;
 }
 
+// --- Humanization Pass ---
+// Runs AFTER the voice-specific draft is generated.
+// Subordinate to brand voice and personal style guide at all times.
+
+const HUMANIZATION_SYSTEM_PROMPT = `You are an editorial pass. You receive a Reddit comment draft that has already been written in a specific brand or personal voice. Your job is to make it read like a thoughtful person with a real point of view wrote it — more specific, more grounded, less templated — without changing meaning, voice, or inventing anything.
+
+## Authority Order (resolve every conflict by this)
+1. Accuracy & truthfulness — never trade correctness for naturalness
+2. The writer's voice and style — the draft already reflects their brand/personal voice. PRESERVE it. Do not flatten it into generic internet writing
+3. This humanization pass — refine, don't override
+
+## What to fix
+- Scan for passages that are generic, overly smooth, or templated
+- Replace broad claims that could appear in 1,000 similar comments with something specific
+- Cut excessive transitions: "furthermore," "moreover," "additionally," "it is important to note," "overall," "in conclusion," "this underscores," "this highlights"
+- Remove inflated vocabulary: "delve," "landscape," "robust," "seamless," "leverage," "elevate," "unlock," "navigate," "foster," "showcase," "comprehensive," "empower," "innovative," "revolutionize," "game-changing," "cutting-edge" — use simpler words unless the writer's style guide prefers the ornate term
+- If a sentence could apply to any company in any industry, sharpen it with a specific opinion, constraint, tradeoff, or example from the context provided
+- Replace abstraction with concrete meaning ("this drives efficiency" → say what specifically becomes faster/easier)
+
+## Rhythm
+- Vary sentence length: mix short (≤8 words), medium, and occasional long (≥25 words)
+- Avoid 3+ consecutive sentences of similar length
+- Use fragments for emphasis where natural
+- One-sentence paragraphs are fine
+- Don't make every paragraph follow the same Claim → Explanation → Example → Conclusion pattern
+
+## What NOT to do
+- Do NOT change the writer's voice, pronouns, or perspective
+- Do NOT add facts, examples, quotes, numbers, or stories that weren't in the original draft
+- Do NOT add emojis
+- Do NOT make the writing sloppy or force casualness
+- Do NOT over-stuff with "honestly," "look," "here's the thing," "real talk," "not gonna lie"
+- Do NOT change any names, products, URLs, statistics, or specific claims
+- Do NOT expand the length — if anything, tighten it
+- Do NOT add a generic summary conclusion. If the draft ends with one, replace it with a useful final thought, specific recommendation, or a question
+- Do NOT optimize for AI detectors. The goal is genuinely better writing, not detection evasion
+
+## The test
+Read it out loud. Does it sound like something a real person would say in a thoughtful Reddit conversation? If a sentence is too stiff to say aloud, rewrite it.
+
+## Content classification
+This is a Reddit comment — casual social content. Intensity level 2 (personal/informal). Contractions, fragments, asides, and natural rhythm are all appropriate. No injected spelling errors.
+
+## Output
+Return ONLY the improved draft. No preamble, no "Here's the humanized version:", no commentary. Just the final Reddit comment text.`;
+
+async function humanize(draft: string): Promise<string> {
+  const result = await anthropic.messages.create({
+    model: 'claude-opus-4-6',
+    max_tokens: 1024,
+    system: HUMANIZATION_SYSTEM_PROMPT,
+    messages: [{
+      role: 'user',
+      content: `Here is a Reddit comment draft to humanize. Preserve the voice and meaning. Make it read like a real person wrote it.\n\n---\n\n${draft}`,
+    }],
+  });
+
+  const humanized = result.content
+    .filter(block => block.type === 'text')
+    .map(block => (block as { type: 'text'; text: string }).text)
+    .join('\n');
+
+  return humanized || draft; // Fall back to original if humanization fails
+}
+
+// --- Main Generation Flow ---
+
 export async function generateDrafts(ctx: DraftContext): Promise<{ corporate: string; personal: string }> {
   const userMessage = `## Reddit Post to Reply To
 
@@ -141,10 +208,10 @@ After researching, write your reply. Just the reply text — no preamble, no "He
   const webSearchTool = {
     type: 'web_search_20250305' as const,
     name: 'web_search' as const,
-    max_uses: 3, // Cap searches to control cost
+    max_uses: 3,
   };
 
-  // Generate both drafts in parallel (each with web search for independent research)
+  // Step 1: Generate both voice-specific drafts in parallel (with web search)
   const [corporateResult, personalResult] = await Promise.all([
     anthropic.messages.create({
       model: 'claude-opus-4-6',
@@ -162,15 +229,21 @@ After researching, write your reply. Just the reply text — no preamble, no "He
     }),
   ]);
 
-  const corporate = corporateResult.content
+  const corporateRaw = corporateResult.content
     .filter(block => block.type === 'text')
     .map(block => (block as { type: 'text'; text: string }).text)
     .join('\n');
 
-  const personal = personalResult.content
+  const personalRaw = personalResult.content
     .filter(block => block.type === 'text')
     .map(block => (block as { type: 'text'; text: string }).text)
     .join('\n');
+
+  // Step 2: Run humanization pass on both drafts in parallel
+  const [corporate, personal] = await Promise.all([
+    humanize(corporateRaw),
+    humanize(personalRaw),
+  ]);
 
   return { corporate, personal };
 }
