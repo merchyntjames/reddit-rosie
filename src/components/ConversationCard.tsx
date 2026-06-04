@@ -15,12 +15,12 @@ import {
   Loader2,
 } from 'lucide-react';
 import { Conversation } from '@/lib/types';
-import { DraftPanel } from './DraftPanel';
+import { DraftPanel, type DraftItem } from './DraftPanel';
 
 interface ConversationCardProps {
   conversation: Conversation;
   onStatusChange: (id: string, status: Conversation['status']) => void;
-  onDraftsGenerated?: (id: string, corporate: string, personal: string) => void;
+  onDraftsGenerated?: (id: string, drafts: DraftItem[]) => void;
 }
 
 function timeAgo(dateStr: string): string {
@@ -93,6 +93,7 @@ export function ConversationCard({ conversation, onStatusChange, onDraftsGenerat
   const [isExpanded, setIsExpanded] = useState(false);
   const [isGenerating, setIsGenerating] = useState(false);
   const [generateError, setGenerateError] = useState<string | null>(null);
+  const [drafts, setDrafts] = useState<DraftItem[]>([]);
   const [showDismissModal, setShowDismissModal] = useState(false);
   const [dismissReason, setDismissReason] = useState('');
   const [dismissCustom, setDismissCustom] = useState('');
@@ -140,12 +141,32 @@ export function ConversationCard({ conversation, onStatusChange, onDraftsGenerat
       if (!res.ok || data.error) {
         throw new Error(data.error || 'Failed to generate drafts');
       }
-      onDraftsGenerated?.(conversation.id, data.corporate, data.personal);
+      setDrafts(data.drafts);
+      onDraftsGenerated?.(conversation.id, data.drafts);
     } catch (err) {
       setGenerateError(String(err));
     } finally {
       setIsGenerating(false);
     }
+  };
+
+  // Load cached drafts on expand if we have old-style drafts
+  const hasDrafts = drafts.length > 0 || conversation.corporateDraft || conversation.personalDraft;
+
+  // Convert legacy single drafts to multi-draft format
+  const displayDrafts: DraftItem[] = drafts.length > 0
+    ? drafts
+    : [
+        ...(conversation.corporateDraft ? [{ draftType: 'corporate' as const, creatorId: null, creatorName: 'Merchynt Response', content: conversation.corporateDraft }] : []),
+        ...(conversation.personalDraft ? [{ draftType: 'personal' as const, creatorId: '1', creatorName: 'James Sowers', content: conversation.personalDraft }] : []),
+      ];
+
+  const handleDraftUpdated = (draftType: string, creatorId: string | null, newContent: string) => {
+    setDrafts(prev => prev.map(d =>
+      d.draftType === draftType && d.creatorId === creatorId
+        ? { ...d, content: newContent, version: (d.version ?? 1) + 1 }
+        : d
+    ));
   };
 
   return (
@@ -238,10 +259,11 @@ export function ConversationCard({ conversation, onStatusChange, onDraftsGenerat
         <div className="border-t border-border">
           {/* Draft Panel */}
           {conversation.status !== 'dismissed' && (
-            conversation.corporateDraft || conversation.personalDraft ? (
+            displayDrafts.length > 0 ? (
               <DraftPanel
-                corporateDraft={conversation.corporateDraft}
-                personalDraft={conversation.personalDraft}
+                drafts={displayDrafts}
+                conversationId={conversation.id}
+                onDraftUpdated={handleDraftUpdated}
               />
             ) : (
               <div className="p-5 text-center">

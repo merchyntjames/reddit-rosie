@@ -4,63 +4,74 @@ const anthropic = new Anthropic({
   apiKey: process.env.ANTHROPIC_API_KEY,
 });
 
-interface DraftContext {
-  // Post info
-  postTitle: string;
-  postBody: string;
-  subreddit: string;
-  postAuthor: string;
+// --- Types ---
 
-  // Brand context
+interface BrandContext {
   companyOverview: string;
   products: { name: string; description: string; keyFeatures: string }[];
   competitorContext: string;
   keyStats: string;
-
-  // Voice context
   brandVoice: string;
   redditGuidelines: string;
   topicsToAvoid: string;
   approvedTerminology: string;
   sampleResponses: string[];
-
-  // Creator context (for personal voice)
-  creatorName: string;
-  creatorRole: string;
-  creatorVoice: string;
-  creatorPersonaNotes: string;
-  creatorExpertise: string;
 }
 
-function buildCorporateSystemPrompt(ctx: DraftContext): string {
+interface CreatorContext {
+  id: string;
+  name: string;
+  role: string;
+  voiceDescription: string;
+  redditPersonaNotes: string;
+  topicsOfExpertise: string;
+}
+
+interface PostContext {
+  postTitle: string;
+  postBody: string;
+  subreddit: string;
+  postAuthor: string;
+}
+
+export interface GeneratedDraft {
+  draftType: 'corporate' | 'personal';
+  creatorId: string | null;
+  creatorName: string;
+  content: string;
+}
+
+// --- System Prompts ---
+
+function buildCorporateSystemPrompt(brand: BrandContext): string {
   return `You are drafting a Reddit reply on behalf of the Merchynt brand account. Your goal is to add genuine value to the conversation while subtly raising awareness of Merchynt and its products when naturally relevant.
 
 ## Company Context
-${ctx.companyOverview}
+${brand.companyOverview}
 
 ## Products
-${ctx.products.map(p => `### ${p.name}\n${p.description}\n${p.keyFeatures}`).join('\n\n')}
+${brand.products.map(p => `### ${p.name}\n${p.description}\n${p.keyFeatures}`).join('\n\n')}
 
 ## Competitor Landscape
-${ctx.competitorContext}
+${brand.competitorContext}
 
 ## Key Stats & Proof Points
-${ctx.keyStats}
+${brand.keyStats}
 
 ## Brand Voice
-${ctx.brandVoice}
+${brand.brandVoice}
 
 ## Reddit-Specific Guidelines
-${ctx.redditGuidelines}
+${brand.redditGuidelines}
 
 ## Topics to Avoid
-${ctx.topicsToAvoid}
+${brand.topicsToAvoid}
 
 ## Approved Terminology
-${ctx.approvedTerminology}
+${brand.approvedTerminology}
 
 ## Example Responses (for tone reference only — do not copy)
-${ctx.sampleResponses.map((r, i) => `Example ${i + 1}:\n${r}`).join('\n\n')}
+${brand.sampleResponses.map((r, i) => `Example ${i + 1}:\n${r}`).join('\n\n')}
 
 ## Your Task
 Write a reply to the Reddit post below. Use we/us/our pronouns (you are representing Merchynt as a company).
@@ -74,37 +85,37 @@ Rules:
 - Keep it concise — aim for 100-200 words. Reddit rewards substance, not length
 - No emojis. No marketing fluff. No "game-changer" or "revolutionary"
 - Write in short paragraphs. Use line breaks between thoughts
-- Match the tone of r/${ctx.subreddit} (technical subreddits expect more depth, general ones expect simpler language)`;
+- Match the tone of the subreddit (technical subreddits expect more depth, general ones expect simpler language)`;
 }
 
-function buildPersonalSystemPrompt(ctx: DraftContext): string {
-  return `You are drafting a Reddit reply as ${ctx.creatorName} (${ctx.creatorRole} at Merchynt), posting from a personal account. Your goal is to be a helpful, knowledgeable community member who happens to work in local SEO.
+function buildPersonalSystemPrompt(brand: BrandContext, creator: CreatorContext): string {
+  return `You are drafting a Reddit reply as ${creator.name} (${creator.role} at Merchynt), posting from a personal account. Your goal is to be a helpful, knowledgeable community member who happens to work in local SEO.
 
 ## About You
-Name: ${ctx.creatorName}
-Role: ${ctx.creatorRole}
-Voice: ${ctx.creatorVoice}
+Name: ${creator.name}
+Role: ${creator.role}
+Voice: ${creator.voiceDescription}
 
 ## Your Reddit Persona
-${ctx.creatorPersonaNotes}
+${creator.redditPersonaNotes}
 
 ## Your Areas of Expertise
-${ctx.creatorExpertise}
+${creator.topicsOfExpertise}
 
 ## Company Context (for accuracy — not for pitching)
-${ctx.companyOverview}
+${brand.companyOverview}
 
 ## Products You Use Daily
-${ctx.products.map(p => `- ${p.name}: ${p.description}`).join('\n')}
+${brand.products.map(p => `- ${p.name}: ${p.description}`).join('\n')}
 
 ## Key Stats You Can Reference
-${ctx.keyStats}
+${brand.keyStats}
 
 ## Topics to Avoid
-${ctx.topicsToAvoid}
+${brand.topicsToAvoid}
 
 ## Approved Terminology
-${ctx.approvedTerminology}
+${brand.approvedTerminology}
 
 ## Your Task
 Write a reply to the Reddit post below. Use I/me/my pronouns (you are posting as an individual, not a brand).
@@ -118,12 +129,10 @@ Rules:
 - Acknowledge tradeoffs honestly. If a competitor is genuinely better for the use case, say so
 - Keep it under 200 words. Short paragraphs. Conversational tone
 - No emojis. Mild profanity okay (damn, hell) but never aggressive
-- Match the energy of r/${ctx.subreddit}`;
+- Match the energy of the subreddit`;
 }
 
 // --- Humanization Pass ---
-// Runs AFTER the voice-specific draft is generated.
-// Subordinate to brand voice and personal style guide at all times.
 
 const HUMANIZATION_SYSTEM_PROMPT = `You are an editorial pass. You receive a Reddit comment draft that has already been written in a specific brand or personal voice. Your job is to make it read like a thoughtful person with a real point of view wrote it — more specific, more grounded, less templated — without changing meaning, voice, or inventing anything.
 
@@ -141,11 +150,11 @@ const HUMANIZATION_SYSTEM_PROMPT = `You are an editorial pass. You receive a Red
 - Replace abstraction with concrete meaning ("this drives efficiency" → say what specifically becomes faster/easier)
 
 ## Rhythm
-- Vary sentence length: mix short (≤8 words), medium, and occasional long (≥25 words)
+- Vary sentence length: mix short (8 words or fewer), medium, and occasional long (25+ words)
 - Avoid 3+ consecutive sentences of similar length
 - Use fragments for emphasis where natural
 - One-sentence paragraphs are fine
-- Don't make every paragraph follow the same Claim → Explanation → Example → Conclusion pattern
+- Don't make every paragraph follow the same Claim then Explanation then Example then Conclusion pattern
 
 ## What NOT to do
 - Do NOT change the writer's voice, pronouns, or perspective
@@ -158,14 +167,8 @@ const HUMANIZATION_SYSTEM_PROMPT = `You are an editorial pass. You receive a Red
 - Do NOT add a generic summary conclusion. If the draft ends with one, replace it with a useful final thought, specific recommendation, or a question
 - Do NOT optimize for AI detectors. The goal is genuinely better writing, not detection evasion
 
-## The test
-Read it out loud. Does it sound like something a real person would say in a thoughtful Reddit conversation? If a sentence is too stiff to say aloud, rewrite it.
-
-## Content classification
-This is a Reddit comment — casual social content. Intensity level 2 (personal/informal). Contractions, fragments, asides, and natural rhythm are all appropriate. No injected spelling errors.
-
 ## Output
-Return ONLY the improved draft. No preamble, no "Here's the humanized version:", no commentary. Just the final Reddit comment text.`;
+Return ONLY the improved draft. No preamble, no commentary. Just the final Reddit comment text.`;
 
 async function humanize(draft: string): Promise<string> {
   const result = await anthropic.messages.create({
@@ -183,67 +186,139 @@ async function humanize(draft: string): Promise<string> {
     .map(block => (block as { type: 'text'; text: string }).text)
     .join('\n');
 
-  return humanized || draft; // Fall back to original if humanization fails
+  return humanized || draft;
 }
 
-// --- Main Generation Flow ---
+// --- Main Generation ---
 
-export async function generateDrafts(ctx: DraftContext): Promise<{ corporate: string; personal: string }> {
-  const userMessage = `## Reddit Post to Reply To
+function buildUserMessage(post: PostContext): string {
+  return `## Reddit Post to Reply To
 
-**Subreddit:** r/${ctx.subreddit}
-**Title:** ${ctx.postTitle}
-**Posted by:** ${ctx.postAuthor}
+**Subreddit:** r/${post.subreddit}
+**Title:** ${post.postTitle}
+**Posted by:** ${post.postAuthor}
 
 **Post Body:**
-${ctx.postBody || '(no body text — title only)'}
+${post.postBody || '(no body text — title only)'}
 
 Before writing your reply, use web search to research the topic so your response is grounded in current, accurate information. Search for:
 1. The specific topic being discussed (current best practices, recent changes, latest data)
 2. Any tools, services, or techniques mentioned in the post (verify claims, check current status)
 
 After researching, write your reply. Just the reply text — no preamble, no "Here's my reply:", no "Based on my research:", just the actual comment you'd post on Reddit. The reply should reflect current knowledge without explicitly saying "I searched for this."`;
+}
 
-  // Web search tool — Claude researches the topic before drafting
+function extractText(result: Anthropic.Message): string {
+  return result.content
+    .filter(block => block.type === 'text')
+    .map(block => (block as { type: 'text'; text: string }).text)
+    .join('\n');
+}
+
+export async function generateDrafts(
+  post: PostContext,
+  brand: BrandContext,
+  creators: CreatorContext[],
+): Promise<GeneratedDraft[]> {
+  const userMessage = buildUserMessage(post);
+
   const webSearchTool = {
     type: 'web_search_20250305' as const,
     name: 'web_search' as const,
     max_uses: 3,
   };
 
-  // Step 1: Generate both voice-specific drafts in parallel (with web search)
-  const [corporateResult, personalResult] = await Promise.all([
+  // Step 1: Generate all voice-specific drafts in parallel
+  const draftPromises: Promise<{ draft: GeneratedDraft; raw: string }>[] = [];
+
+  // Corporate draft
+  draftPromises.push(
     anthropic.messages.create({
       model: 'claude-opus-4-6',
       max_tokens: 2048,
-      system: buildCorporateSystemPrompt(ctx),
+      system: buildCorporateSystemPrompt(brand),
       tools: [webSearchTool],
       messages: [{ role: 'user', content: userMessage }],
-    }),
-    anthropic.messages.create({
-      model: 'claude-opus-4-6',
-      max_tokens: 2048,
-      system: buildPersonalSystemPrompt(ctx),
-      tools: [webSearchTool],
-      messages: [{ role: 'user', content: userMessage }],
-    }),
-  ]);
+    }).then(result => ({
+      draft: { draftType: 'corporate' as const, creatorId: null, creatorName: 'Merchynt Response', content: '' },
+      raw: extractText(result),
+    }))
+  );
 
-  const corporateRaw = corporateResult.content
-    .filter(block => block.type === 'text')
-    .map(block => (block as { type: 'text'; text: string }).text)
-    .join('\n');
+  // Personal drafts — one per creator
+  for (const creator of creators) {
+    draftPromises.push(
+      anthropic.messages.create({
+        model: 'claude-opus-4-6',
+        max_tokens: 2048,
+        system: buildPersonalSystemPrompt(brand, creator),
+        tools: [webSearchTool],
+        messages: [{ role: 'user', content: userMessage }],
+      }).then(result => ({
+        draft: { draftType: 'personal' as const, creatorId: creator.id, creatorName: creator.name, content: '' },
+        raw: extractText(result),
+      }))
+    );
+  }
 
-  const personalRaw = personalResult.content
-    .filter(block => block.type === 'text')
-    .map(block => (block as { type: 'text'; text: string }).text)
-    .join('\n');
+  const rawResults = await Promise.all(draftPromises);
 
-  // Step 2: Run humanization pass on both drafts in parallel
-  const [corporate, personal] = await Promise.all([
-    humanize(corporateRaw),
-    humanize(personalRaw),
-  ]);
+  // Step 2: Humanization pass on all drafts in parallel
+  const humanized = await Promise.all(
+    rawResults.map(async ({ draft, raw }) => ({
+      ...draft,
+      content: await humanize(raw),
+    }))
+  );
 
-  return { corporate, personal };
+  return humanized;
+}
+
+// --- Re-Roll ---
+
+export async function rerollDraft(
+  post: PostContext,
+  brand: BrandContext,
+  creator: CreatorContext | null,
+  previousDraft: string,
+  feedback: string,
+): Promise<string> {
+  const isPersonal = creator !== null;
+  const systemPrompt = isPersonal
+    ? buildPersonalSystemPrompt(brand, creator)
+    : buildCorporateSystemPrompt(brand);
+
+  const userMessage = `## Reddit Post to Reply To
+
+**Subreddit:** r/${post.subreddit}
+**Title:** ${post.postTitle}
+**Posted by:** ${post.postAuthor}
+
+**Post Body:**
+${post.postBody || '(no body text — title only)'}
+
+## Previous Draft
+${previousDraft}
+
+## Feedback for Revision
+${feedback}
+
+Rewrite the draft incorporating the feedback above. Use web search if you need to verify any facts or find updated information. Just output the revised reply text — no preamble, no commentary.`;
+
+  const webSearchTool = {
+    type: 'web_search_20250305' as const,
+    name: 'web_search' as const,
+    max_uses: 2,
+  };
+
+  const result = await anthropic.messages.create({
+    model: 'claude-opus-4-6',
+    max_tokens: 2048,
+    system: systemPrompt,
+    tools: [webSearchTool],
+    messages: [{ role: 'user', content: userMessage }],
+  });
+
+  const raw = extractText(result);
+  return humanize(raw);
 }

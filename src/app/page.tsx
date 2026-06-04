@@ -131,9 +131,14 @@ export default function QueuePage() {
     }
   };
 
-  const handleDraftsGenerated = (id: string, corporate: string, personal: string) => {
+  const handleDraftsGenerated = (id: string, drafts: { draftType: string; creatorId: string | null; creatorName: string; content: string }[]) => {
     setConversations(prev =>
-      prev.map(c => c.id === id ? { ...c, corporateDraft: corporate, personalDraft: personal } : c)
+      prev.map(c => {
+        if (c.id !== id) return c;
+        const corporate = drafts.find(d => d.draftType === 'corporate')?.content || '';
+        const personal = drafts.find(d => d.draftType === 'personal')?.content || '';
+        return { ...c, corporateDraft: corporate, personalDraft: personal };
+      })
     );
   };
 
