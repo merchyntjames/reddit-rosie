@@ -17,7 +17,7 @@ import {
 } from 'lucide-react';
 
 const navItems = [
-  { href: '/', label: 'Engagement Queue', icon: MessageSquareMore },
+  { href: '/queue', label: 'Engagement Queue', icon: MessageSquareMore },
   { href: '/knowledgebase', label: 'Knowledgebase', icon: Brain },
   { href: '/activity', label: 'Activity Log', icon: Activity },
   { href: '/settings', label: 'Account Settings', icon: Settings },
