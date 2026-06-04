@@ -5,7 +5,7 @@ import { StatsBar } from '@/components/StatsBar';
 import { FilterBar } from '@/components/FilterBar';
 import { ConversationCard } from '@/components/ConversationCard';
 import { Conversation, ConversationStatus } from '@/lib/types';
-import { RefreshCw, Loader2, Wifi, WifiOff, Trash2 } from 'lucide-react';
+import { RefreshCw, Loader2, Trash2, CircleDot, WifiOff } from 'lucide-react';
 
 export default function QueuePage() {
   const [conversations, setConversations] = useState<Conversation[]>([]);
@@ -16,6 +16,21 @@ export default function QueuePage() {
   const [isLive, setIsLive] = useState(false);
   const [lastFetchedAt, setLastFetchedAt] = useState<string | null>(null);
   const [dataSource, setDataSource] = useState<'supabase' | 'json' | null>(null);
+  const [scanStatus, setScanStatus] = useState<'success' | 'failed' | 'unknown'>('unknown');
+  const [lastScanTime, setLastScanTime] = useState<string | null>(null);
+
+  // Fetch scan status from API (same source as sidebar)
+  useEffect(() => {
+    fetch('/api/status')
+      .then(res => res.json())
+      .then(data => {
+        if (data.rss_scan?.status) setScanStatus(data.rss_scan.status as 'success' | 'failed' | 'unknown');
+        if (data.last_scan_time?.detail && data.last_scan_time.detail !== 'Never') {
+          setLastScanTime(data.last_scan_time.detail);
+        }
+      })
+      .catch(() => {});
+  }, []);
 
   const fetchConversations = useCallback(async (isManualRefresh = false) => {
     if (isManualRefresh) {
@@ -164,25 +179,20 @@ export default function QueuePage() {
       {/* Header */}
       <div className="flex items-center justify-between mb-6">
         <div>
-          <h1 className="text-2xl font-bold text-dark">Queue</h1>
-          <div className="flex items-center gap-3 mt-1">
-            <p className="text-[13px] text-muted">
-              Reddit conversations matching your keywords and subreddits.
-            </p>
+          <div className="flex items-center gap-3">
+            <h1 className="text-2xl font-bold text-dark">Engagement Queue</h1>
             <div className="flex items-center gap-1.5">
-              {isLive ? (
-                <>
-                  <Wifi size={12} className="text-green" />
-                  <span className="text-[11px] text-green font-medium">Live</span>
-                </>
-              ) : (
-                <>
-                  <WifiOff size={12} className="text-muted" />
-                  <span className="text-[11px] text-muted">Offline</span>
-                </>
-              )}
+              <CircleDot size={10} className={scanStatus === 'success' ? 'text-green' : scanStatus === 'failed' ? 'text-pink' : 'text-muted'} />
+              <span className={`text-[11px] font-medium ${scanStatus === 'success' ? 'text-green' : scanStatus === 'failed' ? 'text-pink' : 'text-muted'}`}>
+                {lastScanTime
+                  ? `Last updated ${new Date(lastScanTime).toLocaleString('en-US', { timeZone: 'America/New_York', month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit', hour12: true })} ET`
+                  : 'Not yet scanned'}
+              </span>
             </div>
           </div>
+          <p className="text-[13px] text-muted mt-1">
+            Reddit conversations matching your keywords and subreddits.
+          </p>
         </div>
         <div className="flex items-center gap-2">
           {counts.new > 0 && (
@@ -262,12 +272,6 @@ export default function QueuePage() {
                   onDraftsGenerated={handleDraftsGenerated}
                 />
               ))}
-              {lastFetchedAt && (
-                <p className="text-[11px] text-muted text-center pt-2">
-                  Last scan: {new Date(lastFetchedAt).toLocaleString()}
-                  {dataSource === 'supabase' && ' (from database)'}
-                </p>
-              )}
             </>
           )}
         </div>
