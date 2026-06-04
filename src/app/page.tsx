@@ -5,7 +5,7 @@ import { StatsBar } from '@/components/StatsBar';
 import { FilterBar } from '@/components/FilterBar';
 import { ConversationCard } from '@/components/ConversationCard';
 import { Conversation, ConversationStatus } from '@/lib/types';
-import { RefreshCw, Loader2, Trash2, CircleDot, WifiOff } from 'lucide-react';
+import { Loader2, CircleDot, WifiOff } from 'lucide-react';
 
 export default function QueuePage() {
   const [conversations, setConversations] = useState<Conversation[]>([]);
@@ -202,29 +202,6 @@ export default function QueuePage() {
             Reddit conversations matching your keywords and subreddits.
           </p>
         </div>
-        <div className="flex items-center gap-2">
-          {counts.new > 0 && (
-            <button
-              onClick={handleClearQueue}
-              className="flex items-center gap-2 px-4 py-2.5 rounded-lg border border-border bg-white text-[13px] font-medium text-muted hover:text-dark hover:bg-surface transition-colors"
-            >
-              <Trash2 size={14} />
-              Clear queue
-            </button>
-          )}
-          <button
-            onClick={handleScanNow}
-            disabled={isRefreshing}
-            className="flex items-center gap-2 px-4 py-2.5 rounded-lg border border-border bg-white text-[13px] font-medium text-dark hover:bg-surface transition-colors disabled:opacity-50"
-          >
-            {isRefreshing ? (
-              <Loader2 size={14} className="animate-spin" />
-            ) : (
-              <RefreshCw size={14} />
-            )}
-            {isRefreshing ? 'Scanning Reddit...' : 'Scan now'}
-          </button>
-        </div>
       </div>
 
       {/* Stats */}
@@ -235,6 +212,10 @@ export default function QueuePage() {
         activeFilter={activeFilter}
         onFilterChange={setActiveFilter}
         counts={counts}
+        onScanNow={handleScanNow}
+        onClearQueue={handleClearQueue}
+        isScanning={isRefreshing}
+        hasNewItems={counts.new > 0}
       />
 
       {/* Loading State */}

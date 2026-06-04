@@ -1,23 +1,26 @@
 'use client';
 
 import { ConversationStatus } from '@/lib/types';
-import { Search } from 'lucide-react';
+import { RefreshCw, Trash2, Loader2 } from 'lucide-react';
 
 interface FilterBarProps {
   activeFilter: ConversationStatus | 'all';
   onFilterChange: (filter: ConversationStatus | 'all') => void;
   counts: Record<ConversationStatus | 'all', number>;
+  onScanNow: () => void;
+  onClearQueue: () => void;
+  isScanning: boolean;
+  hasNewItems: boolean;
 }
 
 const filters: { key: ConversationStatus | 'all'; label: string }[] = [
   { key: 'all', label: 'All' },
-  { key: 'new', label: 'New' },
-  { key: 'in_progress', label: 'In Progress' },
+  { key: 'new', label: 'Ready For Review' },
   { key: 'completed', label: 'Completed' },
   { key: 'dismissed', label: 'Dismissed' },
 ];
 
-export function FilterBar({ activeFilter, onFilterChange, counts }: FilterBarProps) {
+export function FilterBar({ activeFilter, onFilterChange, counts, onScanNow, onClearQueue, isScanning, hasNewItems }: FilterBarProps) {
   return (
     <div className="flex items-center justify-between mb-5">
       {/* Filter Tabs */}
@@ -42,14 +45,29 @@ export function FilterBar({ activeFilter, onFilterChange, counts }: FilterBarPro
         ))}
       </div>
 
-      {/* Search */}
-      <div className="relative">
-        <Search size={15} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted" />
-        <input
-          type="text"
-          placeholder="Search conversations..."
-          className="pl-9 pr-4 py-2 rounded-lg border border-border bg-white text-[13px] text-dark placeholder:text-muted/60 focus:outline-none focus:ring-2 focus:ring-navy/20 focus:border-navy/30 w-[240px]"
-        />
+      {/* Action Buttons */}
+      <div className="flex items-center gap-2">
+        {hasNewItems && (
+          <button
+            onClick={onClearQueue}
+            className="flex items-center gap-2 px-4 py-2 rounded-lg border border-border bg-white text-[13px] font-medium text-muted hover:text-dark hover:bg-surface transition-colors"
+          >
+            <Trash2 size={14} />
+            Clear queue
+          </button>
+        )}
+        <button
+          onClick={onScanNow}
+          disabled={isScanning}
+          className="flex items-center gap-2 px-4 py-2 rounded-lg bg-blue text-white text-[13px] font-medium hover:bg-blue/90 transition-colors disabled:opacity-50"
+        >
+          {isScanning ? (
+            <Loader2 size={14} className="animate-spin" />
+          ) : (
+            <RefreshCw size={14} />
+          )}
+          {isScanning ? 'Scanning Reddit...' : 'Scan now'}
+        </button>
       </div>
     </div>
   );
