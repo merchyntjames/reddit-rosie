@@ -8,7 +8,7 @@ import {
 } from '@/lib/mock-data';
 
 export const dynamic = 'force-dynamic';
-export const maxDuration = 30; // Allow up to 30s for Claude API calls
+export const maxDuration = 60; // Opus + web search can take up to 60s
 
 function getSupabase() {
   const url = process.env.NEXT_PUBLIC_SUPABASE_URL;

@@ -131,20 +131,33 @@ export async function generateDrafts(ctx: DraftContext): Promise<{ corporate: st
 **Post Body:**
 ${ctx.postBody || '(no body text — title only)'}
 
-Write your reply now. Just the reply text — no preamble, no "Here's my reply:", just the actual comment you'd post on Reddit.`;
+Before writing your reply, use web search to research the topic so your response is grounded in current, accurate information. Search for:
+1. The specific topic being discussed (current best practices, recent changes, latest data)
+2. Any tools, services, or techniques mentioned in the post (verify claims, check current status)
 
-  // Generate both drafts in parallel
+After researching, write your reply. Just the reply text — no preamble, no "Here's my reply:", no "Based on my research:", just the actual comment you'd post on Reddit. The reply should reflect current knowledge without explicitly saying "I searched for this."`;
+
+  // Web search tool — Claude researches the topic before drafting
+  const webSearchTool = {
+    type: 'web_search_20250305' as const,
+    name: 'web_search' as const,
+    max_uses: 3, // Cap searches to control cost
+  };
+
+  // Generate both drafts in parallel (each with web search for independent research)
   const [corporateResult, personalResult] = await Promise.all([
     anthropic.messages.create({
-      model: 'claude-sonnet-4-6',
-      max_tokens: 1024,
+      model: 'claude-opus-4-6',
+      max_tokens: 2048,
       system: buildCorporateSystemPrompt(ctx),
+      tools: [webSearchTool],
       messages: [{ role: 'user', content: userMessage }],
     }),
     anthropic.messages.create({
-      model: 'claude-sonnet-4-6',
-      max_tokens: 1024,
+      model: 'claude-opus-4-6',
+      max_tokens: 2048,
       system: buildPersonalSystemPrompt(ctx),
+      tools: [webSearchTool],
       messages: [{ role: 'user', content: userMessage }],
     }),
   ]);
