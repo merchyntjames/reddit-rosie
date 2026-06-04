@@ -311,6 +311,50 @@ async function main() {
   console.log(`Time: ${new Date().toISOString()}`);
   console.log('---');
 
+  // Read monitoring config from Supabase if available
+  if (supabase) {
+    try {
+      const { data: settings } = await supabase
+        .from('settings')
+        .select('key, value')
+        .in('key', ['monitored_subreddits', 'monitored_keywords']);
+
+      if (settings) {
+        for (const row of settings) {
+          if (row.key === 'monitored_subreddits' && Array.isArray(row.value) && row.value.length > 0) {
+            // Override the hardcoded subreddit queries with DB values
+            // Clear existing and rebuild with DB subreddits
+            const dbSubreddits = row.value;
+            SUBREDDIT_QUERIES.length = 0;
+            for (const sub of dbSubreddits) {
+              SUBREDDIT_QUERIES.push({
+                subreddit: sub,
+                queries: ['"Google Business Profile" OR "GBP" OR "local SEO"'],
+              });
+            }
+            console.log(`Loaded ${dbSubreddits.length} subreddits from database: ${dbSubreddits.join(', ')}`);
+          }
+          if (row.key === 'monitored_keywords' && Array.isArray(row.value) && row.value.length > 0) {
+            console.log(`Loaded ${row.value.length} keywords from database: ${row.value.join(', ')}`);
+            // Update the broad search queries with DB keywords
+            const kwQuery = row.value.map(kw => `"${kw}"`).join(' OR ');
+            // Replace the high-intent global query with the user's keywords
+            const highIntentIdx = GLOBAL_QUERIES.findIndex(q => q.label === 'high-intent');
+            if (highIntentIdx >= 0) {
+              GLOBAL_QUERIES[highIntentIdx] = {
+                query: `(${kwQuery}) AND (help OR advice OR recommend OR best)`,
+                time: 'day',
+                label: 'high-intent',
+              };
+            }
+          }
+        }
+      }
+    } catch (err) {
+      console.log('Could not load settings from database, using defaults:', err.message);
+    }
+  }
+
   const allPosts = new Map(); // dedup by ID
   let totalFetched = 0;
   let totalQueries = 0;

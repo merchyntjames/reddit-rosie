@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import {
   mockProductKnowledge,
   mockBrandVoice,
@@ -22,6 +22,8 @@ import {
   Shield,
   Plus,
   X,
+  Check,
+  Loader2,
 } from 'lucide-react';
 
 type KnowledgeTab = 'product' | 'brand' | 'creators';
@@ -34,6 +36,7 @@ const tabs: { key: KnowledgeTab; label: string; icon: typeof Package }[] = [
 
 export default function KnowledgebasePage() {
   const [activeTab, setActiveTab] = useState<KnowledgeTab>('product');
+  const [saveStatus, setSaveStatus] = useState<'idle' | 'saving' | 'saved' | 'error'>('idle');
 
   // Product Knowledge state
   const [productKnowledge, setProductKnowledge] = useState<ProductKnowledge>(mockProductKnowledge);
@@ -44,6 +47,60 @@ export default function KnowledgebasePage() {
 
   // Creator Profiles state
   const [creators, setCreators] = useState<CreatorProfile[]>(mockCreatorProfiles);
+
+  // Load from Supabase on mount
+  useEffect(() => {
+    async function loadSettings() {
+      try {
+        const res = await fetch('/api/settings');
+        if (!res.ok) return;
+        const data = await res.json();
+        const s = data.settings;
+        if (s?.product_knowledge) setProductKnowledge(s.product_knowledge);
+        if (s?.brand_voice) setBrandVoice(s.brand_voice);
+        if (s?.creator_profiles) setCreators(s.creator_profiles);
+      } catch {
+        // Fall back to mock data
+      }
+    }
+    loadSettings();
+  }, []);
+
+  // Save to Supabase
+  const saveAll = useCallback(async () => {
+    setSaveStatus('saving');
+    try {
+      const res = await fetch('/api/settings', {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          product_knowledge: productKnowledge,
+          brand_voice: brandVoice,
+          creator_profiles: creators,
+        }),
+      });
+      if (!res.ok) throw new Error('Save failed');
+      setSaveStatus('saved');
+      setTimeout(() => setSaveStatus('idle'), 2000);
+    } catch {
+      setSaveStatus('error');
+      setTimeout(() => setSaveStatus('idle'), 3000);
+    }
+  }, [productKnowledge, brandVoice, creators]);
+
+  const SaveButton = () => (
+    <div className="flex justify-end">
+      <button
+        onClick={saveAll}
+        disabled={saveStatus === 'saving'}
+        className="flex items-center gap-2 px-6 py-2.5 rounded-lg bg-navy text-white text-[13px] font-medium hover:bg-navy/90 transition-colors disabled:opacity-50"
+      >
+        {saveStatus === 'saving' && <Loader2 size={14} className="animate-spin" />}
+        {saveStatus === 'saved' && <Check size={14} />}
+        {saveStatus === 'saving' ? 'Saving...' : saveStatus === 'saved' ? 'Saved' : saveStatus === 'error' ? 'Error — try again' : 'Save Changes'}
+      </button>
+    </div>
+  );
 
   // --- Render Product Knowledge Tab ---
   const renderProductTab = () => (
@@ -160,11 +217,7 @@ export default function KnowledgebasePage() {
         />
       </section>
 
-      <div className="flex justify-end">
-        <button className="px-6 py-2.5 rounded-lg bg-navy text-white text-[13px] font-medium hover:bg-navy/90 transition-colors">
-          Save Changes
-        </button>
-      </div>
+      <SaveButton />
     </div>
   );
 
@@ -285,11 +338,7 @@ export default function KnowledgebasePage() {
         </div>
       </section>
 
-      <div className="flex justify-end">
-        <button className="px-6 py-2.5 rounded-lg bg-navy text-white text-[13px] font-medium hover:bg-navy/90 transition-colors">
-          Save Changes
-        </button>
-      </div>
+      <SaveButton />
     </div>
   );
 
@@ -360,11 +409,7 @@ export default function KnowledgebasePage() {
         </div>
       </section>
 
-      <div className="flex justify-end">
-        <button className="px-6 py-2.5 rounded-lg bg-navy text-white text-[13px] font-medium hover:bg-navy/90 transition-colors">
-          Save Changes
-        </button>
-      </div>
+      <SaveButton />
     </div>
   );
 

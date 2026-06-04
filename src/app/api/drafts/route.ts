@@ -69,10 +69,27 @@ export async function POST(request: Request) {
       postAuthor = conversation.author_username;
     }
 
-    // Use mock data for now (will read from Supabase settings in future)
-    const product = mockProductKnowledge;
-    const voice = mockBrandVoice;
-    const creator = mockCreatorProfiles[0]; // James Sowers
+    // Read knowledgebase from Supabase (fall back to mock data)
+    let product = mockProductKnowledge;
+    let voice = mockBrandVoice;
+    let creator = mockCreatorProfiles[0];
+
+    if (supabase) {
+      const { data: settings } = await supabase
+        .from('settings')
+        .select('key, value')
+        .in('key', ['product_knowledge', 'brand_voice', 'creator_profiles']);
+
+      if (settings) {
+        for (const row of settings) {
+          if (row.key === 'product_knowledge' && row.value) product = row.value;
+          if (row.key === 'brand_voice' && row.value) voice = row.value;
+          if (row.key === 'creator_profiles' && row.value && Array.isArray(row.value) && row.value.length > 0) {
+            creator = row.value[0];
+          }
+        }
+      }
+    }
 
     // Generate drafts
     const { corporate, personal } = await generateDrafts({

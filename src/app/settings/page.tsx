@@ -73,16 +73,23 @@ export default function SettingsPage() {
   const [qualityThreshold, setQualityThreshold] = useState(50);
   const [thresholdSaved, setThresholdSaved] = useState(true);
 
-  // Load quality threshold from Supabase on mount
+  // Load settings from Supabase on mount
   useState(() => {
     fetch('/api/settings')
       .then(res => res.json())
       .then(data => {
-        if (data.settings?.quality_threshold) {
-          setQualityThreshold(Number(data.settings.quality_threshold));
+        const s = data.settings;
+        if (s?.quality_threshold) {
+          setQualityThreshold(Number(s.quality_threshold));
+        }
+        if (s?.monitored_subreddits && Array.isArray(s.monitored_subreddits)) {
+          setSubreddits(s.monitored_subreddits.map((name: string) => ({ name: name.startsWith('r/') ? name : `r/${name}`, enabled: true })));
+        }
+        if (s?.monitored_keywords && Array.isArray(s.monitored_keywords)) {
+          setKeywords(s.monitored_keywords.map((term: string) => ({ term, enabled: true })));
         }
       })
-      .catch(() => {}); // Silently fail — use default
+      .catch(() => {});
   });
 
   const saveQualityThreshold = async (value: number) => {
@@ -97,6 +104,28 @@ export default function SettingsPage() {
       setThresholdSaved(true);
     } catch {
       console.error('Failed to save quality threshold');
+    }
+  };
+
+  // Save status
+  const [saveStatus, setSaveStatus] = useState<'idle' | 'saving' | 'saved' | 'error'>('idle');
+
+  const saveMonitoringSettings = async () => {
+    setSaveStatus('saving');
+    try {
+      await fetch('/api/settings', {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          monitored_subreddits: subreddits.filter(s => s.enabled).map(s => s.name.replace('r/', '')),
+          monitored_keywords: keywords.filter(k => k.enabled).map(k => k.term),
+        }),
+      });
+      setSaveStatus('saved');
+      setTimeout(() => setSaveStatus('idle'), 2000);
+    } catch {
+      setSaveStatus('error');
+      setTimeout(() => setSaveStatus('idle'), 3000);
     }
   };
 
@@ -429,8 +458,12 @@ export default function SettingsPage() {
 
       {/* Save */}
       <div className="flex justify-end">
-        <button className="px-6 py-2.5 rounded-lg bg-navy text-white text-[13px] font-medium hover:bg-navy/90 transition-colors">
-          Save Changes
+        <button
+          onClick={saveMonitoringSettings}
+          disabled={saveStatus === 'saving'}
+          className="flex items-center gap-2 px-6 py-2.5 rounded-lg bg-navy text-white text-[13px] font-medium hover:bg-navy/90 transition-colors disabled:opacity-50"
+        >
+          {saveStatus === 'saving' ? 'Saving...' : saveStatus === 'saved' ? 'Saved' : 'Save Changes'}
         </button>
       </div>
     </div>
