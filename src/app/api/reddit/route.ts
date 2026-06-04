@@ -63,7 +63,7 @@ export async function GET(request: Request) {
       subreddit: `r/${row.subreddit}`,
       postTitle: row.title,
       postSnippet: row.selftext
-        ? row.selftext.slice(0, 300).replace(/\n+/g, ' ').trim() + (row.selftext.length > 300 ? '...' : '')
+        ? row.selftext.slice(0, 500).replace(/\n+/g, ' ').trim() + (row.selftext.length > 300 ? '...' : '')
         : '',
       postAuthor: `u/${row.author_username}`,
       postUrl: row.permalink

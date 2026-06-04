@@ -77,7 +77,7 @@ export default function QueuePage() {
         subreddit: `r/${post.subredditName}`,
         postTitle: post.title,
         postSnippet: post.selftext
-          ? post.selftext.slice(0, 300).replace(/\n+/g, ' ').trim() + (post.selftext.length > 300 ? '...' : '')
+          ? post.selftext.slice(0, 500).replace(/\n+/g, ' ').trim() + (post.selftext.length > 300 ? '...' : '')
           : '',
         postAuthor: `u/${post.authorUsername}`,
         postUrl: post.permalink

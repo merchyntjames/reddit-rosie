@@ -26,11 +26,11 @@ interface ConversationCardProps {
 function timeAgo(dateStr: string): string {
   const diff = Date.now() - new Date(dateStr).getTime();
   const minutes = Math.floor(diff / 60000);
-  if (minutes < 60) return `${minutes}m ago`;
+  if (minutes < 60) return `${minutes}m`;
   const hours = Math.floor(minutes / 60);
-  if (hours < 24) return `${hours}h ago`;
+  if (hours < 24) return `${hours}h`;
   const days = Math.floor(hours / 24);
-  return `${days}d ago`;
+  return `${days}d`;
 }
 
 function RelevanceBadge({ score }: { score: number }) {
@@ -66,7 +66,7 @@ function StatusBadge({ status }: { status: Conversation['status'] }) {
     dismissed: 'bg-muted/20 text-muted',
   };
   const labels = {
-    new: 'New',
+    new: 'Ready',
     in_progress: 'In Progress',
     completed: 'Completed',
     dismissed: 'Dismissed',
@@ -107,11 +107,8 @@ export function ConversationCard({ conversation, onStatusChange, onDraftsGenerat
 
   return (
     <div className="bg-white rounded-xl border border-border transition-shadow hover:shadow-sm">
-      {/* Card Header */}
-      <button
-        onClick={() => setIsExpanded(!isExpanded)}
-        className="w-full text-left p-5 cursor-pointer"
-      >
+      {/* Card Body */}
+      <div className="p-5">
         <div className="flex items-start justify-between gap-4">
           <div className="flex-1 min-w-0">
             {/* Subreddit + Meta */}
@@ -120,7 +117,7 @@ export function ConversationCard({ conversation, onStatusChange, onDraftsGenerat
               <span className="text-border">|</span>
               <span className="text-[12px] text-muted flex items-center gap-1">
                 <Clock size={11} />
-                Posted {timeAgo(conversation.discoveredAt)}
+                Posted {timeAgo(conversation.discoveredAt)} ago by {conversation.postAuthor}
               </span>
               {conversation.upvotes > 0 && (
                 <>
@@ -142,27 +139,39 @@ export function ConversationCard({ conversation, onStatusChange, onDraftsGenerat
               )}
             </div>
 
-            {/* Title */}
-            <h3 className="text-[15px] font-semibold text-dark leading-snug mb-1.5">
+            {/* Title — selectable */}
+            <h3 className="text-[15px] font-semibold text-dark leading-snug mb-1.5 select-text cursor-text">
               {conversation.postTitle}
             </h3>
 
-            {/* Snippet */}
-            <p className="text-[13px] text-muted leading-relaxed line-clamp-2">
+            {/* Snippet — selectable, expanded to ~500 chars */}
+            <p className="text-[13px] text-muted leading-relaxed line-clamp-4 select-text cursor-text">
               {conversation.postSnippet}
             </p>
 
-            {/* Keywords */}
-            <div className="flex items-center gap-1.5 mt-3 flex-wrap">
-              <Tag size={11} className="text-muted" />
-              {conversation.matchedKeywords.map((kw) => (
-                <span
-                  key={kw}
-                  className="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-medium bg-surface text-muted border border-border"
-                >
-                  {kw}
-                </span>
-              ))}
+            {/* Keywords + View on Reddit */}
+            <div className="flex items-center justify-between mt-3">
+              <div className="flex items-center gap-1.5 flex-wrap">
+                <Tag size={11} className="text-muted" />
+                {conversation.matchedKeywords.map((kw) => (
+                  <span
+                    key={kw}
+                    className="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-medium bg-surface text-muted border border-border"
+                  >
+                    {kw}
+                  </span>
+                ))}
+              </div>
+              <a
+                href={conversation.postUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={(e) => e.stopPropagation()}
+                className="flex items-center gap-1 text-[12px] text-blue hover:text-navy transition-colors shrink-0 ml-4"
+              >
+                View on Reddit
+                <ArrowUpRight size={12} />
+              </a>
             </div>
           </div>
 
@@ -170,32 +179,19 @@ export function ConversationCard({ conversation, onStatusChange, onDraftsGenerat
           <div className="flex flex-col items-end gap-2 shrink-0">
             <RelevanceBadge score={conversation.relevanceScore} />
             <StatusBadge status={conversation.status} />
-            <div className="mt-1 text-muted">
+            <button
+              onClick={() => setIsExpanded(!isExpanded)}
+              className="mt-1 w-7 h-7 rounded-full bg-surface flex items-center justify-center text-muted hover:bg-border hover:text-dark transition-colors"
+            >
               {isExpanded ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
-            </div>
+            </button>
           </div>
         </div>
-      </button>
+      </div>
 
       {/* Expanded Content */}
       {isExpanded && (
         <div className="border-t border-border">
-          {/* Post Meta + Link */}
-          <div className="px-5 py-3 border-b border-border flex items-center justify-between">
-            <p className="text-[12px] font-medium text-muted">
-              Posted by <span className="text-dark">{conversation.postAuthor}</span>
-            </p>
-            <a
-              href={conversation.postUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-1 text-[12px] text-blue hover:text-navy transition-colors"
-            >
-              View on Reddit
-              <ArrowUpRight size={12} />
-            </a>
-          </div>
-
           {/* Draft Panel */}
           {conversation.status !== 'dismissed' && (
             conversation.corporateDraft || conversation.personalDraft ? (
