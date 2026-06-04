@@ -55,10 +55,17 @@ export function StatsBar({ conversations }: StatsBarProps) {
       <StatCard
         label="Total Responded"
         value={totalResponded ?? conversations.filter(c => c.status === 'completed').length}
+        sublabel={(() => {
+          const tracked = totalTracked30d ?? conversations.length;
+          const responded = totalResponded ?? conversations.filter(c => c.status === 'completed').length;
+          const rate = tracked > 0 ? Math.round((responded / tracked) * 100) : 0;
+          return `${rate}% response rate`;
+        })()}
       />
       <StatCard
         label="Avg Quality Score"
         value={`${avgQuality} / 100`}
+        sublabel="Higher score = better"
       />
     </div>
   );
