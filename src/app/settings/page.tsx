@@ -48,14 +48,11 @@ import {
   Target,
 } from 'lucide-react';
 
-type SettingsTab = 'monitoring' | 'quality' | 'product' | 'brand' | 'creators' | 'integrations';
+type SettingsTab = 'monitoring' | 'quality' | 'integrations';
 
 const tabs: { key: SettingsTab; label: string; icon: typeof Radio }[] = [
   { key: 'monitoring', label: 'Monitoring', icon: Radio },
   { key: 'quality', label: 'Quality Score', icon: Target },
-  { key: 'product', label: 'Product Knowledge', icon: Package },
-  { key: 'brand', label: 'Brand Voice', icon: Megaphone },
-  { key: 'creators', label: 'Creator Profiles', icon: Users },
   { key: 'integrations', label: 'Accounts & Integrations', icon: Plug },
 ];
 
@@ -65,7 +62,7 @@ export default function SettingsPage() {
     if (typeof window === 'undefined') return 'monitoring';
     const params = new URLSearchParams(window.location.search);
     const tab = params.get('tab');
-    if (tab && ['monitoring', 'quality', 'product', 'brand', 'creators', 'integrations'].includes(tab)) {
+    if (tab && ['monitoring', 'quality', 'integrations'].includes(tab)) {
       return tab as SettingsTab;
     }
     return 'monitoring';
@@ -1373,9 +1370,6 @@ export default function SettingsPage() {
     switch (activeTab) {
       case 'monitoring': return renderMonitoringTab();
       case 'quality': return renderQualityTab();
-      case 'product': return renderProductTab();
-      case 'brand': return renderBrandTab();
-      case 'creators': return renderCreatorsTab();
       case 'integrations': return renderIntegrationsTab();
     }
   };

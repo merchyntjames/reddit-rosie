@@ -270,7 +270,7 @@ export default function ChangelogPage() {
       </div>
 
       {/* Roadmap */}
-      <div className="mb-8">
+      <div id="roadmap" className="mb-8">
         <h2 className="text-[16px] font-semibold text-dark mb-4 flex items-center gap-2">
           <Layout size={18} className="text-navy" />
           Roadmap

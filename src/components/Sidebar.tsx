@@ -5,22 +5,30 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import {
-  Inbox,
-  BarChart3,
+  MessageSquareMore,
   Activity,
   Settings,
   LogOut,
   Radio,
   CircleDot,
   ScrollText,
+  Brain,
+  Map,
+  AlertTriangle,
 } from 'lucide-react';
 
 const navItems = [
-  { href: '/', label: 'Queue', icon: Inbox },
-  { href: '/analytics', label: 'Analytics', icon: BarChart3 },
+  { href: '/', label: 'Engagement Queue', icon: MessageSquareMore },
   { href: '/activity', label: 'Activity Log', icon: Activity },
+  { href: '/knowledgebase', label: 'Knowledgebase', icon: Brain },
   { href: '/settings', label: 'Account Settings', icon: Settings },
 ];
+
+interface IntegrationStatuses {
+  claude: { status: string; detail?: string };
+  rss_scan: { status: string; detail?: string };
+  last_scan_time: { status: string; detail?: string };
+}
 
 function formatETTime(isoDate: string): string {
   try {
@@ -38,28 +46,42 @@ function formatETTime(isoDate: string): string {
   }
 }
 
+function StatusDot({ status }: { status: string }) {
+  if (status === 'connected' || status === 'success') {
+    return <CircleDot size={12} className="text-green" />;
+  }
+  if (status === 'needs_attention') {
+    return <AlertTriangle size={12} className="text-orange" />;
+  }
+  return <CircleDot size={12} className="text-muted" />;
+}
+
+function StatusLabel({ status, detail }: { status: string; detail?: string }) {
+  if (status === 'connected') return <span className="text-[11px] font-medium text-green">Connected</span>;
+  if (status === 'success') return <span className="text-[11px] font-medium text-green">Success</span>;
+  if (status === 'needs_attention') return <span className="text-[11px] font-medium text-orange">{detail || 'Needs attention'}</span>;
+  if (status === 'failed') return <span className="text-[11px] font-medium text-pink">Failed</span>;
+  if (status === 'not_connected') return <span className="text-[11px] font-medium text-muted">Not connected</span>;
+  return <span className="text-[11px] font-medium text-muted">Unknown</span>;
+}
+
 export function Sidebar() {
   const pathname = usePathname();
-  const [lastScanTime, setLastScanTime] = useState<string | null>(null);
-  const [scanStatus, setScanStatus] = useState<'success' | 'unknown'>('unknown');
+  const [statuses, setStatuses] = useState<IntegrationStatuses | null>(null);
 
-  // Read last scan time from the data file
   useEffect(() => {
-    async function checkScanStatus() {
+    async function fetchStatuses() {
       try {
-        const res = await fetch('/data/conversations.json');
+        const res = await fetch('/api/status');
         if (res.ok) {
           const data = await res.json();
-          if (data.fetchedAt) {
-            setLastScanTime(data.fetchedAt);
-            setScanStatus('success');
-          }
+          setStatuses(data);
         }
       } catch {
-        // Silently fail — sidebar still renders with "Unknown" state
+        // Silently fail
       }
     }
-    checkScanStatus();
+    fetchStatuses();
   }, []);
 
   return (
@@ -106,40 +128,54 @@ export function Sidebar() {
         <p className="text-[11px] font-semibold text-muted uppercase tracking-wider mb-3">Integration Status</p>
 
         <div className="space-y-2">
+          {/* Claude API */}
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
-              <CircleDot size={12} className="text-muted" />
+              <StatusDot status={statuses?.claude?.status ?? 'unknown'} />
               <span className="text-[12px] text-dark">Claude API</span>
             </div>
-            <span className="text-[11px] font-medium text-muted">Not connected</span>
+            <StatusLabel status={statuses?.claude?.status ?? 'unknown'} detail={statuses?.claude?.detail} />
           </div>
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-2">
-              <CircleDot size={12} className={scanStatus === 'success' ? 'text-green' : 'text-muted'} />
-              <span className="text-[12px] text-dark">RSS Scanner</span>
-            </div>
-            <span className={`text-[11px] font-medium ${scanStatus === 'success' ? 'text-green' : 'text-muted'}`}>
-              {scanStatus === 'success' ? 'Success' : 'Unknown'}
-            </span>
-          </div>
+
+          {/* Last RSS Scan */}
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
               <Radio size={12} className="text-muted" />
-              <span className="text-[12px] text-dark">Last scan</span>
+              <span className="text-[12px] text-dark">Last RSS Scan</span>
             </div>
             <span className="text-[11px] text-muted">
-              {lastScanTime ? formatETTime(lastScanTime) : 'Never'}
+              {statuses?.last_scan_time?.detail && statuses.last_scan_time.detail !== 'Never'
+                ? formatETTime(statuses.last_scan_time.detail)
+                : 'Never'}
             </span>
+          </div>
+
+          {/* RSS Scan Status */}
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-2">
+              <StatusDot status={statuses?.rss_scan?.status ?? 'unknown'} />
+              <span className="text-[12px] text-dark">RSS Scan Status</span>
+            </div>
+            <StatusLabel status={statuses?.rss_scan?.status ?? 'unknown'} />
           </div>
         </div>
 
-        <Link
-          href="/changelog"
-          className="flex items-center gap-1.5 mt-3 text-[11px] text-muted hover:text-navy transition-colors"
-        >
-          <ScrollText size={11} />
-          Changelog
-        </Link>
+        <div className="flex flex-col gap-1.5 mt-3">
+          <Link
+            href="/changelog"
+            className="flex items-center gap-1.5 text-[11px] text-muted hover:text-navy transition-colors"
+          >
+            <ScrollText size={11} />
+            Changelog
+          </Link>
+          <Link
+            href="/changelog#roadmap"
+            className="flex items-center gap-1.5 text-[11px] text-muted hover:text-navy transition-colors"
+          >
+            <Map size={11} />
+            Product Roadmap
+          </Link>
+        </div>
       </div>
 
       {/* User */}
