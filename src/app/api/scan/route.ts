@@ -141,6 +141,17 @@ function scorePost(post: RSSPost): { score: number; matchedTerms: string[] } {
   if (titleLower.includes('[hiring]') || titleLower.includes('[for hire]') || titleLower.includes('i built') || titleLower.includes('i created') || titleLower.includes('we just launched')) score -= 20;
   if (titleLower.includes('hiring') || titleLower.includes('job posting')) score -= 25;
 
+  // Penalize long-form promotional content
+  const selftextLen = (post.selftext || '').length;
+  if (selftextLen > 5000) score -= 25;
+  if (selftextLen > 10000) score -= 25;
+
+  // Penalize branded/company subreddits and user profile posts
+  if (sub.startsWith('u/') || sub.startsWith('u_') || sub.includes('byrealgreen') || sub.includes('byworkwave')) score -= 30;
+
+  // Penalize obvious marketing titles
+  if (titleLower.includes('proven strategies') || titleLower.includes('complete guide') || titleLower.includes('ultimate guide') || titleLower.includes('schedule a demo') || titleLower.includes('free trial')) score -= 20;
+
   return { score: Math.max(0, Math.min(100, score)), matchedTerms: [...new Set(matchedTerms)] };
 }
 

@@ -306,6 +306,34 @@ function scorePost(post) {
     score -= 25;
   }
 
+  // Penalize long-form promotional content (blog posts, marketing articles)
+  // Real conversations are typically under 3,000 chars. Marketing content is 5,000+
+  const selftextLen = (post.selftext || '').length;
+  if (selftextLen > 5000) {
+    score -= 25; // Likely a blog post or promotional article, not a conversation
+  }
+  if (selftextLen > 10000) {
+    score -= 25; // Almost certainly marketing content — heavy penalty
+  }
+
+  // Penalize branded/company subreddits (not real communities)
+  // These are subreddits named after a company, used for their own marketing
+  const brandedSubPatterns = [
+    'byrealgreen', 'byworkwave', 'realgreen',
+    'u/', // User profile posts (not community posts)
+  ];
+  if (brandedSubPatterns.some(p => sub.includes(p)) || sub.startsWith('u/') || sub.startsWith('u_')) {
+    score -= 30;
+  }
+
+  // Penalize posts with obvious marketing language in the title
+  if (titleLower.includes('proven strategies') || titleLower.includes('complete guide') ||
+      titleLower.includes('ultimate guide') || titleLower.includes('step-by-step') ||
+      titleLower.includes('schedule a demo') || titleLower.includes('free trial') ||
+      titleLower.includes('sign up now') || titleLower.includes('download our')) {
+    score -= 20;
+  }
+
   // Cap at 100
   score = Math.max(0, Math.min(100, score));
 

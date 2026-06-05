@@ -619,6 +619,10 @@ export default function SettingsPage() {
               {[
                 { signal: 'Self-promotion (I built, I spent, we just launched, check out my)', points: '-20' },
                 { signal: 'Hiring/job post ([HIRING], [FOR HIRE], looking for freelancer)', points: '-25' },
+                { signal: 'Long promotional content (5,000+ characters)', points: '-25' },
+                { signal: 'Very long promotional content (10,000+ characters)', points: '-50' },
+                { signal: 'Branded/company subreddit or user profile post', points: '-30' },
+                { signal: 'Marketing title (proven strategies, complete guide, schedule a demo)', points: '-20' },
               ].map(item => (
                 <div key={item.signal} className="flex items-center justify-between py-1.5 px-3 rounded-lg bg-pink/5">
                   <span className="text-[12px] text-dark">{item.signal}</span>
