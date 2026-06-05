@@ -6,7 +6,7 @@ import { useRouter } from 'next/navigation';
 export default function KnowledgebasePage() {
   const router = useRouter();
   useEffect(() => {
-    router.replace('/knowledgebase/product');
+    router.replace('/knowledgebase/company');
   }, [router]);
   return null;
 }

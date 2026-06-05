@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import { mockProductKnowledge } from '@/lib/mock-data';
 import { ProductKnowledge } from '@/lib/types';
 import { useSaveStatus } from '@/lib/knowledgebase';
-import { Building2, Package, Trophy, BookOpen, Loader2, Check, ChevronDown, ChevronUp, Plus, Trash2 } from 'lucide-react';
+import { Package, Loader2, Check, ChevronDown, ChevronUp, Plus, Trash2 } from 'lucide-react';
 
 function CollapsibleCard({ icon: Icon, title, subtitle, children, defaultOpen = false }: {
   icon: React.ElementType;
@@ -79,28 +79,11 @@ export default function ProductKnowledgePage() {
       <div className="mb-6">
         <h1 className="text-2xl font-bold text-dark">Product Knowledge</h1>
         <p className="text-[13px] text-muted mt-1">
-          Company and product information that Rosie uses as context when generating drafts.
+          Individual product descriptions, features, and pricing that Rosie references when drafting replies.
         </p>
       </div>
 
       <div className="space-y-3">
-        <CollapsibleCard icon={Building2} title="Company Overview" subtitle="High-level description of what Merchynt does">
-          <textarea
-            value={productKnowledge.companyOverview}
-            onChange={e => setProductKnowledge(prev => ({ ...prev, companyOverview: e.target.value }))}
-            rows={4}
-            className="w-full px-4 py-3 text-[13px] text-dark leading-relaxed bg-surface rounded-lg border border-border resize-y focus:outline-none focus:ring-2 focus:ring-navy/20"
-          />
-        </CollapsibleCard>
-
-        <CollapsibleCard icon={Trophy} title="Competitor Context" subtitle="How Merchynt compares to competitors">
-          <textarea value={productKnowledge.competitorContext} onChange={e => setProductKnowledge(prev => ({ ...prev, competitorContext: e.target.value }))} rows={6} className="w-full px-4 py-3 text-[13px] text-dark leading-relaxed bg-surface rounded-lg border border-border resize-y focus:outline-none focus:ring-2 focus:ring-navy/20" />
-        </CollapsibleCard>
-
-        <CollapsibleCard icon={BookOpen} title="Key Stats and Proof Points" subtitle="Data points Rosie can reference in drafts">
-          <textarea value={productKnowledge.keyStats} onChange={e => setProductKnowledge(prev => ({ ...prev, keyStats: e.target.value }))} rows={6} className="w-full px-4 py-3 text-[13px] text-dark leading-relaxed bg-surface rounded-lg border border-border resize-y focus:outline-none focus:ring-2 focus:ring-navy/20" />
-        </CollapsibleCard>
-
         {productKnowledge.products.map((product, index) => (
           <CollapsibleCard
             key={product.id}

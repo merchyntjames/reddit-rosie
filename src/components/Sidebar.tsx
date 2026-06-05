@@ -30,6 +30,7 @@ const navItems: NavItem[] = [
     label: 'Knowledgebase',
     icon: Brain,
     children: [
+      { href: '/knowledgebase/company', label: 'Company Knowledge' },
       { href: '/knowledgebase/product', label: 'Product Knowledge' },
       { href: '/knowledgebase/brand', label: 'Brand Voice' },
       { href: '/knowledgebase/creators', label: 'Creator Profiles' },
