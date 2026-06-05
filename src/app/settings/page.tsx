@@ -69,19 +69,12 @@ export default function SettingsPage() {
   })();
   const [activeTab, setActiveTab] = useState<SettingsTab>(initialTab);
 
-  // Quality Score state (loaded from Supabase)
-  const [qualityThreshold, setQualityThreshold] = useState(50);
-  const [thresholdSaved, setThresholdSaved] = useState(true);
-
   // Load settings from Supabase on mount
   useState(() => {
     fetch('/api/settings')
       .then(res => res.json())
       .then(data => {
         const s = data.settings;
-        if (s?.quality_threshold) {
-          setQualityThreshold(Number(s.quality_threshold));
-        }
         if (s?.monitored_subreddits && Array.isArray(s.monitored_subreddits)) {
           setSubreddits(s.monitored_subreddits.map((name: string) => ({ name: name.startsWith('r/') ? name : `r/${name}`, enabled: true })));
         }
@@ -91,21 +84,6 @@ export default function SettingsPage() {
       })
       .catch(() => {});
   });
-
-  const saveQualityThreshold = async (value: number) => {
-    setQualityThreshold(value);
-    setThresholdSaved(false);
-    try {
-      await fetch('/api/settings', {
-        method: 'PATCH',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ quality_threshold: value }),
-      });
-      setThresholdSaved(true);
-    } catch {
-      console.error('Failed to save quality threshold');
-    }
-  };
 
   // Save status
   const [saveStatus, setSaveStatus] = useState<'idle' | 'saving' | 'saved' | 'error'>('idle');
@@ -504,33 +482,15 @@ export default function SettingsPage() {
           <h2 className="text-[16px] font-semibold text-dark">Minimum Quality Threshold</h2>
         </div>
         <p className="text-[13px] text-muted mb-4">
-          Posts scoring below this threshold are automatically filtered out of your queue. Lower values show more posts (including less relevant ones). Higher values show fewer, more targeted posts.
+          Posts scoring below this threshold are automatically filtered out of your queue during each daily scan.
         </p>
-        <div className="flex items-center gap-4">
-          <input
-            type="range"
-            min="20"
-            max="80"
-            step="5"
-            value={qualityThreshold}
-            onChange={e => setQualityThreshold(Number(e.target.value))}
-            onMouseUp={e => saveQualityThreshold(Number((e.target as HTMLInputElement).value))}
-            onTouchEnd={e => saveQualityThreshold(Number((e.target as HTMLInputElement).value))}
-            className="flex-1 accent-navy"
-          />
-          <span className="text-[16px] font-bold text-navy w-12 text-center">{qualityThreshold}</span>
+        <div className="flex items-center gap-3 p-3 rounded-lg bg-surface border border-border">
+          <span className="text-[24px] font-bold text-navy">40</span>
+          <span className="text-[13px] text-muted">/ 100 — posts scoring below 40 are excluded from the queue</span>
         </div>
-        <div className="flex justify-between text-[11px] text-muted mt-1">
-          <span>More posts, less relevant</span>
-          <div className="flex items-center gap-1">
-            {thresholdSaved ? (
-              <span className="text-green">Saved</span>
-            ) : (
-              <span className="text-orange">Saving...</span>
-            )}
-          </div>
-          <span>Fewer posts, more relevant</span>
-        </div>
+        <p className="text-[11px] text-muted mt-2">
+          To adjust this threshold, contact your Claude Code administrator.
+        </p>
       </section>
 
       {/* Brand Mentions */}
