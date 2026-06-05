@@ -1,16 +1,15 @@
 'use client';
 
 import { useState } from 'react';
-import { mockSubreddits, mockKeywords, mockMonitoringConfig } from '@/lib/mock-data';
-import { MonitoredSubreddit, MonitoredKeyword, MonitoringConfig, ScanFrequency } from '@/lib/types';
-import { Plus, X, Hash, Search, Sliders } from 'lucide-react';
+import { mockSubreddits, mockKeywords } from '@/lib/mock-data';
+import { MonitoredSubreddit, MonitoredKeyword } from '@/lib/types';
+import { Plus, X, Hash, Search } from 'lucide-react';
 
 export default function SettingsPage() {
   const [subreddits, setSubreddits] = useState<MonitoredSubreddit[]>(mockSubreddits);
   const [keywords, setKeywords] = useState<MonitoredKeyword[]>(mockKeywords);
   const [newSubreddit, setNewSubreddit] = useState('');
   const [newKeyword, setNewKeyword] = useState('');
-  const [monitoringConfig, setMonitoringConfig] = useState<MonitoringConfig>(mockMonitoringConfig);
   const [saveStatus, setSaveStatus] = useState<'idle' | 'saving' | 'saved' | 'error'>('idle');
 
   // Load from Supabase on mount
@@ -152,32 +151,6 @@ export default function SettingsPage() {
                 </button>
               </div>
             ))}
-          </div>
-        </section>
-
-        {/* Scan Settings */}
-        <section className="bg-white rounded-xl border border-border p-6">
-          <div className="flex items-center gap-2 mb-1">
-            <Sliders size={18} className="text-navy" />
-            <h2 className="text-[16px] font-semibold text-dark">Scan Settings</h2>
-          </div>
-          <p className="text-[13px] text-muted mb-5">
-            Control how often Rosie checks for new conversations.
-          </p>
-
-          <div>
-            <label className="block text-[13px] font-medium text-dark mb-2">Scan Frequency</label>
-            <select
-              value={monitoringConfig.scanFrequency}
-              onChange={e => setMonitoringConfig(prev => ({ ...prev, scanFrequency: e.target.value as ScanFrequency }))}
-              className="w-full max-w-xs px-3 py-2 rounded-lg border border-border bg-surface text-[13px] text-dark focus:outline-none focus:ring-2 focus:ring-navy/20 focus:border-navy/30"
-            >
-              <option value="15min">Every 15 minutes</option>
-              <option value="30min">Every 30 minutes</option>
-              <option value="1hour">Every 1 hour</option>
-              <option value="2hours">Every 2 hours</option>
-            </select>
-            <p className="text-[12px] text-muted mt-1.5">How often Rosie checks monitored subreddits for new posts.</p>
           </div>
         </section>
 
