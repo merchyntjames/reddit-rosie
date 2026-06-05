@@ -4,12 +4,41 @@ import { useState, useEffect } from 'react';
 import { mockCreatorProfiles } from '@/lib/mock-data';
 import { CreatorProfile } from '@/lib/types';
 import { useSaveStatus } from '@/lib/knowledgebase';
-import { Users, ChevronDown, ChevronUp, Loader2, Check } from 'lucide-react';
+import { Users, ChevronDown, ChevronUp, Loader2, Check, Plus, Trash2 } from 'lucide-react';
 
 export default function CreatorProfilesPage() {
   const [creators, setCreators] = useState<CreatorProfile[]>(mockCreatorProfiles);
   const [expandedCreators, setExpandedCreators] = useState<Set<string>>(new Set());
   const { saveStatus, save } = useSaveStatus();
+  const [newName, setNewName] = useState('');
+  const [newUsername, setNewUsername] = useState('');
+  const [newRole, setNewRole] = useState('');
+
+  const addCreator = async () => {
+    if (!newName.trim() || !newRole.trim()) return;
+    const newCreator: CreatorProfile = {
+      id: String(Date.now()),
+      name: newName,
+      redditUsername: newUsername.startsWith('u/') ? newUsername : `u/${newUsername}`,
+      role: newRole,
+      voiceDescription: '',
+      redditPersonaNotes: '',
+      topicsOfExpertise: '',
+    };
+    const updated = [...creators, newCreator];
+    setCreators(updated);
+    setNewName('');
+    setNewUsername('');
+    setNewRole('');
+    setExpandedCreators(prev => new Set(prev).add(newCreator.id));
+    await save({ creator_profiles: updated });
+  };
+
+  const removeCreator = async (id: string) => {
+    const updated = creators.filter(c => c.id !== id);
+    setCreators(updated);
+    await save({ creator_profiles: updated });
+  };
 
   useEffect(() => {
     fetch('/api/settings').then(r => r.json()).then(data => {
@@ -33,6 +62,23 @@ export default function CreatorProfilesPage() {
           Individual voice profiles for personal Reddit accounts. To add or remove creators, go to{' '}
           <a href="/settings" className="text-blue hover:text-navy underline">Account Settings</a>.
         </p>
+      </div>
+
+      {/* Add Creator */}
+      <div className="p-4 rounded-xl bg-white border border-border mb-6">
+        <p className="text-[12px] font-semibold text-dark mb-3">Add Creator</p>
+        <div className="grid grid-cols-3 gap-3 mb-2">
+          <input type="text" value={newName} onChange={e => setNewName(e.target.value)} placeholder="Full name" className="px-3 py-2 rounded-lg border border-border bg-surface text-[13px] text-dark placeholder:text-muted/60 focus:outline-none focus:ring-2 focus:ring-navy/20" />
+          <input type="text" value={newUsername} onChange={e => setNewUsername(e.target.value)} placeholder="Reddit username" className="px-3 py-2 rounded-lg border border-border bg-surface text-[13px] text-dark placeholder:text-muted/60 focus:outline-none focus:ring-2 focus:ring-navy/20" />
+          <div className="flex items-center gap-2">
+            <input type="text" value={newRole} onChange={e => setNewRole(e.target.value)} placeholder="Role (e.g., CEO)" className="flex-1 px-3 py-2 rounded-lg border border-border bg-surface text-[13px] text-dark placeholder:text-muted/60 focus:outline-none focus:ring-2 focus:ring-navy/20" />
+            <button onClick={addCreator} disabled={!newName.trim() || !newRole.trim()} className="flex items-center gap-1.5 px-3 py-2 rounded-lg bg-navy text-white text-[13px] font-medium hover:bg-navy/90 transition-colors shrink-0 disabled:opacity-50">
+              <Plus size={14} />
+              Add
+            </button>
+          </div>
+        </div>
+        <p className="text-[11px] text-muted">New creators are automatically expanded so you can configure their voice right away.</p>
       </div>
 
       {creators.length === 0 ? (
@@ -70,6 +116,13 @@ export default function CreatorProfilesPage() {
                     <span className={`text-[10px] px-1.5 py-0.5 rounded font-medium ${hasVoice ? 'bg-green/10 text-green' : 'bg-orange/10 text-orange'}`}>
                       {hasVoice ? 'Voice configured' : 'Needs voice setup'}
                     </span>
+                    <button
+                      onClick={(e) => { e.stopPropagation(); removeCreator(creator.id); }}
+                      className="p-1.5 rounded-md text-muted hover:text-dark hover:bg-surface transition-colors"
+                      title="Remove creator"
+                    >
+                      <Trash2 size={14} />
+                    </button>
                     <div className="w-7 h-7 rounded-full bg-surface flex items-center justify-center text-muted">
                       {isExpanded ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
                     </div>
