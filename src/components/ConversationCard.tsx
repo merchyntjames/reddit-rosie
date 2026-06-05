@@ -93,7 +93,9 @@ export function ConversationCard({ conversation, onStatusChange, onDraftsGenerat
   const [isExpanded, setIsExpanded] = useState(false);
   const [isGenerating, setIsGenerating] = useState(false);
   const [generateError, setGenerateError] = useState<string | null>(null);
-  const [drafts, setDrafts] = useState<DraftItem[]>([]);
+  // Initialize drafts from server data if available
+  const serverDrafts: DraftItem[] = (conversation as unknown as { drafts?: DraftItem[] }).drafts || [];
+  const [drafts, setDrafts] = useState<DraftItem[]>(serverDrafts);
   const [showDismissModal, setShowDismissModal] = useState(false);
   const [dismissReason, setDismissReason] = useState('');
   const [dismissCustom, setDismissCustom] = useState('');

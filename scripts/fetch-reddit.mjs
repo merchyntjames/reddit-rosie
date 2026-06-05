@@ -445,7 +445,23 @@ async function main() {
     }
   }
 
-  const qualityPosts = scoredPosts.filter(p => p.relevanceScore >= minScore);
+  const aboveThreshold = scoredPosts.filter(p => p.relevanceScore >= minScore);
+
+  // Deduplicate by title — keep only the highest-scoring version
+  // This catches cross-posts (same content posted to multiple subreddits)
+  const titleMap = new Map();
+  for (const post of aboveThreshold) {
+    const titleKey = post.title.toLowerCase().trim();
+    const existing = titleMap.get(titleKey);
+    if (!existing || post.relevanceScore > existing.relevanceScore) {
+      titleMap.set(titleKey, post);
+    }
+  }
+  const qualityPosts = [...titleMap.values()];
+  const titleDupsRemoved = aboveThreshold.length - qualityPosts.length;
+  if (titleDupsRemoved > 0) {
+    console.log(`Removed ${titleDupsRemoved} title duplicates (cross-posts)`);
+  }
 
   console.log(`Posts with relevance >= ${minScore}: ${qualityPosts.length}`);
   console.log(`Posts filtered out (< 20): ${scoredPosts.length - qualityPosts.length}`);
@@ -477,11 +493,14 @@ async function main() {
     // Get existing post IDs to avoid duplicates
     const { data: existingPosts } = await supabase
       .from('conversations')
-      .select('id');
+      .select('id, title');
     const existingIds = new Set((existingPosts || []).map(p => p.id));
+    const existingTitles = new Set((existingPosts || []).map(p => p.title?.toLowerCase().trim()));
 
-    // Insert only new posts (skip ones we've already seen)
-    const newPosts = qualityPosts.filter(p => !existingIds.has(p.id));
+    // Insert only new posts (skip by ID and by title to catch cross-posts)
+    const newPosts = qualityPosts.filter(p =>
+      !existingIds.has(p.id) && !existingTitles.has(p.title.toLowerCase().trim())
+    );
     newPostsCount = newPosts.length;
 
     if (newPosts.length > 0) {

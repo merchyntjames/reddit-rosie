@@ -222,10 +222,24 @@ export async function POST() {
     });
     const qualityPosts = scored.filter(p => p.relevanceScore >= minScore);
 
-    // Check existing IDs
-    const { data: existing } = await supabase.from('conversations').select('id');
+    // Deduplicate by title — keep only the highest-scoring version of duplicate titles
+    const titleMap = new Map<string, typeof qualityPosts[0]>();
+    for (const post of qualityPosts) {
+      const titleKey = post.title.toLowerCase().trim();
+      const existing = titleMap.get(titleKey);
+      if (!existing || post.relevanceScore > existing.relevanceScore) {
+        titleMap.set(titleKey, post);
+      }
+    }
+    const dedupedPosts = [...titleMap.values()];
+
+    // Check existing IDs and titles in database
+    const { data: existing } = await supabase.from('conversations').select('id, title');
     const existingIds = new Set((existing || []).map(p => p.id));
-    const newPosts = qualityPosts.filter(p => !existingIds.has(p.id));
+    const existingTitles = new Set((existing || []).map(p => p.title?.toLowerCase().trim()));
+    const newPosts = dedupedPosts.filter(p =>
+      !existingIds.has(p.id) && !existingTitles.has(p.title.toLowerCase().trim())
+    );
 
     // Insert new posts
     if (newPosts.length > 0) {

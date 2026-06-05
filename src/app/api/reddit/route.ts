@@ -25,23 +25,12 @@ export async function GET(request: Request) {
       );
     }
 
-    let query = supabase
+    // Fetch ALL conversations — client-side tabs handle filtering
+    // This ensures Dismissed and Completed tabs have data to show
+    const query = supabase
       .from('conversations')
       .select('*')
       .order('relevance_score', { ascending: false });
-
-    // Filter by status
-    if (status === 'all') {
-      // "All" shows everything except dismissed
-      query = query.neq('status', 'dismissed');
-    } else if (status === 'dismissed') {
-      query = query.eq('status', 'dismissed');
-    } else if (status) {
-      query = query.eq('status', status);
-    } else {
-      // Default: exclude dismissed
-      query = query.neq('status', 'dismissed');
-    }
 
     const { data, error } = await query;
 
@@ -57,27 +46,63 @@ export async function GET(request: Request) {
       .limit(1)
       .single();
 
+    // Fetch all drafts for these conversations
+    const conversationIds = (data || []).map(r => r.id);
+    const { data: allDrafts } = conversationIds.length > 0
+      ? await supabase
+          .from('conversation_drafts')
+          .select('*')
+          .in('conversation_id', conversationIds)
+          .order('version', { ascending: false })
+      : { data: [] };
+
+    // Group drafts by conversation — latest version only
+    const draftsByConversation = new Map<string, typeof allDrafts>();
+    for (const draft of allDrafts || []) {
+      const existing = draftsByConversation.get(draft.conversation_id) || [];
+      // Only keep latest version per draft_type + creator_id
+      const key = `${draft.draft_type}-${draft.creator_id || 'corporate'}`;
+      if (!existing.some(d => `${d.draft_type}-${d.creator_id || 'corporate'}` === key)) {
+        existing.push(draft);
+      }
+      draftsByConversation.set(draft.conversation_id, existing);
+    }
+
     // Map database columns to frontend format
-    const posts = (data || []).map(row => ({
-      id: row.id,
-      subreddit: `r/${row.subreddit}`,
-      postTitle: row.title,
-      postSnippet: row.selftext
-        ? row.selftext.slice(0, 500).replace(/\n+/g, ' ').trim() + (row.selftext.length > 300 ? '...' : '')
-        : '',
-      postAuthor: `u/${row.author_username}`,
-      postUrl: row.permalink
-        ? `https://reddit.com${row.permalink}`
-        : `https://reddit.com/r/${row.subreddit}/comments/${row.id}`,
-      commentCount: row.comments_count ?? 0,
-      upvotes: row.score ?? 0,
-      relevanceScore: row.relevance_score,
-      matchedKeywords: row.matched_keywords ?? [],
-      discoveredAt: row.discovered_at,
-      status: row.status,
-      corporateDraft: row.corporate_draft ?? '',
-      personalDraft: row.personal_draft ?? '',
-    }));
+    const posts = (data || []).map(row => {
+      const drafts = draftsByConversation.get(row.id) || [];
+      // For backward compat, set corporateDraft/personalDraft from new table
+      const corporateDraft = drafts.find(d => d.draft_type === 'corporate')?.content || row.corporate_draft || '';
+      const personalDraft = drafts.find(d => d.draft_type === 'personal')?.content || row.personal_draft || '';
+
+      return {
+        id: row.id,
+        subreddit: `r/${row.subreddit}`,
+        postTitle: row.title,
+        postSnippet: row.selftext
+          ? row.selftext.slice(0, 500).replace(/\n+/g, ' ').trim() + (row.selftext.length > 500 ? '...' : '')
+          : '',
+        postAuthor: `u/${row.author_username}`,
+        postUrl: row.permalink
+          ? `https://reddit.com${row.permalink}`
+          : `https://reddit.com/r/${row.subreddit}/comments/${row.id}`,
+        commentCount: row.comments_count ?? 0,
+        upvotes: row.score ?? 0,
+        relevanceScore: row.relevance_score,
+        matchedKeywords: row.matched_keywords ?? [],
+        discoveredAt: row.discovered_at,
+        status: row.status,
+        corporateDraft,
+        personalDraft,
+        drafts: drafts.map(d => ({
+          draftType: d.draft_type,
+          creatorId: d.creator_id,
+          creatorName: d.creator_name,
+          content: d.content,
+          version: d.version,
+        })),
+      };
+    });
 
     return NextResponse.json({
       posts,
