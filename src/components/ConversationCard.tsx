@@ -238,6 +238,13 @@ export function ConversationCard({ conversation, onStatusChange, onDraftsGenerat
                 </span>
               ))}
             </div>
+
+            {/* Item ID */}
+            {(conversation as unknown as { displayId?: string }).displayId && (
+              <p className="text-[10px] text-muted/50 mt-2 select-text cursor-text">
+                Item ID: {(conversation as unknown as { displayId: string }).displayId}
+              </p>
+            )}
           </div>
 
           {/* Right side: badges */}

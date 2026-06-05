@@ -77,6 +77,7 @@ export async function GET(request: Request) {
 
       return {
         id: row.id,
+        displayId: `RR-${String(row.display_id).padStart(4, '0')}`,
         subreddit: `r/${row.subreddit}`,
         postTitle: row.title,
         postSnippet: row.selftext
