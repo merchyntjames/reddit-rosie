@@ -10,7 +10,6 @@ import {
   ArrowUp,
   Tag,
   Clock,
-  Info,
   Sparkles,
   Loader2,
 } from 'lucide-react';
@@ -39,22 +38,9 @@ function RelevanceBadge({ score }: { score: number }) {
   else if (score < 80) colorClass = 'bg-blue/10 text-blue';
 
   return (
-    <div className="flex items-center gap-1">
-      <span className={`inline-flex items-center px-2 py-0.5 rounded-md text-[11px] font-semibold ${colorClass}`}>
-        {score}/100 Quality Score
-      </span>
-      <Link
-        href="/settings?tab=quality"
-        onClick={(e) => e.stopPropagation()}
-        className="group relative"
-        title="How are Quality Scores calculated?"
-      >
-        <Info size={13} className="text-muted hover:text-navy transition-colors" />
-        <span className="absolute right-0 top-full mt-1 w-48 px-2.5 py-1.5 rounded-md bg-dark text-white text-[10px] leading-relaxed opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-20">
-          Scored by keyword matches, topic relevance, and engagement signals. Click to see details.
-        </span>
-      </Link>
-    </div>
+    <span className={`inline-flex items-center px-2 py-0.5 rounded-md text-[11px] font-semibold ${colorClass}`}>
+      {score}/100 Quality Score
+    </span>
   );
 }
 
@@ -160,7 +146,7 @@ export function ConversationCard({ conversation, onStatusChange, onDraftsGenerat
     ? drafts
     : [
         ...(conversation.corporateDraft ? [{ draftType: 'corporate' as const, creatorId: null, creatorName: 'Merchynt Response', content: conversation.corporateDraft }] : []),
-        ...(conversation.personalDraft ? [{ draftType: 'personal' as const, creatorId: '1', creatorName: 'James Sowers', content: conversation.personalDraft }] : []),
+        ...(conversation.personalDraft ? [{ draftType: 'personal' as const, creatorId: null, creatorName: 'Personal Voice', content: conversation.personalDraft }] : []),
       ];
 
   const handleDraftUpdated = (draftType: string, creatorId: string | null, newContent: string) => {

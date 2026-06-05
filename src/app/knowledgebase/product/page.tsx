@@ -43,13 +43,14 @@ function CollapsibleCard({ icon: Icon, title, subtitle, children, defaultOpen = 
 
 export default function ProductKnowledgePage() {
   const [productKnowledge, setProductKnowledge] = useState<ProductKnowledge>(mockProductKnowledge);
+  const [isLoading, setIsLoading] = useState(true);
   const { saveStatus, save } = useSaveStatus();
   const [newProductName, setNewProductName] = useState('');
 
   useEffect(() => {
     fetch('/api/settings').then(r => r.json()).then(data => {
       if (data.settings?.product_knowledge) setProductKnowledge(data.settings.product_knowledge);
-    }).catch(() => {});
+    }).catch(() => {}).finally(() => setIsLoading(false));
   }, []);
 
   const addProduct = () => {
@@ -83,6 +84,11 @@ export default function ProductKnowledgePage() {
         </p>
       </div>
 
+      {isLoading ? (
+        <div className="flex items-center justify-center py-12">
+          <Loader2 size={24} className="animate-spin text-navy" />
+        </div>
+      ) : (
       <div className="space-y-3">
         {productKnowledge.products.map((product, index) => (
           <CollapsibleCard
@@ -149,6 +155,7 @@ export default function ProductKnowledgePage() {
         </div>
 
       </div>
+      )}
     </div>
   );
 }

@@ -43,13 +43,14 @@ function CollapsibleCard({ icon: Icon, title, subtitle, children }: {
 export default function CompanyKnowledgePage() {
   const [productKnowledge, setProductKnowledge] = useState<ProductKnowledge>(mockProductKnowledge);
   const [brandVoice, setBrandVoice] = useState<BrandVoice>(mockBrandVoice);
+  const [isLoading, setIsLoading] = useState(true);
   const { saveStatus, save } = useSaveStatus();
 
   useEffect(() => {
     fetch('/api/settings').then(r => r.json()).then(data => {
       if (data.settings?.product_knowledge) setProductKnowledge(data.settings.product_knowledge);
       if (data.settings?.brand_voice) setBrandVoice(data.settings.brand_voice);
-    }).catch(() => {});
+    }).catch(() => {}).finally(() => setIsLoading(false));
   }, []);
 
   const handleSave = () => save({
@@ -66,6 +67,11 @@ export default function CompanyKnowledgePage() {
         </p>
       </div>
 
+      {isLoading ? (
+        <div className="flex items-center justify-center py-12">
+          <Loader2 size={24} className="animate-spin text-navy" />
+        </div>
+      ) : (
       <div className="space-y-3">
         <CollapsibleCard icon={Building2} title="Company Overview" subtitle="High-level description of what Merchynt does">
           <textarea
@@ -96,6 +102,7 @@ export default function CompanyKnowledgePage() {
           </button>
         </div>
       </div>
+      )}
     </div>
   );
 }

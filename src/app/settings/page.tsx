@@ -35,8 +35,8 @@ export default function SettingsPage() {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          monitored_subreddits: subreddits.filter(s => s.enabled).map(s => s.name.replace('r/', '')),
-          monitored_keywords: keywords.filter(k => k.enabled).map(k => k.term),
+          monitored_subreddits: subreddits.map(s => s.name.replace('r/', '')),
+          monitored_keywords: keywords.map(k => k.term),
         }),
       });
       setSaveStatus('saved');

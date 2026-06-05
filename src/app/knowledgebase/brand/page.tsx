@@ -44,12 +44,13 @@ function CollapsibleCard({ icon: Icon, title, subtitle, children, defaultOpen = 
 export default function BrandVoicePage() {
   const [brandVoice, setBrandVoice] = useState<BrandVoice>(mockBrandVoice);
   const [newSampleResponse, setNewSampleResponse] = useState('');
+  const [isLoading, setIsLoading] = useState(true);
   const { saveStatus, save } = useSaveStatus();
 
   useEffect(() => {
     fetch('/api/settings').then(r => r.json()).then(data => {
       if (data.settings?.brand_voice) setBrandVoice(data.settings.brand_voice);
-    }).catch(() => {});
+    }).catch(() => {}).finally(() => setIsLoading(false));
   }, []);
 
   return (
@@ -61,6 +62,11 @@ export default function BrandVoicePage() {
         </p>
       </div>
 
+      {isLoading ? (
+        <div className="flex items-center justify-center py-12">
+          <Loader2 size={24} className="animate-spin text-navy" />
+        </div>
+      ) : (
       <div className="space-y-3">
         <CollapsibleCard icon={Megaphone} title="Voice Description" subtitle="The overall tone and personality of the Merchynt brand">
           <textarea value={brandVoice.voiceDescription} onChange={e => setBrandVoice(prev => ({ ...prev, voiceDescription: e.target.value }))} rows={4} className="w-full px-4 py-3 text-[13px] text-dark leading-relaxed bg-surface rounded-lg border border-border resize-y focus:outline-none focus:ring-2 focus:ring-navy/20" />
@@ -101,6 +107,7 @@ export default function BrandVoicePage() {
           </button>
         </div>
       </div>
+      )}
     </div>
   );
 }

@@ -8,7 +8,6 @@ import {
   MessageSquareMore,
   Activity,
   Settings,
-  LogOut,
   Radio,
   CircleDot,
   ScrollText,
@@ -117,7 +116,9 @@ export function Sidebar() {
       {/* Navigation */}
       <nav className="flex-1 px-3 space-y-1">
         {navItems.map((item) => {
-          const isActive = pathname.startsWith(item.href);
+          const isActive = item.href === '/queue'
+            ? pathname === '/' || pathname === '/queue'
+            : pathname.startsWith(item.href);
           const Icon = item.icon;
           const hasChildren = item.children && item.children.length > 0;
 

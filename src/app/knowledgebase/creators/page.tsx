@@ -9,6 +9,7 @@ import { Users, ChevronDown, ChevronUp, Loader2, Check, Plus, Trash2, Save } fro
 export default function CreatorProfilesPage() {
   const [creators, setCreators] = useState<CreatorProfile[]>(mockCreatorProfiles);
   const [expandedCreators, setExpandedCreators] = useState<Set<string>>(new Set());
+  const [isLoading, setIsLoading] = useState(true);
   const { saveStatus, save } = useSaveStatus();
   const [newName, setNewName] = useState('');
   const [newUsername, setNewUsername] = useState('');
@@ -43,7 +44,7 @@ export default function CreatorProfilesPage() {
   useEffect(() => {
     fetch('/api/settings').then(r => r.json()).then(data => {
       if (data.settings?.creator_profiles) setCreators(data.settings.creator_profiles);
-    }).catch(() => {});
+    }).catch(() => {}).finally(() => setIsLoading(false));
   }, []);
 
   const toggleExpanded = (id: string) => {
@@ -63,6 +64,12 @@ export default function CreatorProfilesPage() {
         </p>
       </div>
 
+      {isLoading ? (
+        <div className="flex items-center justify-center py-12">
+          <Loader2 size={24} className="animate-spin text-navy" />
+        </div>
+      ) : (
+      <>
       {/* Add Creator */}
       <div className="p-4 rounded-xl bg-white border border-border mb-6">
         <p className="text-[12px] font-semibold text-dark mb-3">Add Creator</p>
@@ -158,6 +165,8 @@ export default function CreatorProfilesPage() {
             );
           })}
         </div>
+      )}
+      </>
       )}
     </div>
   );
