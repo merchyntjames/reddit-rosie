@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import { mockBrandVoice } from '@/lib/mock-data';
 import { BrandVoice } from '@/lib/types';
 import { useSaveStatus } from '@/lib/knowledgebase';
-import { Megaphone, Shield, BookOpen, MessageSquare, Plus, X, Loader2, Check, ChevronDown, ChevronUp } from 'lucide-react';
+import { Megaphone, Shield, BookOpen, MessageSquare, Plus, X, Loader2, Check, ChevronDown, ChevronUp, Users } from 'lucide-react';
 
 function CollapsibleCard({ icon: Icon, title, subtitle, children, defaultOpen = false }: {
   icon: React.ElementType;
@@ -64,6 +64,10 @@ export default function BrandVoicePage() {
       <div className="space-y-3">
         <CollapsibleCard icon={Megaphone} title="Voice Description" subtitle="The overall tone and personality of the Merchynt brand">
           <textarea value={brandVoice.voiceDescription} onChange={e => setBrandVoice(prev => ({ ...prev, voiceDescription: e.target.value }))} rows={4} className="w-full px-4 py-3 text-[13px] text-dark leading-relaxed bg-surface rounded-lg border border-border resize-y focus:outline-none focus:ring-2 focus:ring-navy/20" />
+        </CollapsibleCard>
+
+        <CollapsibleCard icon={Users} title="Audience Description" subtitle="Who Merchynt is talking to — shapes tone and relevance of drafts">
+          <textarea value={brandVoice.audienceDescription || ''} onChange={e => setBrandVoice(prev => ({ ...prev, audienceDescription: e.target.value }))} rows={12} className="w-full px-4 py-3 text-[13px] text-dark leading-relaxed bg-surface rounded-lg border border-border resize-y focus:outline-none focus:ring-2 focus:ring-navy/20" />
         </CollapsibleCard>
 
         <CollapsibleCard icon={Shield} title="Reddit-Specific Guidelines" subtitle="Non-negotiable guardrails for how Rosie behaves on Reddit">

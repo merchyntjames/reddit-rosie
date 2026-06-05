@@ -54,6 +54,7 @@ export interface ProductKnowledge {
 export interface BrandVoice {
   brandName: string;
   voiceDescription: string;
+  audienceDescription: string;
   redditGuidelines: string;
   topicsToAvoid: string;
   approvedTerminology: string;

@@ -48,6 +48,7 @@ async function loadKnowledgebase(supabase: any) {
       competitorContext: product.competitorContext,
       keyStats: product.keyStats,
       brandVoice: voice.voiceDescription,
+      audienceDescription: voice.audienceDescription || '',
       redditGuidelines: voice.redditGuidelines,
       topicsToAvoid: voice.topicsToAvoid,
       approvedTerminology: voice.approvedTerminology,

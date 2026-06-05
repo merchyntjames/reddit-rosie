@@ -62,6 +62,7 @@ interface BrandContext {
   competitorContext: string;
   keyStats: string;
   brandVoice: string;
+  audienceDescription: string;
   redditGuidelines: string;
   topicsToAvoid: string;
   approvedTerminology: string;
@@ -110,6 +111,11 @@ ${brand.keyStats}
 
 ## Brand Voice
 ${brand.brandVoice}
+
+## Target Audiences
+${brand.audienceDescription || 'Not specified'}
+
+IMPORTANT: When drafting a reply, identify which audience the poster belongs to (SMB owner vs agency/marketer) based on their language, subreddit, and context. Adjust your tone, terminology, and focus accordingly. SMB owners care about calls and customers — don't talk about "margins" or "white-label." Agency owners care about scalability and profit — don't oversimplify.
 
 ## Reddit-Specific Guidelines
 ${brand.redditGuidelines}
@@ -160,6 +166,9 @@ ${brand.products.map(p => `- ${p.name}: ${p.description}`).join('\n')}
 
 ## Key Stats You Can Reference
 ${brand.keyStats}
+
+## Target Audiences (adapt your language accordingly)
+${brand.audienceDescription || 'Not specified'}
 
 ## Topics to Avoid
 ${brand.topicsToAvoid}

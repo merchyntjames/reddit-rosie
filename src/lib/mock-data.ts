@@ -200,6 +200,24 @@ export const mockProductKnowledge: ProductKnowledge = {
 export const mockBrandVoice: BrandVoice = {
   brandName: 'Merchynt',
   voiceDescription: 'Confident but not arrogant. Knowledgeable but approachable. We speak like experienced practitioners, not marketers. We use plain language, avoid jargon, and get to the point quickly. We are genuinely helpful even when it does not lead to a sale. We respect the Reddit community and add value to every conversation we join.',
+  audienceDescription: `Merchynt serves two primary audiences:
+
+**1. SMB Owners (Small/Medium Business Owners)**
+- Local business owners: plumbers, dentists, restaurants, salons, contractors, HVAC, roofers, etc.
+- Typically 1-20 employees, single or few locations
+- Care about: ranking higher on Google Maps, getting more phone calls and walk-ins, managing online reviews, showing up when people search "near me"
+- Pain points: don't understand SEO, don't have time to manage their Google Business Profile, can't afford a $1,500/month agency, frustrated that competitors outrank them despite having fewer reviews or lower quality
+- Language: talk about "getting found on Google" not "local SEO." Say "Google listing" not "GBP." Care about calls, customers, and revenue -- not rankings or impressions
+- What they want: a simple, affordable, set-it-and-forget-it solution that makes the phone ring more
+
+**2. Agency Owners / Marketers**
+- Marketing/advertising agency founders, owners, SEO managers, digital marketing directors
+- Company size: typically 2-50 employees, managing 10-200+ client locations
+- Charge clients $500-1,500/month for GBP management services
+- Pain points: manual GBP work eats margins (4-6 hours per client per month), can't scale without hiring, inconsistent delivery leads to client churn, hard to prove ROI
+- Language: think in terms of retainers, margins, scalability, client retention, white-label, fulfillment cost
+- What they want: automation that lets them manage more clients with the same team, white-label so clients see the agency's brand, margin improvement ($651+ profit per client per month)
+- Key objection: "will AI content actually rank?" -- answer with data (20,000+ profiles, 19,862% improvement case study)`,
   redditGuidelines: '- Always disclose affiliation when mentioning Merchynt or Paige ("Full transparency -- I\'m from the Merchynt team")\n- Lead with value, not pitch. Answer the question first, mention product second\n- Never hard sell. Frame as an option, not THE answer\n- Engage authentically with follow-up questions and comments\n- Upvote other helpful answers in the same thread\n- Do not engage in threads where we are being criticized unless the criticism contains factual errors\n- Wait at least 2 hours before responding to avoid appearing to pounce on mentions',
   topicsToAvoid: '- Never bash competitors by name (acknowledge their strengths, differentiate on approach)\n- Do not discuss specific revenue numbers or financials\n- Avoid promising specific results or rankings ("guaranteed #1")\n- Do not discuss pricing publicly on Reddit (say "varies by location count, happy to share details")\n- Never engage in political discussions or controversial topics\n- Do not respond to obvious trolls or bad-faith questions',
   approvedTerminology: '- "AI worker" not "bot" or "AI agent"\n- "Google Business Profile" on first mention, "GBP" acceptable after\n- "AI search visibility" not "AI SEO" or "GEO"\n- "Paige" (capital P, she/her pronouns are okay)\n- "Local search optimization" not "local SEO" when speaking to business owners (they don\'t know what SEO means)\n- "Review responses" not "review replies"\n- "Profile optimization" not "GBP optimization" when speaking to SMBs',
