@@ -21,6 +21,8 @@ import {
   MessageSquare,
   Shield,
   Plus,
+  ChevronDown,
+  ChevronUp,
   X,
   Check,
   Loader2,
@@ -47,6 +49,16 @@ export default function KnowledgebasePage() {
 
   // Creator Profiles state
   const [creators, setCreators] = useState<CreatorProfile[]>(mockCreatorProfiles);
+  const [expandedCreators, setExpandedCreators] = useState<Set<string>>(new Set());
+
+  const toggleCreatorExpanded = (id: string) => {
+    setExpandedCreators(prev => {
+      const next = new Set(prev);
+      if (next.has(id)) next.delete(id);
+      else next.add(id);
+      return next;
+    });
+  };
 
   // Load from Supabase on mount
   useEffect(() => {
@@ -345,71 +357,118 @@ export default function KnowledgebasePage() {
   // --- Render Creator Profiles Tab ---
   const renderCreatorsTab = () => (
     <div className="space-y-8">
-      <section className="bg-white rounded-xl border border-border p-6">
-        <div className="flex items-center gap-2 mb-1">
-          <Users size={18} className="text-navy" />
-          <h2 className="text-[16px] font-semibold text-dark">Creator Profiles</h2>
-        </div>
-        <p className="text-[13px] text-muted mb-4">
-          Individual voice profiles for personal Reddit accounts. Each creator gets unique drafts tailored to their voice and expertise.
-        </p>
+      <div className="flex items-center gap-2 mb-1">
+        <Users size={18} className="text-navy" />
+        <h2 className="text-[16px] font-semibold text-dark">Creator Profiles</h2>
+      </div>
+      <p className="text-[13px] text-muted -mt-6 mb-2">
+        Individual voice profiles for personal Reddit accounts. Each creator gets unique drafts tailored to their voice and expertise.
+        To add or remove creators, go to{' '}
+        <a href="/settings" className="text-blue hover:text-navy underline">Account Settings</a>.
+      </p>
 
-        <div className="space-y-4">
-          {creators.map((creator, index) => (
-            <div key={creator.id} className="border border-border rounded-lg">
-              <div className="px-4 py-3 border-b border-border bg-surface/50 rounded-t-lg flex items-center justify-between">
-                <div>
-                  <h3 className="text-[14px] font-semibold text-dark">{creator.name}</h3>
-                  <p className="text-[12px] text-muted">{creator.redditUsername} -- {creator.role}</p>
-                </div>
-              </div>
-              <div className="p-4 space-y-3">
-                <div>
-                  <label className="text-[12px] font-medium text-muted block mb-1">Voice Description</label>
-                  <textarea
-                    value={creator.voiceDescription}
-                    onChange={e => {
-                      const updated = [...creators];
-                      updated[index] = { ...updated[index], voiceDescription: e.target.value };
-                      setCreators(updated);
-                    }}
-                    rows={3}
-                    className="w-full px-3 py-2 text-[13px] text-dark bg-surface rounded-lg border border-border resize-y focus:outline-none focus:ring-2 focus:ring-navy/20"
-                  />
-                </div>
-                <div>
-                  <label className="text-[12px] font-medium text-muted block mb-1">Reddit Persona Notes</label>
-                  <textarea
-                    value={creator.redditPersonaNotes}
-                    onChange={e => {
-                      const updated = [...creators];
-                      updated[index] = { ...updated[index], redditPersonaNotes: e.target.value };
-                      setCreators(updated);
-                    }}
-                    rows={4}
-                    className="w-full px-3 py-2 text-[13px] text-dark bg-surface rounded-lg border border-border resize-y focus:outline-none focus:ring-2 focus:ring-navy/20"
-                  />
-                </div>
-                <div>
-                  <label className="text-[12px] font-medium text-muted block mb-1">Topics of Expertise</label>
-                  <textarea
-                    value={creator.topicsOfExpertise}
-                    onChange={e => {
-                      const updated = [...creators];
-                      updated[index] = { ...updated[index], topicsOfExpertise: e.target.value };
-                      setCreators(updated);
-                    }}
-                    rows={4}
-                    className="w-full px-3 py-2 text-[13px] text-dark bg-surface rounded-lg border border-border resize-y focus:outline-none focus:ring-2 focus:ring-navy/20"
-                  />
-                </div>
-              </div>
-            </div>
-          ))}
+      {creators.length === 0 ? (
+        <div className="py-8 text-center rounded-lg border border-dashed border-border">
+          <Users size={24} className="text-muted mx-auto mb-2" />
+          <p className="text-[13px] text-muted">No creator profiles yet.</p>
+          <p className="text-[12px] text-muted mt-1">
+            Add creators in{' '}
+            <a href="/settings" className="text-blue hover:text-navy underline">Account Settings</a>.
+          </p>
         </div>
-      </section>
+      ) : (
+        <div className="space-y-3">
+          {creators.map((creator, index) => {
+            const isExpanded = expandedCreators.has(creator.id);
+            const hasVoice = !!creator.voiceDescription;
 
-      <SaveButton />
+            return (
+              <div key={creator.id} className="bg-white border border-border rounded-xl overflow-hidden">
+                {/* Collapsed header — always visible */}
+                <button
+                  onClick={() => toggleCreatorExpanded(creator.id)}
+                  className="w-full px-5 py-4 flex items-center justify-between text-left hover:bg-surface/50 transition-colors"
+                >
+                  <div className="flex items-center gap-3">
+                    <div className="w-9 h-9 rounded-full bg-navy flex items-center justify-center">
+                      <span className="text-white text-[11px] font-semibold">
+                        {creator.name.split(' ').map(n => n[0]).join('').slice(0, 2)}
+                      </span>
+                    </div>
+                    <div>
+                      <h3 className="text-[14px] font-semibold text-dark">{creator.name}</h3>
+                      <p className="text-[12px] text-muted">{creator.redditUsername} -- {creator.role}</p>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <span className={`text-[10px] px-1.5 py-0.5 rounded font-medium ${
+                      hasVoice ? 'bg-green/10 text-green' : 'bg-orange/10 text-orange'
+                    }`}>
+                      {hasVoice ? 'Voice configured' : 'Needs voice setup'}
+                    </span>
+                    <div className="w-7 h-7 rounded-full bg-surface flex items-center justify-center text-muted">
+                      {isExpanded ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
+                    </div>
+                  </div>
+                </button>
+
+                {/* Expanded content */}
+                {isExpanded && (
+                  <div className="px-5 pb-5 border-t border-border pt-4 space-y-4">
+                    <div>
+                      <label className="text-[12px] font-medium text-dark block mb-1">Voice Description</label>
+                      <p className="text-[11px] text-muted mb-2">How does this person write? What makes their voice distinctive?</p>
+                      <textarea
+                        value={creator.voiceDescription}
+                        onChange={e => {
+                          const updated = [...creators];
+                          updated[index] = { ...updated[index], voiceDescription: e.target.value };
+                          setCreators(updated);
+                        }}
+                        placeholder="e.g., Casual and direct. Writes in short paragraphs. Uses dashes for emphasis. Shares personal experience and strong opinions."
+                        rows={3}
+                        className="w-full px-3 py-2 text-[13px] text-dark bg-surface rounded-lg border border-border resize-y focus:outline-none focus:ring-2 focus:ring-navy/20"
+                      />
+                    </div>
+                    <div>
+                      <label className="text-[12px] font-medium text-dark block mb-1">Reddit Persona Notes</label>
+                      <p className="text-[11px] text-muted mb-2">How should this person come across specifically on Reddit?</p>
+                      <textarea
+                        value={creator.redditPersonaNotes}
+                        onChange={e => {
+                          const updated = [...creators];
+                          updated[index] = { ...updated[index], redditPersonaNotes: e.target.value };
+                          setCreators(updated);
+                        }}
+                        placeholder="e.g., Frame product references as 'a tool I use'. Be opinionated. Ask follow-up questions."
+                        rows={4}
+                        className="w-full px-3 py-2 text-[13px] text-dark bg-surface rounded-lg border border-border resize-y focus:outline-none focus:ring-2 focus:ring-navy/20"
+                      />
+                    </div>
+                    <div>
+                      <label className="text-[12px] font-medium text-dark block mb-1">Topics of Expertise</label>
+                      <p className="text-[11px] text-muted mb-2">What subjects is this person credible speaking about?</p>
+                      <textarea
+                        value={creator.topicsOfExpertise}
+                        onChange={e => {
+                          const updated = [...creators];
+                          updated[index] = { ...updated[index], topicsOfExpertise: e.target.value };
+                          setCreators(updated);
+                        }}
+                        placeholder="e.g., Local SEO strategy, agency operations, AI search visibility, Google Business Profile best practices"
+                        rows={4}
+                        className="w-full px-3 py-2 text-[13px] text-dark bg-surface rounded-lg border border-border resize-y focus:outline-none focus:ring-2 focus:ring-navy/20"
+                      />
+                    </div>
+
+                    <SaveButton />
+                  </div>
+                )}
+              </div>
+            );
+          })}
+        </div>
+      )}
     </div>
   );
 

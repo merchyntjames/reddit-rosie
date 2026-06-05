@@ -45,6 +45,7 @@ import {
   Sliders,
   UserPlus,
   Trash2,
+  Pencil,
   Target,
 } from 'lucide-react';
 
@@ -1197,12 +1198,19 @@ export default function SettingsPage() {
                     <p className="text-[11px] text-muted">{creator.redditUsername} -- {creator.role}</p>
                   </div>
                 </div>
-                <div className="flex items-center gap-3">
+                <div className="flex items-center gap-2">
                   <span className={`text-[10px] px-1.5 py-0.5 rounded font-medium ${
                     creator.voiceDescription ? 'bg-green/10 text-green' : 'bg-orange/10 text-orange'
                   }`}>
                     {creator.voiceDescription ? 'Voice configured' : 'Needs voice setup'}
                   </span>
+                  <a
+                    href="/knowledgebase"
+                    className="p-1.5 rounded-md text-muted hover:text-navy hover:bg-surface transition-colors"
+                    title="Edit voice and expertise"
+                  >
+                    <Pencil size={14} />
+                  </a>
                   <button
                     onClick={() => removeCreator(creator.id)}
                     className="p-1.5 rounded-md text-muted hover:text-dark hover:bg-surface transition-colors"
