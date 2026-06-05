@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import { mockProductKnowledge } from '@/lib/mock-data';
 import { ProductKnowledge } from '@/lib/types';
 import { useSaveStatus } from '@/lib/knowledgebase';
-import { Package, Loader2, Check, ChevronDown, ChevronUp, Plus, Trash2 } from 'lucide-react';
+import { Package, Loader2, Check, ChevronDown, ChevronUp, Plus, Trash2, Save } from 'lucide-react';
 
 function CollapsibleCard({ icon: Icon, title, subtitle, children, defaultOpen = false }: {
   icon: React.ElementType;
@@ -108,13 +108,17 @@ export default function ProductKnowledgePage() {
                 <label className="text-[12px] font-medium text-dark block mb-1">Pricing</label>
                 <textarea value={product.pricing} onChange={e => { const u = [...productKnowledge.products]; u[index] = { ...u[index], pricing: e.target.value }; setProductKnowledge(prev => ({ ...prev, products: u })); }} rows={3} className="w-full px-3 py-2 text-[13px] text-dark bg-surface rounded-lg border border-border resize-y focus:outline-none focus:ring-2 focus:ring-navy/20" />
               </div>
-              <div className="flex items-center justify-between pt-2">
+              <div className="flex items-center justify-end gap-2 pt-2">
                 <button
                   onClick={() => removeProduct(product.id)}
-                  className="flex items-center gap-2 px-4 py-2.5 rounded-lg bg-pink text-white text-[13px] font-medium hover:bg-pink/90 transition-colors"
+                  className="flex items-center gap-2 px-4 py-2.5 rounded-lg bg-red-600 text-white text-[13px] font-medium hover:bg-red-700 transition-colors"
                 >
                   <Trash2 size={14} />
                   Delete Product
+                </button>
+                <button onClick={() => save({ product_knowledge: productKnowledge })} disabled={saveStatus === 'saving'} className="flex items-center gap-2 px-6 py-2.5 rounded-lg bg-navy text-white text-[13px] font-medium hover:bg-navy/90 transition-colors disabled:opacity-50">
+                  {saveStatus === 'saving' ? <Loader2 size={14} className="animate-spin" /> : saveStatus === 'saved' ? <Check size={14} /> : <Save size={14} />}
+                  {saveStatus === 'saving' ? 'Saving...' : saveStatus === 'saved' ? 'Saved' : saveStatus === 'error' ? 'Error — try again' : 'Save Changes'}
                 </button>
               </div>
             </div>
@@ -144,13 +148,6 @@ export default function ProductKnowledgePage() {
           <p className="text-[11px] text-muted mt-2">New products are automatically included in Rosie's context for AI draft generation.</p>
         </div>
 
-        <div className="flex justify-end pt-4">
-          <button onClick={() => save({ product_knowledge: productKnowledge })} disabled={saveStatus === 'saving'} className="flex items-center gap-2 px-6 py-2.5 rounded-lg bg-navy text-white text-[13px] font-medium hover:bg-navy/90 transition-colors disabled:opacity-50">
-            {saveStatus === 'saving' && <Loader2 size={14} className="animate-spin" />}
-            {saveStatus === 'saved' && <Check size={14} />}
-            {saveStatus === 'saving' ? 'Saving...' : saveStatus === 'saved' ? 'Saved' : saveStatus === 'error' ? 'Error — try again' : 'Save Changes'}
-          </button>
-        </div>
       </div>
     </div>
   );

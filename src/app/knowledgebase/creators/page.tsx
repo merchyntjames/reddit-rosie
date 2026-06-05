@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import { mockCreatorProfiles } from '@/lib/mock-data';
 import { CreatorProfile } from '@/lib/types';
 import { useSaveStatus } from '@/lib/knowledgebase';
-import { Users, ChevronDown, ChevronUp, Loader2, Check, Plus, Trash2 } from 'lucide-react';
+import { Users, ChevronDown, ChevronUp, Loader2, Check, Plus, Trash2, Save } from 'lucide-react';
 
 export default function CreatorProfilesPage() {
   const [creators, setCreators] = useState<CreatorProfile[]>(mockCreatorProfiles);
@@ -139,17 +139,16 @@ export default function CreatorProfilesPage() {
                       <textarea value={creator.topicsOfExpertise} onChange={e => { const u = [...creators]; u[index] = { ...u[index], topicsOfExpertise: e.target.value }; setCreators(u); }} placeholder="e.g., Local SEO strategy, agency operations, AI search visibility" rows={4} className="w-full px-3 py-2 text-[13px] text-dark bg-surface rounded-lg border border-border resize-y focus:outline-none focus:ring-2 focus:ring-navy/20" />
                     </div>
 
-                    <div className="flex items-center justify-between">
+                    <div className="flex items-center justify-end gap-2">
                       <button
                         onClick={() => removeCreator(creator.id)}
-                        className="flex items-center gap-2 px-4 py-2.5 rounded-lg bg-pink text-white text-[13px] font-medium hover:bg-pink/90 transition-colors"
+                        className="flex items-center gap-2 px-4 py-2.5 rounded-lg bg-red-600 text-white text-[13px] font-medium hover:bg-red-700 transition-colors"
                       >
                         <Trash2 size={14} />
                         Delete Creator
                       </button>
                       <button onClick={() => save({ creator_profiles: creators })} disabled={saveStatus === 'saving'} className="flex items-center gap-2 px-6 py-2.5 rounded-lg bg-navy text-white text-[13px] font-medium hover:bg-navy/90 transition-colors disabled:opacity-50">
-                        {saveStatus === 'saving' && <Loader2 size={14} className="animate-spin" />}
-                        {saveStatus === 'saved' && <Check size={14} />}
+                        {saveStatus === 'saving' ? <Loader2 size={14} className="animate-spin" /> : saveStatus === 'saved' ? <Check size={14} /> : <Save size={14} />}
                         {saveStatus === 'saving' ? 'Saving...' : saveStatus === 'saved' ? 'Saved' : saveStatus === 'error' ? 'Error — try again' : 'Save Changes'}
                       </button>
                     </div>
