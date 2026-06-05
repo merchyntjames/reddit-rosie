@@ -69,6 +69,47 @@ export default function SettingsPage() {
   })();
   const [activeTab, setActiveTab] = useState<SettingsTab>(initialTab);
 
+  // Creator management state
+  const [newCreatorName, setNewCreatorName] = useState('');
+  const [newCreatorUsername, setNewCreatorUsername] = useState('');
+  const [newCreatorRole, setNewCreatorRole] = useState('');
+
+  const addCreator = async () => {
+    if (!newCreatorName.trim() || !newCreatorRole.trim()) return;
+    const newCreator: CreatorProfile = {
+      id: String(Date.now()),
+      name: newCreatorName,
+      redditUsername: newCreatorUsername.startsWith('u/') ? newCreatorUsername : `u/${newCreatorUsername}`,
+      role: newCreatorRole,
+      voiceDescription: '',
+      redditPersonaNotes: '',
+      topicsOfExpertise: '',
+    };
+    const updated = [...creators, newCreator];
+    setCreators(updated);
+    setNewCreatorName('');
+    setNewCreatorUsername('');
+    setNewCreatorRole('');
+
+    // Save to Supabase
+    await fetch('/api/settings', {
+      method: 'PATCH',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ creator_profiles: updated }),
+    });
+  };
+
+  const removeCreator = async (id: string) => {
+    const updated = creators.filter(c => c.id !== id);
+    setCreators(updated);
+
+    await fetch('/api/settings', {
+      method: 'PATCH',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ creator_profiles: updated }),
+    });
+  };
+
   // Load settings from Supabase on mount
   useState(() => {
     fetch('/api/settings')
@@ -80,6 +121,9 @@ export default function SettingsPage() {
         }
         if (s?.monitored_keywords && Array.isArray(s.monitored_keywords)) {
           setKeywords(s.monitored_keywords.map((term: string) => ({ term, enabled: true })));
+        }
+        if (s?.creator_profiles && Array.isArray(s.creator_profiles)) {
+          setCreators(s.creator_profiles);
         }
       })
       .catch(() => {});
@@ -243,24 +287,7 @@ export default function SettingsPage() {
     }));
   };
 
-  // --- Creator handlers ---
-  const addCreator = () => {
-    const newCreator: CreatorProfile = {
-      id: Date.now().toString(),
-      name: '',
-      redditUsername: '',
-      role: '',
-      voiceDescription: '',
-      redditPersonaNotes: '',
-      topicsOfExpertise: '',
-    };
-    setCreators(prev => [...prev, newCreator]);
-  };
-
-  const removeCreator = (id: string) => {
-    setCreators(prev => prev.filter(c => c.id !== id));
-  };
-
+  // --- Creator handlers (for monitoring tab legacy, kept for updateCreator) ---
   const updateCreator = (id: string, field: keyof CreatorProfile, value: string) => {
     setCreators(prev =>
       prev.map(c => c.id === id ? { ...c, [field]: value } : c)
@@ -1095,6 +1122,99 @@ export default function SettingsPage() {
             </div>
           </div>
         </div>
+      </section>
+
+      {/* Creator Profiles */}
+      <section className="bg-white rounded-xl border border-border p-6">
+        <div className="flex items-center gap-2 mb-1">
+          <Users size={18} className="text-navy" />
+          <h2 className="text-[16px] font-semibold text-dark">Creator Profiles</h2>
+        </div>
+        <p className="text-[13px] text-muted mb-5">
+          Each creator gets their own personal voice draft when generating AI responses. Add creators here, then configure their voice and expertise in the{' '}
+          <a href="/knowledgebase" className="text-blue hover:text-navy underline">Knowledgebase</a>.
+        </p>
+
+        {/* Add creator form */}
+        <div className="p-4 rounded-lg bg-surface border border-border mb-4">
+          <p className="text-[12px] font-semibold text-dark mb-3">Add Creator</p>
+          <div className="grid grid-cols-3 gap-3 mb-3">
+            <input
+              type="text"
+              value={newCreatorName}
+              onChange={e => setNewCreatorName(e.target.value)}
+              placeholder="Full name"
+              className="px-3 py-2 rounded-lg border border-border bg-white text-[13px] text-dark placeholder:text-muted/60 focus:outline-none focus:ring-2 focus:ring-navy/20 focus:border-navy/30"
+            />
+            <input
+              type="text"
+              value={newCreatorUsername}
+              onChange={e => setNewCreatorUsername(e.target.value)}
+              placeholder="Reddit username"
+              className="px-3 py-2 rounded-lg border border-border bg-white text-[13px] text-dark placeholder:text-muted/60 focus:outline-none focus:ring-2 focus:ring-navy/20 focus:border-navy/30"
+            />
+            <div className="flex items-center gap-2">
+              <input
+                type="text"
+                value={newCreatorRole}
+                onChange={e => setNewCreatorRole(e.target.value)}
+                placeholder="Role (e.g., CEO)"
+                className="flex-1 px-3 py-2 rounded-lg border border-border bg-white text-[13px] text-dark placeholder:text-muted/60 focus:outline-none focus:ring-2 focus:ring-navy/20 focus:border-navy/30"
+              />
+              <button
+                onClick={addCreator}
+                disabled={!newCreatorName.trim() || !newCreatorRole.trim()}
+                className="flex items-center gap-1.5 px-3 py-2 rounded-lg bg-navy text-white text-[13px] font-medium hover:bg-navy/90 transition-colors shrink-0 disabled:opacity-50"
+              >
+                <Plus size={14} />
+                Add
+              </button>
+            </div>
+          </div>
+          <p className="text-[11px] text-muted">
+            After adding a creator, go to Knowledgebase &gt; Creator Profiles to set up their voice, persona, and expertise.
+          </p>
+        </div>
+
+        {/* Creator list */}
+        {creators.length === 0 ? (
+          <div className="py-8 text-center rounded-lg border border-dashed border-border">
+            <Users size={24} className="text-muted mx-auto mb-2" />
+            <p className="text-[13px] text-muted">No creator profiles yet.</p>
+          </div>
+        ) : (
+          <div className="space-y-2">
+            {creators.map(creator => (
+              <div key={creator.id} className="flex items-center justify-between py-3 px-4 rounded-lg border border-border">
+                <div className="flex items-center gap-3">
+                  <div className="w-8 h-8 rounded-full bg-navy flex items-center justify-center">
+                    <span className="text-white text-[10px] font-semibold">
+                      {creator.name.split(' ').map(n => n[0]).join('').slice(0, 2)}
+                    </span>
+                  </div>
+                  <div>
+                    <p className="text-[13px] font-medium text-dark">{creator.name}</p>
+                    <p className="text-[11px] text-muted">{creator.redditUsername} -- {creator.role}</p>
+                  </div>
+                </div>
+                <div className="flex items-center gap-3">
+                  <span className={`text-[10px] px-1.5 py-0.5 rounded font-medium ${
+                    creator.voiceDescription ? 'bg-green/10 text-green' : 'bg-orange/10 text-orange'
+                  }`}>
+                    {creator.voiceDescription ? 'Voice configured' : 'Needs voice setup'}
+                  </span>
+                  <button
+                    onClick={() => removeCreator(creator.id)}
+                    className="p-1.5 rounded-md text-muted hover:text-dark hover:bg-surface transition-colors"
+                    title="Remove creator"
+                  >
+                    <Trash2 size={14} />
+                  </button>
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
       </section>
 
       {/* Reddit Accounts */}
