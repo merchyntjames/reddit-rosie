@@ -1021,6 +1021,21 @@ export default function SettingsPage() {
   );
 
   // --- Render Integrations Tab ---
+  // Spending data
+  const [spending, setSpending] = useState<{
+    last24h: { totalCost: number; apiCalls: number; inputTokens: number; outputTokens: number; webSearches: number };
+    last7d: { totalCost: number; apiCalls: number; inputTokens: number; outputTokens: number; webSearches: number };
+    last30d: { totalCost: number; apiCalls: number; inputTokens: number; outputTokens: number; webSearches: number };
+    byCallType: Record<string, { calls: number; cost: number }>;
+  } | null>(null);
+
+  useState(() => {
+    fetch('/api/spending')
+      .then(res => res.json())
+      .then(data => { if (!data.error) setSpending(data); })
+      .catch(() => {});
+  });
+
   const renderIntegrationsTab = () => (
     <div className="space-y-8">
       {/* API Connections */}
@@ -1327,6 +1342,63 @@ export default function SettingsPage() {
             />
           </button>
         </div>
+      </section>
+
+      {/* Claude API Spending */}
+      <section className="bg-white rounded-xl border border-border p-6">
+        <div className="flex items-center gap-2 mb-1">
+          <BookOpen size={18} className="text-navy" />
+          <h2 className="text-[16px] font-semibold text-dark">Claude API Spending</h2>
+        </div>
+        <p className="text-[13px] text-muted mb-4">
+          Token usage and costs for AI draft generation, humanization, and re-rolls.
+        </p>
+
+        {spending ? (
+          <>
+            {/* Period cards */}
+            <div className="grid grid-cols-3 gap-3 mb-4">
+              {[
+                { label: 'Last 24 Hours', data: spending.last24h },
+                { label: 'Last 7 Days', data: spending.last7d },
+                { label: 'Last 30 Days', data: spending.last30d },
+              ].map(({ label, data }) => (
+                <div key={label} className="p-4 rounded-lg border border-border">
+                  <p className="text-[11px] font-semibold text-muted uppercase tracking-wider mb-2">{label}</p>
+                  <p className="text-[22px] font-bold text-dark">${data.totalCost.toFixed(2)}</p>
+                  <div className="mt-2 space-y-0.5">
+                    <p className="text-[11px] text-muted">{data.apiCalls} API calls</p>
+                    <p className="text-[11px] text-muted">{(data.inputTokens + data.outputTokens).toLocaleString()} tokens</p>
+                    {data.webSearches > 0 && (
+                      <p className="text-[11px] text-muted">{data.webSearches} web searches</p>
+                    )}
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* Breakdown by type */}
+            {Object.keys(spending.byCallType).length > 0 && (
+              <div className="p-4 rounded-lg bg-surface border border-border">
+                <p className="text-[12px] font-semibold text-dark mb-2">Cost Breakdown (30 days)</p>
+                <div className="space-y-1.5">
+                  {Object.entries(spending.byCallType)
+                    .sort((a, b) => b[1].cost - a[1].cost)
+                    .map(([type, data]) => (
+                      <div key={type} className="flex items-center justify-between">
+                        <span className="text-[12px] text-dark">{type}</span>
+                        <span className="text-[12px] text-muted">
+                          {data.calls} calls -- ${data.cost.toFixed(2)}
+                        </span>
+                      </div>
+                    ))}
+                </div>
+              </div>
+            )}
+          </>
+        ) : (
+          <p className="text-[13px] text-muted">No usage data available yet. Costs will appear after generating your first AI draft.</p>
+        )}
       </section>
 
       {/* Data Management */}

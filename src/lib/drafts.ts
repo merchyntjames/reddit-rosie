@@ -1,8 +1,58 @@
 import Anthropic from '@anthropic-ai/sdk';
+import { createClient } from '@supabase/supabase-js';
 
 const anthropic = new Anthropic({
   apiKey: process.env.ANTHROPIC_API_KEY,
 });
+
+// --- Pricing (USD per token) ---
+const PRICING = {
+  'claude-opus-4-6': { input: 5 / 1_000_000, output: 25 / 1_000_000 },
+  'claude-sonnet-4-6': { input: 3 / 1_000_000, output: 15 / 1_000_000 },
+};
+const WEB_SEARCH_COST = 10 / 1_000; // $10 per 1,000 searches
+
+function getUsageSupabase() {
+  const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
+  const key = process.env.SUPABASE_SERVICE_ROLE_KEY;
+  if (!url || !key) return null;
+  return createClient(url, key);
+}
+
+async function logUsage(
+  callType: string,
+  conversationId: string | null,
+  model: string,
+  result: Anthropic.Message,
+) {
+  const supabase = getUsageSupabase();
+  if (!supabase) return;
+
+  const inputTokens = result.usage?.input_tokens ?? 0;
+  const outputTokens = result.usage?.output_tokens ?? 0;
+  const usageAny = result.usage as unknown as Record<string, unknown>;
+  const searchRequests = usageAny?.server_tool_use
+    ? (usageAny.server_tool_use as Record<string, number>)?.web_search_requests ?? 0
+    : 0;
+
+  const pricing = PRICING[model as keyof typeof PRICING] || PRICING['claude-opus-4-6'];
+  const inputCost = inputTokens * pricing.input;
+  const outputCost = outputTokens * pricing.output;
+  const searchCost = searchRequests * WEB_SEARCH_COST;
+
+  await supabase.from('api_usage').insert({
+    call_type: callType,
+    conversation_id: conversationId,
+    model,
+    input_tokens: inputTokens,
+    output_tokens: outputTokens,
+    web_search_requests: searchRequests,
+    input_cost: inputCost,
+    output_cost: outputCost,
+    search_cost: searchCost,
+    total_cost: inputCost + outputCost + searchCost,
+  }).then(({ error }) => { if (error) console.error('Usage log error:', error); });
+}
 
 // --- Types ---
 
@@ -170,7 +220,7 @@ const HUMANIZATION_SYSTEM_PROMPT = `You are an editorial pass. You receive a Red
 ## Output
 Return ONLY the improved draft. No preamble, no commentary. Just the final Reddit comment text.`;
 
-async function humanize(draft: string): Promise<string> {
+async function humanize(draft: string, conversationId?: string): Promise<string> {
   const result = await anthropic.messages.create({
     model: 'claude-opus-4-6',
     max_tokens: 1024,
@@ -180,6 +230,8 @@ async function humanize(draft: string): Promise<string> {
       content: `Here is a Reddit comment draft to humanize. Preserve the voice and meaning. Make it read like a real person wrote it.\n\n---\n\n${draft}`,
     }],
   });
+
+  await logUsage('humanize', conversationId || null, 'claude-opus-4-6', result);
 
   const humanized = result.content
     .filter(block => block.type === 'text')
@@ -231,6 +283,9 @@ export async function generateDrafts(
   // Step 1: Generate all voice-specific drafts in parallel
   const draftPromises: Promise<{ draft: GeneratedDraft; raw: string }>[] = [];
 
+  // We need the conversation ID for usage logging — passed via closure
+  const convId = post.postTitle; // Will be replaced with real ID in the API route
+
   // Corporate draft
   draftPromises.push(
     anthropic.messages.create({
@@ -239,10 +294,13 @@ export async function generateDrafts(
       system: buildCorporateSystemPrompt(brand),
       tools: [webSearchTool],
       messages: [{ role: 'user', content: userMessage }],
-    }).then(result => ({
-      draft: { draftType: 'corporate' as const, creatorId: null, creatorName: 'Merchynt Response', content: '' },
-      raw: extractText(result),
-    }))
+    }).then(async result => {
+      await logUsage('draft_corporate', null, 'claude-opus-4-6', result);
+      return {
+        draft: { draftType: 'corporate' as const, creatorId: null, creatorName: 'Merchynt Response', content: '' },
+        raw: extractText(result),
+      };
+    })
   );
 
   // Personal drafts — one per creator
@@ -254,10 +312,13 @@ export async function generateDrafts(
         system: buildPersonalSystemPrompt(brand, creator),
         tools: [webSearchTool],
         messages: [{ role: 'user', content: userMessage }],
-      }).then(result => ({
-        draft: { draftType: 'personal' as const, creatorId: creator.id, creatorName: creator.name, content: '' },
-        raw: extractText(result),
-      }))
+      }).then(async result => {
+        await logUsage(`draft_personal_${creator.id}`, null, 'claude-opus-4-6', result);
+        return {
+          draft: { draftType: 'personal' as const, creatorId: creator.id, creatorName: creator.name, content: '' },
+          raw: extractText(result),
+        };
+      })
     );
   }
 
@@ -267,7 +328,7 @@ export async function generateDrafts(
   const humanized = await Promise.all(
     rawResults.map(async ({ draft, raw }) => ({
       ...draft,
-      content: await humanize(raw),
+      content: await humanize(raw, convId),
     }))
   );
 
@@ -318,6 +379,8 @@ Rewrite the draft incorporating the feedback above. Use web search if you need t
     tools: [webSearchTool],
     messages: [{ role: 'user', content: userMessage }],
   });
+
+  await logUsage('reroll', null, 'claude-opus-4-6', result);
 
   const raw = extractText(result);
   return humanize(raw);
