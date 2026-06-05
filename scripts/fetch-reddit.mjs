@@ -35,28 +35,54 @@ const GLOBAL_QUERIES = [
   // Brand monitoring — find every mention anywhere on Reddit
   { query: 'Merchynt', time: 'day', label: 'brand-mention' },
   { query: '"Paige" AND ("local SEO" OR "GBP" OR "Google Business")', time: 'day', label: 'brand-mention' },
+  { query: 'SAM AND ("sales manager" OR "agency leads" OR "cold calling" OR "Merchynt")', time: 'day', label: 'brand-mention' },
 
   // Competitor monitoring
   { query: 'BrightLocal OR Whitespark OR "Moz Local" OR Yext', time: 'day', label: 'competitor' },
-  { query: 'SOCi OR "Vendasta" OR "GoSite"', time: 'day', label: 'competitor' },
+  { query: 'SOCi OR Vendasta OR GoSite OR Synup', time: 'day', label: 'competitor' },
 
-  // High-intent keywords across all of Reddit
+  // High-intent: GBP management
   { query: '"Google Business Profile" AND (help OR advice OR recommend OR best)', time: 'day', label: 'high-intent' },
+  { query: '"Google Business Profile" AND (tool OR software OR automate OR manage)', time: 'day', label: 'high-intent' },
+  { query: '"Google Maps" AND ("not showing" OR "not ranking" OR "disappeared" OR "suspended")', time: 'day', label: 'high-intent' },
+  { query: '"Google Maps ranking" AND (how OR improve OR help OR increase)', time: 'day', label: 'high-intent' },
+
+  // High-intent: local SEO
   { query: '"local SEO" AND (tool OR software OR recommend OR alternative)', time: 'day', label: 'high-intent' },
-  { query: '"Google Maps ranking" AND (how OR improve OR help)', time: 'day', label: 'high-intent' },
-  { query: '"Google Maps" AND ("not showing" OR "not ranking" OR "disappeared")', time: 'day', label: 'high-intent' },
-  { query: '"Google reviews" AND (management OR automate OR respond OR strategy)', time: 'day', label: 'high-intent' },
+  { query: '"local SEO" AND (agency OR freelancer OR service OR pricing)', time: 'day', label: 'high-intent' },
+  { query: '"local pack" AND (ranking OR showing OR getting into)', time: 'day', label: 'high-intent' },
+
+  // High-intent: reviews and reputation
+  { query: '"Google reviews" AND (management OR automate OR respond OR strategy OR get more)', time: 'day', label: 'high-intent' },
+  { query: '"online reviews" AND (strategy OR management OR respond OR reputation)', time: 'day', label: 'high-intent' },
   { query: '"reputation management" AND (tool OR software OR agency OR small business)', time: 'day', label: 'high-intent' },
+
+  // AI search visibility
   { query: '"AI search" AND ("local business" OR "small business" OR "Google Business")', time: 'day', label: 'ai-search' },
   { query: '"ChatGPT" AND ("local business" OR "find a" OR "recommend" OR "near me")', time: 'day', label: 'ai-search' },
+  { query: '"Gemini" AND ("local business" OR "recommend" OR "near me" OR "find")', time: 'day', label: 'ai-search' },
+  { query: '"AI overview" AND ("local" OR "business" OR "Google")', time: 'day', label: 'ai-search' },
+  { query: '"GEO" AND ("local SEO" OR "generative engine" OR "AI optimization")', time: 'day', label: 'ai-search' },
 
   // Agency-specific
   { query: '"white label" AND ("local SEO" OR "GBP" OR "Google Business")', time: 'day', label: 'agency' },
   { query: '"agency" AND ("local SEO" OR "GBP management" OR "client retention")', time: 'day', label: 'agency' },
+  { query: '"agency margins" OR "agency profitability" OR "agency pricing"', time: 'day', label: 'agency' },
+
+  // Sales and lead generation (SAM territory)
+  { query: '"cold calling" AND ("agency" OR "SEO" OR "marketing" OR "leads")', time: 'day', label: 'sales' },
+  { query: '"sales leads" AND ("local business" OR "SEO" OR "marketing agency")', time: 'day', label: 'sales' },
+
+  // SMB pain points
+  { query: '"Google listing" AND (help OR fix OR improve OR optimize)', time: 'day', label: 'smb' },
+  { query: '"rank higher" AND ("Google Maps" OR "local" OR "near me")', time: 'day', label: 'smb' },
+  { query: '"get more customers" AND ("Google" OR "local" OR "online")', time: 'day', label: 'smb' },
 ];
 
-// NARROW SEARCHES: within specific SEO/marketing subreddits
+// NARROW SEARCHES: within specific subreddits
+// Organized by: core SEO → marketing/business → platform-specific → industry verticals
 const SUBREDDIT_QUERIES = [
+  // --- Core Local SEO ---
   {
     subreddit: 'localseo',
     queries: [
@@ -72,6 +98,16 @@ const SUBREDDIT_QUERIES = [
       '"AI search" OR "GEO" OR "generative engine optimization"',
     ],
   },
+  {
+    subreddit: 'bigseo',
+    queries: ['"local SEO" OR "Google Business Profile" OR "AI search"'],
+  },
+  {
+    subreddit: 'TechSEO',
+    queries: ['"local SEO" OR "schema" OR "Google Business"'],
+  },
+
+  // --- Marketing & Business ---
   {
     subreddit: 'smallbusiness',
     queries: [
@@ -94,6 +130,13 @@ const SUBREDDIT_QUERIES = [
     ],
   },
   {
+    subreddit: 'DigitalMarketing',
+    queries: [
+      '"local SEO" OR "Google Business Profile" OR "Google Maps"',
+      '"AI search" OR "review management" OR "reputation"',
+    ],
+  },
+  {
     subreddit: 'agency',
     queries: [
       'SEO OR "local marketing" OR "white label"',
@@ -107,14 +150,66 @@ const SUBREDDIT_QUERIES = [
       '"Google Business" OR "online presence"',
     ],
   },
-  // Bonus subreddits for broader coverage
   {
-    subreddit: 'webmarketing',
-    queries: ['"local SEO" OR "Google Business"'],
+    subreddit: 'growmybusiness',
+    queries: ['"Google" OR "SEO" OR "online reviews" OR "local marketing"'],
   },
   {
-    subreddit: 'bigseo',
-    queries: ['"local SEO" OR "Google Business Profile" OR "AI search"'],
+    subreddit: 'sweatystartup',
+    queries: ['"Google" OR "reviews" OR "marketing" OR "customers"'],
+  },
+  {
+    subreddit: 'sales',
+    queries: ['"cold calling" OR "lead generation" OR "agency" OR "local business"'],
+  },
+  {
+    subreddit: 'content_marketing',
+    queries: ['"local SEO" OR "Google Business" OR "AI content"'],
+  },
+  {
+    subreddit: 'PPC',
+    queries: ['"local" OR "Google Maps" OR "local service ads"'],
+  },
+
+  // --- Google-specific ---
+  {
+    subreddit: 'GoogleMyBusiness',
+    queries: [
+      'optimize OR ranking OR reviews OR suspended OR "not showing"',
+      'posts OR photos OR "AI" OR automation',
+    ],
+  },
+  {
+    subreddit: 'google',
+    queries: ['"Business Profile" OR "Google Maps" OR "local search" OR "reviews"'],
+  },
+  {
+    subreddit: 'GoogleMaps',
+    queries: ['ranking OR "not showing" OR listing OR business OR reviews'],
+  },
+  {
+    subreddit: 'GoogleSupport',
+    queries: ['"Business Profile" OR "Google Maps" OR reviews OR listing'],
+  },
+
+  // --- AI Search ---
+  {
+    subreddit: 'ChatGPT',
+    queries: ['"local business" OR "recommend" OR "near me" OR "find a"'],
+  },
+
+  // --- Industry Verticals (SMB owners asking about marketing) ---
+  {
+    subreddit: 'restaurantowners',
+    queries: ['"Google" OR "reviews" OR "marketing" OR "customers"'],
+  },
+  {
+    subreddit: 'SaaS',
+    queries: ['"local SEO" OR "Google Business" OR "white label" OR "agency tool"'],
+  },
+  {
+    subreddit: 'ecommerce',
+    queries: ['"local SEO" OR "Google Business" OR "Google Maps" OR "local"'],
   },
 ];
 
@@ -126,6 +221,10 @@ const HIGH_VALUE_TERMS = [
   { term: 'whitespark', weight: 30 },
   { term: 'moz local', weight: 25 },
   { term: 'yext', weight: 20 },
+  { term: 'vendasta', weight: 20 },
+  { term: 'soci', weight: 20 },
+  { term: 'gosite', weight: 20 },
+  { term: 'synup', weight: 20 },
 ];
 
 const TOPIC_TERMS = [
@@ -468,7 +567,7 @@ async function main() {
   scoredPosts.sort((a, b) => b.relevanceScore - a.relevanceScore);
 
   // Read quality threshold from Supabase (or use default of 50)
-  let minScore = 40;
+  let minScore = 45;
   if (supabase) {
     const { data: thresholdSetting } = await supabase
       .from('settings')
