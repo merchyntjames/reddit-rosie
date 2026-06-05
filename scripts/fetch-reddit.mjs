@@ -38,13 +38,21 @@ const GLOBAL_QUERIES = [
 
   // Competitor monitoring
   { query: 'BrightLocal OR Whitespark OR "Moz Local" OR Yext', time: 'day', label: 'competitor' },
+  { query: 'SOCi OR "Vendasta" OR "GoSite"', time: 'day', label: 'competitor' },
 
   // High-intent keywords across all of Reddit
   { query: '"Google Business Profile" AND (help OR advice OR recommend OR best)', time: 'day', label: 'high-intent' },
   { query: '"local SEO" AND (tool OR software OR recommend OR alternative)', time: 'day', label: 'high-intent' },
   { query: '"Google Maps ranking" AND (how OR improve OR help)', time: 'day', label: 'high-intent' },
-  { query: '"Google reviews" AND (management OR automate OR respond)', time: 'day', label: 'high-intent' },
+  { query: '"Google Maps" AND ("not showing" OR "not ranking" OR "disappeared")', time: 'day', label: 'high-intent' },
+  { query: '"Google reviews" AND (management OR automate OR respond OR strategy)', time: 'day', label: 'high-intent' },
+  { query: '"reputation management" AND (tool OR software OR agency OR small business)', time: 'day', label: 'high-intent' },
   { query: '"AI search" AND ("local business" OR "small business" OR "Google Business")', time: 'day', label: 'ai-search' },
+  { query: '"ChatGPT" AND ("local business" OR "find a" OR "recommend" OR "near me")', time: 'day', label: 'ai-search' },
+
+  // Agency-specific
+  { query: '"white label" AND ("local SEO" OR "GBP" OR "Google Business")', time: 'day', label: 'agency' },
+  { query: '"agency" AND ("local SEO" OR "GBP management" OR "client retention")', time: 'day', label: 'agency' },
 ];
 
 // NARROW SEARCHES: within specific SEO/marketing subreddits
@@ -432,7 +440,7 @@ async function main() {
   scoredPosts.sort((a, b) => b.relevanceScore - a.relevanceScore);
 
   // Read quality threshold from Supabase (or use default of 50)
-  let minScore = 50;
+  let minScore = 40;
   if (supabase) {
     const { data: thresholdSetting } = await supabase
       .from('settings')

@@ -169,7 +169,7 @@ export async function POST() {
     }
 
     // Read settings from Supabase
-    let minScore = 50;
+    let minScore = 40;
     let subreddits = DEFAULT_SUBREDDITS;
 
     const { data: settings } = await supabase
