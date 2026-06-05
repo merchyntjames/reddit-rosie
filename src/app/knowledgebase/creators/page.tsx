@@ -59,8 +59,7 @@ export default function CreatorProfilesPage() {
       <div className="mb-6">
         <h1 className="text-2xl font-bold text-dark">Creator Profiles</h1>
         <p className="text-[13px] text-muted mt-1">
-          Individual voice profiles for personal Reddit accounts. To add or remove creators, go to{' '}
-          <a href="/settings" className="text-blue hover:text-navy underline">Account Settings</a>.
+          Individual voice profiles for personal Reddit accounts. Each creator gets unique drafts tailored to their voice and expertise.
         </p>
       </div>
 
@@ -116,13 +115,6 @@ export default function CreatorProfilesPage() {
                     <span className={`text-[10px] px-1.5 py-0.5 rounded font-medium ${hasVoice ? 'bg-green/10 text-green' : 'bg-orange/10 text-orange'}`}>
                       {hasVoice ? 'Voice configured' : 'Needs voice setup'}
                     </span>
-                    <button
-                      onClick={(e) => { e.stopPropagation(); removeCreator(creator.id); }}
-                      className="p-1.5 rounded-md text-muted hover:text-dark hover:bg-surface transition-colors"
-                      title="Remove creator"
-                    >
-                      <Trash2 size={14} />
-                    </button>
                     <div className="w-7 h-7 rounded-full bg-surface flex items-center justify-center text-muted">
                       {isExpanded ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
                     </div>
@@ -147,7 +139,14 @@ export default function CreatorProfilesPage() {
                       <textarea value={creator.topicsOfExpertise} onChange={e => { const u = [...creators]; u[index] = { ...u[index], topicsOfExpertise: e.target.value }; setCreators(u); }} placeholder="e.g., Local SEO strategy, agency operations, AI search visibility" rows={4} className="w-full px-3 py-2 text-[13px] text-dark bg-surface rounded-lg border border-border resize-y focus:outline-none focus:ring-2 focus:ring-navy/20" />
                     </div>
 
-                    <div className="flex justify-end">
+                    <div className="flex items-center justify-between">
+                      <button
+                        onClick={() => removeCreator(creator.id)}
+                        className="flex items-center gap-2 px-4 py-2.5 rounded-lg bg-pink text-white text-[13px] font-medium hover:bg-pink/90 transition-colors"
+                      >
+                        <Trash2 size={14} />
+                        Delete Creator
+                      </button>
                       <button onClick={() => save({ creator_profiles: creators })} disabled={saveStatus === 'saving'} className="flex items-center gap-2 px-6 py-2.5 rounded-lg bg-navy text-white text-[13px] font-medium hover:bg-navy/90 transition-colors disabled:opacity-50">
                         {saveStatus === 'saving' && <Loader2 size={14} className="animate-spin" />}
                         {saveStatus === 'saved' && <Check size={14} />}
