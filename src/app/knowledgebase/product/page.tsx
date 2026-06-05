@@ -6,13 +6,12 @@ import { ProductKnowledge } from '@/lib/types';
 import { useSaveStatus } from '@/lib/knowledgebase';
 import { Building2, Package, Trophy, BookOpen, Loader2, Check, ChevronDown, ChevronUp, Plus, Trash2 } from 'lucide-react';
 
-function CollapsibleCard({ icon: Icon, title, subtitle, children, defaultOpen = false, onDelete }: {
+function CollapsibleCard({ icon: Icon, title, subtitle, children, defaultOpen = false }: {
   icon: React.ElementType;
   title: string;
   subtitle: string;
   children: React.ReactNode;
   defaultOpen?: boolean;
-  onDelete?: () => void;
 }) {
   const [isOpen, setIsOpen] = useState(defaultOpen);
 
@@ -29,19 +28,8 @@ function CollapsibleCard({ icon: Icon, title, subtitle, children, defaultOpen = 
             <p className="text-[12px] text-muted">{subtitle}</p>
           </div>
         </div>
-        <div className="flex items-center gap-2">
-          {onDelete && (
-            <div
-              onClick={(e) => { e.stopPropagation(); onDelete(); }}
-              className="p-1.5 rounded-md text-muted hover:text-dark hover:bg-surface transition-colors cursor-pointer"
-              title="Remove product"
-            >
-              <Trash2 size={14} />
-            </div>
-          )}
-          <div className="w-7 h-7 rounded-full bg-surface flex items-center justify-center text-muted">
-            {isOpen ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
-          </div>
+        <div className="w-7 h-7 rounded-full bg-surface flex items-center justify-center text-muted">
+          {isOpen ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
         </div>
       </button>
       {isOpen && (
@@ -119,7 +107,6 @@ export default function ProductKnowledgePage() {
             icon={Package}
             title={product.name || 'Untitled Product'}
             subtitle={product.description ? product.description.slice(0, 80) + '...' : 'No description yet'}
-            onDelete={() => removeProduct(product.id)}
           >
             <div className="space-y-3">
               <div>
@@ -137,6 +124,15 @@ export default function ProductKnowledgePage() {
               <div>
                 <label className="text-[12px] font-medium text-dark block mb-1">Pricing</label>
                 <textarea value={product.pricing} onChange={e => { const u = [...productKnowledge.products]; u[index] = { ...u[index], pricing: e.target.value }; setProductKnowledge(prev => ({ ...prev, products: u })); }} rows={3} className="w-full px-3 py-2 text-[13px] text-dark bg-surface rounded-lg border border-border resize-y focus:outline-none focus:ring-2 focus:ring-navy/20" />
+              </div>
+              <div className="flex items-center justify-between pt-2">
+                <button
+                  onClick={() => removeProduct(product.id)}
+                  className="flex items-center gap-2 px-4 py-2.5 rounded-lg bg-pink text-white text-[13px] font-medium hover:bg-pink/90 transition-colors"
+                >
+                  <Trash2 size={14} />
+                  Delete Product
+                </button>
               </div>
             </div>
           </CollapsibleCard>
