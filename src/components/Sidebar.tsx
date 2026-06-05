@@ -16,9 +16,25 @@ import {
   AlertTriangle,
 } from 'lucide-react';
 
-const navItems = [
+interface NavItem {
+  href: string;
+  label: string;
+  icon: typeof MessageSquareMore;
+  children?: { href: string; label: string }[];
+}
+
+const navItems: NavItem[] = [
   { href: '/queue', label: 'Engagement Queue', icon: MessageSquareMore },
-  { href: '/knowledgebase', label: 'Knowledgebase', icon: Brain },
+  {
+    href: '/knowledgebase',
+    label: 'Knowledgebase',
+    icon: Brain,
+    children: [
+      { href: '/knowledgebase/product', label: 'Product Knowledge' },
+      { href: '/knowledgebase/brand', label: 'Brand Voice' },
+      { href: '/knowledgebase/creators', label: 'Creator Profiles' },
+    ],
+  },
   { href: '/activity', label: 'Activity Log', icon: Activity },
   { href: '/settings', label: 'Account Settings', icon: Settings },
 ];
@@ -100,24 +116,45 @@ export function Sidebar() {
       {/* Navigation */}
       <nav className="flex-1 px-3 space-y-1">
         {navItems.map((item) => {
-          const isActive = item.href === '/'
-            ? pathname === '/'
-            : pathname.startsWith(item.href);
+          const isActive = pathname.startsWith(item.href);
           const Icon = item.icon;
+          const hasChildren = item.children && item.children.length > 0;
 
           return (
-            <Link
-              key={item.href}
-              href={item.href}
-              className={`flex items-center gap-3 px-3 py-2.5 rounded-lg text-[14px] font-medium transition-colors ${
-                isActive
-                  ? 'bg-navy text-white'
-                  : 'text-dark hover:bg-surface'
-              }`}
-            >
-              <Icon size={18} strokeWidth={isActive ? 2 : 1.75} />
-              {item.label}
-            </Link>
+            <div key={item.href}>
+              <Link
+                href={hasChildren ? item.children![0].href : item.href}
+                className={`flex items-center gap-3 px-3 py-2.5 rounded-lg text-[14px] font-medium transition-colors ${
+                  isActive
+                    ? 'bg-navy text-white'
+                    : 'text-dark hover:bg-surface'
+                }`}
+              >
+                <Icon size={18} strokeWidth={isActive ? 2 : 1.75} />
+                {item.label}
+              </Link>
+              {/* Nested sub-nav */}
+              {hasChildren && isActive && (
+                <div className="ml-7 mt-1 space-y-0.5">
+                  {item.children!.map(child => {
+                    const childActive = pathname === child.href;
+                    return (
+                      <Link
+                        key={child.href}
+                        href={child.href}
+                        className={`block px-3 py-1.5 rounded-md text-[13px] transition-colors ${
+                          childActive
+                            ? 'text-navy font-medium bg-navy/5'
+                            : 'text-muted hover:text-dark hover:bg-surface'
+                        }`}
+                      >
+                        {child.label}
+                      </Link>
+                    );
+                  })}
+                </div>
+              )}
+            </div>
           );
         })}
       </nav>
