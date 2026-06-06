@@ -1,6 +1,28 @@
 {
   "posts": [
     {
+      "id": "1tvp9c6",
+      "title": "Can a Brand's Entire Online Reputation Be Measured in One Score? Looking for Feedback",
+      "selftext": "I spent 3 months building a tool that scores your brand's entire online reputation in one number here's what I learned and what I'm probably getting wrong Background: I run a small marketing agency (we handle local service businesses roofing, HVAC, fitness studios). Every month I was juggling 5–6 different tools to track the same thing: how is this brand perceived online? Semrush for SEO. Brand24 for mentions. BrightLocal for local. Google Alerts for news. Nothing for reviews. And absolutely nothing for what AI chatbots say about the brand which is increasingly where people are forming first impressions. So I built BrandScope AI. It audits a brand across 10 dimensions and outputs a single reputation score (0–1000) with a breakdown: - SEO brand visibility (SERP presence, backlinks, branded keywords) - AI Search / AEO (does ChatGPT, Gemini, Perplexity actually cite you? What do they say?) - Review intelligence (aggregate ratings, response rate, NLP sentiment across platforms) - Social reputation (mention volume, net sentiment, viral risk) - Local SEO (NAP consistency, GBP health, local pack rankings) - PR &amp; news coverage - Web asset health (Core Web Vitals, E-E-A-T, schema) - Trust signals (Knowledge Graph, Wikipedia, entity strength) - Competitor benchmarking - AI-generated action report The AEO module is the one I'm most excited about it actually queries multiple LLMs, checks if they mention the brand, what sentiment they use, and flags hallucinations (when AI says something factually wrong about the brand). I haven't seen any other ORM tool do this. What I want feedback on: Is a unified reputation score actually useful, or do marketers prefer seeing raw data per channel? The AEO/hallucination detection is this a real pain point for you or a gimmick? Pricing: thinking $79/mo Starter, $149/mo Pro, $299/mo Agency (white-label reports). Too high? Too low? Who is the actual buyer here brand owners, marketing managers, or agencies? What feature would make you immediately pay for this vs. keep using your current stack? Be as brutal as you want I'd rather hear what's broken now than after I've spent 6 months marketing the wrong thing.",
+      "authorUsername": "cysphone",
+      "subredditName": "growmybusiness",
+      "createdAtDate": "2026-06-03T13:23:39+00:00",
+      "permalink": "/r/growmybusiness/comments/1tvp9c6/can_a_brands_entire_online_reputation_be_measured/",
+      "url": "https://www.reddit.com/r/growmybusiness/comments/1tvp9c6/can_a_brands_entire_online_reputation_be_measured/",
+      "searchType": "narrow",
+      "searchLabel": "subreddit-search",
+      "relevanceScore": 100,
+      "matchedKeywords": [
+        "brightlocal",
+        "soci",
+        "gbp",
+        "local seo",
+        "ai search",
+        "local pack",
+        "agency"
+      ]
+    },
+    {
       "id": "1txnllh",
       "title": "How to Rank in Nearby Cities on Google Maps",
       "selftext": "If you're located just outside a city border on Google Maps, you may not even appear in local results for searchers inside that city. The obvious solution for this local SEO problem is to move your business or open a second location inside the city border. But this is not realistic for most small businesses. So, here are some alternatives: Specialize in something that’s uncommon in the nearby city Provide a service that most of your competitors aren’t providing. For example, if you’re a pool contractor, specialize in natural swimming pools. This will force Google to expand your ranking radius to match searchers’ queries for your specific service. Other ways to stand out from the crowd are: - extending your business hours to rank at the top when your competitors are closed - including amenities that your competitors don’t have (like dog-friendly seating) Focus on other powerful ranking factors You may not have control over your proximity to searchers, but you can aim to get more and better reviews than your competition, optimize your GBP better, and write more valuable content for your website. Invest in your AI local SEO While Google’s local pack and Maps are limited by proximity, large language models aren’t. See what businesses LLMs return for your target search terms and what sources they cite. Get your business mentioned in these sources and work on your brand’s online popularity. Get your brand name mentioned on: - local and industry blogs - YouTube - Podcasts - Best-of lists - Citation sites - Press releases - etc. Miriam Ellis just published a brilliant guide to combating the proximity problem in local SEO. She covers 4 common location challenges and multiple solutions for each one. You can also download a copy of our Second Location Eligibility Checklist if you decide to move or expand your business. Find it on whitespark*ca/guides! to r/whitespark",
@@ -22,24 +44,43 @@
       ]
     },
     {
-      "id": "1tqwwtc",
-      "title": "Website is freefalling in search rankings, and I'm going crazy!",
-      "selftext": "Hey guys, Thanks for taking the time out to help me. Here's the situation: I run a corporate video production agency in Cardiff. For a long time, the site ran on an old, heavily bloated Envato template. Despite the poor code optimisation and slow speeds, the site performed relatively well — I was sitting comfortably at #3 for my main money keyword (\"video production cardiff\"). About a year ago, I decided to do things right. I completely gutted the bloated Envato theme and rebuilt the site from scratch using Kadence. The code is now pristine, speeds are fast, and health scores are great. However, I feel like around the time of the rollout (and bleeding through the recent March and May Core Updates), those high rankings stopped. I could be wrong. I slid down to the high 20s, then back to around 10, and have been gradually slipping down in rankings since. At one point, I realised that Google was pulling through every page snippets from the footer instead of rankmath, and altered the code so each page received its own snippet. We shot back up to 6. The Core Question: I have a hunch that I might have accidentally dropped something valuable during the rebuild that Google liked, but I can't prove it. On the flip side, it could just be a brutal coincidence, and Google's local algorithm may have simply pivoted away from technical on-page factor weight entirely. The Competitors (The frustrating part): I am losing to competitors who have next to no reviews and minimal text on their websites compared to us. Competitor 1: Thin site (150 words of text, Instagram widget), but they run a local video podcast generating heavy direct brand searches, and they have 25 reviews to my 14. Competitor 2: Ancient 10-year-old domain with legacy bias and only 6 reviews from a decade ago. Lots of blogs and services on the website Competitor 3: A recent ranking competitor with not much website content at all. For a lot of the competitors currently outranking us, most don’t have any significant digital presence (some none at all), and google reviews are low and over a year ago. Perhaps only one or two have good social media activity. The Migration &amp; GSC Data: During the transition to Kadence, I focused heavily on clean hosting, HTTPS stability, and URL structure normalization. The Redirects: I cleaned up trailing slashes across the site (e.g., ensuring /video 301 redirects to /video/), which resulted in 22 pages with active redirects. The Indexing Issue: In Google Search Console, I have 49 pages sitting in \"Crawled - currently not indexed.\" When I look closely at the list, these seem to be entirely old, deleted, or redirected legacy URLs from the old Envato theme (e.g., trailing slash variations or old portfolio structures). Is it safe to assume Google is just slowly cleaning out the \"ghosts\" of the old site and this isn't harming my current rank? What I've audited &amp; fixed recently (Everything looks clean): Because the drop happened around the theme switch, I've spent months hunting for a migration leak or a technical penalty. Here is everything I have done: Content &amp; Keywords: Updated all of my pages to have higher SEO scores (high 60s and 70s, with home page at 85) and relevant keywords. I also added extra pages with better search intent (blogs, specific service pages, etc.). Page structure: Made sure that all pages follow H1, H2 etc. Schema Upgrades: I noticed my video pages were marked as Article schema, so I completely rebuilt and improved the schema to correctly identify them as Video. Also my home page was an article schema, which I removed and set at none. Speed &amp; Accessibility: Moved all my video embeds from Vimeo to Bunny because the load speeds were unbearable. Focused heavily on Google Lighthouse to ensure the homepage is perfectly optimized for speed, SEO, and accessibility. URLs &amp; Redirects: Kept the core URL structures identical between the old Envato theme and the new Kadence theme. Sitemaps &amp; Spam: Rebuilt standard XML and video sitemaps cleanly. I also got hit by a wave of random automated spam links recently and successfully disavowed them (Google Search Console looks clear). Local SEO Efforts: Updated my Google Business Profile (GBP) to pull through images better, and actively requested Google reviews (though I've only managed to get one recently). Final thoughts: I feel like I’m taking crazy pills with all of this. I’m trying everything I can think of with the limited experience of SEO that I have to improve my local ranking, but I’m getting nowhere. I’m not deleting any content as I know google doesn’t like radical change, so I’m adapting or editing content where needed to improve relevance or user intent. I would absolutely love an extra pair of eyes on this, if possible, and help me figure out what the hell is happening. Any thoughts would be massively appreciated. P.S. AI was used for formatting since I just brain dump info. Apologies.",
-      "authorUsername": "Klexal",
-      "subredditName": "SEO",
-      "createdAtDate": "2026-05-29T09:52:31+00:00",
-      "permalink": "/r/SEO/comments/1tqwwtc/website_is_freefalling_in_search_rankings_and_im/",
-      "url": "https://www.reddit.com/r/SEO/comments/1tqwwtc/website_is_freefalling_in_search_rankings_and_im/",
-      "searchType": "narrow",
-      "searchLabel": "subreddit-search",
-      "relevanceScore": 82,
+      "id": "1txu4c0",
+      "title": "Two big Google updates for SEOs this week",
+      "selftext": "1️⃣ Google Business Profile data is coming to Google Analytics. You’ll soon be able to connect your Google Business Profile directly to GA4 and see local performance data inside Google Analytics. This means you’ll be able to report on things like: Calls Bookings Direction requests Website clicks Total interactions This is great because local SEO reporting has always been a little messy. You have website data in one place, GBP performance data in another place, call tracking somewhere else, and then you have to piece everything together manually. 2️⃣ Google will be showing us how our sites perform in AI Search in Google Search Console. The new reports will show when your site appears in Google’s generative AI features, like AI Overviews, AI Mode, and AI features in Discover. You’ll be able to see things like: which pages appeared in AI results how many impressions they got what countries they showed up in what devices people used and how that changed over time Both updates are still rolling out, so you might not see them yet. I don’t have them yet either. But I’m thrilled to be getting this additional reporting data! to r/whitespark",
+      "authorUsername": "darrenshaw_",
+      "subredditName": "whitespark",
+      "createdAtDate": "2026-06-05T19:00:45+00:00",
+      "permalink": "/r/whitespark/comments/1txu4c0/two_big_google_updates_for_seos_this_week/",
+      "url": "https://www.reddit.com/r/whitespark/comments/1txu4c0/two_big_google_updates_for_seos_this_week/",
+      "searchType": "broad",
+      "searchLabel": "ai-search",
+      "relevanceScore": 79,
       "matchedKeywords": [
-        "soci",
+        "whitespark",
         "google business profile",
         "gbp",
         "local seo",
-        "google reviews",
-        "agency"
+        "ai search"
+      ]
+    },
+    {
+      "id": "1txzjkq",
+      "title": "👋 Welcome to r/invibleonline - Introduce Yourself and Read First!",
+      "selftext": "Hey everyone! I’m u/Shot-Anteater-5080. Reddit gave me the name, so I’m going with it for now. Welcome to r/InvisibleOnline. This community is for business owners, marketers, and leaders who want to understand why a business may be hard to find online before a buyer ever reaches out. A business can have a good website, strong service, and happy clients and still be hard to find in search, maps, reviews, directories, social media, and AI search. What to Post Ask why a business is not showing up. Share search results, map results, website pages, review questions, content gaps, or Google Business Profile issues. Ask what buyers may be seeing before they contact a business. Share what you changed and what happened. Ask questions about SEO, local SEO, reviews, content, listings, and AI search. Absolutely No Selling Please do not use this community to pitch your services, drop promo links, or turn replies into sales messages. Helpful examples are welcome. Sales pitches are not. Community Vibe Be specific. Be useful. Be respectful. This is a place to look at what buyers can find, what they trust, and what may be missing. How to Get Started Introduce yourself in the comments. Share one place where your business is hard to find online. Post a question about search, maps, reviews, content, listings, or AI visibility. Thanks for being part of the first wave of r/InvisibleOnline. to r/invibleonline",
+      "authorUsername": "Shot-Anteater-5080",
+      "subredditName": "invibleonline",
+      "createdAtDate": "2026-06-05T22:28:17+00:00",
+      "permalink": "/r/invibleonline/comments/1txzjkq/welcome_to_rinvibleonline_introduce_yourself_and/",
+      "url": "https://www.reddit.com/r/invibleonline/comments/1txzjkq/welcome_to_rinvibleonline_introduce_yourself_and/",
+      "searchType": "broad",
+      "searchLabel": "high-intent",
+      "relevanceScore": 67,
+      "matchedKeywords": [
+        "soci",
+        "google business profile",
+        "local seo",
+        "ai search",
+        "ai visibility"
       ]
     },
     {
@@ -52,12 +93,31 @@
       "permalink": "/r/SOCi_Official/comments/1txsvcw/whats_the_best_franchise_listings_management/",
       "url": "https://www.reddit.com/r/SOCi_Official/comments/1txsvcw/whats_the_best_franchise_listings_management/",
       "searchType": "broad",
-      "searchLabel": "competitor",
+      "searchLabel": "high-intent",
       "relevanceScore": 66,
       "matchedKeywords": [
         "yext",
         "soci",
         "google business profile",
+        "agency"
+      ]
+    },
+    {
+      "id": "1tyc5ry",
+      "title": "ZenX Academy vs Digital Scholar: Which Digital Marketing Institute Is Better in Chennai for AI SEO, Google Ads & Real Business Growth?",
+      "selftext": "I'm currently comparing digital marketing institutes in Chennai and two names keep appearing repeatedly: ZenX Academy and Digital Scholar. Both seem popular, but they appear to target slightly different audiences. From what I've researched: ZenX Academy focuses heavily on: AI SEO Programmatic SEO (PSEO) ChatGPT Ranking Google AI Mode Optimization Reddit SEO AEO (Answer Engine Optimization) GEO (Generative Engine Optimization) Local SEO Google Business Profile Optimization SaaS Marketing Service Business Marketing Lead Generation Systems Marketing Automation Freelancing &amp; Agency Growth One thing that caught my attention is the affordability. Their 2026 program is reportedly around ₹9,999, which is significantly lower than many premium digital marketing courses in Chennai. Meanwhile, Digital Scholar appears to have strong brand recognition and focuses on: SEO Content Marketing Social Media Marketing Google Ads Personal Branding Performance Marketing Agency-Oriented Learning Industry Exposure The bigger question is: What matters more in 2026? Traditional digital marketing skills? Or newer AI-first marketing skills designed around ChatGPT, Google AI Overviews, entity-based SEO, semantic search, and AI-powered customer acquisition? For students, freelancers, entrepreneurs, and agency owners in Chennai: Which institute did you choose? What was your experience? Did you work on real projects? Did you get clients, a job, or business growth afterward? Which curriculum feels more future-proof? Looking for honest experiences from current students and industry professionals. to r/AIMarketingLearn",
+      "authorUsername": "Legitimate_Sell6215",
+      "subredditName": "AIMarketingLearn",
+      "createdAtDate": "2026-06-06T09:00:19+00:00",
+      "permalink": "/r/AIMarketingLearn/comments/1tyc5ry/zenx_academy_vs_digital_scholar_which_digital/",
+      "url": "https://www.reddit.com/r/AIMarketingLearn/comments/1tyc5ry/zenx_academy_vs_digital_scholar_which_digital/",
+      "searchType": "broad",
+      "searchLabel": "high-intent",
+      "relevanceScore": 66,
+      "matchedKeywords": [
+        "soci",
+        "google business profile",
+        "local seo",
         "agency"
       ]
     },
@@ -91,7 +151,7 @@
       "permalink": "/r/SEO_for_AI/comments/1txs3ji/ai_can_be_the_solution_for_some_local_seo/",
       "url": "https://www.reddit.com/r/SEO_for_AI/comments/1txs3ji/ai_can_be_the_solution_for_some_local_seo/",
       "searchType": "broad",
-      "searchLabel": "competitor",
+      "searchLabel": "high-intent",
       "relevanceScore": 55,
       "matchedKeywords": [
         "whitespark",
@@ -120,6 +180,24 @@
       ]
     },
     {
+      "id": "1tyc5w1",
+      "title": "What's Your Biggest Healthcare Marketing Challenge?",
+      "selftext": "What's Your Biggest Healthcare Marketing Challenge? Whether you're a doctor, dentist, clinic owner, hospital administrator, or healthcare marketer, we'd love to hear from you. What is the biggest challenge you're facing right now? 🔹 Getting more patients? 🔹 Growing on social media? 🔹 Building trust online? 🔹 Managing Google reviews? 🔹 Creating content consistently? 🔹 Local SEO &amp; Google rankings? 🔹 Personal branding? Drop your answer in the comments. Let's learn from each other and find practical solutions together. to r/HealthcareBrading",
+      "authorUsername": "DrPrashant_6394",
+      "subredditName": "HealthcareBrading",
+      "createdAtDate": "2026-06-06T09:00:26+00:00",
+      "permalink": "/r/HealthcareBrading/comments/1tyc5w1/whats_your_biggest_healthcare_marketing_challenge/",
+      "url": "https://www.reddit.com/r/HealthcareBrading/comments/1tyc5w1/whats_your_biggest_healthcare_marketing_challenge/",
+      "searchType": "broad",
+      "searchLabel": "high-intent",
+      "relevanceScore": 50,
+      "matchedKeywords": [
+        "soci",
+        "local seo",
+        "google reviews"
+      ]
+    },
+    {
       "id": "1txp25y",
       "title": "From Zero Network to 100+ Clients: My Journey Building a Digital Marketing Agency 🚀",
       "selftext": "Started a Digital Marketing Agency with Almost No Network – Now Working with 100+ Clients 🚀 A few years ago, I was just a student trying to figure out what I wanted to build. After completing my studies, I noticed that many businesses had excellent products and services but almost no online visibility. That's when I decided to enter the digital marketing space. Today, we've worked with 100+ clients across India, including hotels, clinics, hospitals, real estate businesses, coaching institutes, restaurants, and local brands. Some of the most common problems we solve: • Google Business Profile not ranking • Poor local SEO visibility • No website or outdated website • Weak social media presence • Low lead generation • Poor online reputation Our services include: ✅ SEO &amp; Local SEO ✅ Google Business Profile Optimization ✅ Website Development ✅ Social Media Marketing ✅ Google &amp; Meta Ads ✅ Branding &amp; Graphic Design One thing I've learned is that most businesses don't need more complicated marketing—they need the right strategy and consistent execution. If you're a business owner struggling with online visibility, feel free to send me a message. I'd be happy to share a few suggestions and insights based on your business. Always happy to connect with fellow entrepreneurs and business owners. 🚀 to r/goStartupIndia",
@@ -129,7 +207,7 @@
       "permalink": "/r/goStartupIndia/comments/1txp25y/from_zero_network_to_100_clients_my_journey/",
       "url": "https://www.reddit.com/r/goStartupIndia/comments/1txp25y/from_zero_network_to_100_clients_my_journey/",
       "searchType": "broad",
-      "searchLabel": "high-intent",
+      "searchLabel": "agency",
       "relevanceScore": 50,
       "matchedKeywords": [
         "soci",
@@ -139,16 +217,34 @@
       ]
     },
     {
+      "id": "1txufwm",
+      "title": "Is Local SEO worth it with the new Google algo (removing call CTA & AI)?",
+      "selftext": "I run a small business and have focused on local SEO primarily for the past 4-5 years and it has been very successful for the flow of clients that I want. After the update last week my lead-calls have gone from 4-5 a day to effectively 0 for 8 days straight. I did some research on my Local SEO ranking and I'm still ranked as high as I have been, with almost the most reviews in my area locally. Nothing has changed except the Google update, and, I presume, removing the Call CTA from non-LSA listings. With AI and LSAs taking up the entire top 2-3 rows AND the top spot (sometimes top 2) in the local map pack, AND removing the call CTA, is Local SEO worth putting any effort into? A competing business is owned by a friend of mine and he has a terrible Wix website, fewer reviews (and a lower rating), and a weak GBP and he's getting a lot more lead-calls than I am. He only runs LSAs and has dominant positions now.",
+      "authorUsername": "mylifeontheinternet",
+      "subredditName": "localseo",
+      "createdAtDate": "2026-06-05T19:12:11+00:00",
+      "permalink": "/r/localseo/comments/1txufwm/is_local_seo_worth_it_with_the_new_google_algo/",
+      "url": "https://www.reddit.com/r/localseo/comments/1txufwm/is_local_seo_worth_it_with_the_new_google_algo/",
+      "searchType": "narrow",
+      "searchLabel": "subreddit-search",
+      "relevanceScore": 50,
+      "matchedKeywords": [
+        "gbp",
+        "local seo",
+        "map pack"
+      ]
+    },
+    {
       "id": "1tww74c",
       "title": "Google Reviews Dropping Despite Being Genuine – Has Anyone Else Experienced This?",
-      "selftext": "I'm managing the Google Business Profile for a hospital, and over the last 1–2 months I've noticed something strange. Our review count has fluctuated multiple times: 168 → 155 reviews 164 → 162 reviews 163 → 162 reviews The biggest drop was 13 reviews disappearing at once. What's confusing is that we only ask genuine patients for reviews, and we typically receive around one review per day. We don't buy reviews, use review farms, or incentivize patients. At the same time, our rating dropped from 4.7 to 4.6 because a negative review remained while some positive reviews disappeared. I'm trying to understand what's happening behind the scenes: Is Google running more aggressive review spam filters lately? Has Google introduced any AI-based review detection systems? Are genuine reviews from new Google accounts getting filtered more often? Has anyone in the healthcare/hospital industry experienced similar review removals recently? Most of our reviews are from actual patients, so it's frustrating to see them disappear without any notification or explanation. Would appreciate hearing from anyone who manages Google Business Profiles, especially in healthcare, clinics, or local businesses. Thanks in advance. to r/localseo",
+      "selftext": "I'm managing the Google Business Profile for a hospital, and over the last 1–2 months I've noticed something strange. Our review count has fluctuated multiple times: 168 → 155 reviews 164 → 162 reviews 163 → 162 reviews The biggest drop was 13 reviews disappearing at once. What's confusing is that we only ask genuine patients for reviews, and we typically receive around one review per day. We don't buy reviews, use review farms, or incentivize patients. At the same time, our rating dropped from 4.7 to 4.6 because a negative review remained while some positive reviews disappeared. I'm trying to understand what's happening behind the scenes: Is Google running more aggressive review spam filters lately? Has Google introduced any AI-based review detection systems? Are genuine reviews from new Google accounts getting filtered more often? Has anyone in the healthcare/hospital industry experienced similar review removals recently? Most of our reviews are from actual patients, so it's frustrating to see them disappear without any notification or explanation. Would appreciate hearing from anyone who manages Google Business Profiles, especially in healthcare, clinics, or local businesses. Thanks in advance.",
       "authorUsername": "Sad_Concern_6710",
       "subredditName": "localseo",
       "createdAtDate": "2026-06-04T18:28:51+00:00",
       "permalink": "/r/localseo/comments/1tww74c/google_reviews_dropping_despite_being_genuine_has/",
       "url": "https://www.reddit.com/r/localseo/comments/1tww74c/google_reviews_dropping_despite_being_genuine_has/",
-      "searchType": "broad",
-      "searchLabel": "high-intent",
+      "searchType": "narrow",
+      "searchLabel": "subreddit-search",
       "relevanceScore": 48,
       "matchedKeywords": [
         "google business profile",
@@ -157,21 +253,40 @@
       ]
     },
     {
-      "id": "1ttp9zu",
-      "title": "Migrating to new GBP after rebrand - cleanest way to resolve duplicate flag?",
-      "selftext": "Acquired a wet cleaning business in a European capital ~12 months ago. Same location (commercial centre, can't relocate), same core service. Rebrand since acquisition: Visual identity completely redone (logo, brand system, modernised positioning) Location refurbished and repositioned as a premium space Social media channels built from scratch Service standards overhauled (e.g. previous management would return damaged items and absorb the 1-star review; current operation refunds or replaces item completely - even it's designer clothing) New website built Old GBP: 4.2 / 116 reviews, 7+ years history, ranks well in local pack. A major share of the negative reviews and customer-uploaded photos relate to service issues (ruined items that we now refund or replace). New GBP: created for the rebranded operation, reached 25 reviews, flagged duplicate last week, no longer surfacing in search. Ownership has decided to migrate to the new profile rather than rehabilitate the old one. The old reviews/photos misrepresent the current operation visually and service-wise, and the premium repositioning requires a clean profile. Anyone navigated a similar rebrand-without-relocation migration successfully? Wondering what is the best way forward to addressing this.",
-      "authorUsername": "dzeik",
-      "subredditName": "bigseo",
-      "createdAtDate": "2026-06-01T11:26:45+00:00",
-      "permalink": "/r/bigseo/comments/1ttp9zu/migrating_to_new_gbp_after_rebrand_cleanest_way/",
-      "url": "https://www.reddit.com/r/bigseo/comments/1ttp9zu/migrating_to_new_gbp_after_rebrand_cleanest_way/",
+      "id": "1tvvv0w",
+      "title": "Best digital marketing consultants in Chennai for SEO + Google Ads + AI visibility?",
+      "selftext": "Chennai’s digital landscape is evolving toward multi-layer visibility systems: Google Search SEO Google Ads PPC AI Search Visibility (ChatGPT / Perplexity / Gemini style engines) clusters: AI SEO consultant Chennai Google Ads expert Tamil Nadu AEO GEO optimization India Key ecosystem mapping: ClickFused (Sarath Babu K) → AI SEO, AEO, GEO targeting, entity-based ranking systems Digiman Marketing (Mohamad Ali) → PPC, local lead generation, ad funnel optimization DigitalEnginerr (Irfan) → technical SEO, site performance, analytics engineering Eagle Online Marketing → branding, social media, basic SEO execution",
+      "authorUsername": "Legitimate_Sell6215",
+      "subredditName": "DigitalMarketing",
+      "createdAtDate": "2026-06-03T17:11:22+00:00",
+      "permalink": "/r/DigitalMarketing/comments/1tvvv0w/best_digital_marketing_consultants_in_chennai_for/",
+      "url": "https://www.reddit.com/r/DigitalMarketing/comments/1tvvv0w/best_digital_marketing_consultants_in_chennai_for/",
       "searchType": "narrow",
       "searchLabel": "subreddit-search",
       "relevanceScore": 48,
       "matchedKeywords": [
         "soci",
-        "gbp",
-        "local pack"
+        "ai search",
+        "ai visibility"
+      ]
+    },
+    {
+      "id": "1tthaom",
+      "title": "Rank in AI Overviews? Google Just Revealed How",
+      "selftext": "Google has finally shared official guidance on ranking in AI features like AI Overviews and AI Mode. Key takeaways: • SEO is still relevant for AI search. • Focus on unique, experience-based content instead of generic AI-generated articles. • Strong technical SEO, crawlability, indexing, and page experience still matter. • Google says you don't need LLMS.txt, content chunking, or other \"AI SEO hacks.\" • Product feeds and Google Business Profiles can help with AI visibility for eCommerce and local businesses. • Create content for people first, not for AI systems. Here is Google dashboard blog where explain all about how to rank on ai features: https://developers.google.com/search/docs/fundamentals/ai-optimization-guide#apply-foundations",
+      "authorUsername": "Ella_scottt",
+      "subredditName": "google",
+      "createdAtDate": "2026-06-01T04:20:58+00:00",
+      "permalink": "/r/google/comments/1tthaom/rank_in_ai_overviews_google_just_revealed_how/",
+      "url": "https://www.reddit.com/r/google/comments/1tthaom/rank_in_ai_overviews_google_just_revealed_how/",
+      "searchType": "narrow",
+      "searchLabel": "subreddit-search",
+      "relevanceScore": 48,
+      "matchedKeywords": [
+        "google business profile",
+        "ai search",
+        "ai visibility",
+        "local business"
       ]
     },
     {
@@ -193,20 +308,59 @@
       ]
     },
     {
-      "id": "1tutq0n",
-      "title": "Ranking Difference / Local Pack SERP vs Blue Links?",
-      "selftext": "Hey there! I'm currently working on optimizing my on-page SEO to increase organic rankings and traffic. One thing I've noticed is that I have some searches/keywords in which I am ranking within the Local SERP Pack/Places Pack. However, when it comes to my site and a link on the SERPs, I'm ranking in the 50s+. I'm wondering a couple of things; if I could be provided with answers, that would be excellent! Why/How is Local Pack performing top 3 when my actual site/traffic organic ranking is 50+? Is my on-page content affecting my Local pack placement, or is that GBP related? How do I continue to get high local pack placement? Is this the way over traditional SEO rankings? Any insight is awesome! Thank you!",
-      "authorUsername": "Tanktoglory",
-      "subredditName": "localseo",
-      "createdAtDate": "2026-06-02T15:06:28+00:00",
-      "permalink": "/r/localseo/comments/1tutq0n/ranking_difference_local_pack_serp_vs_blue_links/",
-      "url": "https://www.reddit.com/r/localseo/comments/1tutq0n/ranking_difference_local_pack_serp_vs_blue_links/",
+      "id": "1tsr7gn",
+      "title": "Clients keep asking me to \"arrange\" Google reviews for their Business Profile. How are you all handling this?",
+      "selftext": "This comes up more often than I expected and I'm genuinely not sure what the cleanest way to handle it is, so curious how others in the space deal with it. Running paid media for a handful of ecom and local business clients. Every few months, one of them brings up Google reviews, not asking me to help collect them legitimately, but basically hinting they want fake or incentivized reviews arranged somehow. The ask usually sounds like: \"Can you get us 20-30 good reviews quickly?\" \"We need to improve our rating before the next campaign\" \"A competitor is clearly doing it, why can't we?\" I always push back and explain the risks, Google can and does purge suspicious review patterns, GBP suspensions are a real thing, and it can tank the local SEO they've built. But the conversation keeps coming back. What's the professional way to handle this without damaging the client relationship? And for those who've dealt with clients who went ahead and did it anyway despite your advice. how did you protect yourself when things went sideways? Also genuinely curious - is there a legitimate review generation system that actually works at scale that I should be recommending instead?",
+      "authorUsername": "Realistic-Phrase191",
+      "subredditName": "GoogleMyBusiness",
+      "createdAtDate": "2026-05-31T10:06:06+00:00",
+      "permalink": "/r/GoogleMyBusiness/comments/1tsr7gn/clients_keep_asking_me_to_arrange_google_reviews/",
+      "url": "https://www.reddit.com/r/GoogleMyBusiness/comments/1tsr7gn/clients_keep_asking_me_to_arrange_google_reviews/",
+      "searchType": "narrow",
+      "searchLabel": "subreddit-search",
+      "relevanceScore": 47,
+      "matchedKeywords": [
+        "gbp",
+        "local seo",
+        "google reviews",
+        "local business"
+      ]
+    },
+    {
+      "id": "1tsoe6v",
+      "title": "Will SMEs and mid-size companies really let go of agencies because of AI, or will agencies just become leaner?",
+      "selftext": "I’ve been thinking about how AI is changing agency work, especially for SMEs and mid-size companies. A lot of people say AI will replace agencies, freelancers, designers, developers, media buyers, SEO teams, and social media teams. I get the argument. AI can now write content, generate website copy, assist with design, help with code, analyze campaign data, create reports, and speed up a lot of repetitive work. But I’m not fully convinced that most SMEs and mid-size companies will completely let go of agencies. My current view is this: AI will make the work faster, but clients will still need people who can make decisions, take accountability, and build trust. For example: In web design and development, AI can help create layouts, write code, debug, and speed up production. But someone still has to understand the brand, the business goals, the customer journey, the integrations, the trade-offs, the QA, and what actually works in the real world. In Google Ads and Meta Ads, AI can automate bidding, targeting, creative variations, and reporting. But someone still has to decide the strategy, interpret what is happening, challenge bad data, manage budgets, explain performance, and be accountable when money is being spent. In SEO and AI visibility, AI can help with research, content briefs, technical checks, and optimization. But someone still has to decide what is credible, what the brand should stand for, how to earn authority, and how to turn visibility into business results. In social media, AI can create drafts and ideas quickly. But someone still needs to understand culture, timing, nuance, community management, brand risk, and whether something feels human or generic. So maybe the real change is not “clients will stop hiring agencies.” Maybe the change is: Agencies will need to become leaner, faster, more strategic, and more accountable. The cost of some services may go down because AI allows smaller teams to do more. But I still think many business owners will want a human partner who can think with them, own outcomes, and help them make better decisions. For SME and mid-size business owners here: Are you planning to reduce agency/freelancer support because of AI? Or do you still see value in having humans in the loop for strategy, execution, quality control, and accountability? And for marketers, agency owners, and freelancers: Where do you think clients will still pay for human expertise? Curious to hear honest takes.",
+      "authorUsername": "ArrowUpWalker",
+      "subredditName": "digital_marketing",
+      "createdAtDate": "2026-05-31T07:23:37+00:00",
+      "permalink": "/r/digital_marketing/comments/1tsoe6v/will_smes_and_midsize_companies_really_let_go_of/",
+      "url": "https://www.reddit.com/r/digital_marketing/comments/1tsoe6v/will_smes_and_midsize_companies_really_let_go_of/",
       "searchType": "narrow",
       "searchLabel": "subreddit-search",
       "relevanceScore": 46,
       "matchedKeywords": [
-        "gbp",
-        "local pack"
+        "soci",
+        "ai visibility",
+        "agency"
+      ]
+    },
+    {
+      "id": "1trvxg0",
+      "title": "Serious Google Business Profile abuse vector: attacker-controlled orphaned profile used to trigger duplicate/merge against legitimate business",
+      "selftext": "Hi everyone, I’m posting because we believe we have identified a dangerous Google Business Profile / Google Maps abuse vector that can be used to suppress or hijack a legitimate business profile without directly compromising the owner’s Google account. We operate a legitimate local beauty business in Ho Chi Minh City, Vietnam. The business had an existing Google Business Profile with real reviews, photos, correct address, customer history, and owner control. Recently, after a documented competitor-abuse dispute, our Google Business profile became inaccessible/corrupted. It was marked as a duplicate or wrongly associated with another Google Maps entity. The profile’s name, photos, and hundreds of reviews became associated with a wrong location/category. At one point, the business appeared tied to an unrelated location and category, while the rightful owner was pushed into the “request access” workflow. The current controller denied the rightful owner’s access request and left the message: “^^”. Based on what we are seeing, the suspected attack vector is: A malicious actor claims or controls an orphaned / weakly-controlled Google Maps location or business profile. They edit that profile to mimic the victim business’s identifying signals, such as name, address/location signals, category, phone/website, or other entity data. Google’s duplicate/merge/entity-resolution system appears to treat the attacker-controlled profile as the stronger or canonical entity. The legitimate verified business profile is then marked as a duplicate, suppressed, merged, or mis-associated. The rightful owner loses effective control and is forced to request access from the attacker-controlled profile. The attacker can deny access and potentially disrupt the victim business’s reviews, photos, location, ranking signals, and customer acquisition. This is not a normal “wrong address” issue. If this vector is real, it means a malicious actor can attack a verified business by abusing Google’s entity resolution / duplicate merge logic rather than hacking the owner’s account. Impact: Legitimate owner loses control of the profile; Reviews/photos/profile history may become hidden or misassociated; Customers may be sent to the wrong location or category; Search visibility and bookings can be disrupted; The attacker can deny ownership recovery; The same method may be repeatable against other local businesses. We have already contacted Google Business Profile support and have a case ID. We are also preparing a vulnerability/abuse report. We have screenshots showing the incorrect profile state, the access denial, the wrong location/category association, and business proof showing the real address and operation. Questions for the community: Has anyone seen this type of orphaned-profile / duplicate-merge abuse before? What is the best escalation path inside Google for malicious duplicate/merge/entity-resolution abuse? Should this be handled as a Business Profile support case, a Google Maps data-quality issue, an abuse report, or a Bug Hunters / Abuse VRP report? What wording gets Google to review the actual merge/entity history instead of treating this as a simple address edit? Can Google reverse the incorrect association and restore the original reviews, photos, profile history, and ranking signals? Is there a way to get Google to audit ownership changes, manager changes, verification actions, suggested edits, duplicate/merge actions, and the Gmail account controlling the attacker-side profile? We are not creating a new profile because we do not want to make the duplicate issue worse. We need Google to reverse the incorrect association, restore rightful owner access, and preserve/re-associate all original reviews and profile history with the legitimate business. Any help from Product Experts or people who have dealt with wrongful duplicate/merge abuse would be appreciated.",
+      "authorUsername": "ThichGaiDep",
+      "subredditName": "GoogleMyBusiness",
+      "createdAtDate": "2026-05-30T10:10:21+00:00",
+      "permalink": "/r/GoogleMyBusiness/comments/1trvxg0/serious_google_business_profile_abuse_vector/",
+      "url": "https://www.reddit.com/r/GoogleMyBusiness/comments/1trvxg0/serious_google_business_profile_abuse_vector/",
+      "searchType": "narrow",
+      "searchLabel": "subreddit-search",
+      "relevanceScore": 46,
+      "matchedKeywords": [
+        "soci",
+        "google business profile",
+        "google maps",
+        "local business"
       ]
     },
     {
@@ -281,14 +435,14 @@
       ]
     }
   ],
-  "fetchedAt": "2026-06-05T18:57:57.474Z",
+  "fetchedAt": "2026-06-06T12:07:21.451Z",
   "source": "reddit-rss",
   "stats": {
-    "totalFetched": 307,
-    "totalQueries": 37,
-    "qualityPosts": 15,
-    "filteredOut": 292,
-    "newPosts": 7,
+    "totalFetched": 400,
+    "totalQueries": 76,
+    "qualityPosts": 23,
+    "filteredOut": 377,
+    "newPosts": 10,
     "minRelevanceScore": 45
   }
 }
