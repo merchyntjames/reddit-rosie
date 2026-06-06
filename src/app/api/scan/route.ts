@@ -156,6 +156,23 @@ function scorePost(post: RSSPost): { score: number; matchedTerms: string[] } {
   // Penalize obvious marketing titles
   if (titleLower.includes('proven strategies') || titleLower.includes('complete guide') || titleLower.includes('ultimate guide') || titleLower.includes('schedule a demo') || titleLower.includes('free trial')) score -= 20;
 
+  // Intent analysis
+  const bodyLower = (post.selftext || '').toLowerCase();
+  // Subreddit announcements / meta posts
+  if (titleLower.includes('welcome to r/') || titleLower.includes('introduce yourself') || titleLower.includes('announcement') || titleLower.includes('megathread')) score -= 30;
+  // New/tiny subreddits
+  if (bodyLower.includes('first wave') || bodyLower.includes('brand new community') || bodyLower.includes('new subreddit')) score -= 25;
+  // Listicles
+  if (titleLower.match(/^\d+ best/) || titleLower.match(/^top \d+/) || titleLower.match(/^\d+ proven/)) score -= 15;
+  // No body text
+  if (!post.selftext || post.selftext.length < 50) score -= 10;
+  // Product launches
+  if (bodyLower.includes('we just launched') || bodyLower.includes('check out our') || bodyLower.includes('beta testers wanted')) score -= 20;
+  // Boost genuine questions
+  if (bodyLower.includes('any advice') || bodyLower.includes('has anyone') || bodyLower.includes('struggling with') || bodyLower.includes('need help with')) score += 10;
+  // Boost tool comparisons
+  if (bodyLower.includes('looking for an alternative') || bodyLower.includes('switching from') || bodyLower.includes('which is better') || bodyLower.includes('anyone tried')) score += 10;
+
   return { score: Math.max(0, Math.min(100, score)), matchedTerms: [...new Set(matchedTerms)] };
 }
 

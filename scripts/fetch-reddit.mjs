@@ -444,6 +444,60 @@ function scorePost(post) {
     score -= 20;
   }
 
+  // --- INTENT ANALYSIS ---
+  // Penalize posts that aren't real conversations worth engaging with
+
+  const bodyLower = (post.selftext || '').toLowerCase();
+
+  // Subreddit announcements / meta posts (not real conversations)
+  if (titleLower.includes('welcome to r/') || titleLower.includes('introduce yourself') ||
+      titleLower.includes('subreddit rules') || titleLower.includes('community guidelines') ||
+      titleLower.includes('weekly thread') || titleLower.includes('monthly thread') ||
+      titleLower.includes('megathread') || titleLower.includes('announcement')) {
+    score -= 30;
+  }
+
+  // New/tiny subreddits with no audience (low subscriber signals in body)
+  if (bodyLower.includes('first wave') || bodyLower.includes('brand new community') ||
+      bodyLower.includes('just created this') || bodyLower.includes('new subreddit') ||
+      bodyLower.includes('join our community') || bodyLower.includes('growing this sub')) {
+    score -= 25;
+  }
+
+  // Listicles and roundup posts (someone else's marketing, not a conversation)
+  if (titleLower.match(/^\d+ best/) || titleLower.match(/^top \d+/) ||
+      titleLower.match(/^\d+ proven/) || titleLower.match(/^\d+ ways/)) {
+    score -= 15;
+  }
+
+  // Pure link drops with no body text (not a conversation starter)
+  if (!post.selftext || post.selftext.length < 50) {
+    score -= 10;
+  }
+
+  // Posts that are clearly someone else's product launch, not a question
+  if (bodyLower.includes('we just launched') || bodyLower.includes('check out our') ||
+      bodyLower.includes('try our tool') || bodyLower.includes('introducing our') ||
+      bodyLower.includes('we built this') || bodyLower.includes('launching today') ||
+      bodyLower.includes('beta testers wanted') || bodyLower.includes('looking for feedback on my')) {
+    score -= 20;
+  }
+
+  // Boost: genuine questions and help requests (strong engagement signal)
+  if (bodyLower.includes('any advice') || bodyLower.includes('has anyone') ||
+      bodyLower.includes('what do you recommend') || bodyLower.includes('struggling with') ||
+      bodyLower.includes('need help with') || bodyLower.includes('can someone explain') ||
+      bodyLower.includes('what am i doing wrong') || bodyLower.includes('any suggestions')) {
+    score += 10;
+  }
+
+  // Boost: someone comparing tools or asking for alternatives
+  if (bodyLower.includes('looking for an alternative') || bodyLower.includes('switching from') ||
+      bodyLower.includes('compared to') || bodyLower.includes('which is better') ||
+      bodyLower.includes('anyone tried') || bodyLower.includes('worth paying for')) {
+    score += 10;
+  }
+
   // Cap at 100
   score = Math.max(0, Math.min(100, score));
 
