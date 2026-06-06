@@ -306,12 +306,23 @@ function parseAtomFeed(xml) {
       .replace(/\s+/g, ' ')
       .trim();
 
-    // Extract post ID (format: t3_xxxxx)
+    // Extract post ID (format: t3_xxxxx for posts)
     const idRaw = getField('id');
+
+    // Skip non-post entries (t5_ = subreddit, t1_ = comment, t2_ = user)
+    if (idRaw.startsWith('t5_') || idRaw.startsWith('t1_') || idRaw.startsWith('t2_') || idRaw.startsWith('t4_')) {
+      continue;
+    }
+
     const id = idRaw.replace(/^t3_/, '');
 
     // Extract permalink
     const permalink = getAttr('link', 'href');
+
+    // Skip entries that link to a subreddit rather than a post
+    if (permalink.match(/^\/r\/[^/]+\/?$/) || permalink.match(/reddit\.com\/r\/[^/]+\/?$/)) {
+      continue;
+    }
 
     // Extract subreddit
     const subreddit = getAttr('category', 'term');

@@ -60,8 +60,12 @@ function parseAtomFeed(xml: string): RSSPost[] {
       .replace(/submitted by\s+\/u\/\S+/g, '').replace(/\s+/g, ' ').trim();
 
     const idRaw = getField('id');
+    // Skip non-post entries (subreddits, comments, users)
+    if (idRaw.startsWith('t5_') || idRaw.startsWith('t1_') || idRaw.startsWith('t2_') || idRaw.startsWith('t4_')) continue;
     const id = idRaw.replace(/^t3_/, '');
     const permalink = getAttr('link', 'href');
+    // Skip entries linking to subreddits rather than posts
+    if (permalink.match(/^\/r\/[^/]+\/?$/) || permalink.match(/reddit\.com\/r\/[^/]+\/?$/)) continue;
     const subreddit = getAttr('category', 'term');
     const title = getField('title')
       .replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&gt;/g, '>')
