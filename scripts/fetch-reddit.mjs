@@ -446,7 +446,11 @@ async function main() {
   console.log(`Time: ${new Date().toISOString()}`);
   console.log('---');
 
-  // Read monitoring config from Supabase if available
+  // Read monitoring config from Supabase — this is the source of truth
+  // Settings page writes here, GitHub Action reads here
+  let dbSubreddits = null;
+  let dbKeywords = null;
+
   if (supabase) {
     try {
       const { data: settings } = await supabase
@@ -457,37 +461,44 @@ async function main() {
       if (settings) {
         for (const row of settings) {
           if (row.key === 'monitored_subreddits' && Array.isArray(row.value) && row.value.length > 0) {
-            // Override the hardcoded subreddit queries with DB values
-            // Clear existing and rebuild with DB subreddits
-            const dbSubreddits = row.value;
-            SUBREDDIT_QUERIES.length = 0;
-            for (const sub of dbSubreddits) {
-              SUBREDDIT_QUERIES.push({
-                subreddit: sub,
-                queries: ['"Google Business Profile" OR "GBP" OR "local SEO"'],
-              });
-            }
-            console.log(`Loaded ${dbSubreddits.length} subreddits from database: ${dbSubreddits.join(', ')}`);
+            dbSubreddits = row.value;
           }
           if (row.key === 'monitored_keywords' && Array.isArray(row.value) && row.value.length > 0) {
-            console.log(`Loaded ${row.value.length} keywords from database: ${row.value.join(', ')}`);
-            // Update the broad search queries with DB keywords
-            const kwQuery = row.value.map(kw => `"${kw}"`).join(' OR ');
-            // Replace the high-intent global query with the user's keywords
-            const highIntentIdx = GLOBAL_QUERIES.findIndex(q => q.label === 'high-intent');
-            if (highIntentIdx >= 0) {
-              GLOBAL_QUERIES[highIntentIdx] = {
-                query: `(${kwQuery}) AND (help OR advice OR recommend OR best)`,
-                time: 'day',
-                label: 'high-intent',
-              };
-            }
+            dbKeywords = row.value;
           }
         }
       }
     } catch (err) {
-      console.log('Could not load settings from database, using defaults:', err.message);
+      console.log('Could not load settings from database, using hardcoded defaults:', err.message);
     }
+  }
+
+  // Override subreddit queries with DB values
+  if (dbSubreddits) {
+    SUBREDDIT_QUERIES.length = 0;
+
+    // Build keyword query strings from DB keywords for narrow searches
+    // Split into chunks of ~5 keywords per query to stay under RSS URL limits
+    const kwList = dbKeywords || ['Google Business Profile', 'local SEO', 'Google Maps', 'online reviews'];
+    const kwChunks = [];
+    for (let i = 0; i < kwList.length; i += 5) {
+      const chunk = kwList.slice(i, i + 5).map(kw => `"${kw}"`).join(' OR ');
+      kwChunks.push(chunk);
+    }
+
+    for (const sub of dbSubreddits) {
+      // Each subreddit gets queries built from the keyword list
+      // Use first 2 chunks to avoid too many queries per sub
+      const queries = kwChunks.slice(0, 2);
+      SUBREDDIT_QUERIES.push({ subreddit: sub, queries });
+    }
+
+    console.log(`Loaded ${dbSubreddits.length} subreddits from database`);
+    console.log(`Built ${SUBREDDIT_QUERIES.reduce((s, q) => s + q.queries.length, 0)} narrow queries from ${kwList.length} keywords`);
+  }
+
+  if (dbKeywords) {
+    console.log(`Loaded ${dbKeywords.length} keywords from database`);
   }
 
   const allPosts = new Map(); // dedup by ID
