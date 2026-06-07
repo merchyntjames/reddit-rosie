@@ -160,20 +160,20 @@ export function ConversationCard({ conversation, onStatusChange, onDraftsGenerat
   return (
     <div className="bg-white rounded-xl border border-border transition-shadow hover:shadow-sm">
       {/* Card Body */}
-      <div className="p-5">
-        <div className="flex items-start justify-between gap-4">
+      <div className="p-4 sm:p-5">
+        <div className="flex items-start justify-between gap-3 sm:gap-4">
           <div className="flex-1 min-w-0">
             {/* Subreddit + Meta + View on Reddit */}
-            <div className="flex items-center gap-2 mb-2">
+            <div className="flex flex-wrap items-center gap-x-2 gap-y-1 mb-2">
               <span className="text-[12px] font-semibold text-pink">{conversation.subreddit}</span>
-              <span className="text-border">|</span>
+              <span className="text-border hidden sm:inline">|</span>
               <span className="text-[12px] text-muted flex items-center gap-1">
                 <Clock size={11} />
-                Posted {timeAgo(conversation.discoveredAt)} ago by {conversation.postAuthor}
+                <span className="hidden sm:inline">Posted </span>{timeAgo(conversation.discoveredAt)} ago<span className="hidden sm:inline"> by {conversation.postAuthor}</span>
               </span>
               {conversation.upvotes > 0 && (
                 <>
-                  <span className="text-border">|</span>
+                  <span className="text-border hidden sm:inline">|</span>
                   <span className="text-[12px] text-muted flex items-center gap-1">
                     <ArrowUp size={11} />
                     {conversation.upvotes}
@@ -182,14 +182,14 @@ export function ConversationCard({ conversation, onStatusChange, onDraftsGenerat
               )}
               {conversation.commentCount > 0 && (
                 <>
-                  <span className="text-border">|</span>
+                  <span className="text-border hidden sm:inline">|</span>
                   <span className="text-[12px] text-muted flex items-center gap-1">
                     <MessageSquare size={11} />
                     {conversation.commentCount}
                   </span>
                 </>
               )}
-              <span className="text-border">|</span>
+              <span className="text-border hidden sm:inline">|</span>
               <a
                 href={conversation.postUrl}
                 target="_blank"

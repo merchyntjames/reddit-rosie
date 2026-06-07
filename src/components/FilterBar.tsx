@@ -22,14 +22,14 @@ const filters: { key: ConversationStatus | 'all'; label: string }[] = [
 
 export function FilterBar({ activeFilter, onFilterChange, counts, onScanNow, onClearQueue, isScanning, hasNewItems }: FilterBarProps) {
   return (
-    <div className="flex items-center justify-between mb-5">
+    <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-5">
       {/* Filter Tabs */}
-      <div className="flex items-center gap-1 bg-white rounded-lg border border-border p-1">
+      <div className="flex items-center gap-1 bg-white rounded-lg border border-border p-1 overflow-x-auto">
         {filters.map((filter) => (
           <button
             key={filter.key}
             onClick={() => onFilterChange(filter.key)}
-            className={`px-3 py-1.5 rounded-md text-[13px] font-medium transition-colors ${
+            className={`px-3 py-1.5 rounded-md text-[13px] font-medium whitespace-nowrap transition-colors ${
               activeFilter === filter.key
                 ? 'bg-navy text-white'
                 : 'text-muted hover:text-dark hover:bg-surface'
@@ -46,14 +46,15 @@ export function FilterBar({ activeFilter, onFilterChange, counts, onScanNow, onC
       </div>
 
       {/* Action Buttons */}
-      <div className="flex items-center gap-2">
+      <div className="flex items-center gap-2 shrink-0">
         {hasNewItems && (
           <button
             onClick={onClearQueue}
             className="flex items-center gap-2 px-4 py-2 rounded-lg border border-border bg-white text-[13px] font-medium text-muted hover:text-dark hover:bg-surface transition-colors"
           >
             <Trash2 size={14} />
-            Clear queue
+            <span className="hidden sm:inline">Clear queue</span>
+            <span className="sm:hidden">Clear</span>
           </button>
         )}
         <button
@@ -66,7 +67,12 @@ export function FilterBar({ activeFilter, onFilterChange, counts, onScanNow, onC
           ) : (
             <RefreshCw size={14} />
           )}
-          {isScanning ? 'Scanning Reddit...' : 'Scan now'}
+          {isScanning ? (
+            <span className="hidden sm:inline">Scanning Reddit...</span>
+          ) : (
+            'Scan now'
+          )}
+          {isScanning && <span className="sm:hidden">Scanning...</span>}
         </button>
       </div>
     </div>

@@ -107,9 +107,9 @@ export function DraftPanel({ drafts, conversationId, onDraftUpdated }: DraftPane
   };
 
   return (
-    <div className="p-5">
+    <div className="p-4 sm:p-5">
       {/* Tabs */}
-      <div className="flex items-center gap-1 mb-4 bg-surface rounded-lg p-1 w-fit overflow-x-auto">
+      <div className="flex items-center gap-1 mb-4 bg-surface rounded-lg p-1 w-full sm:w-fit overflow-x-auto">
         {drafts.map((draft, index) => (
           <button
             key={`${draft.draftType}-${draft.creatorId}`}
@@ -128,12 +128,12 @@ export function DraftPanel({ drafts, conversationId, onDraftUpdated }: DraftPane
 
       {/* Draft Content */}
       <div className="relative">
-        <div className="bg-surface rounded-lg p-4 pr-28">
+        <div className="bg-surface rounded-lg p-4 sm:pr-28">
           <p className="text-[13px] text-dark leading-relaxed whitespace-pre-wrap select-text cursor-text">{activeDraft.content}</p>
         </div>
 
-        {/* Action buttons — top right */}
-        <div className="absolute top-3 right-3 flex items-center gap-1">
+        {/* Action buttons — top right on desktop, below content on mobile */}
+        <div className="flex items-center gap-1 mt-2 sm:mt-0 sm:absolute sm:top-3 sm:right-3">
           <button
             onClick={handleCopy}
             className="p-2 rounded-md hover:bg-white transition-colors group"

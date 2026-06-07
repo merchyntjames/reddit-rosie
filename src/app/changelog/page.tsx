@@ -16,6 +16,37 @@ interface ChangelogEntry {
 
 const changelog: ChangelogEntry[] = [
   {
+    id: '22',
+    version: '1.5',
+    date: 'June 6, 2026',
+    type: 'improvement',
+    title: 'Mobile Responsiveness',
+    description: 'Full mobile and tablet support across the entire app. Sidebar collapses to a hamburger menu, layouts adapt to smaller screens.',
+    details: [
+      'Sidebar slides in as an overlay on mobile/tablet (< 1024px) with dark backdrop',
+      'Mobile top bar with hamburger menu and Rosie logo',
+      'Stats bar switches to 2-column grid on smaller screens',
+      'Filter bar stacks tabs above action buttons on narrow viewports',
+      'Conversation card meta row wraps gracefully on mobile',
+      'Draft panel action buttons reflow below content on small screens',
+      'Activity log timestamps placed below content for readability',
+      'All pages use responsive padding (p-4 on mobile, p-8 on desktop)',
+    ],
+  },
+  {
+    id: '21',
+    version: '1.4',
+    date: 'June 6, 2026',
+    type: 'improvement',
+    title: 'Rosie Favicon',
+    description: 'Added Rosie character favicon cropped from the mascot logo. Browser tabs now show Rosie instead of the default Next.js icon.',
+    details: [
+      'Favicon at 16, 32, 192, and 512px sizes',
+      'Apple Touch Icon at 180px for iOS home screen',
+      'Wired into Next.js metadata for automatic injection',
+    ],
+  },
+  {
     id: '20',
     version: '1.3',
     date: 'June 4, 2026',
@@ -229,7 +260,7 @@ function TypeIcon({ type }: { type: ChangeType }) {
 
 export default function ChangelogPage() {
   return (
-    <div className="p-8 max-w-[900px]">
+    <div className="p-4 sm:p-8 max-w-[900px]">
       {/* Header */}
       <div className="mb-8">
         <h1 className="text-2xl font-bold text-dark">Changelog</h1>

@@ -188,12 +188,12 @@ export default function QueuePage() {
   };
 
   return (
-    <div className="p-8 max-w-[1200px]">
+    <div className="p-4 sm:p-8 max-w-[1200px]">
       {/* Header */}
-      <div className="flex items-center justify-between mb-6">
+      <div className="mb-6">
         <div>
-          <div className="flex items-center gap-3">
-            <h1 className="text-2xl font-bold text-dark">Engagement Queue</h1>
+          <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-3">
+            <h1 className="text-xl sm:text-2xl font-bold text-dark">Engagement Queue</h1>
             <div className="flex items-center gap-1.5">
               <CircleDot size={10} className={scanStatus === 'success' ? 'text-green' : scanStatus === 'failed' ? 'text-pink' : 'text-muted'} />
               <span className={`text-[11px] font-medium ${scanStatus === 'success' ? 'text-green' : scanStatus === 'failed' ? 'text-pink' : 'text-muted'}`}>

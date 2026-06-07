@@ -102,7 +102,7 @@ export default function ActivityPage() {
   }, []);
 
   return (
-    <div className="p-8 max-w-[900px]">
+    <div className="p-4 sm:p-8 max-w-[900px]">
       {/* Header */}
       <div className="mb-6">
         <h1 className="text-2xl font-bold text-dark">Activity Log</h1>
@@ -138,11 +138,11 @@ export default function ActivityPage() {
 
       {/* Activity List */}
       {!isLoading && !error && activities.length > 0 && (
-        <div className="bg-white rounded-xl border border-border">
+        <div className="bg-white rounded-xl border border-border overflow-hidden">
           {activities.map((item, index) => (
             <div
               key={item.id}
-              className={`flex items-start gap-4 p-4 ${
+              className={`flex items-start gap-3 sm:gap-4 p-4 ${
                 index !== activities.length - 1 ? 'border-b border-border' : ''
               } hover:bg-surface/50 transition-colors`}
             >
@@ -169,11 +169,11 @@ export default function ActivityPage() {
                     {item.details}
                   </p>
                 )}
+                <span className="text-[11px] text-muted flex items-center gap-1 mt-1">
+                  <Clock size={11} />
+                  {timeAgo(item.created_at)}
+                </span>
               </div>
-              <span className="text-[11px] text-muted flex items-center gap-1 shrink-0 mt-0.5">
-                <Clock size={11} />
-                {timeAgo(item.created_at)}
-              </span>
             </div>
           ))}
         </div>

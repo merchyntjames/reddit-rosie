@@ -59,7 +59,7 @@ export default function CompanyKnowledgePage() {
   });
 
   return (
-    <div className="p-8 max-w-[900px]">
+    <div className="p-4 sm:p-8 max-w-[900px]">
       <div className="mb-6">
         <h1 className="text-2xl font-bold text-dark">Company Knowledge</h1>
         <p className="text-[13px] text-muted mt-1">

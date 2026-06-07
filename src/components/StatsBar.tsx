@@ -45,7 +45,7 @@ export function StatsBar({ conversations }: StatsBarProps) {
     : 0;
 
   return (
-    <div className="grid grid-cols-4 gap-4 mb-6">
+    <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 lg:gap-4 mb-6">
       <StatCard label="Ready For Review" value={readyForReview} />
       <StatCard
         label="Total Tracked"
