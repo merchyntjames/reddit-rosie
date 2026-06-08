@@ -1,6 +1,30 @@
 {
   "posts": [
     {
+      "id": "1u04flj",
+      "title": "I researched AI search tools for small businesses. Here are the best ones.",
+      "selftext": "I’ve been looking into “AI search” tools for small businesses. Meaning: tools that help you show up in ChatGPT, Gemini, Perplexity, Copilot, Google AI results, etc. My main takeaway: Most SMBs do not need a big enterprise GEO platform. They need a simple stack: Measure what is already happening Make the site easier for AI/search systems to understand Create clearer answer-style content Track whether AI engines mention or cite them over time Here’s how I’d break it down. Free starting point: Google Search Console + GA4 This is still step one. Search Console tells you how Google sees the site. GA4 can show AI referral traffic if you set it up properly. Pros: free, real data, not another dashboard guessing what is happening. Cons: limited for AI search, especially outside Google. It will not tell you how you rank in ChatGPT or Perplexity. Best for WordPress SMBs that want implementation: LovedByAI I included it because most of the AI search tools I found are dashboards. They show you where you appear, but they do not actually do much to the site. LovedByAI is more implementation-focused for WordPress. It handles things like LLMs.txt, schema, AI-readable page structure, FAQs, AI mentions, and AI visitor reporting. Pros: low setup, WordPress-native, useful for SMBs that will not manually do all this. Cons: WordPress-only. Not a full competitive prompt monitoring platform like Otterly, Peec, or Semrush. Best cheap AI visibility tracker: Otterly.AI Good if you want to track prompts like: “best accountant in Austin” “top cybersecurity consultants for SMBs” “best med spa near me” It tracks whether your brand shows up across engines like ChatGPT, Perplexity, Google AI Overviews, and Copilot. Pros: cheaper entry point, good for monitoring brand visibility. Cons: mostly tells you what is happening. It does not really fix the site for you. Best if you already use SEO tools: Semrush AI Visibility Toolkit If you already live in Semrush, this is probably the cleanest option. Pros: combines AI visibility with normal SEO workflows. Cons: can get expensive quickly. Also, the AI tracking prompt limits are not huge. Best for content optimization: Surfer Useful if the business is actively writing service pages, comparison pages, blog posts, or local pages. Pros: better for improving pages, not just tracking mentions. Cons: overkill if the business has a tiny site and no content plan. Best local SEO layer: BrightLocal Not really an “AI search” tool, but still important for local businesses. For dentists, lawyers, home services, restaurants, clinics, etc., AI answers often pull from the same general trust layer: reviews, listings, local consistency, Google Business Profile, citations, etc. Pros: very practical for local SMBs. Cons: does not tell you if ChatGPT is mentioning you. Also useful, but probably not where I’d start Peec AI: better for agencies/teams that want more serious AI visibility tracking. Writesonic: interesting if you want tracking plus AI content production. Ahrefs Brand Radar: powerful, but probably too expensive for a normal SMB starting out. Profound / AthenaHQ / Scrunch: strong category tools, but feel more enterprise/growth-team oriented than SMB-first. Schema App / WordLift: credible, but probably too advanced or expensive as a first step for a small business. My rough recommendation: Local service business on WordPress: Search Console + GA4 + Rank Math/Yoast + LovedByAI + BrightLocal Small SaaS/B2B company: Search Console + GA4 + Otterly or Semrush + Surfer Agency managing SMB sites: Otterly or Peec for reporting, plus WordPress implementation tools for actual fixes The thing I’d be careful about: AI visibility scores are noisy. These tools are useful for trends, gaps, and competitive checks. I would not treat them like exact rank trackers. to r/ai_smb",
+      "authorUsername": "AffectOk",
+      "subredditName": "ai_smb",
+      "createdAtDate": "2026-06-08T10:51:58+00:00",
+      "permalink": "/r/ai_smb/comments/1u04flj/i_researched_ai_search_tools_for_small_businesses/",
+      "url": "https://www.reddit.com/r/ai_smb/comments/1u04flj/i_researched_ai_search_tools_for_small_businesses/",
+      "searchType": "broad",
+      "searchLabel": "competitor",
+      "relevanceScore": 100,
+      "matchedKeywords": [
+        "brightlocal",
+        "google business profile",
+        "local seo",
+        "ai search",
+        "ai visibility",
+        "citation",
+        "local business",
+        "seo tool",
+        "agency"
+      ]
+    },
+    {
       "id": "1tvp9c6",
       "title": "Can a Brand's Entire Online Reputation Be Measured in One Score? Looking for Feedback",
       "selftext": "I spent 3 months building a tool that scores your brand's entire online reputation in one number here's what I learned and what I'm probably getting wrong Background: I run a small marketing agency (we handle local service businesses roofing, HVAC, fitness studios). Every month I was juggling 5–6 different tools to track the same thing: how is this brand perceived online? Semrush for SEO. Brand24 for mentions. BrightLocal for local. Google Alerts for news. Nothing for reviews. And absolutely nothing for what AI chatbots say about the brand which is increasingly where people are forming first impressions. So I built BrandScope AI. It audits a brand across 10 dimensions and outputs a single reputation score (0–1000) with a breakdown: - SEO brand visibility (SERP presence, backlinks, branded keywords) - AI Search / AEO (does ChatGPT, Gemini, Perplexity actually cite you? What do they say?) - Review intelligence (aggregate ratings, response rate, NLP sentiment across platforms) - Social reputation (mention volume, net sentiment, viral risk) - Local SEO (NAP consistency, GBP health, local pack rankings) - PR &amp; news coverage - Web asset health (Core Web Vitals, E-E-A-T, schema) - Trust signals (Knowledge Graph, Wikipedia, entity strength) - Competitor benchmarking - AI-generated action report The AEO module is the one I'm most excited about it actually queries multiple LLMs, checks if they mention the brand, what sentiment they use, and flags hallucinations (when AI says something factually wrong about the brand). I haven't seen any other ORM tool do this. What I want feedback on: Is a unified reputation score actually useful, or do marketers prefer seeing raw data per channel? The AEO/hallucination detection is this a real pain point for you or a gimmick? Pricing: thinking $79/mo Starter, $149/mo Pro, $299/mo Agency (white-label reports). Too high? Too low? Who is the actual buyer here brand owners, marketing managers, or agencies? What feature would make you immediately pay for this vs. keep using your current stack? Be as brutal as you want I'd rather hear what's broken now than after I've spent 6 months marketing the wrong thing.",
@@ -25,14 +49,14 @@
     {
       "id": "1tyn6e6",
       "title": "Why do some Google Business Profiles appear for international searches while others don’t?",
-      "selftext": "I manage a Google Business Profile for a local business in a major tourist destination. The profile is well established: 1-Over 200 Google reviews 2-Physical location with a visible address 3-Fully optimized profile 4-Regular review activity 5-Listed on most major directories and citation sources Strong local visibility when searched from within the city However, when I simulate searches from countries such as the UK, France, Germany, and Belgium using destination-related keywords, Google Maps only seems to show a limited set of businesses, and our profile doesn’t appear at all. What confuses me is that some profiles that do appear: Have fewer reviews than ours Have weaker websites Don’t appear to have significantly stronger backlink profiles Yet they consistently show up in the Maps results for users searching from abroad. Has anyone studied how Google chooses which local businesses appear in destination-based searches performed from another country? Are there specific ranking signals that become more important for international users compared to searches performed locally? I’d be very interested to hear from anyone who has worked with tourism, hospitality, local services, or destination-based businesses and has observed similar behavior. to r/localseo",
+      "selftext": "I manage a Google Business Profile for a local business in a major tourist destination. The profile is well established: 1-Over 200 Google reviews 2-Physical location with a visible address 3-Fully optimized profile 4-Regular review activity 5-Listed on most major directories and citation sources Strong local visibility when searched from within the city However, when I simulate searches from countries such as the UK, France, Germany, and Belgium using destination-related keywords, Google Maps only seems to show a limited set of businesses, and our profile doesn’t appear at all. What confuses me is that some profiles that do appear: Have fewer reviews than ours Have weaker websites Don’t appear to have significantly stronger backlink profiles Yet they consistently show up in the Maps results for users searching from abroad. Has anyone studied how Google chooses which local businesses appear in destination-based searches performed from another country? Are there specific ranking signals that become more important for international users compared to searches performed locally? I’d be very interested to hear from anyone who has worked with tourism, hospitality, local services, or destination-based businesses and has observed similar behavior.",
       "authorUsername": "nistorya",
       "subredditName": "localseo",
       "createdAtDate": "2026-06-06T17:22:17+00:00",
       "permalink": "/r/localseo/comments/1tyn6e6/why_do_some_google_business_profiles_appear_for/",
       "url": "https://www.reddit.com/r/localseo/comments/1tyn6e6/why_do_some_google_business_profiles_appear_for/",
-      "searchType": "broad",
-      "searchLabel": "high-intent",
+      "searchType": "narrow",
+      "searchLabel": "subreddit-search",
       "relevanceScore": 80,
       "matchedKeywords": [
         "google business profile",
@@ -45,14 +69,14 @@
     {
       "id": "1tyhg4s",
       "title": "How much is worth a google review to a business?",
-      "selftext": "I’m trying to better understand the real value of Google reviews for local businesses. For example, if a restaurant, dentist, contractor, salon, or med spa gets one more real 5-star Google review, how much could that realistically be worth? I know it depends on the industry, average ticket size, local competition, and whether the review helps improve conversions or local map rankings. But I’m curious how people in local SEO think about it. Do you usually estimate the value of a Google review based on: Increased conversion rate from Google Business Profile traffic? Better Map Pack/local ranking potential? Higher trust compared to competitors? Average customer lifetime value? Something else? For clients, do you ever assign a dollar value to each new review, or do you avoid that because it’s too hard to measure directly? Would love to hear how agencies, consultants, and local business owners think about this. to r/localseo",
+      "selftext": "I’m trying to better understand the real value of Google reviews for local businesses. For example, if a restaurant, dentist, contractor, salon, or med spa gets one more real 5-star Google review, how much could that realistically be worth? I know it depends on the industry, average ticket size, local competition, and whether the review helps improve conversions or local map rankings. But I’m curious how people in local SEO think about it. Do you usually estimate the value of a Google review based on: Increased conversion rate from Google Business Profile traffic? Better Map Pack/local ranking potential? Higher trust compared to competitors? Average customer lifetime value? Something else? For clients, do you ever assign a dollar value to each new review, or do you avoid that because it’s too hard to measure directly? Would love to hear how agencies, consultants, and local business owners think about this.",
       "authorUsername": "KneeIndividual4907",
       "subredditName": "localseo",
       "createdAtDate": "2026-06-06T13:34:53+00:00",
       "permalink": "/r/localseo/comments/1tyhg4s/how_much_is_worth_a_google_review_to_a_business/",
       "url": "https://www.reddit.com/r/localseo/comments/1tyhg4s/how_much_is_worth_a_google_review_to_a_business/",
-      "searchType": "broad",
-      "searchLabel": "high-intent",
+      "searchType": "narrow",
+      "searchLabel": "subreddit-search",
       "relevanceScore": 78,
       "matchedKeywords": [
         "google business profile",
@@ -63,35 +87,16 @@
       ]
     },
     {
-      "id": "1tz8sp4",
-      "title": "Digital Marketer from Nepal – How do I break into freelance and international work?",
-      "selftext": "Hi everyone, I'm based in Pokhara, Nepal and currently work full-time as a Digital Marketing Specialist. My expertise is not spread across unrelated jobs; I've deliberately developed skills that work together as part of a complete digital marketing system. My professional responsibilities include: • Local SEO &amp; Google Business Profile Optimization • Social Media Management • Content Strategy &amp; Content Creation • Graphic Design for Marketing Campaigns • Video Editing &amp; Short-Form Content Production • Marketing Planning &amp; Execution Over the years, I've specialized in these areas because modern businesses often need integrated marketing rather than isolated services. I'm now looking to expand beyond my full-time role and explore freelance opportunities, remote work, or partnerships with international companies. What I'm struggling with is understanding how professionals actually make that transition. For those already working with foreign clients or running a freelance marketing business: How did you get your first international client? Which platforms or methods have worked best for you? Is LinkedIn enough, or is cold outreach still effective? What services are currently easiest to sell in the international market? If you had my skill set and were starting today, what would your strategy be? I feel confident in my marketing abilities, but I don't yet understand the client acquisition side of the industry. I'd appreciate any advice from freelancers, agency owners, or remote professionals who have successfully made this transition. Thank you. to r/AskMarketing",
-      "authorUsername": "Warm_Neighborhood401",
-      "subredditName": "AskMarketing",
-      "createdAtDate": "2026-06-07T10:43:27+00:00",
-      "permalink": "/r/AskMarketing/comments/1tz8sp4/digital_marketer_from_nepal_how_do_i_break_into/",
-      "url": "https://www.reddit.com/r/AskMarketing/comments/1tz8sp4/digital_marketer_from_nepal_how_do_i_break_into/",
-      "searchType": "broad",
-      "searchLabel": "high-intent",
-      "relevanceScore": 68,
-      "matchedKeywords": [
-        "soci",
-        "google business profile",
-        "local seo",
-        "agency"
-      ]
-    },
-    {
       "id": "1tz4ghu",
       "title": "🚨 Is Google quietly creating two new SEO specialties with these latest updates? AI Visibility vs Business Outcome SEO",
-      "selftext": "This week, Google introduced two updates that could significantly change how we measure SEO success. Update #1: Generative AI Performance Reporting in Search Console For the first time, website owners can see performance data related to Google's AI-powered search experiences. This means we may soon be tracking: - AI citations - AI impressions - AI visibility Not just: - Rankings - Clicks - CTR - Organic traffic ------------------------------------------------------------------------------------------ Update #2: Google Business Profile Integration with Google Analytics Local businesses will now be able to track Business Profile interactions directly inside Analytics, including: - Calls - Website clicks - Bookings - Direction requests - Total interactions This could make local SEO reporting far more focused on actual business outcomes rather than rankings alone. ----------------------------------------------------------------------------------------- A few years ago, SEO was relatively straightforward: Rank higher → Get more clicks → Get more traffic. Today, we're managing: - Organic Search - AI Overviews - ChatGPT referrals - Gemini referrals - Perplexity referrals - Google Business Profile performance It feels like the industry is splitting into two separate disciplines: AI Visibility Optimization (GEO) Focused on citations, AI answers, and LLM visibility. Business Outcome Optimization Focused on calls, bookings, leads, and revenue. ------------------------------------------------------------------------------------------ A few questions for everyone🫵: 👉 If your page gets cited in AI Overview and reaches 100,000 users but generates only 100 clicks, is that a win or a loss? 👉 Would you rather rank #1 organically or be consistently cited in AI Overview? 👉 Do you think AI citations will eventually become as important as backlinks? 👉 Are we witnessing the birth of GEO, or is this simply SEO evolving? 👉 Which update is more important for the future of search: - Generative AI reporting in Search Console - Google Business Profile + Analytics integration 👉 If you run an agency, would clients care more about: - AI visibility - Organic traffic - Calls and bookings Curious how everyone is thinking about these changes. Are we still doing SEO, or are we entering an entirely new era of search? to r/DigitalMarketing",
+      "selftext": "This week, Google introduced two updates that could significantly change how we measure SEO success. Update #1: Generative AI Performance Reporting in Search Console For the first time, website owners can see performance data related to Google's AI-powered search experiences. This means we may soon be tracking: - AI citations - AI impressions - AI visibility Not just: - Rankings - Clicks - CTR - Organic traffic ------------------------------------------------------------------------------------------ Update #2: Google Business Profile Integration with Google Analytics Local businesses will now be able to track Business Profile interactions directly inside Analytics, including: - Calls - Website clicks - Bookings - Direction requests - Total interactions This could make local SEO reporting far more focused on actual business outcomes rather than rankings alone. ----------------------------------------------------------------------------------------- A few years ago, SEO was relatively straightforward: Rank higher → Get more clicks → Get more traffic. Today, we're managing: - Organic Search - AI Overviews - ChatGPT referrals - Gemini referrals - Perplexity referrals - Google Business Profile performance It feels like the industry is splitting into two separate disciplines: AI Visibility Optimization (GEO) Focused on citations, AI answers, and LLM visibility. Business Outcome Optimization Focused on calls, bookings, leads, and revenue. ------------------------------------------------------------------------------------------ A few questions for everyone🫵: 👉 If your page gets cited in AI Overview and reaches 100,000 users but generates only 100 clicks, is that a win or a loss? 👉 Would you rather rank #1 organically or be consistently cited in AI Overview? 👉 Do you think AI citations will eventually become as important as backlinks? 👉 Are we witnessing the birth of GEO, or is this simply SEO evolving? 👉 Which update is more important for the future of search: - Generative AI reporting in Search Console - Google Business Profile + Analytics integration 👉 If you run an agency, would clients care more about: - AI visibility - Organic traffic - Calls and bookings Curious how everyone is thinking about these changes. Are we still doing SEO, or are we entering an entirely new era of search?",
       "authorUsername": "Dry-Feature6756",
       "subredditName": "DigitalMarketing",
       "createdAtDate": "2026-06-07T06:28:53+00:00",
       "permalink": "/r/DigitalMarketing/comments/1tz4ghu/is_google_quietly_creating_two_new_seo/",
       "url": "https://www.reddit.com/r/DigitalMarketing/comments/1tz4ghu/is_google_quietly_creating_two_new_seo/",
-      "searchType": "broad",
-      "searchLabel": "high-intent",
+      "searchType": "narrow",
+      "searchLabel": "subreddit-search",
       "relevanceScore": 67,
       "matchedKeywords": [
         "google business profile",
@@ -123,26 +128,6 @@
       ]
     },
     {
-      "id": "1tz4mwi",
-      "title": "What's the bigger Google update: AI reporting in Search Console or GBP integration with Analytics?",
-      "selftext": "Google recently announced two updates that caught my attention: 1.) AI Performance Reporting in Search Console This gives website owners visibility into how their content performs within Google's AI-powered search experiences. 2.) Google Business Profile Integration with Analytics This helps businesses track actions such as: Calls Website clicks Bookings Direction requests One update focuses on measuring AI visibility. The other focuses on measuring real business outcomes. If you could only choose one, which update would have the biggest impact on your work and why? I'd love to hear perspectives from: Agency owners In-house SEOs Local SEO specialists Publishers Business owners Curious to know this question answer 👇 Do you think AI visibility will become as important as rankings and organic traffic over the next few years? to r/DoSEO",
-      "authorUsername": "Dry-Feature6756",
-      "subredditName": "DoSEO",
-      "createdAtDate": "2026-06-07T06:38:45+00:00",
-      "permalink": "/r/DoSEO/comments/1tz4mwi/whats_the_bigger_google_update_ai_reporting_in/",
-      "url": "https://www.reddit.com/r/DoSEO/comments/1tz4mwi/whats_the_bigger_google_update_ai_reporting_in/",
-      "searchType": "broad",
-      "searchLabel": "high-intent",
-      "relevanceScore": 60,
-      "matchedKeywords": [
-        "google business profile",
-        "gbp",
-        "local seo",
-        "ai visibility",
-        "agency"
-      ]
-    },
-    {
       "id": "1tww74c",
       "title": "Google Reviews Dropping Despite Being Genuine – Has Anyone Else Experienced This?",
       "selftext": "I'm managing the Google Business Profile for a hospital, and over the last 1–2 months I've noticed something strange. Our review count has fluctuated multiple times: 168 → 155 reviews 164 → 162 reviews 163 → 162 reviews The biggest drop was 13 reviews disappearing at once. What's confusing is that we only ask genuine patients for reviews, and we typically receive around one review per day. We don't buy reviews, use review farms, or incentivize patients. At the same time, our rating dropped from 4.7 to 4.6 because a negative review remained while some positive reviews disappeared. I'm trying to understand what's happening behind the scenes: Is Google running more aggressive review spam filters lately? Has Google introduced any AI-based review detection systems? Are genuine reviews from new Google accounts getting filtered more often? Has anyone in the healthcare/hospital industry experienced similar review removals recently? Most of our reviews are from actual patients, so it's frustrating to see them disappear without any notification or explanation. Would appreciate hearing from anyone who manages Google Business Profiles, especially in healthcare, clinics, or local businesses. Thanks in advance.",
@@ -161,39 +146,22 @@
       ]
     },
     {
-      "id": "1tz8v68",
-      "title": "Can a Digital Marketer from Nepal realistically get a job abroad with these skills?",
-      "selftext": "Hi everyone, I'm from Nepal and currently work full-time as a Digital Marketing Specialist. My professional skill set includes: • Local SEO &amp; SEO Strategy • Social Media Management • Content Creation • Graphic Design • Video Editing • Google Business Profile Optimization • Marketing Campaign Planning I've spent the last few years developing these skills as part of a complete digital marketing role rather than specializing in only one area. Recently, I've been wondering whether these skills are enough to pursue opportunities abroad. I'm not asking whether digital marketing is a good career. I'm specifically interested in hearing from people who have successfully moved abroad or hired international marketing talent. Some questions: Are employers in countries like Australia, Canada, the UK, New Zealand, UAE, or Europe willing to sponsor digital marketing professionals? Which marketing specializations are currently most in demand internationally? Is a degree necessary, or can a strong portfolio and work experience compensate for it? Have any of you moved abroad through digital marketing, content creation, SEO, or related roles? If you had my skill set, would you focus on finding a remote international job first or directly applying for jobs abroad? I'm trying to understand whether there's a realistic pathway from Nepal to an international marketing career, or if most opportunities are limited to remote work. I'd appreciate hearing real experiences rather than generic advice. Thank you. to r/AskMarketing",
-      "authorUsername": "Warm_Neighborhood401",
-      "subredditName": "AskMarketing",
-      "createdAtDate": "2026-06-07T10:47:20+00:00",
-      "permalink": "/r/AskMarketing/comments/1tz8v68/can_a_digital_marketer_from_nepal_realistically/",
-      "url": "https://www.reddit.com/r/AskMarketing/comments/1tz8v68/can_a_digital_marketer_from_nepal_realistically/",
+      "id": "1tztuny",
+      "title": "How to Design a Website That Converts: Egyptian Market Edition",
+      "selftext": "How to Design a Website That Converts: Egyptian Market Edition In a digitally evolving Egypt, a well-designed website isn’t just a digital brochure—it’s your 24/7 salesperson. But great design is more than just looks. It needs to convert visitors into customers. Here’s how you can build a high-converting website tailored to Egyptian consumers. 1. Understand the Egyptian User Behavior Mobile-first mindset: Over 75% of Egyptians access the internet through mobile devices. Language preferences: Use both Arabic and English where possible. Arabic should be native, not just translated. How to Design a Website That Converts: Egyptian Market Edition Trust matters: Egyptians are cautious online. Build credibility with testimonials, certifications, and secure payment options. 2. Prioritize Fast Loading &amp; Mobile Responsiveness Use lightweight images and mobile-optimized layouts. Egypt’s internet speeds vary—optimize for 3G users as well. Use responsive design to ensure seamless navigation on all devices. ✅ Tools: Google PageSpeed, GTmetrix, Mobile-Friendly Test 3. Craft Clear, Culturally-Relevant CTAs Replace generic CTAs like “Submit” with action-driven phrases like: “احجز استشارتك الآن” (Book your consultation now) “ابدأ تجربتك المجانية” (Start your free trial) Place CTAs above the fold and repeat them strategically. 4. Optimize Navigation for Simplicity Keep it minimal and intuitive. Use clear menu names in Arabic or bilingual labels (e.g., \"خدماتنا | Our Services\"). Include a search bar for larger websites. 5. Showcase Local Social Proof &amp; Testimonials Display photos and names of real Egyptian clients or businesses. Highlight local partners, especially well-known brands or government entities. Include Google Reviews, Facebook comments, or video testimonials. 6. Offer WhatsApp &amp; Local Contact Options Egyptians love WhatsApp for business. Add a floating WhatsApp button. Offer local phone numbers and addresses. Consider integrating Facebook Messenger, a popular local communication tool. 7. Trust Signals &amp; Secure Payments Display trust badges: “Secure Checkout” Verified by Fawry, Meeza, or InstaPay Offer Cash on Delivery (COD) as it’s still widely preferred. 8. Integrate Local SEO Strategies Use Egyptian keywords in Arabic and English (e.g., “تصميم مواقع في القاهرة” / “Web Design in Cairo”). Register on Google My Business with a Cairo or Alexandria location. Add schema markup for local businesses. 9. Add Live Chat &amp; Fast Customer Service Egyptians expect fast responses. Use Tawk.to or Zendesk Chat, and ensure Arabic-speaking support agents. Highlight fast response time (e.g., “رد سريع خلال دقائق”). 10. Test, Analyze, and Improve Use heatmaps (Hotjar, Microsoft Clarity) to track behavior. Run A/B tests on CTAs, page designs, and content. Monitor conversions via Google Analytics and Meta Pixel. to r/egyptstory",
+      "authorUsername": "AutoModerator",
+      "subredditName": "egyptstory",
+      "createdAtDate": "2026-06-08T01:20:06+00:00",
+      "permalink": "/r/egyptstory/comments/1tztuny/how_to_design_a_website_that_converts_egyptian/",
+      "url": "https://www.reddit.com/r/egyptstory/comments/1tztuny/how_to_design_a_website_that_converts_egyptian/",
       "searchType": "broad",
       "searchLabel": "high-intent",
       "relevanceScore": 55,
       "matchedKeywords": [
         "soci",
-        "google business profile",
-        "local seo"
-      ]
-    },
-    {
-      "id": "1tz16u2",
-      "title": "Which Is the Best Digital Marketing Institute in Trichy for AI SEO, Google Ads & Real Job Skills in 2026?",
-      "selftext": "I'm looking for the best digital marketing training institute in Trichy and noticed that most courses still focus on traditional modules. However, businesses today seem to be hiring for much more than basic SEO and social media marketing. Companies are increasingly looking for skills such as: AI SEO Programmatic SEO (PSEO) ChatGPT Ranking Google AI Overviews Google AI Mode Optimization AEO (Answer Engine Optimization) GEO (Generative Engine Optimization) Local SEO Google Business Profile Optimization Reddit SEO SaaS Marketing Service Business Marketing Google Ads Meta Ads Lead Generation Marketing Automation While researching institutes, ZenX Academy caught my attention because they appear to teach modern AI-driven marketing strategies rather than only traditional digital marketing concepts. For students, freelancers, business owners, and job seekers in Trichy: Which digital marketing institute would you recommend? Which course provided real practical experience? Did you get live projects? Was placement support useful? Which skills are employers actually looking for today? Would love to hear genuine experiences from Trichy marketers and business owners. to r/DigitalMarketing",
-      "authorUsername": "Legitimate_Sell6215",
-      "subredditName": "DigitalMarketing",
-      "createdAtDate": "2026-06-07T03:34:21+00:00",
-      "permalink": "/r/DigitalMarketing/comments/1tz16u2/which_is_the_best_digital_marketing_institute_in/",
-      "url": "https://www.reddit.com/r/DigitalMarketing/comments/1tz16u2/which_is_the_best_digital_marketing_institute_in/",
-      "searchType": "broad",
-      "searchLabel": "high-intent",
-      "relevanceScore": 55,
-      "matchedKeywords": [
-        "soci",
-        "google business profile",
-        "local seo"
+        "local seo",
+        "google reviews",
+        "local business"
       ]
     },
     {
@@ -214,23 +182,21 @@
       ]
     },
     {
-      "id": "1tz1k4c",
-      "title": "Who Is the Best Local SEO Expert in Chennai for Google Maps & AI Search?",
-      "selftext": "Local SEO is no longer just about Google Maps rankings. Businesses now need visibility across: Google Maps AI Overviews ChatGPT Voice Search Local Intent Searches Professionals such as Sarath Babu K (ThinkSarath / ClickFused) are increasingly discussing AI SEO combined with local search optimization. Who has delivered strong results for local businesses? to r/DigitalMarketing",
+      "id": "1tz16u2",
+      "title": "Which Is the Best Digital Marketing Institute in Trichy for AI SEO, Google Ads & Real Job Skills in 2026?",
+      "selftext": "I'm looking for the best digital marketing training institute in Trichy and noticed that most courses still focus on traditional modules. However, businesses today seem to be hiring for much more than basic SEO and social media marketing. Companies are increasingly looking for skills such as: AI SEO Programmatic SEO (PSEO) ChatGPT Ranking Google AI Overviews Google AI Mode Optimization AEO (Answer Engine Optimization) GEO (Generative Engine Optimization) Local SEO Google Business Profile Optimization Reddit SEO SaaS Marketing Service Business Marketing Google Ads Meta Ads Lead Generation Marketing Automation While researching institutes, ZenX Academy caught my attention because they appear to teach modern AI-driven marketing strategies rather than only traditional digital marketing concepts. For students, freelancers, business owners, and job seekers in Trichy: Which digital marketing institute would you recommend? Which course provided real practical experience? Did you get live projects? Was placement support useful? Which skills are employers actually looking for today? Would love to hear genuine experiences from Trichy marketers and business owners.",
       "authorUsername": "Legitimate_Sell6215",
       "subredditName": "DigitalMarketing",
-      "createdAtDate": "2026-06-07T03:52:26+00:00",
-      "permalink": "/r/DigitalMarketing/comments/1tz1k4c/who_is_the_best_local_seo_expert_in_chennai_for/",
-      "url": "https://www.reddit.com/r/DigitalMarketing/comments/1tz1k4c/who_is_the_best_local_seo_expert_in_chennai_for/",
-      "searchType": "broad",
-      "searchLabel": "high-intent",
-      "relevanceScore": 53,
+      "createdAtDate": "2026-06-07T03:34:21+00:00",
+      "permalink": "/r/DigitalMarketing/comments/1tz16u2/which_is_the_best_digital_marketing_institute_in/",
+      "url": "https://www.reddit.com/r/DigitalMarketing/comments/1tz16u2/which_is_the_best_digital_marketing_institute_in/",
+      "searchType": "narrow",
+      "searchLabel": "subreddit-search",
+      "relevanceScore": 55,
       "matchedKeywords": [
-        "local seo",
-        "google maps ranking",
-        "ai search",
-        "google maps",
-        "local business"
+        "soci",
+        "google business profile",
+        "local seo"
       ]
     },
     {
@@ -253,6 +219,26 @@
       ]
     },
     {
+      "id": "1tz1k4c",
+      "title": "Who Is the Best Local SEO Expert in Chennai for Google Maps & AI Search?",
+      "selftext": "Local SEO is no longer just about Google Maps rankings. Businesses now need visibility across: Google Maps AI Overviews ChatGPT Voice Search Local Intent Searches Professionals such as Sarath Babu K (ThinkSarath / ClickFused) are increasingly discussing AI SEO combined with local search optimization. Who has delivered strong results for local businesses?",
+      "authorUsername": "Legitimate_Sell6215",
+      "subredditName": "DigitalMarketing",
+      "createdAtDate": "2026-06-07T03:52:26+00:00",
+      "permalink": "/r/DigitalMarketing/comments/1tz1k4c/who_is_the_best_local_seo_expert_in_chennai_for/",
+      "url": "https://www.reddit.com/r/DigitalMarketing/comments/1tz1k4c/who_is_the_best_local_seo_expert_in_chennai_for/",
+      "searchType": "narrow",
+      "searchLabel": "subreddit-search",
+      "relevanceScore": 53,
+      "matchedKeywords": [
+        "local seo",
+        "google maps ranking",
+        "ai search",
+        "google maps",
+        "local business"
+      ]
+    },
+    {
       "id": "1tugsai",
       "title": "Anyone using an AEO tool that's actually worth paying for?",
       "selftext": "We're currently using the SEMrush AI add-on, but so far it hasn't delivered much value for us. Most of the insights seem to focus on where competitors are being mentioned, rather than identifying new opportunities or providing actionable recommendations. We're open to investing in a paid tool if it genuinely helps improve visibility in AI search and answer engines. Has anyone found an AEO platform that's producing useful insights, citations, or optimization opportunities?",
@@ -270,20 +256,22 @@
       ]
     },
     {
-      "id": "1tyobnu",
-      "title": "Struggling to build a sustainable virtual solo private practice as an LCPC in Illinois (advice needed).",
-      "selftext": "Hey r/therapists, I’m an LCPC in Illinois with a fully virtual solo practice and I’m hitting some serious roadblocks after months of grinding. I’ve been consistent with daily social media posts, responding to referral requests, getting paneled with multiple insurances, in-person networking, optimizing my Psychology Today and Headway profiles, and making SEO improvements to my Wix website. Despite all of that, I’m still not seeing consistent client inquiries or a reliable stream coming in. It’s starting to feel pretty defeating. I’m also running into what seem like structural barriers specifically for virtual-only providers. EAP contracts have been difficult to secure without a physical office address. Google Business Profile setup has similar limitations for fully virtual practices. On top of that, some platforms charge providers a fee for client acquisitions even if the client doesn’t attend the session or cancels, while preventing us from setting our own no-show or late cancellation policies to protect our time and income. It feels like the system is set up in ways that make it much harder for smaller, independent virtual practices to stay sustainable compared to larger groups or in-person setups. I’m continuing to pursue things like TRICARE credentialing through TriWest, but the whole process moves slowly and the financial pressure is real while waiting for traction. I specialize in neurodivergent adults, anxiety, depression, trauma, and relationship work, and I know the clinical side is solid. The business side is where I’m struggling the most right now. If you’ve successfully built a virtual solo practice (especially in Illinois or with similar insurance-heavy markets), I would really appreciate any honest advice. What actually moved the needle for client acquisition? How long did it take to get steady? Any specific marketing strategies, referral sources, platforms, or operational tweaks that helped? How do you manage the financial uncertainty and emotional burnout during the slow periods? Thanks in advance for any insights. Feeling a bit stuck in the trenches and would value hearing real experiences from others who’ve been here. to r/therapists",
-      "authorUsername": "reddit_redact",
-      "subredditName": "therapists",
-      "createdAtDate": "2026-06-06T18:05:50+00:00",
-      "permalink": "/r/therapists/comments/1tyobnu/struggling_to_build_a_sustainable_virtual_solo/",
-      "url": "https://www.reddit.com/r/therapists/comments/1tyobnu/struggling_to_build_a_sustainable_virtual_solo/",
+      "id": "1u008jb",
+      "title": "Built a tool to export business leads from Google Maps",
+      "selftext": "Hey folks, I do a lot of local business research and got tired of opening Google Maps results one by one, then copy-pasting names, addresses, phone numbers, websites, ratings, reviews, etc. into spreadsheets. So I built a small tool: G Maps Scraper. It lets you run a normal Google Maps search, grab business listings, and export the results to CSV, Excel, or JSON. Useful for lead gen, local SEO research, competitor research, sales prospecting, or just building a clean list of businesses in a specific area. It can pull fields like business name, address, phone, website, category, rating, review count, opening hours, Google Maps URL, and more. There are also premium options for things like email and social profile discovery. Everything is designed to be simple: no coding, no API setup, just search on Google Maps and export. Link: https://gmapscraper.io Would love any feedback, especially from people who do local prospecting or build lead lists regularly. to r/chrome_extensions",
+      "authorUsername": "Forsaken_Professor77",
+      "subredditName": "chrome_extensions",
+      "createdAtDate": "2026-06-08T06:50:10+00:00",
+      "permalink": "/r/chrome_extensions/comments/1u008jb/built_a_tool_to_export_business_leads_from_google/",
+      "url": "https://www.reddit.com/r/chrome_extensions/comments/1u008jb/built_a_tool_to_export_business_leads_from_google/",
       "searchType": "broad",
       "searchLabel": "high-intent",
-      "relevanceScore": 50,
+      "relevanceScore": 51,
       "matchedKeywords": [
         "soci",
-        "google business profile"
+        "local seo",
+        "google maps",
+        "local business"
       ]
     },
     {
@@ -305,22 +293,6 @@
       ]
     },
     {
-      "id": "1tuw48d",
-      "title": "How I solved local SEO/AEO for our business partners",
-      "selftext": "I figured I might share my SEO/AEO strategy and see if it helps anyone here For context, I’m building a startup where the goal is to create the first interactive business network for AI The idea is that every partnered business gets an AI agent that can be discovered through our app, answer questions from potential customers, and help with bookings. So it combines discoverability, customer support, and conversion in one place. We also help those businesses become easier to discover through existing AI assistants while we work toward getting bigger official partnerships ourselves The main way we are approaching discoverability right now is backlinks Every time a partner creates a profile with us, we create a dedicated page for them that is optimized around their category and location, for example something like plumber in Texas. That business also gets a free AI agent for their website, trained on their own data, that can answer customer questions, book appointments, and upsell relevant services The important part is that the agent links back to our app, so as more partners join the network, more backlinks are created, our authority grows, and the businesses inside the network benefit from that growth as well Since they get this service for free (free AI agent and discoverability and SEO boost), growing the network is fairly simple I’m also looking into increasing our existing authority by partnering with bigger regional businesses and having them link back to the app Practically, it becomes a self-reinforcing loop. More businesses create more backlinks, more authority improves discoverability, and better discoverability makes the network more useful for the next businesses that join On top of that, we are also publishing blog content around specific verticals and locations, so the keywords, partner pages, and backlinks all start pushing in the same direction Has anyone tried something similar?",
-      "authorUsername": "QasperAI",
-      "subredditName": "localseo",
-      "createdAtDate": "2026-06-02T16:28:06+00:00",
-      "permalink": "/r/localseo/comments/1tuw48d/how_i_solved_local_seoaeo_for_our_business/",
-      "url": "https://www.reddit.com/r/localseo/comments/1tuw48d/how_i_solved_local_seoaeo_for_our_business/",
-      "searchType": "narrow",
-      "searchLabel": "subreddit-search",
-      "relevanceScore": 50,
-      "matchedKeywords": [
-        "local seo"
-      ]
-    },
-    {
       "id": "1tuih2t",
       "title": "has anyone actually seen issues caused by conflicts between Local Business schema and Google Business Profile data?",
       "selftext": "im looking into a case where the website schema doesnt perfectly match the GBP. things like business name formatting, categories, hours, and phone numbers are slightly different. ive always heard consistency matters, but im curious if anyone has seen real consequences from this. things like Google changing GBP data, wrong info showing in the knowledge panel, ranking drops, or entity confusion. i came across a few discussions where Google appeared to pull incorrect hours, phone numbers, and categories from website schema on multi-location sites, so now im wondering how common this actually is. has anyone tested this or run into it with a client?",
@@ -339,32 +311,36 @@
       ]
     },
     {
-      "id": "1tyqfq2",
-      "title": "How Restaurants in Egypt Can Boost Sales with Online Marketing",
-      "selftext": "Serve More Customers. Grow Your Brand. Fill More Tables. In Egypt’s competitive food scene, delicious dishes alone aren’t enough—you also need a strong online presence. How Restaurants in Egypt Can Boost Sales with Online Marketing From koshary shops to fine dining spots, restaurants that embrace online marketing are seeing higher sales, better brand loyalty, and more repeat customers. Here’s how your restaurant in Egypt can boost sales using smart digital marketing strategies: 🍽️ 1. Build a Mobile-Friendly Website with Online Menu A professional, mobile-friendly website helps customers: View your menu and prices anytime See your location via Google Maps Order online or book a table with one click Contact you directly via WhatsApp or call 📸 2. Use Social Media to Tempt &amp; Engage Platforms like Instagram, TikTok, and Facebook are your best tools for showing off your food. Post: High-quality photos and videos of dishes Behind-the-scenes content (chefs, kitchens, team) Customer reviews and user-generated content Stories with daily offers, polls, or Q&amp;As 🗺️ 3. Get Listed on Google &amp; Food Platforms Make sure your restaurant is listed on: Google Business Profile (with hours, phone, location) Food apps like Talabat, Elmenus, or Talabat Online directories and review sites (TripAdvisor, Zomato) 🎁 4. Run Targeted Promotions and Ads Digital ads help you reach the right customers in your area: Facebook &amp; Instagram ads: promote offers or new dishes Google Ads: show up when people search for food nearby Retargeting ads: bring back people who visited your website or page 💬 5. Use WhatsApp &amp; SMS to Stay Connected Collect customer numbers and send: Loyalty offers (e.g., “Get 20% off your next order”) Special deals before weekends or holidays Personalized messages on birthdays or first-time visits ⭐ 6. Encourage Reviews and Referrals Positive reviews on Google and social media boost your credibility and search ranking. Ask happy customers to leave reviews Offer a small reward for sharing your page or referring a friend Repost good reviews as testimonials 🍔 7. Partner with Influencers and Food Bloggers Local foodies on Instagram and TikTok can introduce your restaurant to thousands of potential customers. Choose influencers whose audience matches your target market. Final Thought 💡 Online marketing isn’t just for big chains. With the right tools and strategy, any restaurant in Egypt can increase orders, grow its brand, and win customer loyalty. Need help getting started? 📲 Malafaat offers digital marketing and web design services tailored for restaurants in Egypt. From websites to campaigns—we help you grow, online and offline. to r/egyptstory",
-      "authorUsername": "AutoModerator",
-      "subredditName": "egyptstory",
-      "createdAtDate": "2026-06-06T19:28:05+00:00",
-      "permalink": "/r/egyptstory/comments/1tyqfq2/how_restaurants_in_egypt_can_boost_sales_with/",
-      "url": "https://www.reddit.com/r/egyptstory/comments/1tyqfq2/how_restaurants_in_egypt_can_boost_sales_with/",
+      "id": "1tzferc",
+      "title": "How Small Businesses Can Compete Online Using Websites, SEO, AI Search & Digital Marketing",
+      "selftext": "Over the last few years, I've noticed a common pattern among many small businesses. Most owners focus on their product or service, but very few focus on how customers actually find them online. The reality is that customer behavior has changed significantly. Before contacting a business, most people now: Search on Google Check Google Maps Visit websites Read reviews Browse social media profiles Watch videos Ask AI assistants and search tools for recommendations Many businesses still rely only on social media pages and word-of-mouth marketing. While those channels remain important, they are no longer enough for long-term growth. A Website Is More Than Just an Online Brochure A website has become the digital foundation of a business. Whether you're running a clinic, coaching institute, travel agency, retail store, manufacturing unit, consultancy, restaurant, or startup, customers expect to find professional information online. A good website helps businesses: Build credibility Showcase services Generate leads Collect inquiries Support advertising campaigns Improve search visibility Unlike social media platforms, a website is a digital asset that the business fully controls. SEO Is No Longer Just About Keywords Many business owners still think SEO means adding keywords to a website. Modern SEO is much broader. Today it includes: Technical optimization User experience Content quality Mobile responsiveness Local SEO Authority building Structured information AI Search Optimization Search engines are becoming smarter and increasingly focused on providing the best answer rather than simply matching keywords. AI Search Is Changing Everything One of the biggest shifts happening right now is the rise of AI-powered search experiences. People are now asking questions such as: How can I grow my business online? What is the best way to generate leads? Which marketing channels provide the highest ROI? How do local businesses rank on Google? Instead of searching with short phrases, users are having conversations with search systems. This means businesses need to create useful, informative, and trustworthy content that genuinely helps people. Why Local Businesses Should Pay Attention Many local businesses believe digital marketing only works for large companies. In reality, modern technology has made it easier than ever for small businesses to compete. A local business can improve visibility through: Website Development Local SEO Google Business Profile Optimization Google Ads Social Media Marketing Content Marketing E-Commerce Platforms Voice Search Optimization AI Search Optimization When these elements work together, businesses create multiple opportunities for customers to discover them. Google Ads and Organic Growth Work Together There is often a debate between SEO and paid advertising. In practice, both serve different purposes. SEO helps build long-term visibility. Google Ads can generate immediate traffic and leads. Businesses that combine both strategies often create a more balanced and sustainable growth model. Social Media Is Still Important Social media remains one of the strongest tools for brand building. However, successful businesses usually connect social media with: A professional website Lead generation systems Search visibility Customer support processes Analytics and tracking The goal should be building an ecosystem rather than relying on a single platform. Technology Is Creating New Opportunities Small businesses now have access to tools that were once available only to large companies. Examples include: AI-powered content tools Marketing automation CRM systems E-commerce platforms Advanced analytics Conversion tracking Customer communication tools Businesses that adopt these technologies early often gain a competitive advantage. The Future Belongs to Businesses That Adapt The digital landscape continues to evolve. Google Search, AI-powered search engines, voice search, social platforms, and automation tools are changing how customers discover businesses. The businesses that focus on education, trust, customer experience, and useful information will likely benefit the most from these changes. Technology alone is not the answer, but when combined with a clear strategy, it can help small businesses compete, grow, and reach customers more effectively than ever before. Discussion For business owners, marketers, and entrepreneurs: What has had the biggest impact on your growth recently — SEO, Google Ads, social media marketing, AI tools, automation, or something else? I'd be interested to hear what strategies are actually working for businesses right now. to u/Future_Grand_8178",
+      "authorUsername": "Future_Grand_8178",
+      "subredditName": "u/Future_Grand_8178",
+      "createdAtDate": "2026-06-07T15:38:27+00:00",
+      "permalink": "/r/u_Future_Grand_8178/comments/1tzferc/how_small_businesses_can_compete_online_using/",
+      "url": "https://www.reddit.com/r/u_Future_Grand_8178/comments/1tzferc/how_small_businesses_can_compete_online_using/",
       "searchType": "broad",
       "searchLabel": "high-intent",
       "relevanceScore": 49,
       "matchedKeywords": [
         "soci",
         "google business profile",
-        "google maps"
+        "local seo",
+        "ai search",
+        "google maps",
+        "local business",
+        "agency"
       ]
     },
     {
-      "id": "1tysfli",
-      "title": "The Best Web Design Solutions for Gyms and Fitness Centers in Egypt",
-      "selftext": "Turn Clicks into Clients — Grow Your Gym Online in 2025 In today’s competitive fitness market, a powerful, mobile-friendly website is essential for every gym, personal trainer, or fitness center in Egypt. The Best Web Design Solutions for Gyms and Fitness Centers in Egypt Whether you're running a crossfit box in New Cairo, a yoga studio in Alexandria, or a chain of gyms across the country, the right web design can help you attract new members, build trust, and boost your bookings. Here’s what makes a great Fitness website —and why it matters: 🏋️ 1. Clean, Powerful Visual Design Your website should look as strong as your brand feels. The best gym websites use: High-quality images of real members and coaches Bold, athletic fonts and strong brand colors A modern, clean layout that motivates users to take action 📱 2. 100% Mobile-Friendly Most users in Egypt browse fitness websites on their phones. Your site must: Load fast Adapt to all screen sizes Have clear buttons (Join Now, Book a Class, Contact Us) Include WhatsApp click-to-chat for fast connections 💳 3. Online Membership Sign-Ups &amp; Payments Make it easy to join your gym or book a session online: Simple sign-up forms Online payment gateways (Vodafone Cash, credit card, etc.) Membership plans with pricing breakdown VIP packages or personal training options 🗓️ 4. Class Schedules &amp; Real-Time Booking Your website should include: Weekly class schedule (filter by type, coach, or time) Online booking system for classes or personal training Instant confirmation emails or SMS 🎥 5. Videos, Testimonials &amp; Success Stories Showcase your results! Add: Transformation photos Video testimonials from real clients Short clips of workouts, group sessions, and coach tips 🔍 6. SEO + Google Maps Integration Your gym should appear when people search: \"Gym near me\" / \"جيم في القاهرة\" \"Fitness class in Maadi\" \"Fitness center with personal trainer Egypt\" A professionally designed site will include local SEO, meta tags, and Google Maps integration to boost visibility and traffic. 🌐 7. Bilingual Content (Arabic &amp; English) Serve a wider audience with Arabic and English support. This is especially important for: Expats in major cities Regional targeting (Gulf clients, tourists, etc.) 🔒 8. Secure, Fast, and Reliable Hosting A great gym site should: Be hosted on a fast, secure server Load in under 3 seconds Be protected with SSL encryption (HTTPS) 💼 Why Choose a Specialized Web Design Agency Like Malafaat? Agencies like Malafaat understand the unique needs of Egypt’s fitness industry. They provide: Tailored designs for gyms and personal trainers Integration with booking and CRM tools Social media &amp; ad campaign support Ongoing updates and maintenance Your website is more than a digital brochure—it’s a sales tool, brand builder, and client magnet. The best gyms in Egypt are growing online because they invested in smart, strategic web design. Ready to grow your gym online? 🏋️ Contact Malafaat to build a powerful fitness website that drives real results. to r/egyptstory",
+      "id": "1tzwiyz",
+      "title": "How to Design Websites That Speak to Egyptian Users",
+      "selftext": "How to Design Websites That Speak to Egyptian Users By Malafaat – Egypt’s Leading Creative &amp; Web Design Agency How to Design Websites That Speak to Egyptian Users Designing a website isn’t just about aesthetics—it’s about communication. In Egypt, that means building a digital experience that reflects local culture, language, values, and behavior. At Malafaat Web Design Company in Egypt , we understand the Egyptian user intimately. Here's how to design websites that truly speak to Egyptian audiences—and inspire them to engage, trust, and convert. 1. Speak Their Language—Arabic First, Naturally Egyptian users prefer websites in Arabic, especially for services, shopping, and everyday browsing. 💡 Malafaat Tip: Use Modern Standard Arabic for professionalism, and weave in colloquial Egyptian phrases for relatability—especially in CTAs and headlines. Always make sure translations are human and culturally accurate, not auto-translated. 2. Prioritize Mobile-Friendly Experiences With over 70% of Egyptians accessing the web via smartphones, mobile is king. 📱 What we do at Malafaat: Design mobile-first, not just mobile-friendly Use finger-friendly buttons, clean layouts, and fast-loading elements Optimize for 3G/4G networks—not just Wi-Fi 3. Use Visuals That Reflect Egyptian Identity Your visuals should feel local, relatable, and relevant. Stock photos with foreign models or settings don’t resonate. 🖼 Malafaat Visual Strategy: Use photos that reflect Egyptian people, places, and culture Design with Egyptian aesthetics in mind—color palettes, typography, and layout Incorporate local symbols or city references (Cairo, Alexandria, etc.) where relevant 4. Build Trust the Egyptian Way Egyptians tend to be cautious online, especially with new brands or services. 🔐 What builds trust: Client testimonials (especially with names and photos) Recognizable local partners and logos Cash on Delivery (COD) options WhatsApp support and quick replies Secure checkout badges from Fawry, Meeza, InstaPay 5. Design Simple, Direct Navigation Users expect websites to be clear and easy to explore. Overcomplicated layouts turn them away. 🔍 Malafaat Approach: Use familiar terms: \"الرئيسية\" (Home), \"الخدمات\" (Services), \"من نحن\" (About Us), \"تواصل معنا\" (Contact) Keep menus minimal and easy to scan Include a search function for larger websites 6. Leverage WhatsApp and Social Media Integration Egyptians love instant communication. Your website should offer direct, familiar channels to reach you. 💬 Must-have features: Floating WhatsApp chat button with auto-message Messenger integration Clear social links to active Facebook, Instagram, or TikTok accounts 7. Write Content That Connects Emotionally Egyptians respond to emotion-driven storytelling and straightforward, friendly messaging. ✍️ Malafaat Copywriting Style: Warm, conversational tone Local expressions and sayings Clear benefits and action-oriented headlines Example: Instead of \"Sign Up for Our Newsletter\" ➡️ \"اشترك دلوقتي واستقبل عروضنا أول بأول\" 8. Design for Real-Life Conversion Paths Don’t just build pages—build journeys. 🧭 Malafaat User Flow Strategy: Clear paths from landing pages to action (CTA) Lead forms with minimal fields CTA examples that convert in Egypt: “احجز استشارتك المجانية” (Book your free consultation) “اطلب المنتج دلوقتي والدفع عند الاستلام” (Order now, pay on delivery) 9. Use Local SEO to Get Found Your website should rank when users search in Arabic and Egyptian dialect. 📈 Malafaat SEO Boosters: Arabic meta titles/descriptions Local keywords: \"تصميم مواقع القاهرة\", \"مطبخ أونلاين مصر\", \"عيادة أسنان في الجيزة\" Google Maps &amp; GMB integration for local visibility 10. Keep Improving with Data Egyptian user behavior changes fast. The only way to stay relevant is to test and adapt. 🔎 Malafaat Monitoring Tools: Heatmaps (Hotjar, Clarity) Conversion tracking (Meta Pixel, Google Analytics) Regular updates based on real data Conclusion: Let Your Website Speak Like an Egyptian To connect with Egyptian users, your website must go beyond design—it must speak their language, reflect their values, and guide them with clarity. At Malafaat, we don’t just build websites—we craft local experiences that convert. 👉 Want your website to truly speak to Egyptian users? Let Malafaat design it for you. to r/egyptstory",
       "authorUsername": "AutoModerator",
       "subredditName": "egyptstory",
-      "createdAtDate": "2026-06-06T20:49:07+00:00",
-      "permalink": "/r/egyptstory/comments/1tysfli/the_best_web_design_solutions_for_gyms_and/",
-      "url": "https://www.reddit.com/r/egyptstory/comments/1tysfli/the_best_web_design_solutions_for_gyms_and/",
+      "createdAtDate": "2026-06-08T03:30:10+00:00",
+      "permalink": "/r/egyptstory/comments/1tzwiyz/how_to_design_websites_that_speak_to_egyptian/",
+      "url": "https://www.reddit.com/r/egyptstory/comments/1tzwiyz/how_to_design_websites_that_speak_to_egyptian/",
       "searchType": "broad",
       "searchLabel": "high-intent",
       "relevanceScore": 49,
@@ -373,6 +349,24 @@
         "local seo",
         "google maps",
         "agency"
+      ]
+    },
+    {
+      "id": "1u06g4l",
+      "title": "Does Schema Markup Help AI Citations? What Recent Studies Found",
+      "selftext": "We recently reviewed several independent studies examining the relationship between schema markup and AI citations. If you'd like to see the full research, datasets, and sources behind the findings, you can read the complete article here: https://analyzify.com/hub/schema-markup-ai-citations-research Schema markup has become one of the most discussed topics in AI visibility over the past year. As Google AI Overviews, ChatGPT, Gemini, and Perplexity continue to influence how people discover information, many site owners are asking whether structured data actually affects the likelihood of being cited. The answer isn't completely straightforward, but most recent research points in a similar direction. What the research found Several independent teams analyzed citation patterns across different AI platforms and reached broadly similar conclusions: AirOps found that pages using JSON-LD were cited more often than pages without it. Digital Applied reported that schema-marked pages appeared significantly more often in Google AI Overviews. UC Berkeley researchers identified structured data as one of the strongest factors associated with AI citations. OtterlyAI observed substantial increases in Google AI Overview visibility after a large-scale schema implementation. The strongest-performing schema types across multiple studies were FAQPage, BreadcrumbList, Article, and Organization schema. What's particularly interesting is that these are also some of the most useful schema types for ecommerce websites because they help define site structure, brand information, content hierarchy, and customer questions. Why some studies reached different conclusions Not every study reported positive results. Ahrefs tracked nearly 2,000 pages after schema was added and found little evidence that citations increased. However, their dataset focused on pages that were already receiving substantial AI visibility before schema implementation. That context matters because a page that is already being cited regularly presents a different scenario than a page that AI systems have not discovered or understood yet. As a result, the studies may not actually be contradicting each other. They may simply be measuring different stages of visibility. What this means for Shopify stores Most Shopify stores are not dealing with pages that already have hundreds of AI citations. More often, they have gaps in structured information that make it harder for AI systems to interpret products, collections, FAQs, and site hierarchy. Common examples include: Missing FAQ content Incomplete product specifications Weak internal structure signals Missing availability or pricing information in structured formats Schema doesn't replace good content, accurate information, or strong SEO foundations. What it does provide is a clearer framework that helps AI systems understand what is already on the page. That is one reason the same schema types keep appearing across multiple studies despite different methodologies and datasets. Final thoughts None of the research suggests that schema markup alone will guarantee AI citations. At the same time, multiple independent studies found that structured data is associated with better visibility across at least some AI platforms, particularly within Google's ecosystem. If you're already investing in content, site structure, and SEO, schema remains one of the more practical technical improvements worth getting right. to r/Risify",
+      "authorUsername": "AtasoyDi",
+      "subredditName": "Risify",
+      "createdAtDate": "2026-06-08T12:27:36+00:00",
+      "permalink": "/r/Risify/comments/1u06g4l/does_schema_markup_help_ai_citations_what_recent/",
+      "url": "https://www.reddit.com/r/Risify/comments/1u06g4l/does_schema_markup_help_ai_citations_what_recent/",
+      "searchType": "broad",
+      "searchLabel": "ai-search",
+      "relevanceScore": 49,
+      "matchedKeywords": [
+        "soci",
+        "ai visibility",
+        "citation"
       ]
     },
     {
@@ -395,16 +389,52 @@
       ]
     },
     {
+      "id": "1tzzhiv",
+      "title": "Fast Google Link Indexing Service - 91% Success Rate, Pay Only for Results",
+      "selftext": "Rapid URL Indexer offers a game-changing approach to getting your links indexed in Google search results. With over 23 million URLs successfully indexed and a 91% average success rate, this service addresses one of the most frustrating challenges in SEO. How The Process Works The process is straightforward: submit your URLs through the dashboard (supports up to 10,000 URLs in batch), wait for the automated indexing signals to reach Googlebot, and receive detailed reports after 4 days with final results after 14 days. The service works without requiring Google Search Console access, making it perfect for indexing backlinks you don't own. Revolutionary Pay-for-Performance Model The pay-for-performance guarantee means you only pay for successfully indexed links, with automatic credit refunds for failures. This eliminates the risk typically associated with indexing services. The platform uses exclusively white-hat methods that are completely safe for your websites, avoiding any spammy techniques that could harm your rankings. Competitive Pricing and Value Starting at $0.04 per successfully indexed link, the service costs approximately 10x less than competitors while delivering higher success rates. Credits never expire, and the pay-as-you-go model avoids subscription traps. The pricing tiers range from 500 credits for $25 up to 50,000 credits for $2,000, with increasing discounts for larger packages. Comprehensive Use Cases The service excels at website content indexing for new pages and blog posts that search engines haven't discovered yet. It handles comprehensive backlink indexing including tier 2/3 links, social media profiles, local SEO citations, directory listings, and press release indexing that overcomes duplicate content challenges. Advanced Features and Integration Professional reporting includes visual charts and CSV downloads for tracking progress. Full automation is available through REST API, WordPress plugin, and Zapier integration for seamless workflow management. The platform provides accurate indexing reports that help you monitor the success of your SEO campaigns. Proven Customer Results Customer testimonials consistently highlight the superior performance compared to relying solely on Google's natural crawling process, with many URLs indexed within 48-72 hours instead of weeks or months. SEO agencies and businesses report significant time savings and improved campaign results. Safety and Reliability Rapid URL Indexer maintains the highest quality standards using only white-hat, spam-free indexing techniques. The methods are completely safe for your most important websites and client projects, ensuring you never risk penalties or ranking drops. Getting Started The platform offers a simple testing option with 500 credits to evaluate the service before committing to larger packages. With no subscription requirements and credits that never expire, you can start indexing immediately and scale according to your needs. Tips for Best Results To maximize indexation rates, prioritize tier-1 backlinks and ensure target pages return 200 OK and are not blocked by robots.txt or noindex tags. Provide canonical URLs when applicable and group URLs by site to allow efficient batching. Monitor the reporting dashboard and re-submit failed URLs after addressing potential issues. Agencies should use the API for large-scale workflows and integrate CSV exports into client reports for transparency and billing and save time on manual processes automatically. https://rapidurlindexer.com/ to r/RapidURLIndexer",
+      "authorUsername": "rapidurlindexer",
+      "subredditName": "RapidURLIndexer",
+      "createdAtDate": "2026-06-08T06:06:37+00:00",
+      "permalink": "/r/RapidURLIndexer/comments/1tzzhiv/fast_google_link_indexing_service_91_success_rate/",
+      "url": "https://www.reddit.com/r/RapidURLIndexer/comments/1tzzhiv/fast_google_link_indexing_service_91_success_rate/",
+      "searchType": "broad",
+      "searchLabel": "high-intent",
+      "relevanceScore": 48,
+      "matchedKeywords": [
+        "soci",
+        "local seo",
+        "citation"
+      ]
+    },
+    {
+      "id": "1tzct4r",
+      "title": "Is Framer good for Local SEO?",
+      "selftext": "Guys, I build websites on Framer for local home service businesses, the sites are responsive, mobile friendly and easy to design in Framer but is Framer actually good for on page SEO and for ranking the site in Google search for competitive keywords. I know there are other factors like GBP optimization or citations that affect rankings, but is framer good for seo or should I switch to WordPress?",
+      "authorUsername": "ashmitsdad",
+      "subredditName": "localseo",
+      "createdAtDate": "2026-06-07T13:55:40+00:00",
+      "permalink": "/r/localseo/comments/1tzct4r/is_framer_good_for_local_seo/",
+      "url": "https://www.reddit.com/r/localseo/comments/1tzct4r/is_framer_good_for_local_seo/",
+      "searchType": "narrow",
+      "searchLabel": "subreddit-search",
+      "relevanceScore": 48,
+      "matchedKeywords": [
+        "gbp",
+        "local seo",
+        "citation"
+      ]
+    },
+    {
       "id": "1tyipsq",
       "title": "Local citations are fine, but I think real local mentions are getting underrated",
-      "selftext": "I still see a lot of local SEO checklists built around getting the same directory citations everyone else has. I get why. They are easy to track, easy to report, and they help with consistency. But for competitive local service businesses, I think the better question is: Where can this business get mentioned that actually proves it belongs in that city? Examples: local newspapers Chamber of Commerce pages neighborhood associations school or charity sponsorship pages local event pages nearby business partner pages city-specific resource guides Those are harder to get than a directory listing, but they usually say a lot more about real local relevance. My rough rule lately: If nobody local would ever visit the page, I do not treat it as a strong local signal. If the page is tied to the actual community, even a simple mention can be more useful than another batch of generic citations. Curious how others think about this. For local SEO in 2026, are you still prioritizing citation volume, or are you spending more time finding real local/community mentions? to r/localseo",
+      "selftext": "I still see a lot of local SEO checklists built around getting the same directory citations everyone else has. I get why. They are easy to track, easy to report, and they help with consistency. But for competitive local service businesses, I think the better question is: Where can this business get mentioned that actually proves it belongs in that city? Examples: local newspapers Chamber of Commerce pages neighborhood associations school or charity sponsorship pages local event pages nearby business partner pages city-specific resource guides Those are harder to get than a directory listing, but they usually say a lot more about real local relevance. My rough rule lately: If nobody local would ever visit the page, I do not treat it as a strong local signal. If the page is tied to the actual community, even a simple mention can be more useful than another batch of generic citations. Curious how others think about this. For local SEO in 2026, are you still prioritizing citation volume, or are you spending more time finding real local/community mentions?",
       "authorUsername": "alexshev_pm",
       "subredditName": "localseo",
       "createdAtDate": "2026-06-06T14:27:23+00:00",
       "permalink": "/r/localseo/comments/1tyipsq/local_citations_are_fine_but_i_think_real_local/",
       "url": "https://www.reddit.com/r/localseo/comments/1tyipsq/local_citations_are_fine_but_i_think_real_local/",
-      "searchType": "broad",
-      "searchLabel": "high-intent",
+      "searchType": "narrow",
+      "searchLabel": "subreddit-search",
       "relevanceScore": 48,
       "matchedKeywords": [
         "soci",
@@ -450,24 +480,6 @@
       ]
     },
     {
-      "id": "1tsoe6v",
-      "title": "Will SMEs and mid-size companies really let go of agencies because of AI, or will agencies just become leaner?",
-      "selftext": "I’ve been thinking about how AI is changing agency work, especially for SMEs and mid-size companies. A lot of people say AI will replace agencies, freelancers, designers, developers, media buyers, SEO teams, and social media teams. I get the argument. AI can now write content, generate website copy, assist with design, help with code, analyze campaign data, create reports, and speed up a lot of repetitive work. But I’m not fully convinced that most SMEs and mid-size companies will completely let go of agencies. My current view is this: AI will make the work faster, but clients will still need people who can make decisions, take accountability, and build trust. For example: In web design and development, AI can help create layouts, write code, debug, and speed up production. But someone still has to understand the brand, the business goals, the customer journey, the integrations, the trade-offs, the QA, and what actually works in the real world. In Google Ads and Meta Ads, AI can automate bidding, targeting, creative variations, and reporting. But someone still has to decide the strategy, interpret what is happening, challenge bad data, manage budgets, explain performance, and be accountable when money is being spent. In SEO and AI visibility, AI can help with research, content briefs, technical checks, and optimization. But someone still has to decide what is credible, what the brand should stand for, how to earn authority, and how to turn visibility into business results. In social media, AI can create drafts and ideas quickly. But someone still needs to understand culture, timing, nuance, community management, brand risk, and whether something feels human or generic. So maybe the real change is not “clients will stop hiring agencies.” Maybe the change is: Agencies will need to become leaner, faster, more strategic, and more accountable. The cost of some services may go down because AI allows smaller teams to do more. But I still think many business owners will want a human partner who can think with them, own outcomes, and help them make better decisions. For SME and mid-size business owners here: Are you planning to reduce agency/freelancer support because of AI? Or do you still see value in having humans in the loop for strategy, execution, quality control, and accountability? And for marketers, agency owners, and freelancers: Where do you think clients will still pay for human expertise? Curious to hear honest takes.",
-      "authorUsername": "ArrowUpWalker",
-      "subredditName": "digital_marketing",
-      "createdAtDate": "2026-05-31T07:23:37+00:00",
-      "permalink": "/r/digital_marketing/comments/1tsoe6v/will_smes_and_midsize_companies_really_let_go_of/",
-      "url": "https://www.reddit.com/r/digital_marketing/comments/1tsoe6v/will_smes_and_midsize_companies_really_let_go_of/",
-      "searchType": "narrow",
-      "searchLabel": "subreddit-search",
-      "relevanceScore": 46,
-      "matchedKeywords": [
-        "soci",
-        "ai visibility",
-        "agency"
-      ]
-    },
-    {
       "id": "1txm4ek",
       "title": "Best tools for SEO and AI visibility for a WordPress website?",
       "selftext": "Hi everyone, I recently finished building my company website in WordPress using Bricks Builder. The website is focused on B2B sales of sandwich panels and cladding systems for industrial, commercial, and agricultural buildings. My target markets are Slovakia and the Czech Republic. I'm now looking to improve not only traditional SEO but also visibility in AI search and LLM-driven platforms such as ChatGPT, Gemini, Claude, and Perplexity. What tools, services, or platforms would you recommend for: Technical SEO audits Content optimization Structured data/schema validation AI/LLM visibility and optimization GEO (Generative Engine Optimization) Website crawling and issue detection Monitoring how AI platforms understand and reference a website I'm also interested in any tools that can analyze a website and point out missing elements, technical issues, or opportunities for improvement. What are the tools you actually use and find worth paying for? Thanks for any recommendations.",
@@ -485,20 +497,56 @@
       ]
     },
     {
-      "id": "1typmh3",
-      "title": "AI SEO Agents: Game-Changer or Overhyped Marketing?",
-      "selftext": "&#x200B; I've been seeeing more SEO tools promoting \"AI SEO agents\" that handle almost every part of the workflow. One example I came across offers 12 different SEO agents: ✅ SEO Strategy ✅ Keyword Research ✅ Performance Analysis (GSC) ✅ Competitor Analysis ✅ AI Content Writing ✅ On-Page Optimization ✅ Internal Linking ✅ Backlink Analysis ✅ Indexing Audits ✅ Structured Data ✅ Brand SERP Analysis ✅ Local SEO The idea is simple: instead of using one general AI prompt, you use specialized agents with fixed frameworks and outputs for each SEO task. What I'm curious about: Has anyone here actually used AI agents for SEO? Which tasks do they genuinely save time on? Are they better than building your own prompts in ChatGPT/Claude? Do they produce actionable insights or mostly generic recommendations? For agencies, are these tools worth paying for? Personally, I can see value in keyword research, content briefs, GSC analysis, and technical audits, but I'm skeptical about backlink strategy and competitor analysis being fully automated. Would love to hear real experiences from SEOs who have tested these kinds of AI agent systems. What is the most useful SEO task you've automated with AI so far? 👇 to r/SEOorganic",
-      "authorUsername": "Comfortable-Hope3991",
-      "subredditName": "SEOorganic",
-      "createdAtDate": "2026-06-06T18:56:23+00:00",
-      "permalink": "/r/SEOorganic/comments/1typmh3/ai_seo_agents_gamechanger_or_overhyped_marketing/",
-      "url": "https://www.reddit.com/r/SEOorganic/comments/1typmh3/ai_seo_agents_gamechanger_or_overhyped_marketing/",
+      "id": "1u02xsu",
+      "title": "Add chat' button does nothing — WhatsApp chat not working in Spain (verified profile)",
+      "selftext": "https://preview.redd.it/vgttloct116h1.jpg?width=1280&amp;format=pjpg&amp;auto=webp&amp;s=55abe3da2eeb4f7c4eec6cfe2263818b2ca935b9 Hi everyone, I'm managing a Google Business Profile for a restaurant in Spain (Madrid area) and I'm having an issue with the Chat feature. When I click '+ Add chat' under Edit Profile &gt; Contact, absolutely nothing happens — no dropdown, no form, no error message. Just a dead click. This happens both on desktop (Chrome) and mobile, so it's not a browser issue. The profile is claimed and verified. I've seen that Google now supports WhatsApp and SMS as chat options, but I simply cannot access that setup flow at all. The button appears in the UI but does nothing. My questions: Is this a regional availability issue? Is the WhatsApp/SMS chat feature not yet available in Spain? Has anyone in Spain (or Europe) managed to enable this successfully? Is there any workaround to activate it or a way to contact GBP support about this specifically? Any help appreciated. Thanks! to r/GoogleMyBusiness",
+      "authorUsername": "ultimateangel",
+      "subredditName": "GoogleMyBusiness",
+      "createdAtDate": "2026-06-08T09:29:14+00:00",
+      "permalink": "/r/GoogleMyBusiness/comments/1u02xsu/add_chat_button_does_nothing_whatsapp_chat_not/",
+      "url": "https://www.reddit.com/r/GoogleMyBusiness/comments/1u02xsu/add_chat_button_does_nothing_whatsapp_chat_not/",
       "searchType": "broad",
       "searchLabel": "high-intent",
       "relevanceScore": 45,
       "matchedKeywords": [
+        "google business profile",
+        "gbp"
+      ]
+    },
+    {
+      "id": "1tzhijo",
+      "title": "Best SEO Company in Hyderabad?",
+      "selftext": "After trying different digital marketing agencies, MVK Digital Group has been one of the better experiences for Local SEO, Google Business Profile optimization, and lead generation. The team was responsive, provided regular updates, and focused on improving local search visibility rather than making unrealistic promises. Has anyone else worked with MVK Digital Group or other SEO agencies in Hyderabad? I'd love to hear about your experiences and results. to r/DigitalGrowthIndia",
+      "authorUsername": "SufficientWeb6835",
+      "subredditName": "DigitalGrowthIndia",
+      "createdAtDate": "2026-06-07T16:59:19+00:00",
+      "permalink": "/r/DigitalGrowthIndia/comments/1tzhijo/best_seo_company_in_hyderabad/",
+      "url": "https://www.reddit.com/r/DigitalGrowthIndia/comments/1tzhijo/best_seo_company_in_hyderabad/",
+      "searchType": "broad",
+      "searchLabel": "high-intent",
+      "relevanceScore": 45,
+      "matchedKeywords": [
+        "google business profile",
+        "local seo"
+      ]
+    },
+    {
+      "id": "1u02le9",
+      "title": "Google is now silently rejecting review replies. If you use AI or templates, your responses are probably invisible.",
+      "selftext": "If you handle local SEO for clients or manage a Google Business Profile (GBP), you need to check your dashboard immediately. Google has quietly started slapping review replies with a silent filter. No email. No bounce-back error. No warning in the standard dashboard. To you, it looks like your reply went live, but to the public, it simply doesn’t exist. We only know this because on April 1st, Google updated its API to include a field called ReviewReplyState. For the first time, we can actually see the moderation status of a reply. We pulled data on 12,752 rejected replies across our platform to figure out what is triggering Google's automated spam filter. Here is what we found: The Generic AI Blanket Ban A massive 67% of all rejected replies contained detectable AI boilerplate language. If your automated tool uses phrases like \"thrilled to hear,\" \"your kind words,\" \"we strive to,\" or \"look forward to welcoming you back,\" you are at serious risk. Google’s system has built a statistical model of low-quality automation. It isn't flagging individual words; it is flagging the predictable AI structure (Greeting + Robot Compliment + Sign-off). Accidental Profanity Triggers Google’s filter scans the full text string of the reply, but it completely lacks context. We found dozens of rejections caused by reviewer names (like \"Dick\" or \"Cock\" in the Netherlands), or standard menu and cocktail items mentioned in the text (like a restaurant thanking a customer for trying their \"Pornstar Martini\" or a sandwich called a \"Pastrami Orgy\"). If the string matches a blocked word, it gets binned automatically. Copy-Paste Duplication If you are blasting the same \"Thank you for the review!\" message to 50 consecutive customers, Google treats it as textbook spam. Even a simple, non-AI reply will be rejected if it's sent at scale without variation. Minimum-content replies consisting of just an emoji or punctuation marks (\"!!!\") are also triggering the quality floor filter. Direct Contact Info &amp; Links Review replies are meant for public acknowledgement, not off-platform lead capture. We found hundreds of rejections triggered by well-intentioned businesses dropping support emails or phone numbers into replies to fix a bad review (e.g., \"Please email us at support@business\"). Google blocks these as commercial solicitations. Bulk Scheduling Spikes The data shows the average rejected reply was posted about 50 days after the original review. If you log in once a month and batch-schedule 200 templated replies to go out in a tight window, Google's velocity filter flags the activity as automated abuse. How to protect your listings: Audit your boilerplate: Drop the generic AI fluff and vary your responses. Remove contact data: Keep complaint handling general without embedding hard phone numbers or emails. Ditch hashtags: We found a 100% rejection rate for replies stuffed with local SEO hashtags. Get API-level visibility: Because Google hides these rejections from the main front-end UI, you need a platform that actually surfaces the ReviewReplyState (which we do natively in our hygiene dashboard), so you aren't shouting into a black box. Have any of you noticed your review replies randomly vanishing lately? to r/LocalVisibility",
+      "authorUsername": "Ask_GMBapi",
+      "subredditName": "LocalVisibility",
+      "createdAtDate": "2026-06-08T09:08:41+00:00",
+      "permalink": "/r/LocalVisibility/comments/1u02le9/google_is_now_silently_rejecting_review_replies/",
+      "url": "https://www.reddit.com/r/LocalVisibility/comments/1u02le9/google_is_now_silently_rejecting_review_replies/",
+      "searchType": "broad",
+      "searchLabel": "high-intent",
+      "relevanceScore": 45,
+      "matchedKeywords": [
+        "google business profile",
+        "gbp",
         "local seo",
-        "seo tool"
+        "citation"
       ]
     },
     {
@@ -572,14 +620,14 @@
       ]
     }
   ],
-  "fetchedAt": "2026-06-07T12:22:24.399Z",
+  "fetchedAt": "2026-06-08T14:49:55.713Z",
   "source": "reddit-rss",
   "stats": {
-    "totalFetched": 347,
+    "totalFetched": 358,
     "totalQueries": 76,
-    "qualityPosts": 31,
-    "filteredOut": 316,
-    "newPosts": 19,
+    "qualityPosts": 33,
+    "filteredOut": 325,
+    "newPosts": 10,
     "minRelevanceScore": 45
   }
 }
