@@ -1,13 +1,32 @@
 {
-  "posts": [],
-  "fetchedAt": "2026-06-15T16:19:22.362Z",
+  "posts": [
+    {
+      "id": "1u72ykn",
+      "title": "is handling of google business profile (GBP) using AI agents a Google algo proof way.",
+      "selftext": "There is many Ai tools in market, which are handling Google business profile completely. They are filling GBP Optimisation data (categories, description, amenities, attributes etc.). Their Ai Agenct replying to client reviews. creating social media posts using client review's screenshot. Generating blogs and publishing on Client website. Everything is AI Generated. Is it a secure way to promote a GBP.",
+      "authorUsername": "Advanced_Bluebird559",
+      "subredditName": "digital_marketing",
+      "createdAtDate": "2026-06-16T04:04:55+00:00",
+      "permalink": "/r/digital_marketing/comments/1u72ykn/is_handling_of_google_business_profile_gbp_using/",
+      "url": "https://www.reddit.com/r/digital_marketing/comments/1u72ykn/is_handling_of_google_business_profile_gbp_using/",
+      "searchType": "narrow",
+      "searchLabel": "subreddit-search",
+      "relevanceScore": 52,
+      "matchedKeywords": [
+        "soci",
+        "google business profile",
+        "gbp"
+      ]
+    }
+  ],
+  "fetchedAt": "2026-06-16T15:53:38.365Z",
   "source": "reddit-rss",
   "stats": {
-    "totalFetched": 0,
+    "totalFetched": 1,
     "totalQueries": 76,
-    "qualityPosts": 0,
+    "qualityPosts": 1,
     "filteredOut": 0,
-    "newPosts": 0,
+    "newPosts": 1,
     "minRelevanceScore": 45
   }
 }
