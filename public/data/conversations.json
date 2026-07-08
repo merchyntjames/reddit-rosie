@@ -1,12 +1,12 @@
 {
   "posts": [],
-  "fetchedAt": "2026-07-07T13:21:33.353Z",
+  "fetchedAt": "2026-07-08T12:22:05.538Z",
   "source": "reddit-rss",
   "stats": {
-    "totalFetched": 0,
+    "totalFetched": 22,
     "totalQueries": 76,
     "qualityPosts": 0,
-    "filteredOut": 0,
+    "filteredOut": 22,
     "newPosts": 0,
     "minRelevanceScore": 45
   }
