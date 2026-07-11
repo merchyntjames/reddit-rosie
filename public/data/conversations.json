@@ -1,33 +1,13 @@
 {
-  "posts": [
-    {
-      "id": "1unxu2m",
-      "title": "Do small businesses actually struggle with Google Reviews, or am I solving the wrong problem?",
-      "selftext": "Hi everyone, I'm researching a product idea for small and medium businesses, and I'd love some honest feedback before I spend months building it. My original assumption was that business owners struggle to reply to Google reviews. But after talking to a few people, I realized many local businesses only receive around 5–10 Google reviews per month. At that volume, replying manually doesn't seem like a huge problem. So now I'm wondering if the bigger problem is actually getting more genuine Google reviews in the first place. The idea I'm exploring is a tool that helps businesses: Ask customers for Google reviews at the right time (without violating Google's policies) Track who has been asked and send one polite reminder if needed Draft professional replies to new reviews Turn negative reviews into recovery actions instead of just writing an apology Send a simple weekly report showing recurring complaints and what the business should improve I'm not interested in fake reviews, review gating, or anything that goes against Google's guidelines. The goal is to help businesses get more honest reviews and make better use of the feedback they receive. I'd really appreciate hearing from: Small business owners Restaurant or café owners Salon, clinic, gym, or retail owners Anyone managing a Google Business Profile Agencies that manage reviews for clients Some questions: How many Google reviews do you typically receive each month? What's the hardest part: getting reviews, replying to them, or learning from them? Do you currently use any review management software? If so, what do you like or dislike? If a tool solved one problem really well, what would you pay for? Please be brutally honest. If you think this idea is unnecessary or already solved well, I'd rather hear that now than after building it. Thanks in advance!",
-      "authorUsername": "IntrepidAd2711",
-      "subredditName": "GoogleMyBusiness",
-      "createdAtDate": "2026-07-05T09:31:00+00:00",
-      "permalink": "/r/GoogleMyBusiness/comments/1unxu2m/do_small_businesses_actually_struggle_with_google/",
-      "url": "https://www.reddit.com/r/GoogleMyBusiness/comments/1unxu2m/do_small_businesses_actually_struggle_with_google/",
-      "searchType": "narrow",
-      "searchLabel": "subreddit-search",
-      "relevanceScore": 48,
-      "matchedKeywords": [
-        "google business profile",
-        "review management",
-        "google reviews",
-        "local business"
-      ]
-    }
-  ],
-  "fetchedAt": "2026-07-10T13:12:22.817Z",
+  "posts": [],
+  "fetchedAt": "2026-07-11T11:51:58.612Z",
   "source": "reddit-rss",
   "stats": {
-    "totalFetched": 28,
+    "totalFetched": 0,
     "totalQueries": 76,
-    "qualityPosts": 1,
-    "filteredOut": 27,
-    "newPosts": 1,
+    "qualityPosts": 0,
+    "filteredOut": 0,
+    "newPosts": 0,
     "minRelevanceScore": 45
   }
 }
