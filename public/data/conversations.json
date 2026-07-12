@@ -1,13 +1,36 @@
 {
-  "posts": [],
-  "fetchedAt": "2026-07-11T11:51:58.612Z",
+  "posts": [
+    {
+      "id": "1utqvuj",
+      "title": "I built an all-in-one Local SEO platform after getting tired of using five different tools. Looking for feedback.",
+      "selftext": "Hi everyone, For the past few months, I've been building GMB Ranker, a platform designed to simplify Local SEO and Google Business Profile management. The idea came from a problem I kept facing while working with local businesses and agencies. A typical workflow looked like this: One tool for Google Maps rank tracking Another for GBP audits Another for review management Another for reports AI tools for content creation Spreadsheets to keep everything together It felt unnecessarily fragmented. So I decided to build a single platform that combines those workflows into one dashboard. Current features include: Google Maps Rank Tracking Local Grid Heatmaps Google Business Profile Audits AI-Powered Ranking Plans Review Management Google Posts Smart Tasks White-label Reports Citation Management The goal isn't to replace SEO strategy. It's to remove repetitive work so you can focus on improving rankings instead of managing multiple tools. The platform is now live, and I'd genuinely appreciate feedback from people who work in Local SEO. What features do you think every Local SEO platform should have that most tools still miss? You can check it out here if you're interested: https://gmbranker.org I'm happy to answer questions and would love to hear your honest feedback—positive or negative. to r/SEO_Marketing_Offers",
+      "authorUsername": "sushantkarn",
+      "subredditName": "SEO_Marketing_Offers",
+      "createdAtDate": "2026-07-11T17:55:45+00:00",
+      "permalink": "/r/SEO_Marketing_Offers/comments/1utqvuj/i_built_an_allinone_local_seo_platform_after/",
+      "url": "https://www.reddit.com/r/SEO_Marketing_Offers/comments/1utqvuj/i_built_an_allinone_local_seo_platform_after/",
+      "searchType": "broad",
+      "searchLabel": "agency",
+      "relevanceScore": 54,
+      "matchedKeywords": [
+        "google business profile",
+        "gbp",
+        "local seo",
+        "review management",
+        "citation",
+        "google maps",
+        "local business"
+      ]
+    }
+  ],
+  "fetchedAt": "2026-07-12T12:00:02.380Z",
   "source": "reddit-rss",
   "stats": {
-    "totalFetched": 0,
+    "totalFetched": 3,
     "totalQueries": 76,
-    "qualityPosts": 0,
-    "filteredOut": 0,
-    "newPosts": 0,
+    "qualityPosts": 1,
+    "filteredOut": 2,
+    "newPosts": 1,
     "minRelevanceScore": 45
   }
 }
