@@ -1,13 +1,53 @@
 {
-  "posts": [],
-  "fetchedAt": "2026-07-16T12:21:25.493Z",
+  "posts": [
+    {
+      "id": "1uyrcm1",
+      "title": "Google Ranking + AI Ranking = Future Business Growth 🚀 | Is Your Business Visible Everywhere?",
+      "selftext": "🤖 Aaj sirf Google par rank karna hi kaafi nahi hai. Aaj ke customers sirf Google Search hi nahi, balki AI tools jaise ChatGPT, Gemini aur doosre AI assistants se bhi information dhoondh rahe hain. Agar aapka business online visible nahi hai, to aap potential customers miss kar sakte hain. DigitalSpike aapke business ki online visibility improve karne ke liye data-driven strategies par focus karta hai: ✅ SEO ✅ Google Ads ✅ Meta Ads ✅ Social Media Marketing 📩 Comment “RANK” agar aap apni online visibility improve karna chahte hain. Digital Marketing SEO Search Engine Optimization Google Ranking AI Ranking AI Search Google Search ChatGPT SEO Gemini SEO AI Visibility Google Ads Meta Ads Social Media Marketing Lead Generation Organic Traffic Business Growth Brand Visibility Performance Marketing Local SEO Digital Marketing Agency India to r/SEO_Marketing_Offers",
+      "authorUsername": "iDigitalSpike",
+      "subredditName": "SEO_Marketing_Offers",
+      "createdAtDate": "2026-07-17T06:09:45+00:00",
+      "permalink": "/r/SEO_Marketing_Offers/comments/1uyrcm1/google_ranking_ai_ranking_future_business_growth/",
+      "url": "https://www.reddit.com/r/SEO_Marketing_Offers/comments/1uyrcm1/google_ranking_ai_ranking_future_business_growth/",
+      "searchType": "broad",
+      "searchLabel": "agency",
+      "relevanceScore": 63,
+      "matchedKeywords": [
+        "soci",
+        "local seo",
+        "ai search",
+        "ai visibility",
+        "agency"
+      ]
+    },
+    {
+      "id": "1uybqcl",
+      "title": "I’m not looking for an appointment setter. I’m looking for someone who can open doors.",
+      "selftext": "Most people think this role is about booking meetings. It’s not. It’s about starting conversations with restaurant owners who are busy running their business and showing them why it’s worth giving us 15 minutes of their time. I run a marketing agency helping restaurants across the US increase local awareness, foot traffic, and revenue through Google Business Profile optimization, Meta Ads, Social Media Management, and Local SEO. I’m looking for someone who enjoys talking to people, can handle rejection, stays consistent, and genuinely likes sales. You’ll be: Prospecting restaurant owners Cold calling and following up Qualifying leads Booking discovery calls directly into my calendar You don’t have to close the deals or deliver the service. That’s my responsibility. What I care about: You communicate well. You don’t give up after a few “no’s.” You can think on your feet. You want to build something long-term. Compensation: Paid trial Base salary + commission after the trial Plenty of room to grow as the business scales If you’ve only ever read scripts, this probably isn’t for you. If you enjoy building relationships and opening opportunities, send me a DM with your experience and let’s talk. to r/appointmentsetter",
+      "authorUsername": "smitkhatri-",
+      "subredditName": "appointmentsetter",
+      "createdAtDate": "2026-07-16T18:51:16+00:00",
+      "permalink": "/r/appointmentsetter/comments/1uybqcl/im_not_looking_for_an_appointment_setter_im/",
+      "url": "https://www.reddit.com/r/appointmentsetter/comments/1uybqcl/im_not_looking_for_an_appointment_setter_im/",
+      "searchType": "broad",
+      "searchLabel": "agency",
+      "relevanceScore": 50,
+      "matchedKeywords": [
+        "soci",
+        "google business profile",
+        "local seo",
+        "agency"
+      ]
+    }
+  ],
+  "fetchedAt": "2026-07-17T12:09:58.297Z",
   "source": "reddit-rss",
   "stats": {
-    "totalFetched": 0,
+    "totalFetched": 11,
     "totalQueries": 76,
-    "qualityPosts": 0,
-    "filteredOut": 0,
-    "newPosts": 0,
+    "qualityPosts": 2,
+    "filteredOut": 9,
+    "newPosts": 2,
     "minRelevanceScore": 45
   }
 }
