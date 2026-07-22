@@ -1,13 +1,33 @@
 {
-  "posts": [],
-  "fetchedAt": "2026-07-21T12:24:40.473Z",
+  "posts": [
+    {
+      "id": "1v2h3c1",
+      "title": "What are the most effective ways to market a new pest control business and get clients ?",
+      "selftext": "Hi everyone, I'm in the process of starting a pest control business and I'm looking for practical marketing strategies that actually bring in customers. My target is both residential and commercial clients, and I'm open to using both free and paid marketing methods. Since I'm just getting started, I'd love to know what has worked for others. Some questions I have: 🗣 Which marketing channel gives the best ROI for pest control? 🗣 Is Google Ads worth it, or should I focus more on Google Business Profile and local SEO first? 🗣 Have Facebook or Instagram ads worked for local service businesses? 🗣 Do flyers, door hangers, or newspaper ads still generate leads? 🗣 How important are Google reviews in the beginning, and what's the best way to get them? 🗣 Are partnerships with real estate agents, builders, property managers, or housing societies worth pursuing? 🗣 Any creative or low-cost ways to get the first 50–100 customers? If you've run or marketed a pest control, cleaning, plumbing, HVAC, or similar local service business, I'd really appreciate hearing what worked, what didn't, and any mistakes you'd avoid if you were starting over. Thanks in advance!",
+      "authorUsername": "_chandanjha_",
+      "subredditName": "smallbusiness",
+      "createdAtDate": "2026-07-21T12:31:35+00:00",
+      "permalink": "/r/smallbusiness/comments/1v2h3c1/what_are_the_most_effective_ways_to_market_a_new/",
+      "url": "https://www.reddit.com/r/smallbusiness/comments/1v2h3c1/what_are_the_most_effective_ways_to_market_a_new/",
+      "searchType": "narrow",
+      "searchLabel": "subreddit-search",
+      "relevanceScore": 75,
+      "matchedKeywords": [
+        "soci",
+        "google business profile",
+        "local seo",
+        "google reviews"
+      ]
+    }
+  ],
+  "fetchedAt": "2026-07-22T12:25:42.216Z",
   "source": "reddit-rss",
   "stats": {
-    "totalFetched": 0,
+    "totalFetched": 5,
     "totalQueries": 76,
-    "qualityPosts": 0,
-    "filteredOut": 0,
-    "newPosts": 0,
+    "qualityPosts": 1,
+    "filteredOut": 4,
+    "newPosts": 1,
     "minRelevanceScore": 45
   }
 }
