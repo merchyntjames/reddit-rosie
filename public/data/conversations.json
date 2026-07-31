@@ -1,33 +1,12 @@
 {
-  "posts": [
-    {
-      "id": "1v4juyv",
-      "title": "Indian web/digital consultant looking to land my first US clients. What's the best outbound strategy?",
-      "selftext": "Hey everyone! I'm based in Mumbai, India and have been building websites and digital systems for businesses over the past year or so. I've successfully closed a handful of Indian clients on both one-time projects and monthly retainers, and I'm now looking to start expanding into the US market. One thing I want to clarify is that I'm not really \"just a website guy\". Websites are usually my easiest entry offer, but the actual value I provide is more around helping businesses improve their digital trust, discoverability, positioning and conversion, as well as providing custom software solutions for enhancing their internal workflows (I have expertise for this specifically in the solar/clean energy domain). For example, for a recent US-based architecture firm I: Audited their website, Google Business Profile, Instagram and digital presence. Identified where opportunities were being lost in their customer journey. Proposed a phased roadmap covering website conversion optimisation, Google reviews, local SEO foundations, analytics, etc. Unfortunately, that particular deal didn't close (budget/timing issue rather than objections to the strategy), but it gave me confidence that there's definitely scope for the kind of work I'm offering. My biggest problem right now isn't sales or delivery, it's pipeline. In India, Instagram DMs work surprisingly well for landing website clients because most small business owners are active there. In the US, that obviously isn't the case. I'm trying to figure out: What's the best outbound channel for US SMBs? (cold email, LinkedIn, contact forms, etc.) - I've found LinkedIn becomes a problem because of the limit you can send msgs to new people, and sales, as I've learned, is a numbers game (especially cold outreach), so sending a connection request, waiting if they accept etc, that cycle just won't work for efficiency. Google maps doesn't easily provide email IDs, should I try sending normal text messages to the phone numbers listed? Is highly personalised outreach to 5-10 businesses a day better than trying to automate things? Are there particular industries that are more receptive to this kind of service? (architects, solar companies, law firms, medical practices, etc.) If you're selling $1k-$5k digital/consulting projects, how are you generating deal flow consistently? How would you position yourself if your value isn't really \"website development\" but websites are often the easiest thing to sell initially? I'm not looking to build a massive agency or spam thousands of businesses with cold emails. I'd be perfectly happy closing 1-2 good US clients every month if I can build a repeatable outbound process. Would love to hear from people who've successfully sold digital services into the US market, especially if you're doing it remotely or from another country. Thanks!",
-      "authorUsername": "TheFastBowler",
-      "subredditName": "growmybusiness",
-      "createdAtDate": "2026-07-23T17:03:09+00:00",
-      "permalink": "/r/growmybusiness/comments/1v4juyv/indian_webdigital_consultant_looking_to_land_my/",
-      "url": "https://www.reddit.com/r/growmybusiness/comments/1v4juyv/indian_webdigital_consultant_looking_to_land_my/",
-      "searchType": "narrow",
-      "searchLabel": "subreddit-search",
-      "relevanceScore": 54,
-      "matchedKeywords": [
-        "google business profile",
-        "local seo",
-        "google reviews",
-        "google maps",
-        "agency"
-      ]
-    }
-  ],
-  "fetchedAt": "2026-07-30T12:29:31.504Z",
+  "posts": [],
+  "fetchedAt": "2026-07-31T12:55:46.432Z",
   "source": "reddit-rss",
   "stats": {
-    "totalFetched": 2,
+    "totalFetched": 0,
     "totalQueries": 76,
-    "qualityPosts": 1,
-    "filteredOut": 1,
+    "qualityPosts": 0,
+    "filteredOut": 0,
     "newPosts": 0,
     "minRelevanceScore": 45
   }
