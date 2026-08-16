@@ -1,69 +1,13 @@
 {
-  "posts": [
-    {
-      "id": "1vltrp9",
-      "title": "I've ranked home services, legal, and restaurant clients #1 on Google Maps for two years straight. Here's what actually moves the needle (and what's a waste of money).",
-      "selftext": "I run a local SEO shop called Awesome Leads. I work mostly with home services, health/wellness, legal, and restaurant clients — the kind of businesses that live or die by the Google Maps 3-pack. I'm not here to drop a sales pitch on you; I want to save you money by telling you what I see working and failing across dozens of Google Business Profiles. The stuff that actually moves rankings: Your Google Business Profile is doing 80% of the work, not your website. Most owners spend $3-5k on a shiny new site and leave their GBP half-filled out. Services list incomplete, no Q&amp;A, posting once and never again. Fix the profile before you touch the website. Review velocity beats review count. Google cares more about consistent, recent reviews than a pile of old ones. 2-3 new reviews a month, every month, will outperform a business that got 40 reviews once and went silent for a year. Category selection is criminally underrated. I've seen businesses miss out on entire categories of search traffic because they picked \"Plumber\" instead of also adding \"Drain cleaning service\" and \"Water heater installation\" as secondary categories. Takes five minutes, can double your visibility. Service-area businesses need a different playbook. If you don't have a storefront, verification is a pain and your radius strategy matters a lot. Most agencies don't know how to handle this correctly and it tanks rankings before they even start. NAP consistency (Name, Address, Phone) across directories still matters. It's boring and unglamorous, but inconsistent listings across Yelp, Facebook, Nextdoor, etc. quietly confuse Google and cap how high you can rank. The stuff that's mostly a waste of money for local businesses: Generic \"SEO packages\" that optimize your website for national keywords when 90% of your customers are searching \"near me\" Paying for backlinks from irrelevant, low-quality sites Running Google Ads without first fixing your GBP — you're paying to send traffic to a leaky bucket I built a productized system around this (it's called the Local Dominance System) because I got tired of watching small business owners get burned by agencies charging $2k/month for a monthly report and nothing else. If you want to dig into your own profile, start by auditing these five things yourself before you pay anyone: Are all your service categories filled out? Do you have a review coming in at least every couple of weeks? Is your NAP identical across every directory you're listed on? Are you posting to GBP at least weekly? Is your service area radius set correctly (if applicable)? Happy to answer questions in the comments if anyone's stuck on their own local rankings — I check this account regularly. If you want an outside look at your profile, I do run free audits over at awesome-leads.com — no obligation, just tell me your business name and I'll send over what I find.",
-      "authorUsername": "ConclusionMaximum123",
-      "subredditName": "smallbusiness",
-      "createdAtDate": "2026-08-11T20:55:58+00:00",
-      "permalink": "/r/smallbusiness/comments/1vltrp9/ive_ranked_home_services_legal_and_restaurant/",
-      "url": "https://www.reddit.com/r/smallbusiness/comments/1vltrp9/ive_ranked_home_services_legal_and_restaurant/",
-      "searchType": "narrow",
-      "searchLabel": "subreddit-search",
-      "relevanceScore": 68,
-      "matchedKeywords": [
-        "google business profile",
-        "gbp",
-        "local seo",
-        "google maps",
-        "local business"
-      ]
-    },
-    {
-      "id": "1vlts63",
-      "title": "How are you handling Google Business Profile categories for service-area businesses?",
-      "selftext": "I've been going down a rabbit hole trying to optimize my Google Business Profile and realized how much I didn't know about categories. For context — I don't have a storefront, I'm a service-area business (customers come to them, not the other way around), and I picked one broad primary category when I set up my profile years ago and never touched it again. A few things I'm trying to figure out: Is it actually worth adding multiple secondary categories, or does that risk diluting what you rank for? For service-area businesses specifically, has anyone noticed verification or ranking issues that storefront businesses don't deal with? How often do you all update your GBP — posts, Q&amp;A, services list — or is it more of a \"set it up once and leave it\" thing for you? Anyone had a category change actually move the needle on their Maps ranking, good or bad? I keep hearing \"your Google profile matters more than your website\" for local visibility but I don't have a great way to verify that myself. Curious what's actually worked (or backfired) for people running service-based businesses locally.",
-      "authorUsername": "ConclusionMaximum123",
-      "subredditName": "smallbusiness",
-      "createdAtDate": "2026-08-11T20:56:28+00:00",
-      "permalink": "/r/smallbusiness/comments/1vlts63/how_are_you_handling_google_business_profile/",
-      "url": "https://www.reddit.com/r/smallbusiness/comments/1vlts63/how_are_you_handling_google_business_profile/",
-      "searchType": "narrow",
-      "searchLabel": "subreddit-search",
-      "relevanceScore": 55,
-      "matchedKeywords": [
-        "google business profile",
-        "gbp"
-      ]
-    },
-    {
-      "id": "1vledbd",
-      "title": "Looking for businesses that need help with Digital Marketing & Social Media",
-      "selftext": "Hey everyone! 👋 I run ScaleFlux Media, a digital marketing agency helping small businesses and local brands improve their online presence. We currently offer: 📱 Social Media Management — 12 posts + 5 reels/month 📍 Google Business Profile (GMB) Optimization 📢 Advertising / Meta Ads 💬 WhatsApp Marketing 🌐 Website Blog Content ⭐ Google Review Card 💳 Digital Visiting Card Our complete package starts at ₹3,999/month. If you’re a small business owner, startup, clinic, restaurant, local service provider, or someone looking to improve their online presence, feel free to DM me. Happy to discuss what you actually need without pushing unnecessary.",
-      "authorUsername": "Himanshu_Sharma4u",
-      "subredditName": "smallbusiness",
-      "createdAtDate": "2026-08-11T11:06:13+00:00",
-      "permalink": "/r/smallbusiness/comments/1vledbd/looking_for_businesses_that_need_help_with/",
-      "url": "https://www.reddit.com/r/smallbusiness/comments/1vledbd/looking_for_businesses_that_need_help_with/",
-      "searchType": "narrow",
-      "searchLabel": "subreddit-search",
-      "relevanceScore": 53,
-      "matchedKeywords": [
-        "soci",
-        "google business profile",
-        "agency"
-      ]
-    }
-  ],
-  "fetchedAt": "2026-08-15T11:19:42.240Z",
+  "posts": [],
+  "fetchedAt": "2026-08-16T11:19:35.201Z",
   "source": "reddit-rss",
   "stats": {
-    "totalFetched": 6,
+    "totalFetched": 0,
     "totalQueries": 76,
-    "qualityPosts": 3,
-    "filteredOut": 3,
-    "newPosts": 3,
+    "qualityPosts": 0,
+    "filteredOut": 0,
+    "newPosts": 0,
     "minRelevanceScore": 45
   }
 }
