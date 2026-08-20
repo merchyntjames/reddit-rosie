@@ -1,66 +1,33 @@
 {
   "posts": [
     {
-      "id": "1vn64cz",
-      "title": "Google Business Profile says 61 reviews but only 1 2 are actually showing after hiding address",
-      "selftext": "Has anyone experienced this with their Google Business Profile? I run a service-area business and recently removed/hid the physical address from my GBP, as customers don't visit the location. Shortly afterwards, something strange happened with my reviews. My profile still shows: 4.9 stars 61 Google reviews The review summary still says 61 reviews Google still shows review topics such as “professional staff”, “communication”, “efficiency”, etc. However, when I actually open the Reviews tab, only 1 or 2 reviews load. It's also inconsistent I've seen one review in a normal browser and two in Incognito. I also have a Google review widget on my website. I refreshed it and it successfully updated the total to 61 reviews, but it can now only display two individual reviews as well. There are no suspension warnings, no verification requests, and I can still manage the profile and publish posts normally. I contacted Google support but only received a generic automated response. The timing makes me wonder whether hiding the address caused Google to reprocess the profile and the individual reviews aren't being served properly while that's happening. Has anyone had this exact issue total review count remains correct, but almost all the actual reviews temporarily disappear? Did they eventually come back, and if so, how long did it take?",
-      "authorUsername": "Rare-Bodybuilder7484",
-      "subredditName": "GoogleMyBusiness",
-      "createdAtDate": "2026-08-13T09:42:25+00:00",
-      "permalink": "/r/GoogleMyBusiness/comments/1vn64cz/google_business_profile_says_61_reviews_but_only/",
-      "url": "https://www.reddit.com/r/GoogleMyBusiness/comments/1vn64cz/google_business_profile_says_61_reviews_but_only/",
-      "searchType": "narrow",
-      "searchLabel": "subreddit-search",
-      "relevanceScore": 55,
+      "id": "1vte9cb",
+      "title": "How would you improve this local SEO ranking grid for a beauty salon?",
+      "selftext": "I run a local beauty salon and have been working on our Google Business Profile/local SEO. I recently ran a geo-grid ranking scan and the results are pretty strong around the business, with lots of #1 positions, but rankings start dropping to #2–5 as you move further away, particularly in some surrounding suburbs. For anyone experienced with local SEO, I’d really appreciate some advice: What would you focus on to push the #2–5 areas closer to the top 3? Would you build location/suburb pages for the surrounding areas? How important are local backlinks and citations compared with GBP optimisation? Can I realistically expand the #1/#2 coverage further from the physical location, or is proximity always going to be the main limitation? The business is a beauty salon, and I’m mainly trying to improve visibility for searches such as “beauty salon near me,” “beauty salon,” and other local beauty service searches. I’ve attached the ranking grid with the location names blurred for privacy. Any suggestions on what you would tackle next would be greatly appreciated. to r/localseo",
+      "authorUsername": "Taxdemy",
+      "subredditName": "localseo",
+      "createdAtDate": "2026-08-20T09:09:35+00:00",
+      "permalink": "/r/localseo/comments/1vte9cb/how_would_you_improve_this_local_seo_ranking_grid/",
+      "url": "https://www.reddit.com/r/localseo/comments/1vte9cb/how_would_you_improve_this_local_seo_ranking_grid/",
+      "searchType": "broad",
+      "searchLabel": "ai-search",
+      "relevanceScore": 73,
       "matchedKeywords": [
         "google business profile",
         "gbp",
-        "google reviews"
-      ]
-    },
-    {
-      "id": "1vrptgp",
-      "title": "GBP Review Count Rapidly Dropping — Lost 12 Reviews in 3 Hours (106 down to 94). Anyone else seeing this?",
-      "selftext": "My Google Business Profile review count is actively dropping right now. Just 3 hours ago, my shop had 106 reviews, and now it has dropped down to 94. What makes it frustrating is that other competitor shops in my local niche still have all their reviews intact, but my profile is taking a major hit. All of these were genuine reviews from real clients who came to my shop. Is Google running a new spam filter update or sweep right now? Has anyone seen a sudden drop like this restored automatically, or do I need to file an official appeal?",
-      "authorUsername": "Disastrous_Duty_802",
-      "subredditName": "GoogleMyBusiness",
-      "createdAtDate": "2026-08-18T13:52:43+00:00",
-      "permalink": "/r/GoogleMyBusiness/comments/1vrptgp/gbp_review_count_rapidly_dropping_lost_12_reviews/",
-      "url": "https://www.reddit.com/r/GoogleMyBusiness/comments/1vrptgp/gbp_review_count_rapidly_dropping_lost_12_reviews/",
-      "searchType": "narrow",
-      "searchLabel": "subreddit-search",
-      "relevanceScore": 45,
-      "matchedKeywords": [
-        "google business profile",
-        "gbp"
-      ]
-    },
-    {
-      "id": "1vokc68",
-      "title": "Business transfer",
-      "selftext": "Hi everyone, I’m hoping someone familiar with Google Business Profile ownership can help me understand what happened and whether I can recover my profile. I had a business partner, and I was the person who originally created our Google Business Profile. It was created under my personal Google account/email, and I was the primary owner. My email, phone number, photos, reviews, and all of the business information were associated with the profile. We recently parted ways. I removed her as a manager because she was no longer supposed to have access to the business. After that, she repeatedly requested access/ownership using a different Gmail address, and I repeatedly denied those requests. I logged in today and discovered that I no longer have access to the existing Business Profile at all. Google now treats my original account as though I’m someone requesting access to an existing profile. The business phone number has also been changed to her phone number. What is especially confusing is that I never transferred primary ownership, and I never intentionally removed myself from the profile. I also don’t recall receiving any notification that my ownership had been transferred or that I had been removed. I also received an email recently regarding a duplicate profile, so I’m wondering whether that somehow played a role in what happened. The original profile has years of reviews, photos, and history that I personally built. I’m trying to understand how another Google account could have ended up controlling the existing profile when I was the primary owner and was actively denying her access requests. Is there a way to recover my ownership/access to the original profile, or is there some kind of appeal/escalation process for this? I no longer operate at that location, but I still want access to the original profile and its history/photos, and I also need to make sure customers aren’t being directed to a business/location that I am no longer affiliated with. Any advice from someone who has dealt with a similar ownership dispute would be greatly appreciated. I’m especially interested in understanding how this could have happened without me transferring ownership or knowingly giving up access, and what my options are now.",
-      "authorUsername": "Brief_Remote_5714",
-      "subredditName": "GoogleMyBusiness",
-      "createdAtDate": "2026-08-14T21:37:12+00:00",
-      "permalink": "/r/GoogleMyBusiness/comments/1vokc68/business_transfer/",
-      "url": "https://www.reddit.com/r/GoogleMyBusiness/comments/1vokc68/business_transfer/",
-      "searchType": "narrow",
-      "searchLabel": "subreddit-search",
-      "relevanceScore": 45,
-      "matchedKeywords": [
-        "soci",
-        "google business profile"
+        "local seo",
+        "citation"
       ]
     }
   ],
-  "fetchedAt": "2026-08-19T11:24:19.679Z",
+  "fetchedAt": "2026-08-20T11:26:03.389Z",
   "source": "reddit-rss",
   "stats": {
-    "totalFetched": 22,
+    "totalFetched": 9,
     "totalQueries": 76,
-    "qualityPosts": 3,
-    "filteredOut": 19,
-    "newPosts": 3,
+    "qualityPosts": 1,
+    "filteredOut": 8,
+    "newPosts": 1,
     "minRelevanceScore": 45
   }
 }
