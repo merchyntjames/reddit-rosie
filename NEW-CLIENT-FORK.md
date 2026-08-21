@@ -72,24 +72,42 @@ Touch these, in roughly this order:
 | Area | Files | What to change |
 |---|---|---|
 | Monitoring (most important) | `scripts/fetch-reddit.mjs` | Subreddits, search queries, keyword scoring weights — rebuild for the client's industry. Brand terms, competitor terms, topic terms. |
-| Product knowledge | `src/lib/mock-data.ts`, Settings page content | Client's company overview, products, competitors, proof points, sample responses. |
-| Brand voice | Settings → Brand Voice content, `brand assets/` | Replace Merchynt voice docs with the client's. Delete Merchynt brand assets. |
+| Product knowledge | Knowledgebase pages in the running app (persisted to Supabase `settings`), plus `src/lib/mock-data.ts` for the fallback defaults | Client's company overview, products, competitors, proof points, sample responses. Editing in the UI is the primary path; mock-data is only what loads before anything is saved. |
+| Brand voice | Knowledgebase → Brand Voice in the app, `brand assets/` | Replace Merchynt voice docs with the client's. Delete Merchynt brand assets. |
 | Palette + branding | `src/app/globals.css` (`@theme inline` block — Tailwind v4, no config file), `src/components/Sidebar.tsx`, `src/app/layout.tsx` metadata | Client colors, app name, logo/mascot. |
-| Mascot/assets | `public/` | Replace Rosie imagery or generate a client mascot. |
-| Auth | Supabase `restrict_email_domain()` (done in Phase 2) + check `src/middleware.ts` and `src/app/login/page.tsx` for any client-side domain checks | Client's email domain. |
-| History | `src/app/changelog/page.tsx`, `reports/`, `public/data/conversations.json` | Reset changelog/roadmap to v1.0 for the client; delete Merchynt reports and seeded conversation data. |
+| Mascot/assets | `public/rosie-logo.png`, favicons in `public/` | Replace Rosie imagery or generate a client mascot. |
+| Auth | Supabase `restrict_email_domain()` (Phase 2) + `src/middleware.ts` + `src/app/login/page.tsx` | Client's email domain. **Note:** middleware auth is currently disabled in the template (pass-through, "open access for now"). Re-enable it for any client fork that holds confidential data — see Phase 6. |
+| Draft model + pricing | `src/lib/drafts.ts` | Model id and per-token pricing constants are at the top of the file. |
+| History | `src/app/changelog/page.tsx`, `reports/`, `public/data/conversations.json` | Reset the changelog to v1.0 for the client; delete Merchynt reports and seeded conversation data. |
 | Docs | `CLAUDE.md` | Rewrite for the client fork: new repo URL, live URL, palette, content rules. Merchynt-specific rules (no emojis, GBP terminology) may not apply — confirm with operator. |
 
 ## Phase 5 — Verify
 
-1. `npm run dev` — log in, confirm empty queue, settings, analytics render.
-2. Trigger the scan manually: `gh workflow run refresh-reddit.yml`, wait,
-   confirm new conversations appear in the queue with sensible relevance
-   scores for the client's industry.
-3. Generate a draft on one conversation and confirm the Claude API call works
+1. `npm run dev` (port 3001) — confirm the queue, Knowledgebase pages,
+   activity log, and settings all render against the new database.
+2. Save something in the Knowledgebase and confirm it persists to the Supabase
+   `settings` table.
+3. Trigger a scan — **Scan Now** in the app, or `gh workflow run
+   refresh-reddit.yml` — and confirm new conversations appear with sensible
+   relevance scores for the client's industry.
+4. Generate a draft on one conversation and confirm the Claude API call works
    and `api_usage` logs the cost.
-4. Confirm Vercel production deploy works and login is restricted to the
-   client's email domain.
+5. Confirm the Vercel production deploy builds and serves.
+
+## Phase 6 — Lock it down before handing over
+
+The template ships in a deliberately open state that suited a public
+Merchynt-internal tool. For a client fork, decide explicitly on each:
+
+- **Middleware auth is disabled.** `src/middleware.ts` is a pass-through. The
+  Supabase login flow exists and works, but nothing forces it. Re-enable route
+  protection using `src/utils/supabase/middleware.ts` if the app should require
+  login.
+- **Wide-open anon RLS policies.** Several tables allow the `anon` role to read
+  and update. The anon key ships in the client-side bundle, so these are
+  reachable by anyone who can load the app. Restrict them to `authenticated`
+  unless there's a reason not to.
+- **Repo visibility.** Keep client forks private.
 
 ## Rules that carry over to every fork
 
