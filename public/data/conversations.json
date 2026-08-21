@@ -1,33 +1,13 @@
 {
-  "posts": [
-    {
-      "id": "1vte9cb",
-      "title": "How would you improve this local SEO ranking grid for a beauty salon?",
-      "selftext": "I run a local beauty salon and have been working on our Google Business Profile/local SEO. I recently ran a geo-grid ranking scan and the results are pretty strong around the business, with lots of #1 positions, but rankings start dropping to #2–5 as you move further away, particularly in some surrounding suburbs. For anyone experienced with local SEO, I’d really appreciate some advice: What would you focus on to push the #2–5 areas closer to the top 3? Would you build location/suburb pages for the surrounding areas? How important are local backlinks and citations compared with GBP optimisation? Can I realistically expand the #1/#2 coverage further from the physical location, or is proximity always going to be the main limitation? The business is a beauty salon, and I’m mainly trying to improve visibility for searches such as “beauty salon near me,” “beauty salon,” and other local beauty service searches. I’ve attached the ranking grid with the location names blurred for privacy. Any suggestions on what you would tackle next would be greatly appreciated. to r/localseo",
-      "authorUsername": "Taxdemy",
-      "subredditName": "localseo",
-      "createdAtDate": "2026-08-20T09:09:35+00:00",
-      "permalink": "/r/localseo/comments/1vte9cb/how_would_you_improve_this_local_seo_ranking_grid/",
-      "url": "https://www.reddit.com/r/localseo/comments/1vte9cb/how_would_you_improve_this_local_seo_ranking_grid/",
-      "searchType": "broad",
-      "searchLabel": "ai-search",
-      "relevanceScore": 73,
-      "matchedKeywords": [
-        "google business profile",
-        "gbp",
-        "local seo",
-        "citation"
-      ]
-    }
-  ],
-  "fetchedAt": "2026-08-20T11:26:03.389Z",
+  "posts": [],
+  "fetchedAt": "2026-08-21T11:25:24.402Z",
   "source": "reddit-rss",
   "stats": {
-    "totalFetched": 9,
+    "totalFetched": 0,
     "totalQueries": 76,
-    "qualityPosts": 1,
-    "filteredOut": 8,
-    "newPosts": 1,
+    "qualityPosts": 0,
+    "filteredOut": 0,
+    "newPosts": 0,
     "minRelevanceScore": 45
   }
 }
