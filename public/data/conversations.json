@@ -1,107 +1,13 @@
 {
-  "posts": [
-    {
-      "id": "1vyq8lp",
-      "title": "Something I've been noticing while working with local businesses",
-      "selftext": "&#x200B; Over the past 10 months, I've been working with a handful of local businesses in different industries, and I've started noticing the same thing over and over again when I compare their Google Business Profile with their website. The GBP usually tells a pretty clear story about the business. It has the main category, several secondary categories, a list of services and the areas they serve. But when I look at the website, that information often isn't reflected properly. For example, one business might have several important services listed on their GBP, but their website just has one generic \"Services\" page covering everything in a few paragraphs. Then they'll have 20 or 30 blog posts answering random questions that aren't really connected to the services they actually want customers for. That got me thinking about how much easier it would be for Google to understand the business if the website actually reflected the structure of the business. So instead of putting everything on one Services page, I've been testing a more organized approach. Important categories get their own sections or pages, the actual services underneath those categories get their own pages where it makes sense, and everything is internally linked so the relationship between the services is clear. I've also noticed some pretty obvious problems on homepages. I've seen local businesses where the title tag is just \"Home\", and the first thing on the page is a long story about how the company started 15 or 20 years ago. Nothing wrong with the story, but if someone searches for \"mobile mechanic Glasgow\", I'd rather the first part of the page make it immediately obvious that this is a mobile mechanic, that they serve Glasgow, and what they actually help people with. The other thing I've been paying more attention to is location relevance. There's a big difference between creating a page called \"Mechanic in X\" and replacing the location name 15 times, versus actually understanding the areas the business serves and adding useful local information that makes the page genuinely relevant to that area. I've been seeing better logic in the second approach. And honestly, this has changed the way I look at local SEO audits. I used to spend a lot more time asking how much content a website had. Now I find myself asking something much simpler: Can I look at this website for 30 seconds and understand exactly what this business does, where it operates, and what services it wants to be known for? If I can't, I don't think adding another 50 blog posts is going to solve the underlying problem. Maybe I'm overthinking it, but after looking at several businesses across different industries, this pattern has been pretty hard to ignore. When you working in local SEO have noticed the same thing? to r/localseo",
-      "authorUsername": "Saddaturseam",
-      "subredditName": "localseo",
-      "createdAtDate": "2026-08-26T07:36:20+00:00",
-      "permalink": "/r/localseo/comments/1vyq8lp/something_ive_been_noticing_while_working_with/",
-      "url": "https://www.reddit.com/r/localseo/comments/1vyq8lp/something_ive_been_noticing_while_working_with/",
-      "searchType": "broad",
-      "searchLabel": "high-intent",
-      "relevanceScore": 54,
-      "matchedKeywords": [
-        "google business profile",
-        "gbp",
-        "local seo",
-        "local business"
-      ]
-    },
-    {
-      "id": "1vynv8a",
-      "title": "How do I check if my business is being mentioned in ChatGPT, Perplexity, or Google AI Overviews when people search locally?",
-      "selftext": "Hey Local SEO champions, this is Matteo, founder of GMB Crush, your complete Local SEO software suite, and in today's guide I'll answer this in plain terms. Short answer: Type the actual questions your customers ask into ChatGPT, Perplexity, Google AI Overviews, and Gemini yourself, then read the answers to see whether your business name, website, or Google Business Profile is cited or linked. Do this weekly for your top 10 to 20 local queries, save the answers with the date, and track which brands are getting named so you know exactly where you stand and what to fix. Why does this matter for local businesses right now? Answer engines like Google AI Overviews, ChatGPT, Perplexity, and Gemini now handle a large share of local questions before a user ever sees the classic map pack. When someone types \"best plumber in Austin open Sunday,\" these tools read multiple pages, pull a short answer, and cite a small handful of sources. If your brand is not one of those sources, you lose the click even when you rank well on the traditional results page. How do I check my visibility, step by step? List your top 10 to 20 real customer questions. Include service plus city, comparison queries, \"near me\" phrasing, price questions, and hours or eligibility questions. Open each engine in a fresh session or an incognito window: Google Search with AI Overviews on, ChatGPT with web search on, Perplexity, and Gemini. Paste each question exactly as a customer would ask it. Do not lead with your brand name. Read the generated answer and the citations. Note whether your website, Google Business Profile, or brand name appears. Note which competitors are cited and which third party sources (directories, review platforms, Reddit threads) they lean on. Save a screenshot or a copy of every answer with the date, so you can compare movement week over week. Repeat weekly. Answers shift as engines re index the web and as new content ranks. What to check on every answer Is your brand mentioned by name in the summary? Is your website or your Google Business Profile in the citations? Which competitors are cited, and how many times each? Which source types keep appearing (your own site, aggregators, review platforms, Reddit)? Does the answer include stale or wrong facts about your business (old hours, wrong service list, outdated pricing)? What is going wrong, and how do you fix it? If your business is never mentioned, the usual cause is not a ranking problem, it is an entity problem: the engines cannot confidently connect the question to your business. Fix that by making your Google Business Profile complete and current, publishing pages on your own site that answer the exact questions in plain language with your name, address, and service area written out, and earning consistent mentions on third party sources the engines already trust for your niche. Doing this by hand for 20 queries across four engines every week takes hours, and it is easy to lose track of movement over time. This is where a dedicated tracker helps: GMB Crush's AI Overview Tracking runs your query list against the major answer engines on a schedule, logs which brands are cited, and shows your share of voice over time so you can see whether a content or profile change actually moved the needle. FAQ How often should I run these checks? Weekly for your top 10 to 20 queries, and again after any major change to your website, Google Business Profile, or a big Google update. Do the engines see the same web that Google Search sees? Not exactly. ChatGPT and Perplexity blend live web results with their training data. Google AI Overviews and Gemini lean heavily on Google's index. Test each one, because being cited in one does not mean you are cited in all four. Why does the answer change every time I ask? These systems sample and rewrite, so wording shifts. What is stable is the set of sources they trust for a topic. Track cited sources, not exact sentences. Do reviews on my Google Business Profile influence AI answers? Yes, indirectly. Review count, rating, and recency feed the trust signals engines use when picking which local business to cite for a query. Can I pay to be included in an AI Overview? No. There is no paid placement in AI Overviews or ChatGPT answers today. You earn the citation by being the clearest, most trustworthy source on the exact question. Last reviewed: August 2026. GMB Crush 882/29 Loft Lane LaSalle, Sukhumvit Road 105, 10260 Bangkok, Thailand https://www.gmbcrush.com/ More answers: https://www.reddit.com/r/LocalSEORanking/ Community: https://www.facebook.com/groups/gmbcrushers Join the 30 Days Ranking Challenge: https://www.gmbcrush.com/30-days-challenge/ to r/LocalSEORanking",
-      "authorUsername": "GlumAd6959",
-      "subredditName": "LocalSEORanking",
-      "createdAtDate": "2026-08-26T05:23:52+00:00",
-      "permalink": "/r/LocalSEORanking/comments/1vynv8a/how_do_i_check_if_my_business_is_being_mentioned/",
-      "url": "https://www.reddit.com/r/LocalSEORanking/comments/1vynv8a/how_do_i_check_if_my_business_is_being_mentioned/",
-      "searchType": "broad",
-      "searchLabel": "high-intent",
-      "relevanceScore": 54,
-      "matchedKeywords": [
-        "google business profile",
-        "local seo",
-        "map pack",
-        "citation",
-        "local business"
-      ]
-    },
-    {
-      "id": "1vyshx8",
-      "title": "How did you get your first clients selling simple websites to local businesses?",
-      "selftext": "I’m 21 and based near Milan, Italy. I’ve learned HTML, CSS and React, and I’m currently learning backend development. I’d like to start selling relatively simple websites—mostly landing pages and small brochure sites for local businesses such as gyms, wellness centres, barbers, restaurants and tradespeople. I’m not planning to offer e-commerce initially. My idea is to build two or three strong concept websites, create my own portfolio/landing page, and then approach local businesses with outdated websites or no website at all. I’m considering charging approximately €500–€1,000 initially, depending on the number of pages and features. I would especially appreciate advice from people who have already done this: How did you find and approach your first clients? Did cold email, phone calls, in-person visits or referrals work best? Did you choose a specific niche or work with different types of businesses? What did your sales pitch focus on? Did you show clients a mock-up before they agreed to work with you? What features produced the most value: WhatsApp contact, forms, booking integrations, local SEO, Google Business Profile optimisation, etc.? Which stack did you use for simple business websites? How did you structure pricing, deposits, revisions and ongoing maintenance? What mistakes should a beginner avoid? I understand that selling and managing clients will probably be harder than writing the code. I’m particularly interested in practical experiences rather than generic advice. Thanks! to r/smallbusiness",
-      "authorUsername": "No-Razzmatazz5844",
-      "subredditName": "smallbusiness",
-      "createdAtDate": "2026-08-26T09:48:19+00:00",
-      "permalink": "/r/smallbusiness/comments/1vyshx8/how_did_you_get_your_first_clients_selling_simple/",
-      "url": "https://www.reddit.com/r/smallbusiness/comments/1vyshx8/how_did_you_get_your_first_clients_selling_simple/",
-      "searchType": "broad",
-      "searchLabel": "high-intent",
-      "relevanceScore": 50,
-      "matchedKeywords": [
-        "google business profile",
-        "local seo",
-        "local business"
-      ]
-    },
-    {
-      "id": "1vysjmv",
-      "title": "What tools and features should a beginner use to build websites for small local businesses?",
-      "selftext": "I’m 21 and have learned HTML, CSS, JavaScript and React. I’m currently studying Node.js/Express and backend development, but I haven’t yet worked professionally as a web developer. I want to start building simple websites for small local businesses—such as gyms, massage centres, barbers, restaurants and tradespeople. Initially, I would focus on landing pages and small brochure websites rather than e-commerce or complex web applications. I’m trying to understand which tools and features are genuinely necessary at my current skill level, without overengineering every project. For people who have already started doing this: Would you recommend WordPress/Elementor, Astro, Next.js or ordinary React? Is MERN unnecessary for most small business websites? How do you handle contact forms without building a complete backend? Which hosting and deployment services do you use for client projects? How do you manage domains, SSL certificates, business emails and backups? What do you use for spam protection and reliable email delivery? Do you integrate simple WhatsApp links with prefilled messages, or use the WhatsApp Business API? Which booking tools work well for small local businesses? Do clients actually need a CMS, or is it easier to make occasional content changes yourself? Which analytics, cookie-consent and GDPR tools do you use? What basic SEO work should be included in every website? Are LocalBusiness schema, Search Console and Google Business Profile optimisation important from the beginning? Which paid tools or premium plugins are worth buying, and which can be avoided initially? How do you organise reusable components and templates without making every client website look identical? My current idea is to build two or three concept websites, create my own portfolio, and use a lightweight stack with forms, WhatsApp contact, basic local SEO and inexpensive static hosting. However, I would like to learn from people who have already delivered and maintained real client websites. What would your minimum professional setup look like for someone with my current skills? to r/websiteservices",
-      "authorUsername": "No-Razzmatazz5844",
-      "subredditName": "websiteservices",
-      "createdAtDate": "2026-08-26T09:51:00+00:00",
-      "permalink": "/r/websiteservices/comments/1vysjmv/what_tools_and_features_should_a_beginner_use_to/",
-      "url": "https://www.reddit.com/r/websiteservices/comments/1vysjmv/what_tools_and_features_should_a_beginner_use_to/",
-      "searchType": "broad",
-      "searchLabel": "high-intent",
-      "relevanceScore": 48,
-      "matchedKeywords": [
-        "google business profile",
-        "local seo",
-        "local business"
-      ]
-    },
-    {
-      "id": "1vykd9y",
-      "title": "What should r/googlereviewsuae become?",
-      "selftext": "Welcome to r/google-reviews-uae — Dubai Business Review Community If you run a business in Dubai, you already know how important Google reviews are for building trust and attracting new customers. This community is for Dubai business owners, marketers, agencies, and professionals to discuss: - Getting more genuine Google reviews - Asking customers for reviews - Google Business Profile optimization - Responding to negative reviews - Reputation management - Review-request strategies - Local SEO and customer trust - Sharing what actually works No fake reviews, bots, review buying, or review manipulation. Let's share practical strategies and help Dubai businesses build stronger online reputations. to r/googlereviewsuae",
-      "authorUsername": "Significant_Skirt938",
-      "subredditName": "googlereviewsuae",
-      "createdAtDate": "2026-08-26T02:33:27+00:00",
-      "permalink": "/r/googlereviewsuae/comments/1vykd9y/what_should_rgooglereviewsuae_become/",
-      "url": "https://www.reddit.com/r/googlereviewsuae/comments/1vykd9y/what_should_rgooglereviewsuae_become/",
-      "searchType": "broad",
-      "searchLabel": "high-intent",
-      "relevanceScore": 45,
-      "matchedKeywords": [
-        "google business profile",
-        "local seo",
-        "google reviews"
-      ]
-    }
-  ],
-  "fetchedAt": "2026-08-26T11:29:08.946Z",
+  "posts": [],
+  "fetchedAt": "2026-08-27T20:55:41.728Z",
   "source": "reddit-rss",
   "stats": {
-    "totalFetched": 22,
+    "totalFetched": 0,
     "totalQueries": 76,
-    "qualityPosts": 5,
-    "filteredOut": 17,
-    "newPosts": 5,
+    "qualityPosts": 0,
+    "filteredOut": 0,
+    "newPosts": 0,
     "minRelevanceScore": 45
   }
 }
