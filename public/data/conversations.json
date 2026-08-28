@@ -1,13 +1,52 @@
 {
-  "posts": [],
-  "fetchedAt": "2026-08-27T20:55:41.728Z",
+  "posts": [
+    {
+      "id": "1w0nm15",
+      "title": "Finally figured out how to verify my Google Business phone number (after 3 failed attempts) — sharing what actually worked",
+      "selftext": "So my local plumbing client's Google Business Profile got flagged for phone verification last month and honestly it took way longer than it should have. Posting this in case it saves someone else the headache. Quick context: Google ties phone verification to local pack rankings and trust signals — if your GBP shows an unverified or mismatched number, you can straight up disappear from \"near me\" searches even if your on-page SEO is solid. What actually worked for us: Match your NAP everywhere first. Before you even attempt verification, make sure your Name, Address, Phone (NAP) is identical across your website, GBP listing, and any directory citations (Justdial, Sulekha, etc.). Google cross-checks this before offering phone verification as an option at all. Use a number that can receive a live call or SMS, not a landline forwarded through 3 extensions. Google's automated verification call/text needs to hit the number directly — VOIP numbers sometimes fail here. If phone verification isn't showing up as an option, it usually means Google wants you to verify via postcard or video instead. This tripped us up — we assumed phone was always available, but it's algorithmically decided based on business category and trust score. Once verified, don't touch the number for at least 30 days. Changing it too soon can trigger a re-verification loop and temporarily suppress your local ranking. We also had a duplicate listing issue tied to an old phone number from a previous owner — had to get that merged/removed before verification would go through at all. That was honestly the most annoying part. If anyone's dealing with GBP verification headaches or local ranking issues in general, feel free to reach out — I run MarkMyBiz, we handle this kind of Google Business Profile and local SEO troubleshooting for SMBs pretty regularly, happy to point people in the right direction. Curious if others have run into the postcard-vs-phone verification randomness — seems inconsistent depending on category/location. to r/MarkMyBiz_seo_geo",
+      "authorUsername": "ezzypeezy0100",
+      "subredditName": "MarkMyBiz_seo_geo",
+      "createdAtDate": "2026-08-28T11:12:04+00:00",
+      "permalink": "/r/MarkMyBiz_seo_geo/comments/1w0nm15/finally_figured_out_how_to_verify_my_google/",
+      "url": "https://www.reddit.com/r/MarkMyBiz_seo_geo/comments/1w0nm15/finally_figured_out_how_to_verify_my_google/",
+      "searchType": "broad",
+      "searchLabel": "high-intent",
+      "relevanceScore": 61,
+      "matchedKeywords": [
+        "google business profile",
+        "gbp",
+        "local seo",
+        "local pack",
+        "citation"
+      ]
+    },
+    {
+      "id": "1w0u5pv",
+      "title": "3 Remote Marketing & Creative Jobs Now Open",
+      "selftext": "Looking for a remote opportunity in marketing or creative? We have three roles currently open at Sagan, covering social media and content strategy, video editing and design, and SEO. Social Media Manager — HR42212 Salary: $1,500–$3,500 USD/month, depending on experience and overall fit Location: Remote Schedule: Full-time, Monday–Friday You'll own the development and execution of a founder's content strategy, from identifying content opportunities and writing copy to repurposing long-form content, managing publishing, and analyzing performance across multiple platforms. We're looking for: 3+ years of social media management, content marketing, or digital marketing experience Strong copywriting, storytelling, and content strategy skills Experience managing social accounts and repurposing long-form content into platform-specific assets Hands-on experience using AI tools such as ChatGPT, Claude, or Gemini in your content workflow 👉 Apply: https://forms.saganrecruitment.com/t/kdFpNKMJwuus?utm_source=saganrecruitmentdotcom Senior Video Editor &amp; Graphic Designer — HR80523 Salary: $2,000–$2,600 USD/month Location: Remote Schedule: Monday–Friday, 8:00 AM–5:00 PM EST You'll turn raw footage into high-retention long-form YouTube videos and short-form social content while using performance data to improve hooks, thumbnails, pacing, and audience retention. We're looking for: 3+ years of professional video editing experience across long-form and short-form content A strong video editing portfolio or reel Hands-on experience with YouTube Studio and performance analytics Graphic design skills with experience creating high-CTR YouTube thumbnails 👉 Apply: https://forms.saganrecruitment.com/t/w5WbqMjnwqus?utm_source=saganrecruitmentdotcom SEO Marketing Specialist — HR39280 Salary: $2,500–$3,000 USD/month Location: Remote Schedule: Monday–Friday, 8:00 AM–5:00 PM CST You'll take ownership of organic search growth, from keyword research and SEO strategy to content optimization, on-page SEO, local SEO, performance tracking, and emerging AI/LLM search opportunities. We're looking for: 3+ years of hands-on SEO experience Proven results improving rankings, organic traffic, leads, or search visibility Strong knowledge of keyword research, search intent, on-page SEO, technical SEO fundamentals, and content optimization Experience independently developing and executing SEO and content strategies HubSpot, local SEO, Google Business Profile, or service-area business experience is a plus. 👉 Apply: https://forms.saganrecruitment.com/t/1RCwzm1tqpus?utm_source=saganrecruitmentdotcom All three are remote independent contractor positions. Please review the full job description, qualifications, and schedule requirements before applying. to r/SaganRecruitment",
+      "authorUsername": "Corzl-saganrecruitme",
+      "subredditName": "SaganRecruitment",
+      "createdAtDate": "2026-08-28T15:44:28+00:00",
+      "permalink": "/r/SaganRecruitment/comments/1w0u5pv/3_remote_marketing_creative_jobs_now_open/",
+      "url": "https://www.reddit.com/r/SaganRecruitment/comments/1w0u5pv/3_remote_marketing_creative_jobs_now_open/",
+      "searchType": "broad",
+      "searchLabel": "high-intent",
+      "relevanceScore": 47,
+      "matchedKeywords": [
+        "soci",
+        "google business profile",
+        "local seo"
+      ]
+    }
+  ],
+  "fetchedAt": "2026-08-28T21:20:14.041Z",
   "source": "reddit-rss",
   "stats": {
-    "totalFetched": 0,
+    "totalFetched": 13,
     "totalQueries": 76,
-    "qualityPosts": 0,
-    "filteredOut": 0,
-    "newPosts": 0,
+    "qualityPosts": 2,
+    "filteredOut": 11,
+    "newPosts": 2,
     "minRelevanceScore": 45
   }
 }
