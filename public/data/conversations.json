@@ -1,56 +1,13 @@
 {
-  "posts": [
-    {
-      "id": "1w1n6w2",
-      "title": "Indian small businesses: What actually brings you customers online, SEO, Instagram, Google Maps or Ads?",
-      "selftext": "I work closely with small businesses and MSMEs in Lucknow, and I've noticed something interesting. A lot of local businesses are now \"online\", but being online and actually getting customers online are two completely different things. A shop may have: 📍 Google Business Profile 📱 Instagram account 🌐 Website 💬 WhatsApp Business 📢 Facebook page ...and still receive almost no meaningful leads. From what I've seen, the biggest problem isn't always lack of digital marketing. It's doing too many things without knowing which one actually influences sales. For a local business, I increasingly feel the priority should be: Google visibility → Trust → WhatsApp/Website → Follow-up → Conversion rather than simply posting every day on Instagram. For example, if someone searches: \"best interior designer near me\" \"digital marketing agency in Lucknow\" \"dentist near Gomti Nagar\" that person already has buying intent. Compare that with someone casually scrolling through a Reel. This has made me rethink how small businesses should spend limited marketing budgets. Instead of asking: \"How do I get more followers?\" maybe the better question is: \"Where are customers searching when they actually want to buy?\" For people here working with Indian businesses: What has generated the best ROI for you recently: Google Maps/local SEO, organic social media, Meta Ads, Google Ads, WhatsApp marketing, or something else? Would especially love to hear actual experiences from agencies, freelancers and business owners. I'm working on this problem at Sudarshan AI Labs in Lucknow, particularly around affordable digital growth for MSMEs, so I'm interested in comparing what we're seeing locally with what others are seeing across India. No sales pitch. Genuinely interested in the data and experiences from this community. https://sudarshan-ai.com/ to r/navanetra",
-      "authorUsername": "gillu-21",
-      "subredditName": "navanetra",
-      "createdAtDate": "2026-08-29T13:54:41+00:00",
-      "permalink": "/r/navanetra/comments/1w1n6w2/indian_small_businesses_what_actually_brings_you/",
-      "url": "https://www.reddit.com/r/navanetra/comments/1w1n6w2/indian_small_businesses_what_actually_brings_you/",
-      "searchType": "broad",
-      "searchLabel": "agency",
-      "relevanceScore": 69,
-      "matchedKeywords": [
-        "soci",
-        "google business profile",
-        "local seo",
-        "google maps",
-        "local business",
-        "agency"
-      ]
-    },
-    {
-      "id": "1w1n4i2",
-      "title": "Indian small businesses: What actually brings you customers online, SEO, Instagram, Google Maps or Ads ?",
-      "selftext": "I work closely with small businesses and MSMEs in Lucknow, and I've noticed something interesting. A lot of local businesses are now \"online\", but being online and actually getting customers online are two completely different things. A shop may have: 📍 Google Business Profile 📱 Instagram account 🌐 Website 💬 WhatsApp Business 📢 Facebook page ...and still receive almost no meaningful leads. From what I've seen, the biggest problem isn't always lack of digital marketing. It's doing too many things without knowing which one actually influences sales. For a local business, I increasingly feel the priority should be: Google visibility → Trust → WhatsApp/Website → Follow-up → Conversion rather than simply posting every day on Instagram. For example, if someone searches: \"best interior designer near me\" \"digital marketing agency in Lucknow\" \"dentist near Gomti Nagar\" that person already has buying intent. Compare that with someone casually scrolling through a Reel. This has made me rethink how small businesses should spend limited marketing budgets. Instead of asking: \"How do I get more followers?\" maybe the better question is: \"Where are customers searching when they actually want to buy?\" For people here working with Indian businesses: What has generated the best ROI for you recently : Google Maps/local SEO, organic social media, Meta Ads, Google Ads, WhatsApp marketing, or something else? Would especially love to hear actual experiences from agencies, freelancers and business owners. I'm working on this problem at Sudarshan AI Labs in Lucknow, particularly around affordable digital growth for MSMEs, so I'm interested in comparing what we're seeing locally with what others are seeing across India. No sales pitch. Genuinely interested in the data and experiences from this community. to r/DigitalMarketingIndia",
-      "authorUsername": "gillu-21",
-      "subredditName": "DigitalMarketingIndia",
-      "createdAtDate": "2026-08-29T13:51:45+00:00",
-      "permalink": "/r/DigitalMarketingIndia/comments/1w1n4i2/indian_small_businesses_what_actually_brings_you/",
-      "url": "https://www.reddit.com/r/DigitalMarketingIndia/comments/1w1n4i2/indian_small_businesses_what_actually_brings_you/",
-      "searchType": "broad",
-      "searchLabel": "agency",
-      "relevanceScore": 69,
-      "matchedKeywords": [
-        "soci",
-        "google business profile",
-        "local seo",
-        "google maps",
-        "local business",
-        "agency"
-      ]
-    }
-  ],
-  "fetchedAt": "2026-08-29T15:31:01.737Z",
+  "posts": [],
+  "fetchedAt": "2026-08-30T15:11:23.195Z",
   "source": "reddit-rss",
   "stats": {
-    "totalFetched": 9,
+    "totalFetched": 0,
     "totalQueries": 76,
-    "qualityPosts": 2,
-    "filteredOut": 7,
-    "newPosts": 2,
+    "qualityPosts": 0,
+    "filteredOut": 0,
+    "newPosts": 0,
     "minRelevanceScore": 45
   }
 }
