@@ -1,33 +1,13 @@
 {
-  "posts": [
-    {
-      "id": "1w0j7se",
-      "title": "How did you land your first agency clients?",
-      "selftext": "Hey guys, I’m trying to reach a consistent $1,500/month with SEO/Local SEO fulfillment for small-to-mid-sized agencies in the US, UK, and Canada. I’m currently doing direct outreach to agencies and would really appreciate advice from people who have successfully built recurring agency clients. Here’s the message I’m currently using: Hi (name), I came across (your agency) and saw you specialize in Local SEO for service businesses. I help agencies with white-label SEO fulfillment, Local SEO/GBP, on-page, content, citations, and ongoing optimization. I’m looking to partner with a few agencies needing extra capacity, and I’m happy to do the first client free for a month so you can test the work. Would you be open to a quick chat? For those who have done something similar, what direct outreach strategy or offer actually worked for you? I’d especially love to know what helped you land your first few recurring agency clients, and whether you’d change anything about my offer or positioning. Any honest advice would be appreciated.",
-      "authorUsername": "sgtkebab",
-      "subredditName": "agency",
-      "createdAtDate": "2026-08-28T06:57:47+00:00",
-      "permalink": "/r/agency/comments/1w0j7se/how_did_you_land_your_first_agency_clients/",
-      "url": "https://www.reddit.com/r/agency/comments/1w0j7se/how_did_you_land_your_first_agency_clients/",
-      "searchType": "narrow",
-      "searchLabel": "subreddit-search",
-      "relevanceScore": 46,
-      "matchedKeywords": [
-        "gbp",
-        "local seo",
-        "citation",
-        "agency"
-      ]
-    }
-  ],
-  "fetchedAt": "2026-08-31T17:54:34.746Z",
+  "posts": [],
+  "fetchedAt": "2026-09-01T15:24:33.072Z",
   "source": "reddit-rss",
   "stats": {
-    "totalFetched": 2,
+    "totalFetched": 0,
     "totalQueries": 76,
-    "qualityPosts": 1,
-    "filteredOut": 1,
-    "newPosts": 1,
+    "qualityPosts": 0,
+    "filteredOut": 0,
+    "newPosts": 0,
     "minRelevanceScore": 45
   }
 }
