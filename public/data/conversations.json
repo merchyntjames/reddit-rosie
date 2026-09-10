@@ -1,35 +1,13 @@
 {
-  "posts": [
-    {
-      "id": "1wb07ju",
-      "title": "Best Tool For Google Map Ranking?",
-      "selftext": "Post I’m focusing specifically on Google Maps / Google Business Profile rankings and trying to find a tool that goes beyond just showing me a geo-grid. Right now I’m looking at: Local Falcon BrightLocal RankMapp Whitespark Main things I care about: Accurate geo-grid rank tracking Seeing which competitors are beating me in weaker areas Finding keyword and citation gaps Clear recommendations on what to fix next Tracking improvements over time If you’ve used any of these: Which one actually helps you understand WHY you’re being outranked instead of just showing the ranking? Any major pros/cons? Anything else I should be looking at? Would appreciate feedback from people actually doing local SEO, not just feature lists from the websites. to r/seogrowth",
-      "authorUsername": "Noah_Basera",
-      "subredditName": "seogrowth",
-      "createdAtDate": "2026-09-08T20:31:15+00:00",
-      "permalink": "/r/seogrowth/comments/1wb07ju/best_tool_for_google_map_ranking/",
-      "url": "https://www.reddit.com/r/seogrowth/comments/1wb07ju/best_tool_for_google_map_ranking/",
-      "searchType": "broad",
-      "searchLabel": "high-intent",
-      "relevanceScore": 100,
-      "matchedKeywords": [
-        "brightlocal",
-        "whitespark",
-        "google business profile",
-        "local seo",
-        "citation",
-        "google maps"
-      ]
-    }
-  ],
-  "fetchedAt": "2026-09-09T15:02:13.247Z",
+  "posts": [],
+  "fetchedAt": "2026-09-10T14:51:09.723Z",
   "source": "reddit-rss",
   "stats": {
-    "totalFetched": 1,
+    "totalFetched": 0,
     "totalQueries": 76,
-    "qualityPosts": 1,
+    "qualityPosts": 0,
     "filteredOut": 0,
-    "newPosts": 1,
+    "newPosts": 0,
     "minRelevanceScore": 45
   }
 }
