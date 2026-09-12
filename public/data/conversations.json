@@ -1,92 +1,13 @@
 {
-  "posts": [
-    {
-      "id": "1wcmimx",
-      "title": "Brand/Entity Disambiguation Issue!",
-      "selftext": "Hi everyone, I’m dealing with a brand/entity disambiguation issue in Google Search and AI Overviews, and I’d really appreciate advice from people experienced with entity SEO, Knowledge Graph, local SEO, and AI search optimization. We operate a legitimate publishing company with a distinct brand name. However, Google’s AI Overview is sometimes associating our brand with another publisher that has a very similar name. The issue is becoming more concerning because an AI Overview is currently displaying wording along the lines of: “Reviews for [our brand] (also referred to as [another publisher])…” The problem is that these are completely separate businesses, and there is no affiliation, ownership, or relationship between them. We have already taken steps to strengthen our entity signals, including: Consistent business name across our website and profiles Consistent NAP information Google Business Profile Organization/LocalBusiness structured data WebSite and WebPage schema Official social profiles in sameAs Third-party business/review profiles Clear company/about information on our website Explicit clarification on our website that we are not affiliated with similarly named publishers Despite this, Google’s AI Overview is still occasionally conflating the two entities. My questions for the experts: What is the best long-term strategy for correcting this type of entity/brand disambiguation problem in Google’s Knowledge Graph and AI Overviews? Is explicitly stating “not affiliated with similarly named businesses” on the website a useful entity-disambiguation signal, or can repeatedly mentioning the other entity actually reinforce the association? Would you recommend adding the disambiguation statement to Organization/LocalBusiness schema, or keeping it strictly in visible website content? Should we avoid mentioning the similarly named business entirely and instead focus on strengthening our own entity signals? Has anyone successfully resolved a similar AI Overview entity conflation issue? If so, what changes actually made a measurable difference? I’m specifically looking for an SEO/entity-level solution rather than simply changing the wording of the website, because the main concern is getting Google to consistently understand that these are two distinct entities. Any expert guidance or real-world case studies would be greatly appreciated. to r/TechSEO",
-      "authorUsername": "PropertyNo1030",
-      "subredditName": "TechSEO",
-      "createdAtDate": "2026-09-10T15:32:02+00:00",
-      "permalink": "/r/TechSEO/comments/1wcmimx/brandentity_disambiguation_issue/",
-      "url": "https://www.reddit.com/r/TechSEO/comments/1wcmimx/brandentity_disambiguation_issue/",
-      "searchType": "broad",
-      "searchLabel": "ai-search",
-      "relevanceScore": 67,
-      "matchedKeywords": [
-        "soci",
-        "google business profile",
-        "local seo",
-        "ai search"
-      ]
-    },
-    {
-      "id": "1wdfr9d",
-      "title": "Is a website still essential for every small business in 2026?",
-      "selftext": "Between social media, Google Business Profiles, online marketplaces, booking platforms, and AI search, there are more ways than ever for customers to find a business without visiting its website. So, in 2026, does every small business still need its own website, or are there businesses that can run without one? What do you think? We'll start... to r/StartingYourLLC",
-      "authorUsername": "zenbusinesscommunity",
-      "subredditName": "StartingYourLLC",
-      "createdAtDate": "2026-09-11T13:04:54+00:00",
-      "permalink": "/r/StartingYourLLC/comments/1wdfr9d/is_a_website_still_essential_for_every_small/",
-      "url": "https://www.reddit.com/r/StartingYourLLC/comments/1wdfr9d/is_a_website_still_essential_for_every_small/",
-      "searchType": "broad",
-      "searchLabel": "ai-search",
-      "relevanceScore": 53,
-      "matchedKeywords": [
-        "soci",
-        "google business profile",
-        "ai search"
-      ]
-    },
-    {
-      "id": "1wczrr6",
-      "title": "Quad Cities marketing guide: SEO, Google Business Profile, and ads — what works for Davenport/Bettendorf/Moline/Rock Island small businesses",
-      "selftext": "*Full disclosure before anything: I own a digital marketing agency here in the Quad Cities (Digi-Buzz / digi-buzz.biz). I'm not posting to pitch anybody. I get asked these questions constantly by other local owners and figured a straight answer post would be more useful than another DM chain. No pricing gimmicks, no \"book a call\" link. Ask me anything in the comments.** The short answer people usually want **Most small businesses in the Quad Cities spend $500–$2,500/month on marketing.** Solo operators and trades often sit at the $500–$1,200 range (local SEO + Google Business Profile + a small ad budget). Multi-location businesses, healthcare, and home services usually land $2,000–$5,000/month once paid ads are involved. A one-time website build here typically runs **$2,500–$8,000** for a small business site, and freelancers will go lower. If someone quotes you $199/month for \"full digital marketing,\" you're buying an automated report, not marketing. Why the Quad Cities is genuinely different from other metros this size This is the part out-of-town agencies get wrong constantly. The QC is roughly **380,000 people spread across two states and five-ish core cities** — Davenport and Bettendorf in Iowa (Scott County), and Rock Island, Moline, and East Moline in Illinois (Rock Island County). Add Silvis, Milan, LeClaire, and Eldridge and it gets messier. Practical consequences: **Nobody searches \"Quad Cities\" the way you think they do.** Real search behavior splits between \"Davenport,\" \"Bettendorf,\" \"Moline,\" \"Rock Island,\" and \"Quad Cities\" depending on which side of the river the person lives on. If your site only optimizes for \"Quad Cities plumber,\" you're invisible to half the metro. **Google Business Profile radius is your ceiling.** Your GBP ranks strongest within a few miles of your verified address. A shop in Bettendorf will struggle to rank in Rock Island organically no matter how good the SEO is. That gap gets closed with paid search or a second legitimate location — not with keyword stuffing. **Two states = two sets of rules.** Sales tax, licensing language, service-area disclosures, and even ad copy compliance differ Iowa vs. Illinois. Matters a lot for contractors, medical, legal, and financial services. **Media buying is cheap here relative to Chicago/Des Moines.** Local radio, WQAD/KWQC spots, and Facebook/Instagram CPMs are low. That's a real advantage most owners underuse. **Word of mouth is unusually strong.** It's a big small town. Reviews and referrals outperform cold advertising more here than in most markets, which is why review generation is usually the highest-ROI thing I set up first. What actually moves the needle, in the order I'd do it **1. Google Business Profile, done properly (highest ROI, near-zero cost).** Fully filled out, correct primary category, real photos taken on site, service areas listed, products/services populated, Q&amp;A seeded, and posts weekly. Most local businesses I audit are at maybe 40% completion. This alone often produces more calls in 60 days than a website redesign. **2. Reviews, systematically.** Ask every customer, every time, with a direct link. Reply to all of them. 40 recent reviews beats 200 reviews from 2019. Google weights recency and response rate. **3. A website that loads fast and states where you work.** You need city-specific pages that are actually different from each other — a real \"Plumbing in Bettendorf, IA\" page with local photos, local job examples, and local details. Five copy-pasted city pages with the name swapped is a doorway-page pattern Google demotes. **4. Local SEO fundamentals.** Consistent name/address/phone everywhere, schema markup, embedded map, and citations on the directories that matter (Yelp, Apple Maps, Bing Places, BBB, Nextdoor, plus your industry-specific ones). Skip the $99 \"500 directory submissions\" services. **5. Paid ads — but only after 1–4.** Running Google Ads to a bad website is lighting money on fire. Once the foundation's there, Google Local Services Ads are excellent for trades in this market, and Meta ads work well for retail, restaurants, events, and anything visual. Realistic starting ad budget: $500–$1,500/month plus management. **6. Email/SMS to your existing list.** Cheapest revenue available. Almost nobody here does it. Realistic timelines (please don't let anyone promise you faster) Channel First results Meaningful results Google Business Profile optimization 2–4 weeks 2–3 months Review generation Immediate 60–90 days Local SEO / content 3–4 months 6–12 months Google Ads / LSAs Days 30–60 days to optimize Meta ads Days 3–6 weeks of testing Red flags when hiring anyone here (including me — hold me to these) Guarantees a #1 Google ranking. Nobody can. Won't give you admin ownership of your own Google Ads account, GBP, domain, or website. **You must own your assets.** This is the single most common way local businesses get held hostage. Locks you into 12 months with no out clause in the first 90 days. Reports impressions and \"reach\" but never leads, calls, or revenue. Can't name a single client in the metro you can call. Doesn't ask about your margins or what a customer is worth to you before quoting. DIY vs. hiring Honestly? **If you have 3–5 hours a week and one product/service, do steps 1, 2, and 6 yourself.** GBP optimization and review requests aren't hard, they're just tedious. Hire out when you hit the point where the time costs more than the fee, or when you need ads, technical SEO, or a real site build. FAQ (stuff I get asked weekly) **\"Do I need a separate location to rank in Illinois if I'm in Iowa?\"** Not necessarily. Set your service area correctly, build genuine city pages, and use paid search to cover the gap. Do *not* rent a fake mailbox address — Google actively catches this and suspends profiles. **\"Is SEO dead because of AI search?\"** No, but it changed. AI answers pull from the same signals — GBP data, reviews, structured content, and consistent citations. Local businesses with clean data are getting *more* visibility in AI answers, not less. Being the clearest, most specific source about your service and location is the whole game now. **\"Best value channel if I only have $500/month?\"** GBP + reviews + one well-targeted Google Ads campaign or LSA. Skip agencies at that budget and DIY it, or find a freelancer for a few hours a month. **\"Do local billboards/radio still work here?\"** Yes, better than in bigger markets, but only as a supplement once you can convert the demand you already have. Happy to answer anything — pricing, tools, whether a specific quote you got is reasonable, or how to fire an agency without losing your website. I'll also gladly tell you when you don't need to hire anyone. *(Site's in my profile if anyone wants it, but I'd rather just answer questions here.)* to r/TheDavenportIowa",
-      "authorUsername": "digibuzzzbiz",
-      "subredditName": "TheDavenportIowa",
-      "createdAtDate": "2026-09-10T23:43:52+00:00",
-      "permalink": "/r/TheDavenportIowa/comments/1wczrr6/quad_cities_marketing_guide_seo_google_business/",
-      "url": "https://www.reddit.com/r/TheDavenportIowa/comments/1wczrr6/quad_cities_marketing_guide_seo_google_business/",
-      "searchType": "broad",
-      "searchLabel": "ai-search",
-      "relevanceScore": 46,
-      "matchedKeywords": [
-        "google business profile",
-        "gbp",
-        "local seo",
-        "ai search",
-        "citation",
-        "local business",
-        "agency"
-      ]
-    },
-    {
-      "id": "1wcu7xh",
-      "title": "Is Ai recommending your business.. or a competitor?",
-      "selftext": "Hey everyone — I’m offering AI visibility audits through SeenFirst. Website: https://app.seenfirst.online What it is: SeenFirst checks whether AI assistants like ChatGPT, Gemini, Perplexity, and Claude recommend a business when buyers ask who to hire. The audit now also includes a technical scan of the business website to look for visibility issues that may affect how search engines and AI tools understand the business. This is not just a “ranking report.” It looks at both: 1. AI visibility: - Whether the business is mentioned when asked by name - Whether it appears when a buyer does not already know who to call - Which competitors AI recommends instead - Whether AI gives wrong or confusing information about the business - Gaps in service, location, category, and proof signals 2. Technical website visibility: - Crawl/indexing issues - Metadata/title/description problems - Heading and page-structure issues - Broken or weak service/location signals - Schema/structured data gaps - Thin or unclear content - Basic technical SEO issues that may affect visibility - Trust/proof signals that are hard for AI/search engines to verify Who this is for: - Local SEO agencies - Contractor marketing agencies - Home services marketing agencies - Reputation management agencies - Web design / PPC agencies serving local businesses - Local businesses that rely on being found online - Contractors, HVAC, plumbing, roofing, fire protection, backflow testing, inspection, compliance, and other trust-based service businesses Offer: $199 one-time audit. For agencies: This can be used as a client diagnostic, reseller offer, or client reactivation angle. It gives you a concrete way to start a new conversation around AI search, local visibility, website quality, and implementation work. After the audit: If the findings are useful, we can also help with implementation and monthly AI visibility monitoring/optimization. Sample report: Please check this report out. The value provided is evident. https://app.seenfirst.online/sample If you want to test this for your business or one client, you need: - business name - website - industry/category - target city/market - 2–3 competitors, if known DIY option: Could you do this yourself? Yes. You could open ChatGPT, Claude, Perplexity, Gemini, and a few other AI tools. Start a fresh chat for each prompt. Ask dozens of buyer-intent questions. Copy every answer into a spreadsheet. Track mentions, misses, competitors, hallucinations, service/location confusion, and patterns across models. Then run a technical scan of the website and figure out which issues may be making the business harder to understand. If that sounds fun, go for it. I personally did it myself and thats why this tool exists today! SeenFirst is for people who would rather pay $199 and get the testing, tracking, technical scan, interpretation and priority fixes packaged into one clear actionable report. to r/LeadGenMarketplace",
-      "authorUsername": "DisasterImpossible57",
-      "subredditName": "LeadGenMarketplace",
-      "createdAtDate": "2026-09-10T20:05:16+00:00",
-      "permalink": "/r/LeadGenMarketplace/comments/1wcu7xh/is_ai_recommending_your_business_or_a_competitor/",
-      "url": "https://www.reddit.com/r/LeadGenMarketplace/comments/1wcu7xh/is_ai_recommending_your_business_or_a_competitor/",
-      "searchType": "broad",
-      "searchLabel": "ai-search",
-      "relevanceScore": 45,
-      "matchedKeywords": [
-        "local seo",
-        "ai search",
-        "ai visibility",
-        "local business"
-      ]
-    }
-  ],
-  "fetchedAt": "2026-09-11T14:52:04.998Z",
+  "posts": [],
+  "fetchedAt": "2026-09-12T13:54:25.995Z",
   "source": "reddit-rss",
   "stats": {
-    "totalFetched": 11,
+    "totalFetched": 0,
     "totalQueries": 76,
-    "qualityPosts": 4,
-    "filteredOut": 7,
-    "newPosts": 4,
+    "qualityPosts": 0,
+    "filteredOut": 0,
+    "newPosts": 0,
     "minRelevanceScore": 45
   }
 }
