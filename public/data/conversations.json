@@ -1,13 +1,34 @@
 {
-  "posts": [],
-  "fetchedAt": "2026-09-14T16:48:15.408Z",
+  "posts": [
+    {
+      "id": "1wh3089",
+      "title": "Stop the AI Slop, Claude Research Assistant & New GBP Verification | E48 The Whitespark Local Update",
+      "selftext": "AI Slop Is Killing Your Marketing Once you’ve seen one AI flyer, you’ve kind of seen them all. A recent Gartner study found that 50% of consumers would prefer to buy from brands that DON’T use generative AI in their content. And another found that 49% of U.S. consumers think AI has made content quality worse. Among Gen Z and millennials, that number jumps to 57%. Because of this, many small businesses are rejecting AI and deliberately making their marketing look more handmade, more imperfect, and more human. The way to stand out as a small business in the age of AI is to look LESS like AI. Use real photos, real people, and handmade visuals. And when you can, support real designers, photographers, and creators. Claire and I talk about this in the latest episode of the Whitespark Local Update podcast, plus: - Google Business Profile Verification: Submit a Business Photo (Ben Fisher) - Claude Project for Improving Information Gain for SEO (Steve Toth) - The new rules of AI search (Crystal Carter) - Study: How Keywords in Business Names Impact Local Pack Rank and AI Search (Miriam Ellis) - Has excessive use of AI slop knocked us back to an “anti-digital” age? (Carly Stoenner, iPullRank) - We Are Living in a ‘ChatGPT Flyer Pandemic’ (Jason Koebler) - Side of slop? Bizarre AI food images jump from online to IRL menus (NBC News) - Google is now asking about edits BEFORE they go live (Claudia Tomina) Find the full episode on YouTube, Apple Podcasts, and Spotify! to r/whitespark",
+      "authorUsername": "darrenshaw_",
+      "subredditName": "whitespark",
+      "createdAtDate": "2026-09-15T15:08:11+00:00",
+      "permalink": "/r/whitespark/comments/1wh3089/stop_the_ai_slop_claude_research_assistant_new/",
+      "url": "https://www.reddit.com/r/whitespark/comments/1wh3089/stop_the_ai_slop_claude_research_assistant_new/",
+      "searchType": "broad",
+      "searchLabel": "ai-search",
+      "relevanceScore": 75,
+      "matchedKeywords": [
+        "whitespark",
+        "google business profile",
+        "gbp",
+        "ai search",
+        "local pack"
+      ]
+    }
+  ],
+  "fetchedAt": "2026-09-15T15:28:08.035Z",
   "source": "reddit-rss",
   "stats": {
-    "totalFetched": 0,
+    "totalFetched": 8,
     "totalQueries": 76,
-    "qualityPosts": 0,
-    "filteredOut": 0,
-    "newPosts": 0,
+    "qualityPosts": 1,
+    "filteredOut": 7,
+    "newPosts": 1,
     "minRelevanceScore": 45
   }
 }
