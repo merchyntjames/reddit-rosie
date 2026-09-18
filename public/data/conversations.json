@@ -1,13 +1,35 @@
 {
-  "posts": [],
-  "fetchedAt": "2026-09-17T15:27:22.931Z",
+  "posts": [
+    {
+      "id": "1wdwm3n",
+      "title": "Confused about NAP + entity naming with 2 GBPs. Help needed please.",
+      "selftext": "Local business owner here (plumbing/sewer, home services, LA area), 2 physical locations, each with its own Google Business Profile. Had an agency running our SEO for about a year, recently took over managing it myself, and I'm pulling my hair out trying to figure this situation out. Getting different answers from different sources. Genuinely just want one legit, straight answer, I'll pay $100 for a legit answer to this lol. Both profiles verified, both have strong ratings and a solid review count, no visible penalty so far, at least none I know of. Current setup: Legal entity: [Brand] Inc GBP 1: \"[Brand] Inc [City A] Plumbing &amp; Sewer Services\" GBP 2: \"[Brand] Inc [City B] Plumbing &amp; Sewer Services\" Website, Yelp, Nextdoor, Facebook, Instagram: just \"[Brand] Inc\" No DBA filed for either city name #1 Does this name variation (citations saying one thing, GBPs something else) hurt NAP/entity matching, independent of whether it's been or will be penalized? There's a competitor running this same strategy, \"[Business] Plumbing of [City]\" across 5+ locations, 10+ years, 200+ reviews each, clearly successful, zero visible penalty. If name variation is a real NAP problem, and adding the city name to GBPs is a risk, why would a business do this on purpose at that scale? #2 The real tradeoff: file 2 DBAs to legitimize our current GBP names (keeps the city and the addition of \"Plumbing and Sewer Services,\" but our website/Yelp/FB/IG, all just \"[Brand] Inc,\" become the new mismatch instead, since even matching to a GBP would only match one of them, [City A] or [City B]), or drop the city entirely, file ONE DBA (\"[Brand] Plumbing &amp; Sewer Services\"), and match it everywhere. The Roto-Rooter model, arguably the biggest competitor in this space, and they don't do the city-name thing on their GBPs. Which wins for local SEO, full consistency or city-in-name? Say the risk of leaving it as-is is genuinely small (hypothetically ~2%), is the ranking benefit from city-in-name worth it? And if city-in-name wins, is it better to file one DBA per city, or one base DBA with the city only on the GBP listing itself? #3 Or is the better move to drop the city entirely, get ONE DBA, \"[Brand] Plumbing &amp; Sewer Services,\" and use that exact name everywhere, both GBPs and every citation? This is basically what Roto-Rooter does, one consistent name, no city variation. Full NAP accuracy everywhere vs. trying to gain a small edge on 2 GBPs. Which is actually better? #4 If I do rename to drop the city from both GBPs, does that trigger re-verification or suspension risk on its own? And separately, how does GBP ranking actually behave here, is there a temporary dip before recovering? #5 With 2 GBPs I have 2 addresses and 2 phone numbers by definition. Does NAP apply per-location, and which address/phone number do I use on platforms like Yelp/FB/IG where I only have one profile? Which address/phone number combo should I prioritize? Appreciate any real experience, not just the official guidance.",
+      "authorUsername": "YogurtclosetNo6937",
+      "subredditName": "bigseo",
+      "createdAtDate": "2026-09-11T23:44:04+00:00",
+      "permalink": "/r/bigseo/comments/1wdwm3n/confused_about_nap_entity_naming_with_2_gbps_help/",
+      "url": "https://www.reddit.com/r/bigseo/comments/1wdwm3n/confused_about_nap_entity_naming_with_2_gbps_help/",
+      "searchType": "narrow",
+      "searchLabel": "subreddit-search",
+      "relevanceScore": 58,
+      "matchedKeywords": [
+        "google business profile",
+        "gbp",
+        "local seo",
+        "citation",
+        "local business",
+        "agency"
+      ]
+    }
+  ],
+  "fetchedAt": "2026-09-18T14:48:48.206Z",
   "source": "reddit-rss",
   "stats": {
-    "totalFetched": 1,
+    "totalFetched": 2,
     "totalQueries": 76,
-    "qualityPosts": 0,
+    "qualityPosts": 1,
     "filteredOut": 1,
-    "newPosts": 0,
+    "newPosts": 1,
     "minRelevanceScore": 45
   }
 }
