@@ -1,31 +1,13 @@
 {
-  "posts": [
-    {
-      "id": "1wh4tup",
-      "title": "GBP reinstated yesterday — safe to reopen a second service-area location?Worried overlapping service areas caused the suspension.",
-      "selftext": "My Google Business Profile was suspended, but I appealed it and got it reinstated yesterday. It’s live again, but it’s still not ranking yet. I think the suspension may have happened because I opened a second service-area location about 1.5 hours away, and some of the service areas overlapped with my original profile. I marked the second location permanently closed while dealing with the suspension. Would it be safe to reopen the second profile if I make sure the service areas don’t overlap at all? Has anyone dealt with something similar? I really don’t want to risk getting the original profile suspended again.",
-      "authorUsername": "Specialist_Nature348",
-      "subredditName": "GoogleMyBusiness",
-      "createdAtDate": "2026-09-15T16:15:04+00:00",
-      "permalink": "/r/GoogleMyBusiness/comments/1wh4tup/gbp_reinstated_yesterday_safe_to_reopen_a_second/",
-      "url": "https://www.reddit.com/r/GoogleMyBusiness/comments/1wh4tup/gbp_reinstated_yesterday_safe_to_reopen_a_second/",
-      "searchType": "narrow",
-      "searchLabel": "subreddit-search",
-      "relevanceScore": 45,
-      "matchedKeywords": [
-        "google business profile",
-        "gbp"
-      ]
-    }
-  ],
-  "fetchedAt": "2026-09-19T14:12:21.516Z",
+  "posts": [],
+  "fetchedAt": "2026-09-20T14:31:25.135Z",
   "source": "reddit-rss",
   "stats": {
-    "totalFetched": 15,
+    "totalFetched": 0,
     "totalQueries": 76,
-    "qualityPosts": 1,
-    "filteredOut": 14,
-    "newPosts": 1,
+    "qualityPosts": 0,
+    "filteredOut": 0,
+    "newPosts": 0,
     "minRelevanceScore": 45
   }
 }
