@@ -1,13 +1,32 @@
 {
-  "posts": [],
-  "fetchedAt": "2026-10-09T17:21:02.310Z",
+  "posts": [
+    {
+      "id": "1wzbnag",
+      "title": "Google Business Profile changes from the last two weeks that can quietly hurt a local shop",
+      "selftext": "If your customers find you on Google Maps, a few things have changed recently that are worth five minutes: Suggested edits: when Google notifies you that someone suggested an edit (hours, phone, address), you now have 4 days to accept or reject it. If you don't respond, Google may publish it if your website seems to back it up. Make sure your site shows the same hours and number as your profile. Posts: Google says it may remove Posts with contact info it can't verify (phone numbers, emails, social handles). Use the number that's already verified on your profile, or leave it out. Reviews: people are now being asked to sign in to read all your reviews. So the few that show up first matter more. Reply to your recent ones. Anyone else seen edits go live that they never approved?",
+      "authorUsername": "mbtonev",
+      "subredditName": "smallbusiness",
+      "createdAtDate": "2026-10-06T19:22:28+00:00",
+      "permalink": "/r/smallbusiness/comments/1wzbnag/google_business_profile_changes_from_the_last_two/",
+      "url": "https://www.reddit.com/r/smallbusiness/comments/1wzbnag/google_business_profile_changes_from_the_last_two/",
+      "searchType": "narrow",
+      "searchLabel": "subreddit-search",
+      "relevanceScore": 51,
+      "matchedKeywords": [
+        "soci",
+        "google business profile",
+        "google maps"
+      ]
+    }
+  ],
+  "fetchedAt": "2026-10-10T16:07:42.923Z",
   "source": "reddit-rss",
   "stats": {
-    "totalFetched": 13,
+    "totalFetched": 4,
     "totalQueries": 76,
-    "qualityPosts": 0,
-    "filteredOut": 13,
-    "newPosts": 0,
+    "qualityPosts": 1,
+    "filteredOut": 3,
+    "newPosts": 1,
     "minRelevanceScore": 45
   }
 }
