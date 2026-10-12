@@ -1,54 +1,13 @@
 {
-  "posts": [
-    {
-      "id": "1x05x5m",
-      "title": "GBP suspended. My auto body shop can’t meet permanent signage requirement right now. What should I focus on instead?",
-      "selftext": "Google recently suspended/disabled my Google Business Profile for my auto body shop. The problem I’m running into is that the Auto Body Shop category requires me to have a legitimate storefront with permanent signage/display in order to qualify. From what I understand, I also can’t simply switch to being a service-area business for this category. At the moment, I don't have a legitimate way to hang permanent signage at my location, and I don't want to fake signage or do something that's just going to get the profile suspended again. I have a few questions for anyone experienced with GBP/local SEO: How long can a GBP remain suspended? Is there a point where Google permanently deletes the profile/reviews, or could I potentially get it reinstated later once I have a location/signage that meets their requirements? I anticipated having trouble finding a permanent location, so I took screenshots of all of my Google reviews. Can I put those reviews/testimonials on my website? I know screenshots themselves probably aren't doing much for SEO, but would creating a testimonials/reviews section with the review text provide any SEO or conversion benefit? Going forward, should I start asking customers to leave reviews somewhere else in addition to Google? I'm considering Yelp or Trustpilot. I'm personally not a huge fan of Yelp, but if it helps establish the business online, I'll use it. Here's the interesting part: I'm still getting leads from ChatGPT. Customers have specifically told me they found/recommended my shop through ChatGPT. My website is still indexed and showing up in search, and I'm still getting calls through it even without an active GBP. So if I can't get my GBP back in the immediate future, what should I be doing to maximize visibility through ChatGPT/AI search, organic Google search, Bing, etc.? Is there an SEO strategy for a local auto body shop that can compensate for not having a GBP? I'm thinking things like location/service pages, structured data/schema, citations/directories, reviews on other platforms, FAQs, individual repair/service pages, before-and-after jobs, etc. Basically, I don't want to sit around waiting for GBP. If the website is already generating leads and AI platforms are apparently finding/recommending me, I'd rather put my money and effort into strengthening that channel until I can legitimately meet Google's storefront requirements. Would appreciate any advice from people doing local SEO or GBP management.",
-      "authorUsername": "ConsequenceRecent887",
-      "subredditName": "localseo",
-      "createdAtDate": "2026-10-07T19:33:52+00:00",
-      "permalink": "/r/localseo/comments/1x05x5m/gbp_suspended_my_auto_body_shop_cant_meet/",
-      "url": "https://www.reddit.com/r/localseo/comments/1x05x5m/gbp_suspended_my_auto_body_shop_cant_meet/",
-      "searchType": "narrow",
-      "searchLabel": "subreddit-search",
-      "relevanceScore": 93,
-      "matchedKeywords": [
-        "google business profile",
-        "gbp",
-        "local seo",
-        "google reviews",
-        "ai search",
-        "citation"
-      ]
-    },
-    {
-      "id": "1x3b0vp",
-      "title": "An automated pipeline that turns client jobs and reviews into daily video Shorts?",
-      "selftext": "Solved the biggest friction point in local agency scaling: manual video production. Built a hands-off pipeline that takes client Google reviews and job photos, generates hyper-localized scripts, pairs them with audio, renders formatted Shorts, and handles batch scheduling automatically. • Zero camera work required. • Zero manual video editing. • Full omni-channel distribution (YouTube, GBP, Web). It transformed a high-labor service into an automated distribution asset. If you're still relying solely on written blog posts and citation audits for local clients in 2026 and 2027, you're missing where visibility and discovery is actually moving.",
-      "authorUsername": "PostAuditMode",
-      "subredditName": "localseo",
-      "createdAtDate": "2026-10-11T15:27:14+00:00",
-      "permalink": "/r/localseo/comments/1x3b0vp/an_automated_pipeline_that_turns_client_jobs_and/",
-      "url": "https://www.reddit.com/r/localseo/comments/1x3b0vp/an_automated_pipeline_that_turns_client_jobs_and/",
-      "searchType": "narrow",
-      "searchLabel": "subreddit-search",
-      "relevanceScore": 49,
-      "matchedKeywords": [
-        "gbp",
-        "google reviews",
-        "citation",
-        "agency"
-      ]
-    }
-  ],
-  "fetchedAt": "2026-10-11T16:34:51.397Z",
+  "posts": [],
+  "fetchedAt": "2026-10-12T20:08:09.938Z",
   "source": "reddit-rss",
   "stats": {
-    "totalFetched": 4,
+    "totalFetched": 1,
     "totalQueries": 76,
-    "qualityPosts": 2,
-    "filteredOut": 2,
-    "newPosts": 2,
+    "qualityPosts": 0,
+    "filteredOut": 1,
+    "newPosts": 0,
     "minRelevanceScore": 45
   }
 }
