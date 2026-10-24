@@ -1,32 +1,13 @@
 {
-  "posts": [
-    {
-      "id": "1xbcgpq",
-      "title": "How would you market an established local service business moving into a more competitive area?",
-      "selftext": "My wife operates an independent dental hygiene clinic that is relocating from Etobicoke to Vaughan, Ontario. The clinic has an existing patient base and several years of operating history, but the new location will need to attract patients from the surrounding community. We're working with a limited small-business marketing budget and want to focus on activities that can realistically generate bookings rather than simply increase social media followers. If you were in this position, how would you allocate your marketing effort during the six to eight weeks before opening and the first three months afterward? Would you prioritize Google Business Profile and local SEO, email and text outreach to existing patients, local flyers, short-form videos, paid advertising, referral programs or partnerships with nearby businesses? If you've done something similar, which channels generated actual customers, and which turned out to be a waste of time or money?",
-      "authorUsername": "assyrianvoice",
-      "subredditName": "smallbusiness",
-      "createdAtDate": "2026-10-21T03:27:48+00:00",
-      "permalink": "/r/smallbusiness/comments/1xbcgpq/how_would_you_market_an_established_local_service/",
-      "url": "https://www.reddit.com/r/smallbusiness/comments/1xbcgpq/how_would_you_market_an_established_local_service/",
-      "searchType": "narrow",
-      "searchLabel": "subreddit-search",
-      "relevanceScore": 65,
-      "matchedKeywords": [
-        "soci",
-        "google business profile",
-        "local seo"
-      ]
-    }
-  ],
-  "fetchedAt": "2026-10-23T15:39:43.797Z",
+  "posts": [],
+  "fetchedAt": "2026-10-24T14:16:17.994Z",
   "source": "reddit-rss",
   "stats": {
-    "totalFetched": 5,
+    "totalFetched": 22,
     "totalQueries": 76,
-    "qualityPosts": 1,
-    "filteredOut": 4,
-    "newPosts": 1,
+    "qualityPosts": 0,
+    "filteredOut": 22,
+    "newPosts": 0,
     "minRelevanceScore": 45
   }
 }
