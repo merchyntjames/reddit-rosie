@@ -1,13 +1,53 @@
 {
-  "posts": [],
-  "fetchedAt": "2026-10-29T17:19:32.491Z",
+  "posts": [
+    {
+      "id": "1xgycl1",
+      "title": "How are you getting clients for a restaurant marketing agency in 2026? Looking for SEO tips in the AI era",
+      "selftext": "Hey guys! I’m currently doing SEO on growing a restaurant marketing agency that specializes in the restaurant and food &amp; beverage industry. We offer services like local SEO, website optimization, social media marketing, influencer marketing and promote their restaurant on food delivery platforms to help restaurants get more visibility and customers. Our target audience includes restaurants, cafes, cloud kitchens, and other food businesses, primarily in Mumbai, Navi Mumbai, in India. SEO in the AI era 1.With Google AI Overviews, AI Mode, ChatGPT, Perplexity, and other AI search tools changing how people discover businesses, what SEO strategies are actually working for you? Are local SEO and Google Business Profile optimization still producing meaningful leads for restaurants? Are you seeing results from creating helpful, location-specific content. How are you measuring whether AI search visibility is generating actual traffic and leads rather than just impressions? How are you finding the right keywords for such audience. I’m especially interested in practical strategies that are working right now in SEO for u guys Thanks in advance!",
+      "authorUsername": "Plus-Sense-5619",
+      "subredditName": "SEO",
+      "createdAtDate": "2026-10-27T17:08:05+00:00",
+      "permalink": "/r/SEO/comments/1xgycl1/how_are_you_getting_clients_for_a_restaurant/",
+      "url": "https://www.reddit.com/r/SEO/comments/1xgycl1/how_are_you_getting_clients_for_a_restaurant/",
+      "searchType": "narrow",
+      "searchLabel": "subreddit-search",
+      "relevanceScore": 83,
+      "matchedKeywords": [
+        "soci",
+        "google business profile",
+        "local seo",
+        "ai search",
+        "agency"
+      ]
+    },
+    {
+      "id": "1xj691n",
+      "title": "Google Business Profile Ranking in Top 3, But Calls Aren't Increasing – What Could Be the Reason?",
+      "selftext": "I'm managing the Google Business Profile (GBP) for a hair transplant surgeon, and I'm facing an issue that I haven't been able to resolve for the past six months. The profile is well-optimized, and I've worked on multiple aspects, including: Regular profile optimization and updates. Service and business description optimization. Relevant photos and regular posts. Review management and profile activity. Local SEO improvements. Despite these efforts, the number of calls generated through Google Business Profile hasn't increased significantly. The interesting part is that the profile is consistently ranking in the top 3 positions for hyperlocal searches. So, visibility and rankings don't seem to be the main problem. I'm trying to understand what could be affecting call generation despite strong local rankings. Has anyone experienced a similar situation with healthcare or hair transplant businesses? I'd appreciate suggestions on: What factors other than rankings could affect GBP call generation? Could search intent or low search volume be the reason? Are there any specific GBP insights or metrics I should analyze? What strategies have actually helped you increase calls from a well-ranking GBP? Would appreciate practical suggestions from people who have worked on similar local SEO projects.",
+      "authorUsername": "SmileCycle",
+      "subredditName": "SEO",
+      "createdAtDate": "2026-10-30T04:46:45+00:00",
+      "permalink": "/r/SEO/comments/1xj691n/google_business_profile_ranking_in_top_3_but/",
+      "url": "https://www.reddit.com/r/SEO/comments/1xj691n/google_business_profile_ranking_in_top_3_but/",
+      "searchType": "narrow",
+      "searchLabel": "subreddit-search",
+      "relevanceScore": 77,
+      "matchedKeywords": [
+        "google business profile",
+        "gbp",
+        "local seo",
+        "review management"
+      ]
+    }
+  ],
+  "fetchedAt": "2026-10-30T16:57:51.480Z",
   "source": "reddit-rss",
   "stats": {
-    "totalFetched": 0,
+    "totalFetched": 8,
     "totalQueries": 76,
-    "qualityPosts": 0,
-    "filteredOut": 0,
-    "newPosts": 0,
+    "qualityPosts": 2,
+    "filteredOut": 6,
+    "newPosts": 2,
     "minRelevanceScore": 45
   }
 }
