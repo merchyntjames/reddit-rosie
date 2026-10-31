@@ -1,34 +1,14 @@
 {
   "posts": [
     {
-      "id": "1xgycl1",
-      "title": "How are you getting clients for a restaurant marketing agency in 2026? Looking for SEO tips in the AI era",
-      "selftext": "Hey guys! I’m currently doing SEO on growing a restaurant marketing agency that specializes in the restaurant and food &amp; beverage industry. We offer services like local SEO, website optimization, social media marketing, influencer marketing and promote their restaurant on food delivery platforms to help restaurants get more visibility and customers. Our target audience includes restaurants, cafes, cloud kitchens, and other food businesses, primarily in Mumbai, Navi Mumbai, in India. SEO in the AI era 1.With Google AI Overviews, AI Mode, ChatGPT, Perplexity, and other AI search tools changing how people discover businesses, what SEO strategies are actually working for you? Are local SEO and Google Business Profile optimization still producing meaningful leads for restaurants? Are you seeing results from creating helpful, location-specific content. How are you measuring whether AI search visibility is generating actual traffic and leads rather than just impressions? How are you finding the right keywords for such audience. I’m especially interested in practical strategies that are working right now in SEO for u guys Thanks in advance!",
-      "authorUsername": "Plus-Sense-5619",
-      "subredditName": "SEO",
-      "createdAtDate": "2026-10-27T17:08:05+00:00",
-      "permalink": "/r/SEO/comments/1xgycl1/how_are_you_getting_clients_for_a_restaurant/",
-      "url": "https://www.reddit.com/r/SEO/comments/1xgycl1/how_are_you_getting_clients_for_a_restaurant/",
-      "searchType": "narrow",
-      "searchLabel": "subreddit-search",
-      "relevanceScore": 83,
-      "matchedKeywords": [
-        "soci",
-        "google business profile",
-        "local seo",
-        "ai search",
-        "agency"
-      ]
-    },
-    {
-      "id": "1xj691n",
+      "id": "1xj69um",
       "title": "Google Business Profile Ranking in Top 3, But Calls Aren't Increasing – What Could Be the Reason?",
       "selftext": "I'm managing the Google Business Profile (GBP) for a hair transplant surgeon, and I'm facing an issue that I haven't been able to resolve for the past six months. The profile is well-optimized, and I've worked on multiple aspects, including: Regular profile optimization and updates. Service and business description optimization. Relevant photos and regular posts. Review management and profile activity. Local SEO improvements. Despite these efforts, the number of calls generated through Google Business Profile hasn't increased significantly. The interesting part is that the profile is consistently ranking in the top 3 positions for hyperlocal searches. So, visibility and rankings don't seem to be the main problem. I'm trying to understand what could be affecting call generation despite strong local rankings. Has anyone experienced a similar situation with healthcare or hair transplant businesses? I'd appreciate suggestions on: What factors other than rankings could affect GBP call generation? Could search intent or low search volume be the reason? Are there any specific GBP insights or metrics I should analyze? What strategies have actually helped you increase calls from a well-ranking GBP? Would appreciate practical suggestions from people who have worked on similar local SEO projects.",
       "authorUsername": "SmileCycle",
-      "subredditName": "SEO",
-      "createdAtDate": "2026-10-30T04:46:45+00:00",
-      "permalink": "/r/SEO/comments/1xj691n/google_business_profile_ranking_in_top_3_but/",
-      "url": "https://www.reddit.com/r/SEO/comments/1xj691n/google_business_profile_ranking_in_top_3_but/",
+      "subredditName": "localseo",
+      "createdAtDate": "2026-10-30T04:48:01+00:00",
+      "permalink": "/r/localseo/comments/1xj69um/google_business_profile_ranking_in_top_3_but/",
+      "url": "https://www.reddit.com/r/localseo/comments/1xj69um/google_business_profile_ranking_in_top_3_but/",
       "searchType": "narrow",
       "searchLabel": "subreddit-search",
       "relevanceScore": 77,
@@ -38,16 +18,230 @@
         "local seo",
         "review management"
       ]
+    },
+    {
+      "id": "1xk53fi",
+      "title": "Why your local business isn't ranking in Google Maps",
+      "selftext": "If you manage local SEO for clients or your own business, you've probably noticed that setting up a Google Business Profile often isn't enough to secure top local map pack positions. Search algorithms rely heavily on entity mapping to verify whether a business actually operates in a specific service area. Here is how structured data bridges that gap: Explicit Geo-Coordinate Signals Plain text address footers can be misread by crawlers. Injecting structured LocalBusiness JSON-LD schema into your website header explicitly feeds search engines your exact latitude, longitude, and primary service radiuses. Standardizing NAP Consistency Inconsistent business names, addresses, or phone numbers across your domain and external listings confuse search engines. Schema markup acts as the canonical source of truth for your core NAP data. Defining Specific Business Categories Generic business schemas don't help much. Using specific Schema types (e.g., ProfessionalService, ITBusiness, or custom organizational sub-types) helps search engines group your site under hyper-relevant search queries. Linking Social &amp; Web Entities By using the sameAs schema property, you can link your official website to your verified social profiles and directory listings, consolidating your brand's total search authority. Implementing clean JSON-LD markup on your primary landing pages ensures search crawlers clearly index your geographic footprint.",
+      "authorUsername": "vawdigitech",
+      "subredditName": "localseo",
+      "createdAtDate": "2026-10-31T08:46:15+00:00",
+      "permalink": "/r/localseo/comments/1xk53fi/why_your_local_business_isnt_ranking_in_google/",
+      "url": "https://www.reddit.com/r/localseo/comments/1xk53fi/why_your_local_business_isnt_ranking_in_google/",
+      "searchType": "narrow",
+      "searchLabel": "subreddit-search",
+      "relevanceScore": 76,
+      "matchedKeywords": [
+        "soci",
+        "google business profile",
+        "local seo",
+        "map pack",
+        "google maps",
+        "local business"
+      ]
+    },
+    {
+      "id": "1xg0mxw",
+      "title": "Orthodontist local SEO case study: Google Maps top-3 visibility went from 68% → 85% and 53% → 81% at two offices in 3 months",
+      "selftext": "I work with local businesses across several industries, and three months ago I rebuilt the website and Google Business Profiles for a two-location orthodontic practice in the US. Here's what moved: Map pack share (top 3, checked from 169 points around each office): 68% → 85% at Location A and 53% → 81% at Location B Clicks from Google search: 304 → 753 a month (about 2.5x), after a six-month downward trend Profile views: about 20% above the same month last year by month three What I changed Market and competitive audit. I audited how the practice shows up across Google, the local map and the AI assistants, ChatGPT, Gemini, Claude and Perplexity, against the competing practices. Offer design (using the practice’s own data). The practice’s anonymized transaction history was used to pin down who its best patients are, and a brand voice, tone and messaging direction was built around them. Content gap analysis. I compared the old site with the leading competitors’ sites topic by topic to find the gap clusters, and those clusters informed the new site’s structure and content approach. The site. I migrated it to a new platform on the same domain, with a new page structure, redirects for the addresses worth keeping, titles and descriptions updated, and structured data rebuilt for both offices. Each office has its own page with its own schema, and each Google profile points to its own office page. There is a page for every service, from each kind of braces to Invisalign, retainers and early treatment. Content the old site never had. Working with the doctors in the clinics, we created new expertise-driven sections and pages, discussing some of the nuances of the issues patients face, what may cause these issues, and the approach of the clinic for treating them (such as pages on crowding and overbite, and living with braces guides), with deep internal linking to the relevant pages. Profiles. Both Google Business Profiles were rebuilt: primary category, a consolidated services list with descriptions, the language attribute, financing handled in the description, clean business names, the booking link pointed at a tracked consultation page, and launched GBP posts. Citations cleanup. I went through the key citations and ensured consistency across both locations (including citations in medical directories and high-authority websites), and created new citations where a gap existed. We also added links from the doctors' own LinkedIn profiles to the clinic, and vice versa (from the website to their LinkedIn). Press release. We timed the new website’s launch to coincide with the practice’s launch of a new patient program, which has its own page on the site. The press release had two aims: announce the program, and publish a consistent description of the practice, its doctors and both locations on news sites where search engines and AI assistants could find it. Analytics. I wired tag management and GA4 with named events for inquiries, calls, bookings and quiz starts, so the practice counts a lead once and can see which source produced it. For context, this was a comprehensive engagement covering the website rebuild, local SEO, positioning and detailed measurement. The depth of tracking and analysis shown here reflects that scope; my smaller engagements have a more focused reporting setup. Map pack share went up at both offices I check rankings by searching from 169 points in a grid around each office, with the same search terms every time. Map share is the share of those points where the office shows up in Google's top 3. I ran both post-relaunch checks at the same time of day, while both offices were open. I explained this approach to reporting in another Reddit post here (from my agency account): How I track &amp; report multiple local grid terms and locations for my clients Location A Keyword Before 2 months after 3 months after orthodontist 34% 50% 68% braces 39% 66% 74% invisalign 33% 65% 78% retainers 100% 100% 100% same day braces 84% 95% 91% ceramic braces 71% 56% 81% metal braces 99% 100% 99% braces for adults 55% 86% 92% braces for kids 69% 66% 73% braces for teens 95% 96% 97% Average 68% 78% 85% Location B Keyword Before 2 months after 3 months after orthodontist 20% 23% 43% braces 43% 66% 83% invisalign 47% 57% 76% retainers 43% 95% 96% same day braces 63% 94% 83% ceramic braces 61% 74% 85% metal braces 76% 98% 99% braces for adults 45% 60% 78% braces for kids 65% 54% 70% braces for teens 62% 90% 95% Average 53% 71% 81% Main target terms improved at both locations: orthodontist, braces and Invisalign. At Location B, \"orthodontist\" went from the top 3 in about 20% of the sampled grid points to 43%. It wasn't a straight line. A few terms dipped at month two (\"braces for kids\" at both offices, \"ceramic braces\" at Location A) and still finished above where they started. Search clicks went up 2.5x after a six-month downward trend Month Clicks from Google search 6 months before 385 5 months before 345 4 months before 324 3 months before 327 2 months before 305 1 month before 281 1 month after 501 2 months after 821 3 months after 938 That's an average of 304 a month in the three months before the relaunch and 753 a month in the three after. Before the rebuild, clicks had slid from 385 a month to 281. The migration didn't cause a dip. Clicks rose in the very first month after launch, from 281 to 501. GBP views ended month three about 20% above last year Both Google profiles combined, against prior months and same month a year earlier, from Google's Business Profile data: Month GBP views Same month a year earlier 3 months before 2,455 not available 2 months before 2,164 2,721 1 month before 2,121 2,365 2 months after 2,337 2,424 3 months after 2,770 2,250 Seasonality does affect the results, that's why I don't only compare GBP views to prior periods, but also to same period in the prior year. AI answers: already strong where it counts This project specifically targeted Google Maps ranking, and we didn't scope for AI visibility work, but I still kept track of whether ChatGPT, Claude, Gemini and Perplexity name the practice when someone asks them for an orthodontist. I wanted to see how my work would affect results. Answers vary between runs, so I read the direction, not single cells. Share of answers that named the practice, before → after, both offices combined: Topic Questions (per location) ChatGPT Claude Gemini Perplexity Core local (best and top-rated orthodontist, where to get braces) 5 80% → 90% 100% → 100% 90% → 100% 100% → 100% Treatment-specific (ceramic, metal and clear braces, retainers) 10 65% → 90% 95% → 90% 90% → 100% 90% → 90% Age-specific (adults, kids, teens) 6 75% → 92% 100% → 100% 100% → 100% 100% → 100% Affordability and financing 6 75% → 75% 75% → 100% 92% → 92% 92% → 100% Insurance 4 25% → 0% 25% → 0% 63% → 38% 38% → 38% The practice already appeared frequently across most of those categories before the relaunch, and remained well represented afterward. Insurance was the exception, and it revealed two different issues: State insurance: the practice had stopped accepting it, but the old website never made that clear. The new site does. Fewer recommendations for those searches are consistent with that correction: attracting patients the practice can’t serve wouldn’t help either side. Private insurance: recommendations also fell for some private-plan questions, particularly at one office. We’ve since added clearer information about the plans accepted and will check whether the answers reflect it. These were exploratory checks. Answers vary between runs, and I wouldn’t attribute a change to the website rebuild from a single before-and-after comparison. The practice now wants dedicated AI visibility work. For the next round, I’ll repeat each question four times per platform, review which sources the answers cite, and use those findings to guide the next changes. What's next More people are finding the practice now, visiting the website, and calling, so the next job is to maximize conversions for each call and website form submission. Today, the front desk handles follow-up, but the practice has limited visibility into conversion rates and which inquiries still need attention. I’m building a CRM that connects with the practice’s management software, tracks each inquiry, and supports a defined follow-up sequence. It will help the team track inquiries through to booked consultations and identify where potential patients drop off. With ad campaigns planned next, that tracking will also help us judge performance by booked consultations alongside traffic and lead volume. For those of you working in other competitive industries, what has helped improve local SEO performance the most?",
+      "authorUsername": "alaalshaibani",
+      "subredditName": "localseo",
+      "createdAtDate": "2026-10-26T15:51:14+00:00",
+      "permalink": "/r/localseo/comments/1xg0mxw/orthodontist_local_seo_case_study_google_maps/",
+      "url": "https://www.reddit.com/r/localseo/comments/1xg0mxw/orthodontist_local_seo_case_study_google_maps/",
+      "searchType": "narrow",
+      "searchLabel": "subreddit-search",
+      "relevanceScore": 74,
+      "matchedKeywords": [
+        "google business profile",
+        "gbp",
+        "local seo",
+        "google maps ranking",
+        "ai visibility",
+        "map pack",
+        "citation",
+        "google maps",
+        "local business",
+        "agency"
+      ]
+    },
+    {
+      "id": "1xg6gl0",
+      "title": "Google Business Home could change how we manage Local SEO",
+      "selftext": "I came across a report about Google's new concept called Google Business Home, and it got me thinking about the future of Local SEO. The idea is to bring tools like Google Business Profile, YouTube, Google Ads, and Merchant Center into one dashboard. The most interesting part is the potential integration of Gemini AI. Imagine being able to ask AI questions like: What do customers praise most in our Google reviews? Which customer insights should we highlight on our website? Is there a growing demand for a particular local service that we should respond to? For example, an HVAC business could potentially use AI-driven demand insights to identify increased interest in AC repair during a heat wave and plan a timely promotion. If these capabilities develop as described, they could make local marketing more data-driven and efficient. That said, the platform is reportedly in a limited closed beta, so I'm curious to see how the actual features work in practice. Would a unified dashboard with AI-powered insights genuinely improve your Local SEO workflow, or would you still prefer using separate tools for each task? I'd love to hear what other SEO professionals and local business owners think.",
+      "authorUsername": "Significant_Brush473",
+      "subredditName": "localseo",
+      "createdAtDate": "2026-10-26T19:22:22+00:00",
+      "permalink": "/r/localseo/comments/1xg6gl0/google_business_home_could_change_how_we_manage/",
+      "url": "https://www.reddit.com/r/localseo/comments/1xg6gl0/google_business_home_could_change_how_we_manage/",
+      "searchType": "narrow",
+      "searchLabel": "subreddit-search",
+      "relevanceScore": 66,
+      "matchedKeywords": [
+        "google business profile",
+        "local seo",
+        "google reviews",
+        "local marketing",
+        "local business"
+      ]
+    },
+    {
+      "id": "1xjaw9k",
+      "title": "Are local SEO platforms good for prospecting?",
+      "selftext": "Hello all, I signed up for BrightLocal only to discover that it's not a tool for prospecting. Unless I've missed a feature or two. I want to be able to research 'plumbers in this area' and checks results across multiple locations for a business. But without having to set up a location. Am I right to assume that BrightLocal is primarily for managing a specific business and not prospecting? Is there a platform that has these features (that doesn't cost the earth). Ideally one that can Claude can plug into.",
+      "authorUsername": "lozmatico",
+      "subredditName": "localseo",
+      "createdAtDate": "2026-10-30T09:39:29+00:00",
+      "permalink": "/r/localseo/comments/1xjaw9k/are_local_seo_platforms_good_for_prospecting/",
+      "url": "https://www.reddit.com/r/localseo/comments/1xjaw9k/are_local_seo_platforms_good_for_prospecting/",
+      "searchType": "narrow",
+      "searchLabel": "subreddit-search",
+      "relevanceScore": 60,
+      "matchedKeywords": [
+        "brightlocal",
+        "local seo"
+      ]
+    },
+    {
+      "id": "1xity5z",
+      "title": "Why I’m adding CRM, automation and customer follow-up to my local SEO work",
+      "selftext": "I recently posted in this subreddit a case study about a two-location orthodontic practice where Google Maps top-3 visibility went from 68% → 85% at one office and 53% → 81% at the other in three months. More people are finding the practice, but when I followed a sample of recent leads, I saw clear drop-offs and missed opportunities. That’s why the next project is a CRM connected to the practice’s management software, to track what happens after someone inquires. This is part of a broader direction I’m taking with clients as AI automates more of the day-to-day marketing execution. I’m a former Microsoft digital transformation strategist with a background in engineering and computer science, so I’m putting more of my work where that experience counts: CRM, automation and customer follow-up. Here are three examples. 1. Orthodontics: following each inquiry through to a decision For the practice in the case study, I’m designing a new-patient pipeline connected to its practice management software, which remains the main record for appointments. Today there’s no consistent way to follow-up on open inquiries, and to see at which stage an inquiry is lost or why. The CRM will show where each person is and what needs to happen next. The design covers: A new inquiry that hasn’t booked a consultation A consultation booked, cancelled or missed Someone who attended but is still deciding A records appointment booked, cancelled or missed A patient who asks to be contacted at a later date Each stage needs a different response. Someone who missed a consultation needs help rebooking. A patient still deciding may need a conversation about cost, insurance or timing. The workflows combine staff calls, tasks and automated nurturing sequences, stopping follow-up when someone books and avoiding duplicate reminders. Some details are still being agreed, and I’ll share results once there’s enough data. The aim is for every open inquiry to have a visible owner and next step, and to measure where people drop out. That measurement is also why the CRM comes before ads. Google and Meta ads were the original next step, but their return depends partly on what happens after the click. Connecting inquiry sources to booking outcomes will let us compare campaigns by cost per booked consultation, while structured follow-up should help more suitable inquiries turn into appointments. 2. Home services: the first inquiry connected to the finished job For a home services company that launched from zero, I built the website and Google Business Profile alongside a pipeline connected to its estimating software: estimates booked, reminders sent, deposits tracked, and a review request sent to every customer once the job is done. Call tracking and lead-source reporting show the owners where inquiries came from. The business launched with acquisition and handling connected from day one. 3. Skincare: less admin between appointments For a skincare studio, the owner was the system: confirming appointments by hand, reading intake forms before every visit, and remembering who was due back. I built workflows for a reusable intake record, provider alerts from answers like allergies, treatment-specific prep messages, confirmations, aftercare and return reminders, all connected to the studio’s booking and payment system. The provider still reviews the information and makes the treatment decisions; the automation gets it to them at the right time. Why I see this as connected to local SEO Customers experience one journey. Businesses usually manage it in parts. An unanswered inquiry or confusing booking process can cost the business a customer, along with the repeat business, referral or Google review that might have followed. The reverse is also true: clear communication and a well-organised experience give people more reasons to return, recommend the business and leave a positive review. Google’s own guidance notes that more reviews and positive ratings can help local ranking. For Local Services Ads, rating, number of reviews and average response time form part of profile quality, and missed calls can hurt responsiveness. A CRM is not a ranking factor itself, but it helps the team handle follow-up and review requests consistently and notice when something is missed. Why should clients care? I work with a small number of clients and lead each engagement myself, which is what makes going this deep possible. When I work on a client’s website and local SEO, I already learn their services, customers, positioning and competitors. That gives me useful context for designing their CRM and follow-up. The information flows back into marketing too. Knowing which inquiries become customers, what those customers value and what holds others back can help me: Refine the website’s messaging around the reasons customers actually choose the business Prioritize services and search terms that bring suitable customers Address recurring questions and objections in service pages, FAQs and follow-up Identify potential referral partners based on the customers the business wants to reach Inform where the next investment should go: visibility, the offer, follow-up or capacity For an orthodontic practice, for example, questions about financing might reveal a need for clearer website content and consultation messaging. Understanding which patients are a good fit could also guide which local dentists or community organizations to approach for partnerships. There’s also the owner’s time to consider. Every hour spent connecting tools, tracing missing inquiries or coordinating vendors is an hour they could spend serving customers, developing their team or winning new business. Part of my role is to take that coordination off their plate and make the information easier to act on, so they can focus on growing the business and giving customers more reasons to choose them over the competition, which leads to more referrals, google reviews, budget for deeper local SEO work, etc. How I organise the work I’ve put this approach into a framework I call the MOSAIC Six, the areas I look at before deciding what to work on first: Market Visibility: website, local SEO, ads and organic social Offer Design: what the business sells, how it’s priced, and why customers choose it Systems: CRM, booking, pipelines and the tools around them Automation &amp; AI: repetitive tasks, with people handling exceptions and decisions that need judgment Insights: local grid scans, AI visibility checks, GTM, GA4, GSC and call tracking Customer Continuity: review requests, reputation, referrals, reactivation and repeat business They work as a loop: the reviews and referrals in Customer Continuity help the next customer find the business. As AI develops, this is where I want to put more of my expertise: understanding the business, designing the process, connecting the tools and measuring what changes. For others working in local SEO: how involved do you get in CRM, inquiry follow-up and retention? Do you handle it yourselves, partner with someone, or leave it with the client?",
+      "authorUsername": "alaalshaibani",
+      "subredditName": "localseo",
+      "createdAtDate": "2026-10-29T19:40:40+00:00",
+      "permalink": "/r/localseo/comments/1xity5z/why_im_adding_crm_automation_and_customer/",
+      "url": "https://www.reddit.com/r/localseo/comments/1xity5z/why_im_adding_crm_automation_and_customer/",
+      "searchType": "narrow",
+      "searchLabel": "subreddit-search",
+      "relevanceScore": 58,
+      "matchedKeywords": [
+        "soci",
+        "google business profile",
+        "local seo",
+        "google reviews",
+        "ai visibility",
+        "google maps"
+      ]
+    },
+    {
+      "id": "1xh127k",
+      "title": "How I’m running quick \"You vs. Top 3 Map Pack\" category & review gap audits directly inside Google Maps without hitting the 5-search monthly cap",
+      "selftext": "Every time I was doing a quick Google Business Profile prospect check on Google Maps, I kept running into the 5-lookup monthly limit on the big browser extensions just to see a competitor's hidden secondary categories. I ended up putting together a super lightweight local script/extension for my own agency workflow that parses the public Google Maps payload directly in the sidebar as you scroll, and figured I'd share the workflow in case anyone else is tired of the lookup caps: Primary + Hidden Secondary Categories on Every Card: When you search a niche on Google Maps (e.g., \"Roofers in Manchester\"), it pulls the primary category and all secondary categories out of the page data and displays them as badges right on the search result cards - with zero daily or monthly lookup limits. \"You vs. Top 3\" Gap Check: Instead of manually counting reviews and categories across tabs, clicking a listing #4-#20 compares their rating, review velocity gap, and category count directly against the #1, #2, and #3 Map Pack winners so you can show a client exactly what they're missing. Clean CSV Session Dump: Grabs the business names, ranks, primary/secondary categories, review counts, phone numbers, and websites from the active search into a clean spreadsheet. I didn't include any links in the post so I don't break Rule 3, but it's live on the Chrome Web Store completely free if anyone wants to use it for their own audits. If anyone wants to test it out (or wants me to unlock the unlimited CSV/PDF export mode for them permanently to test), just drop a comment and I'm happy to DM it over!",
+      "authorUsername": "paulgmassey",
+      "subredditName": "localseo",
+      "createdAtDate": "2026-10-27T18:46:42+00:00",
+      "permalink": "/r/localseo/comments/1xh127k/how_im_running_quick_you_vs_top_3_map_pack/",
+      "url": "https://www.reddit.com/r/localseo/comments/1xh127k/how_im_running_quick_you_vs_top_3_map_pack/",
+      "searchType": "narrow",
+      "searchLabel": "subreddit-search",
+      "relevanceScore": 58,
+      "matchedKeywords": [
+        "google business profile",
+        "map pack",
+        "google maps",
+        "agency"
+      ]
+    },
+    {
+      "id": "1xhj14j",
+      "title": "Have a Google Business Profile? You're probably missing these 5 listings.",
+      "selftext": "If you run a local service business and want more organic jobs, there are 5 places I'd check before spending more money on SEO. Better Business Bureau (BBB) A lot of people think you have to pay to get listed there. But you can get a basic business listing for free. Apple Maps I'm surprised how many local businesses still ignore this. People with iPhones don't always use Google Maps. Nextdoor Especially interesting if you're a plumber, roofer, landscaper, or any kind of home-service contractor. Yelp Even if you're not actively using it, at least claim your business and make sure the information is correct. Bing Places I think this one is pretty underrated, especially with how AI search is growing. Bing data can feed into other search experiences, so I wouldn't completely ignore it. And one more thing.. Make sure your business name, address, and phone number are consistent across these listings. Not saying these 5 profiles will magically take you to #1 on Google.. But if you're trying to build a legitimate local presence, I'd definitely start here. I hope it helps. Take care guys. Thank you.",
+      "authorUsername": "No-Reputation3262",
+      "subredditName": "localseo",
+      "createdAtDate": "2026-10-28T09:06:34+00:00",
+      "permalink": "/r/localseo/comments/1xhj14j/have_a_google_business_profile_youre_probably/",
+      "url": "https://www.reddit.com/r/localseo/comments/1xhj14j/have_a_google_business_profile_youre_probably/",
+      "searchType": "narrow",
+      "searchLabel": "subreddit-search",
+      "relevanceScore": 54,
+      "matchedKeywords": [
+        "google business profile",
+        "ai search",
+        "google maps",
+        "local business"
+      ]
+    },
+    {
+      "id": "1xggry6",
+      "title": "Local SEO results for a dental clinic (May–September 2026)",
+      "selftext": "https://preview.redd.it/cq0k10xu7xxh1.png?width=2396&amp;format=png&amp;auto=webp&amp;s=09a49f4613676c4193060f880986646a5560e895 Local SEO results for a dental clinic I've been working with a dental clinic on local SEO, and Google Business Profile generated 1,322 calls over five months. The results have been growing consistently, which is encouraging. I'm curious how other SEOs working with dental practices measure the impact of local SEO beyond rankings and calls. Do you track how many GBP calls turn into booked appointments, and what methods do you use to measure that?",
+      "authorUsername": "zafardigital",
+      "subredditName": "localseo",
+      "createdAtDate": "2026-10-27T02:31:46+00:00",
+      "permalink": "/r/localseo/comments/1xggry6/local_seo_results_for_a_dental_clinic/",
+      "url": "https://www.reddit.com/r/localseo/comments/1xggry6/local_seo_results_for_a_dental_clinic/",
+      "searchType": "narrow",
+      "searchLabel": "subreddit-search",
+      "relevanceScore": 49,
+      "matchedKeywords": [
+        "google business profile",
+        "gbp",
+        "local seo"
+      ]
+    },
+    {
+      "id": "1xhq917",
+      "title": "Small UK tree surgery business struggling to get consistent enquiries – looking for honest local SEO advice",
+      "selftext": "Hi everyone, Me and my brother started a small tree surgery and landscaping business in January 2026 called Branchard Tree &amp; Landscapes Services Ltd. We're based around Rugby, Warwickshire, in the UK, and we're trying to build the business and get more consistent customer enquiries. We've got a website, Google Business Profile, Facebook and Instagram, but we're struggling to get a steady flow of enquiries. Some weeks we get a few, and other weeks we barely get anything. I'm trying to learn more about SEO, local SEO, Google Ads and digital marketing, but there's so much conflicting information online that I'm not really sure where to focus. I'd really appreciate some honest advice from anyone experienced in SEO or marketing for local service businesses. A few things I'd particularly like help with: Improving our Google rankings when people search for tree surgeons in our area. Optimising our Google Business Profile to appear more often on Google Maps. Understanding what could be improved on our website to generate more enquiries. Knowing whether Google Ads would be worth investing in on a small budget. Understanding what marketing activities would make the biggest difference for a relatively new business. I'm not looking for shortcuts or guaranteed rankings. I genuinely want to learn how to do things properly and build the business long-term. If anyone would be willing to offer some advice or point me in the right direction, I'd really appreciate it. Thanks in advance!",
+      "authorUsername": "Ok_Variety7176",
+      "subredditName": "localseo",
+      "createdAtDate": "2026-10-28T14:53:28+00:00",
+      "permalink": "/r/localseo/comments/1xhq917/small_uk_tree_surgery_business_struggling_to_get/",
+      "url": "https://www.reddit.com/r/localseo/comments/1xhq917/small_uk_tree_surgery_business_struggling_to_get/",
+      "searchType": "narrow",
+      "searchLabel": "subreddit-search",
+      "relevanceScore": 48,
+      "matchedKeywords": [
+        "google business profile",
+        "local seo",
+        "google maps"
+      ]
+    },
+    {
+      "id": "1xipavl",
+      "title": "Local SEO 101: Don't underestimate the impact your GBP website link has on Maps results - 809 businesses analyzed.",
+      "selftext": "To most of us this may be a \"duh!\" observation, but in my experience it is also something that seems to be a missed opportunity that a lot of local businesses either take for granted, don't realize the importance of, or just don't know how to truly measure what 'good' looks like. Google's GBP article, \"Understand how Google sources &amp; uses info in Business Profiles &amp; local search results\" states that among other factors, Google uses info provided by your GBP and sources \"Publicly-available information, such as crawled web content (e.g., information from a business’ official website)\" to to help surface relevant local search results. Google does a decent job of explaining what a 'good' GBP should look like, but there's not much guidance on specific standards for a 'good' local business website. My experience has shown me that it can make a big difference with overall local search results, including a direct impact on your (GBP) listing performance in Google Maps results, and here are the seven fundamental factors that I've found to have the biggest impact: Complete LocalBusiness Schema Localized Body Content LocalBusiness Schema-GBP Aligned NAP &amp; Hours Listed on Website GBP Review Strength Helpful Content/Answers Structured Content (Reviews, FAQs) To better help understand the impact these factors have on local search performance, I analyzed 809 businesses' GBP + website links to compare total factors detected to Maps search performance across 7,281 local search grid results. The objective was purely an observational exploration to see if/what correlation with website optimization to a business's local search presence in Maps results. This analysis only looks at the seven levels of any combination of total factors detected. It does not breakdown specific combinations of factors due to complexities that become difficult to standardize with analyzing the many sub-factors within variations of combined factors. If interested in how your, or any, local business scores for these factors, you can run a free analysis at seo.modfyr.com, or view our free interactive demo on how Modfyr can help improve local search performance. Please note that this is merely observational correlations, not a statement of specific causation. That said, I felt the strong correlations were worth sharing. Would love to hear your thoughts on if you agree, disagree, or have had similar experience with website optimizations impacting (GBP) Maps search results.",
+      "authorUsername": "modfyr",
+      "subredditName": "localseo",
+      "createdAtDate": "2026-10-29T16:48:30+00:00",
+      "permalink": "/r/localseo/comments/1xipavl/local_seo_101_dont_underestimate_the_impact_your/",
+      "url": "https://www.reddit.com/r/localseo/comments/1xipavl/local_seo_101_dont_underestimate_the_impact_your/",
+      "searchType": "narrow",
+      "searchLabel": "subreddit-search",
+      "relevanceScore": 45,
+      "matchedKeywords": [
+        "gbp",
+        "local seo",
+        "google maps",
+        "local business"
+      ]
+    },
+    {
+      "id": "1xgqpa3",
+      "title": "Law Firm Google Business Profile Audit What Should I Check?",
+      "selftext": "I have been looking into ways to improve a law firm’s local visibility and came across the idea of a Law Firm Google Business Profile Audit im curious about what matters most when reviewing a profile specially categories, reviews, business information, and local rankings for those who work in legal marketing or local SEO, what do you usually check first when auditing a law firm’s Google Business Profile?",
+      "authorUsername": "MissionNo3480",
+      "subredditName": "localseo",
+      "createdAtDate": "2026-10-27T12:05:09+00:00",
+      "permalink": "/r/localseo/comments/1xgqpa3/law_firm_google_business_profile_audit_what/",
+      "url": "https://www.reddit.com/r/localseo/comments/1xgqpa3/law_firm_google_business_profile_audit_what/",
+      "searchType": "narrow",
+      "searchLabel": "subreddit-search",
+      "relevanceScore": 45,
+      "matchedKeywords": [
+        "google business profile",
+        "local seo"
+      ]
     }
   ],
-  "fetchedAt": "2026-10-30T16:57:51.480Z",
+  "fetchedAt": "2026-10-31T15:58:54.544Z",
   "source": "reddit-rss",
   "stats": {
-    "totalFetched": 8,
+    "totalFetched": 25,
     "totalQueries": 76,
-    "qualityPosts": 2,
-    "filteredOut": 6,
-    "newPosts": 2,
+    "qualityPosts": 12,
+    "filteredOut": 13,
+    "newPosts": 11,
     "minRelevanceScore": 45
   }
 }
